@@ -1,22 +1,18 @@
 <template>
-  <div>
-    <BaseHeader/>
-    <BaseMain/>
-    <BaseFooter/>
-  </div>
+  <v-app>
+    <div class="main-app">
+      <layout/>
+    </div>
+  </v-app>
 </template>
 
 <script>
-import BaseMain from "./components/main/BaseMain";
-import BaseHeader from "./components/header/BaseHeader";
-import BaseFooter from "./components/footer/BaseFooter";
+import Layout from "./components/layout/Layout";
 
 export default {
   name: 'app',
   components: {
-    BaseFooter,
-    BaseHeader,
-    BaseMain
+    Layout
   }
 }
 </script>
