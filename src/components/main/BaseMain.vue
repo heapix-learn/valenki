@@ -15,6 +15,7 @@
 <style lang="scss">
 
 .base-main{
+	height: 5000px;
 			padding-top: 1vh;
 			&__page {
 						background-color: aquamarine;

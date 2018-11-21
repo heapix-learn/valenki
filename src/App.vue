@@ -8,11 +8,13 @@
 
 <script>
 import Layout from "./components/layout/Layout";
+import {VApp} from 'vuetify/lib'
 
 export default {
   name: 'app',
   components: {
-    Layout
+    Layout,
+    VApp
   }
 }
 </script>

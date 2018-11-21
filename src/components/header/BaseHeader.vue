@@ -5,7 +5,7 @@
 		</div>
 		<div class="base-header__button">
 			<router-link to="/login">Login</router-link>
-			<v-btn class="base-header__button__sign" @click="openSignInPage()">signIn</v-btn>
+			<!--<v-btn class="base-header__button__sign" @click="openSignInPage()">signIn</v-btn>-->
 		</div>
 	</div> 
 </template>

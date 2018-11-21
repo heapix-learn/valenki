@@ -1,22 +1,24 @@
 <template>
-<div>
-    <BaseHeader/>
+  <div>
+    <v-toolbar
+    :dark="true"
+    :fixed="true"
+    />
     <BaseMain/>
-</div>
+  </div>
 </template>
 
 <script>
-import BaseHeader from "@/components/header/BaseHeader.vue";
-import BaseMain from "@/components/main/BaseMain.vue";
-
+import BaseMain from '../main/BaseMain'
+import {VToolbar} from 'vuetify/lib'
 
 
 export default {
   name: 'layout',
   components: {
-    BaseHeader,
-    BaseMain
-  }
+    BaseMain,
+    VToolbar
+  },
 }
 </script>
 
