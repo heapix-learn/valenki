@@ -1,43 +1,48 @@
 <template>
-	<div class="base-header">
-		<div class="base-header__logo">
-			<img src="@/assets/logo.png" class="base-header__logo__image"/>
-		</div>
-		<div class="base-header__button">
-			<router-link to="/login">Login</router-link>
-			<!--<v-btn class="base-header__button__sign" @click="openSignInPage()">signIn</v-btn>-->
-		</div>
-	</div> 
+	<v-toolbar :dark="false" :fixed="true">
+		<v-toolbar-title>Lemma</v-toolbar-title>
+		<v-spacer></v-spacer>
+		<v-menu offset-y>
+      <v-toolbar-side-icon slot="activator">M</v-toolbar-side-icon>
+      <v-list :fixed="true">
+        <router-link to="/login"/>
+        <v-list-tile v-for="(item, index) in items"
+          :key="index">
+          <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+        </v-list-tile>
+      </v-list>
+    </v-menu>
+	</v-toolbar>
 </template>
 
 <script>
-	export default {
-		name: "BaseHeader"
-	}
+import {
+  VToolbar,
+  VToolbarSideIcon,
+  VMenu,
+  VList,
+  VListTile,
+  VSpacer
+} from "vuetify/lib";
+
+export default {
+  name: "BaseHeader",
+  components: {
+    VToolbar,
+    VToolbarSideIcon,
+    VMenu,
+    VList,
+    VListTile,
+    VSpacer
+  },
+  data() {
+    return {
+      items: [{ title: "Sign In" }, { title: "Sign Up" }, { title: "Info" }]
+    };
+  }
+};
 </script>
 
 <style lang="scss">
-@import '@/scss/global.scss';
-
-.base-header {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 50% 50%;
-	height: 9vh;
-	background-color: cadetblue;
-	
-	&__logo {
-		&__image {
-			width: 80%;
-			padding: 3vh;
-		}
-	}
-	&__button {
-		&__sign {
-			float: right;
-			margin: 3vh 3vh;
-		}
-	}
-}
-
+@import "@/scss/global.scss";
 </style>

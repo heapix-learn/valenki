@@ -7,24 +7,23 @@
 </template>
 
 <script>
-	export default {
-		name: "BaseMain"
-	}
+export default {
+  name: "BaseMain",
+  components: {
+  }
+};
 </script>
 
 <style lang="scss">
-
-.base-main{
-	height: 5000px;
-			padding-top: 1vh;
-			&__page {
-						background-color: aquamarine;
-						text-align: center;
-						height: 75vh;
-						padding-top: 2vh;
-						margin-bottom: 1vh;
-			}
+.base-main {
+  height: 2000px;
+  padding-top: 1vh;
+  &__page {
+    background-color: aquamarine;
+    text-align: center;
+    height: 75vh;
+    padding-top: 15vh;
+    margin-bottom: 1vh;
+  }
 }
-
-
 </style>

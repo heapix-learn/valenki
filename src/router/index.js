@@ -1,22 +1,27 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 import Login from '@/components/register/LoginPage'
+import Help from '@/components/register/Help'
+import Layout from '@/components/layout/Layout'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
+export default new VueRouter({
     routes: [
       {
         path: '/',
-        name: 'BodyComponent',
-        component: BodyComponent,
+        component: Layout,
         children: [
           {
             path: '/login',
-            name: 'LoginPage',
             component: Login
           }
         ]
+      },
+      {
+        path: '/help',
+        name: 'Help',
+        component: Help
       },
     ]
   })

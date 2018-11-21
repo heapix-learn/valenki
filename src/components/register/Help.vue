@@ -1,13 +1,13 @@
 <template>
-  <div class="login-page">
-      <h4 class="left">login page</h4>
+  <div class="help-page">
+      <h4 class="left">help page</h4>
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'LoginPage',
+  name: 'Help',
   components: {
   }
 }
