@@ -1,7 +1,7 @@
 <template>
 			<div class="base-footer">
 						<div class="base-footer__info">
-									<span>I'am footer</span>
+									<span>Made with love and tears by 🄯HEAPIX dev</span>
 						</div>
 			</div>
 </template>
@@ -16,7 +16,7 @@
 
 			.base-footer	{
 						background-color: burlywood;
-						height: 9vh;
+						height: 7vh;
 						&__info {
 									padding-top: 2vh;
 									text-align: center;

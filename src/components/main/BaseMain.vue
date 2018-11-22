@@ -46,6 +46,7 @@
 						&__page {
 									text-align: center;
 									min-height: 100vh;
+									height: 200vh;
 									padding-top: 7vh;
 									&__cart {
 										margin: 7px 5px;
