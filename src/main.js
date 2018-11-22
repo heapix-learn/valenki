@@ -13,6 +13,6 @@ Vue.use(Vuetify, {
   iconfont: 'mdi'
  })
 new Vue({
-  VueRouter,
+    VueRouter,
   render: h => h(App),
 }).$mount('#app')
