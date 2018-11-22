@@ -1,14 +1,20 @@
 <template>
 	<div class="base-main">
 		<div class="base-main__page">
-			<div v-for="(item, index) in items" :key="index">
+			<div v-for="(User, index) in Users" :key="index">
 				<v-layout class="base-main__page__cart">
 					<v-flex xs12 sm6 offset-sm3>
 						<v-card>
+
+							<v-avatar :tile="false" :size="66"
+												class="base-main__page__cart__avatar">
+								<img src="../../assets/1.png" height="130" width="130"/>
+							</v-avatar>
+
 							<div class="base-main__page__cart__nickname">
-								<span>{{}}:</span>
+								<span>{{User.first_name}}:</span>
 							</div>
-							<img src="../../assets/1.png" height="130" width="130"/>
+
 							<v-card-title primary-title>
 								<div>
 									<h3 class="headline mb-0"></h3>
@@ -16,15 +22,21 @@
 									</div>
 								</div>
 							</v-card-title>
+
+								<v-chip color="lime" small="true" v-for="(chips, index) in Message.chip" :key="index">
+									<v-avatar class="teal">#</v-avatar>
+									{{chips.tag}}
+								</v-chip>
+
 							<v-card-actions>
-								<v-btn color="green">
+								<v-btn :flat="true" color="red">
+									Dislike
+								</v-btn>
+								<v-btn :flat="true" color="blue">
+									Repost
+								</v-btn>
+								<v-btn :flat="true" color="green">
 									Like
-								</v-btn>
-								<v-btn color="blue">
-									Re:post
-								</v-btn>
-								<v-btn color="red">
-									Dis:like
 								</v-btn>
 							</v-card-actions>
 						</v-card>
@@ -32,7 +44,7 @@
 				</v-layout>
 			</div>
 		</div>
-		{{}}<br>{{Message}}
+		<!--{{}}<br>{{Message}}-->
 		<router-view></router-view>
 	</div>
 </template>
@@ -74,6 +86,7 @@
 					value: '"Название звучало забавно, энергично и не страшно. Слово «apple» (яблоко) смягчало серьёзное «компьютер»."',
 					liked: 0,
 					reposted: 0,
+					chip: [{tag: 'Apple'}, {tag: 'Story'}, {tag: 'Jobs'}]
 				}
 			};
 		},
@@ -81,8 +94,6 @@
 			// let message = MessageFactory.getDefault();
 			// console.log('this.Message', message)
 		},
-		methods() {
-		}
 	};
 </script>
 
@@ -102,10 +113,19 @@
 
 				&__nickname {
 					text-align: left;
-					padding: 10px;
 					font-weight: 600;
+					height: 26px;
+					padding: 20px;
+				}
+
+				&__avatar {
+					float: left;
 				}
 			}
 		}
+	}
+
+	.v-card__actions {
+		justify-content: flex-end;
 	}
 </style>
