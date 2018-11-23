@@ -64,5 +64,7 @@
 						margin-top: 1vh;
 			}
 
-
+.spacer {
+	height: 6vh !important;
+}
 </style>

@@ -1,9 +1,9 @@
 <template>
-			<v-app>
-						<div class="main-app">
-												<layout/>
-						</div>
-			</v-app>
+	<v-app>
+		<div class="main-app">
+			<layout/>
+		</div>
+	</v-app>
 </template>
 
 <script>
@@ -22,7 +22,7 @@
 </script>
 
 <style lang="scss">
-			@import "scss/reset.scss";
+	@import "scss/reset.scss";
 
 
 </style>

@@ -1,9 +1,9 @@
 <template>
-			<div>
-						<BaseHeader/>
-						<router-view></router-view>
-						<BaseFooter/>
-			</div>
+	<div class="base-layout">
+		<BaseHeader/>
+		<router-view class="base-layout__main"></router-view>
+		<BaseFooter/>
+	</div>
 </template>
 
 <script>
@@ -14,11 +14,18 @@
 		name: 'layout',
 		components: {
 			BaseHeader,
-				BaseFooter
+			BaseFooter
 		},
 	}
 </script>
 
 <style lang="scss">
+	.base-layout {
 
+		&__main {
+			margin-top: 56px;
+			padding-top: 1px;
+			min-height: calc(100vh - 6vh - 56px);
+		}
+	}
 </style>

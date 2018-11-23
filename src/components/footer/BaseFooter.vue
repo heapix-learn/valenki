@@ -16,7 +16,7 @@
 
 			.base-footer	{
 						background-color: burlywood;
-						height: 7vh;
+						height: 6vh;
 						&__info {
 									padding-top: 2vh;
 									text-align: center;

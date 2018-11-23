@@ -1,7 +1,9 @@
 <template>
 	<div class="base-main">
 		<div class="base-main__page">
+
 			<div v-for="(User, index) in Users" :key="index">
+
 				<v-layout class="base-main__page__cart">
 					<v-flex xs12 sm6 offset-sm3>
 						<v-card>
@@ -12,21 +14,24 @@
 							</v-avatar>
 
 							<div class="base-main__page__cart__nickname">
-								<span>{{User.first_name}}:</span>
+								<span>{{User.nick_name}}:</span>
 							</div>
 
 							<v-card-title primary-title>
 								<div>
 									<h3 class="headline mb-0"></h3>
-									<div>{{Message.value}}
+									<div>{{Messages[index].phrase}}
 									</div>
 								</div>
 							</v-card-title>
 
-								<v-chip color="lime" small="true" v-for="(chips, index) in Message.chip" :key="index">
-									<v-avatar class="teal">#</v-avatar>
-									{{chips.tag}}
-								</v-chip>
+							<v-chip color="lime" :small="true"
+											v-if="(Messages[index].chip.length) > 0"
+											v-for="(chips, count) in Messages[index].chip"
+											:key="count">
+								<v-avatar class="teal">:-D</v-avatar>
+								{{chips.tag}}
+							</v-chip>
 
 							<v-card-actions>
 								<v-btn :flat="true" color="red">
@@ -50,6 +55,7 @@
 </template>
 
 <script>
+	import axios from 'axios'
 	// import MessageFactory	from "../../classes/message/MessageFactory.ts"
 
 	export default {
@@ -57,40 +63,32 @@
 		components: {},
 		data() {
 			return {
-				items: [{title: "1"}, {title: "2"}, {title: "3"}],
-				Users: [{
-					id: 1,
-					first_name: 'Alex',
-					last_name: 'Born',
-					nick_name: 'ABorn',
-					login: 'alex@tut.by',
-					password: '111111',
-				}, {
-					id: 2,
-					first_name: 'Vova',
-					last_name: 'Green',
-					nick_name: 'VGreen',
-					login: 'vova@tut.by',
-					password: '222222',
-				}],
-				// Steve: {
-				// 	id: 2020327,
-				// 	first_name: 'Steven Paul',
-				// 	last_name: 'Jobs',
-				// 	nick_name: 'Steve',
-				// 	login: 'test@tut.by',
-				// 	password: '666666',
-				// },
-				Message: {
-					id: 101,
-					value: '"Название звучало забавно, энергично и не страшно. Слово «apple» (яблоко) смягчало серьёзное «компьютер»."',
-					liked: 0,
-					reposted: 0,
-					chip: [{tag: 'Apple'}, {tag: 'Story'}, {tag: 'Jobs'}]
-				}
+				Users: {},
+				Messages: [
+					{
+						'id': null,
+						'phrase': '',
+						'liked': null,
+						'reposted': null,
+						'chip': [
+							{
+								'tag': ''
+							}
+						]
+					}
+				]
 			};
 		},
+		mounted: {},
 		created() {
+			axios.get('http://localhost:3000/users')
+				.then(response => {
+					this.Users = (response.data);
+				});
+			axios.get('http://localhost:3000/messages')
+				.then(response => {
+					this.Messages = (response.data);
+				})
 			// let message = MessageFactory.getDefault();
 			// console.log('this.Message', message)
 		},
@@ -99,17 +97,14 @@
 
 <style lang="scss">
 	.base-main {
-		padding-top: 1vh;
 		background: linear-gradient(60deg, #F2C14E, #F78154);
 
 		&__page {
 			text-align: center;
-			min-height: 100vh;
-			height: 200vh;
-			padding-top: 7vh;
+			padding-top: 7px;
 
 			&__cart {
-				margin: 7px 5px;
+				margin: 5px 5px 0 5px;
 
 				&__nickname {
 					text-align: left;
