@@ -1,10 +1,11 @@
 <template>
 	<div class="base-main">
-		<div class="base-main__page">
+
+		<div class="base-main__page" v-if="Users.length">
 
 			<div v-for="(User, index) in Users" :key="index">
 
-				<v-layout class="base-main__page__cart">
+				<v-layout class="base-main__page__cart" v-if="Messages.length">
 					<v-flex xs12 sm6 offset-sm3>
 						<v-card>
 
@@ -14,22 +15,23 @@
 							</v-avatar>
 
 							<div class="base-main__page__cart__nickname">
-								<span>{{User.nick_name}}:</span>
+								<span
+									@click="getMessagesByUser(User.id)"> {{User.nick_name}}: </span>
 							</div>
 
 							<v-card-title primary-title>
 								<div>
 									<h3 class="headline mb-0"></h3>
-									<div>{{Messages[index].phrase}}
+									<div>
+										{{Messages[index].phrase}}
 									</div>
 								</div>
 							</v-card-title>
 
 							<v-chip color="lime" :small="true"
-											v-if="(Messages[index].chip.length) > 0"
 											v-for="(chips, count) in Messages[index].chip"
 											:key="count">
-								<v-avatar class="teal">:-D</v-avatar>
+								<v-avatar class="teal">#</v-avatar>
 								{{chips.tag}}
 							</v-chip>
 
@@ -44,12 +46,17 @@
 									Like
 								</v-btn>
 							</v-card-actions>
+
 						</v-card>
 					</v-flex>
 				</v-layout>
+
 			</div>
+
+			<span v-if="MessagesByAuthor.length">{{MessagesByAuthor}}</span>
+
 		</div>
-		<!--{{}}<br>{{Message}}-->
+
 		<router-view></router-view>
 	</div>
 </template>
@@ -63,23 +70,19 @@
 		components: {},
 		data() {
 			return {
-				Users: {},
-				Messages: [
-					{
-						'id': null,
-						'phrase': '',
-						'liked': null,
-						'reposted': null,
-						'chip': [
-							{
-								'tag': ''
-							}
-						]
-					}
-				]
+				Users: [],
+				Messages: [],
+				MessagesByAuthor: []
 			};
 		},
-		mounted: {},
+		methods: {
+			getMessagesByUser(id) {
+				axios.get('http://localhost:3000/messages?author=' + id)
+					.then(response => {
+						this.MessagesByAuthor = (response.data);
+					});
+			}
+		},
 		created() {
 			axios.get('http://localhost:3000/users')
 				.then(response => {
@@ -88,9 +91,8 @@
 			axios.get('http://localhost:3000/messages')
 				.then(response => {
 					this.Messages = (response.data);
-				})
+				});
 			// let message = MessageFactory.getDefault();
-			// console.log('this.Message', message)
 		},
 	};
 </script>

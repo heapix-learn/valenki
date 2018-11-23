@@ -25,7 +25,7 @@
 		&__main {
 			margin-top: 56px;
 			padding-top: 1px;
-			min-height: calc(100vh - 6vh - 56px);
+			min-height: calc(100vh - 56px - 36px);
 		}
 	}
 </style>
