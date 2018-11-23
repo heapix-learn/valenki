@@ -1,25 +1,22 @@
 <template>
-  <div>
-    <v-toolbar
-    :dark="true"
-    :fixed="true"
-    />
-    <BaseMain/>
-  </div>
+			<div>
+						<BaseHeader/>
+						<router-view></router-view>
+						<BaseFooter/>
+			</div>
 </template>
 
 <script>
-import BaseMain from '../main/BaseMain'
-import {VToolbar} from 'vuetify/lib'
+	import BaseHeader from '../header/BaseHeader'
+	import BaseFooter from '../footer/BaseFooter'
 
-
-export default {
-  name: 'layout',
-  components: {
-    BaseMain,
-    VToolbar
-  },
-}
+	export default {
+		name: 'layout',
+		components: {
+			BaseHeader,
+				BaseFooter
+		},
+	}
 </script>
 
 <style lang="scss">
