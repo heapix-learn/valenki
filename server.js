@@ -7,6 +7,7 @@ const router = jsonServer.router('db.json')
 const userdb = JSON.parse(fs.readFileSync('users.json', 'UTF-8'))
 const middlewares = jsonServer.defaults()
 
+server.use(middlewares)
 server.use(bodyParser.urlencoded({extended: true}))
 server.use(bodyParser.json())
 
@@ -30,14 +31,17 @@ function isAuthenticated ({ login, password }) {
 }
 
 server.post('/auth/login', (req, res) => {
-  const {login, password} = req.body
-  if (isAuthenticated({login, password}) === false) {
+  const credentials = {
+    login: req.body.credential.name,
+    password: req.body.credential.password
+  }
+  if (isAuthenticated(credentials) === false) {
     const status = 401
     const message = 'Incorrect login or password'
     res.status(status).json({status, message})
     return
   }
-  const access_token = createToken({login, password})
+  const access_token = createToken(credentials)
   res.status(200).json({access_token})
 })
 
@@ -59,7 +63,6 @@ server.use(/^(?!\/auth).*$/,  (req, res, next) => {
 })
 
 server.use(router)
-server.use(middlewares)
 server.listen(3002, () => {
   console.log('JSON Server is running')
 })

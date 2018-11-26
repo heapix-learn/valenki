@@ -12,10 +12,10 @@ export default class UserRepository {
 	}
 
 	createUser(credential) {
-		axios.post('http://localhost:3001/users', credential)
+		axios.post('http://localhost:3001/users', {credential})
 	}
 
 	signIn(credential) {
-		axios.post('http://localhost:3002/auth/login', credential)
+		axios.post('http://localhost:3002/auth/login', {credential})
 	}
 }
