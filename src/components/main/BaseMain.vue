@@ -1,5 +1,10 @@
 <template>
 	<div class="base-main">
+
+		<div v-if="!Messages.length" class="base-main__note">
+			<span>Авторизуйтесь на сайте, чтобы просматривать сообщения!</span>
+		</div>
+
 		<div class="base-main__page">
 
 			<div v-for="(message, index) in Messages" :key="index">
@@ -38,15 +43,19 @@
 			async getMessages() {
 				const messageRepository = new MessageRepository()
 				this.Messages = await (messageRepository.getAllMessages())
-				console.log(this.Messages)
-			}
-		},
+			},
+		}
 	};
 </script>
 
 <style lang="scss">
 	.base-main {
 		background: linear-gradient(60deg, #F2C14E, #F78154);
+
+		&__note {
+			text-align: center;
+			line-height: 60vh;
+		}
 
 		&__page {
 			text-align: center;

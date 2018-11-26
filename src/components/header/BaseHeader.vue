@@ -1,6 +1,5 @@
 <template>
 			<v-toolbar :dark="false" :fixed="true">
-
 						<router-link :to="{name: 'BaseMain'}">
 									<img class="logo" src="../../assets/logo.png" height="37" width="246"/>
 						</router-link>
@@ -18,8 +17,8 @@
 															<router-link :to="{name: 'RegisterPage'}" class="link"><span>Register</span></router-link>
 												</v-list-tile>
 
-												<v-list-tile>
-															Personal
+												<v-list-tile @click="logOut()">
+															Logout
 												</v-list-tile>
 									</v-list>
 						</v-menu>
@@ -49,10 +48,11 @@
 			// VBtn,
 			VSpacer
 		},
-		data() {
-			return {
-				items: [{title: "Sign In"}, {title: "Sign Up"}, {title: "Info"}]
-			};
+		methods: {
+			logOut() {
+				localStorage.setItem('token', 'null')
+				alert('Вы разлогинились')
+			}
 		}
 	};
 </script>

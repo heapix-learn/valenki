@@ -46,14 +46,14 @@ server.post('/auth/login', (req, res) => {
 })
 
 server.use(/^(?!\/auth).*$/,  (req, res, next) => {
-  if (req.headers.authorization === undefined || req.headers.authorization.split(' ')[0] !== 'Bearer') {
+  if (req.headers.authorization === undefined || req.headers.authorization === 'null') {
     const status = 401
     const message = 'Bad authorization header'
     res.status(status).json({status, message})
     return
   }
   try {
-    verifyToken(req.headers.authorization.split(' ')[1])
+    verifyToken(req.headers.authorization.split(' ')[0]);
     next()
   } catch (err) {
     const status = 401
@@ -63,6 +63,6 @@ server.use(/^(?!\/auth).*$/,  (req, res, next) => {
 })
 
 server.use(router)
-server.listen(3002, () => {
+server.listen(3000, () => {
   console.log('JSON Server is running')
 })
