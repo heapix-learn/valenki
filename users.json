@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "first_name": "Alex",
+      "last_name": "Born",
+      "nick_name": "ABorn",
+      "login": "alex@tut.by",
+      "password": "111111"
+    },
+    {
+      "id": 2,
+      "first_name": "Vova",
+      "last_name": "Green",
+      "nick_name": "VGreen",
+      "login": "vova@tut.by",
+      "password": "222222"
+    },
+    {
+      "id": 3,
+      "first_name": "Gena",
+      "last_name": "Pink",
+      "nick_name": "Violet",
+      "login": "pink@tut.by",
+      "password": "333333"
+    }
+  ]
+}
