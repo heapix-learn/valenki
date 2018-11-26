@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Login from '../components/register/LoginPage'
+import LoginPage from '../components/register/LoginPage'
+import RegisterPage from '../components/register/RegisterPage'
 import Help from '../components/register/Help'
 import BaseMain from '../components/main/BaseMain'
 
@@ -13,11 +14,18 @@ const router = new VueRouter({
 			component: BaseMain,
 			name: 'BaseMain',
 			children: []
-		}, {
-			name: 'LoginForm',
+		},
+		{
+			name: 'LoginPage',
 			path: '/login',
-			component: Login
-		}, {
+			component: LoginPage
+		},
+		{
+			name: 'ReristerPage',
+			path: '/register',
+			component: RegisterPage
+		},
+		{
 			path: '/help',
 			name: 'Help',
 			component: Help

@@ -33,7 +33,10 @@
     "messages": [
         {
             "id": 101,
-            "author": 1,
+            "author": {
+                "id": "1",
+                "nick_name": "ABorn"
+            },
             "phrase": "Автор ABorn: Слово «apple» (яблоко) смягчало серьёзное «компьютер».",
             "liked": 0,
             "reposted": 0,
@@ -51,7 +54,10 @@
         },
         {
             "id": 102,
-            "author": 1,
+            "author": {
+                "id": "1",
+                "nick_name": "ABorn"
+            },
             "phrase": "Автор ABorn: yarn global is a prefix used for a number of commands like ",
             "liked": 0,
             "reposted": 0,
@@ -69,7 +75,10 @@
         },
         {
             "id": 103,
-            "author": 2,
+            "author": {
+                "id": "2",
+                "nick_name": "VGreen"
+            },
             "phrase": "Автр VGreen: their normal versions except that they use a global directory ",
             "liked": 0,
             "reposted": 0,

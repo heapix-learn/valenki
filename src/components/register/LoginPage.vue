@@ -17,7 +17,10 @@
 												>
 															LogIn
 												</v-btn>
-												<v-btn class="login-page__form__buttons__btn">Register</v-btn>
+										<router-link :to="{name: 'RegisterPage'}" class="link">
+											<v-btn class="login-page__form__buttons__btn">Register</v-btn>
+										</router-link>
+
 									</div>
 						</v-form>
 						логин:{{credential.name}}<br>

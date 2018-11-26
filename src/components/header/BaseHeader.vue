@@ -11,7 +11,7 @@
 									<v-list class="link">
 
 												<v-list-tile >
-															<router-link :to="{name: 'LoginForm'}" class="link"><span>Login</span></router-link>
+															<router-link :to="{name: 'LoginPage'}" class="link"><span>Login</span></router-link>
 												</v-list-tile>
 
 												<v-list-tile>
