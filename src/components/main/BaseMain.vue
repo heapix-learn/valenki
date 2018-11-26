@@ -17,7 +17,7 @@
 
 <script>
 	import SinglePost from './SinglePost'
-	import MessagesRepository from '../../classes/message/MessagesRepository.js'
+	import MessageRepository from '../../classes/message/MessageRepository.js'
 
 	export default {
 		name: "BaseMain",
@@ -36,8 +36,8 @@
 		},
 		methods: {
 			async getMessages() {
-				const messagesRepository = new MessagesRepository()
-				this.Messages = await (messagesRepository.getAllMessages())
+				const messageRepository = new MessageRepository()
+				this.Messages = await (messageRepository.getAllMessages())
 				console.log(this.Messages)
 			}
 		},

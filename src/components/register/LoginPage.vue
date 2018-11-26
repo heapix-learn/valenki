@@ -13,7 +13,7 @@
 											required
 									></v-text-field>
 									<div class="login-page__form__buttons">
-												<v-btn class="login-page__form__buttons__btn"
+												<v-btn @click="signIn()" class="login-page__form__buttons__btn"
 												>
 															LogIn
 												</v-btn>
@@ -23,12 +23,12 @@
 
 									</div>
 						</v-form>
-						логин:{{credential.name}}<br>
-						пароль:{{credential.password}}
+
 			</div>
 </template>
 
 <script>
+	import UserRepository from '../../classes/user/UserRepository.js'
 
 	export default {
 		name: 'LoginPage',
@@ -39,6 +39,13 @@
 					name: '',
 					password: ''
 				}
+			}
+		},
+		methods: {
+			signIn() {
+				console.log('hi')
+					const userRepository = new UserRepository()
+					userRepository.signIn(this.credential)
 			}
 		}
 	}

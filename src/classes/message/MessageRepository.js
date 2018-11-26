@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export default class MessagesRepository {
+export default class MessageRepository {
 
 	async getAllMessages() {
 		const messages = (await axios.get('http://localhost:3001/messages')).data

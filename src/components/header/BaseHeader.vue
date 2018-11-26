@@ -15,11 +15,11 @@
 												</v-list-tile>
 
 												<v-list-tile>
-															SecondLine
+															<router-link :to="{name: 'RegisterPage'}" class="link"><span>Register</span></router-link>
 												</v-list-tile>
 
 												<v-list-tile>
-															ThirdLine
+															Personal
 												</v-list-tile>
 									</v-list>
 						</v-menu>

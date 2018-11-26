@@ -6,29 +6,35 @@
 				v-model="credential.name"
 				label="Name/Email"
 				required
-			></v-text-field>
+			/>
 			<v-text-field
 				v-model="credential.password"
 				label="Password"
 				required
-			></v-text-field>
+			/>
+			<v-text-field
+				v-model="confirm_password"
+				label="Confirm Password"
+				required
+			/>
 			<div class="login-page__form__buttons">
-				<v-btn class="login-page__form__buttons__btn"
+				<v-btn @click="checkFields()" class="login-page__form__buttons__btn"
 				>
 					Register Me
 				</v-btn>
-				<router-link :to="{name: 'RegisterPage'}" class="link">
-					<v-btn class="login-page__form__buttons__btn">sign in</v-btn>
+				<router-link :to="{name: 'LoginPage'}" class="link">
+					<v-btn>already have an account</v-btn>
 				</router-link>
 
 			</div>
 		</v-form>
-		логин:{{credential.name}}<br>
-		пароль:{{credential.password}}
+
 	</div>
 </template>
 
 <script>
+	import UserRepository from '../../classes/user/UserRepository.js'
+
 
 	export default {
 		name: 'RegisterPagePage',
@@ -38,9 +44,53 @@
 				credential: {
 					name: '',
 					password: ''
+				},
+				confirm_password: ''
+			}
+		},
+		methods: {
+			checkFields() {
+				if (this.credential.name.length >= 6) {
+					if (this.credential.password.length >= 6 && this.confirm_password.length >= 6) {
+						if (this.confirm_password == this.credential.password) {
+							alert('cool!');
+							this.registerUser();
+						} else {
+							alert('Сравни пароли!')
+						}
+					} else {
+						alert('Удлинни пароль!')
+					}
+				} else {
+					alert('Введи емаил!')
 				}
+			},
+
+			// checkFields2() {
+			// 	alert('hi')
+			// 	switch (this.credential.name.length >=6) {
+			// 		case 'false':
+			// 			alert('Введи емаил!')
+			// 			switch (this.credential.password.length >= 6 && this.confirm_password.length >= 6) {
+			// 				case 'false':
+			// 					alert('Удлинни пароль!')
+			// 					switch (this.confirm_password == this.credential.password) {
+			// 						case 'false':
+			// 							alert('Сравни пароли!');
+			// 							break;
+			// 							default:
+			// 							alert('cool!');
+			// 					}
+			// 			}
+			// 	}
+			// },
+
+			registerUser() {
+				const userRepository = new UserRepository()
+				userRepository.createUser(this.credential)
 			}
 		}
+		,
 	}
 </script>
 
@@ -59,6 +109,7 @@
 				display: flex;
 				justify-content: space-evenly;
 				align-items: center;
+
 				&__btn {
 					width: 33%;
 				}

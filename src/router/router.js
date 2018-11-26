@@ -21,7 +21,7 @@ const router = new VueRouter({
 			component: LoginPage
 		},
 		{
-			name: 'ReristerPage',
+			name: 'RegisterPage',
 			path: '/register',
 			component: RegisterPage
 		},

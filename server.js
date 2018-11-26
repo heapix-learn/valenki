@@ -60,6 +60,6 @@ server.use(/^(?!\/auth).*$/,  (req, res, next) => {
 
 server.use(router)
 server.use(middlewares)
-server.listen(3000, () => {
+server.listen(3002, () => {
   console.log('JSON Server is running')
 })
