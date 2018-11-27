@@ -3,28 +3,36 @@
 
 		<div class="register-page__spacer"/>
 
-		<v-form ref="form" lazy-validation>
+		<v-form @submit="checkFields()" ref="form" v-model="valid" lazy-validation>
 			<v-text-field
 				v-model="credential.name"
+				:rules="nameRules"
 				label="Name/Email"
+				type="text"
 				required
 			/>
 			<v-text-field
 				v-model="credential.password"
+				:rules="passwordRules"
 				label="Password"
+				type="password"
 				required
 			/>
 			<v-text-field
 				v-model="confirm_password"
+				:rules="passwordRules"
 				label="Confirm Password"
+				type="password"
 				required
 			/>
 			<div class="login-page__form__buttons">
-				<v-btn @click="checkFields()" class="login-page__form__buttons__btn">
-					Register Me
+				<v-btn type="submit" class="login-page__form__buttons__button"
+							 :disabled="!valid">
+					Signup
 				</v-btn>
-				<router-link :to="{name: 'LoginPage'}">
-					<v-btn>already have an account</v-btn>
+				<router-link :to="{name: 'LoginPage'}"
+										 class="login-page__form__buttons__button">
+					<v-btn>have an account</v-btn>
 				</router-link>
 			</div>
 		</v-form>
@@ -44,24 +52,42 @@
 					name: '',
 					password: ''
 				},
-				confirm_password: ''
+				valid: true,
+				confirm_password: '',
+				nameRules: [
+					v => !!v || 'Name is required', //must be learn how its works
+					v => (v && v.length >= 6) || 'Name must be more or equal than 6 characters'
+				],
+				passwordRules: [
+					v => !!v || 'Password is required',
+					v => (v && v.length >= 6) || 'Password must be more or equal than 6 characters'
+				],
 			}
 		},
 		methods: {
 			checkFields() {
-				if ( this.credential.name.length >= 6 ) {
-					if (this.credential.password.length >= 6 && this.confirm_password.length >= 6) {
-						if (this.confirm_password == this.credential.password) {
-							console.log('credentials are correct');
-							this.registerUser();
+				if (this.credential.name.length >= 6) {
+					if (this.credential.password.length >= 6) {
+						if (this.confirm_password.length >= 6) {
+							if (this.confirm_password == this.credential.password) {
+								console.log('credentials are correct, you have been registered');
+								this.registerUser();
+							} else {
+								console.log('passwords are not the same');
+								this.confirm_password = null
+							}
 						} else {
-							console.log('passwords are not the same')
+							console.log('password are too short');
+							this.confirm_password = null
 						}
 					} else {
-						console.log('password are too short')
+						console.log('password are too short');
+						this.credential.password = null;
+						this.confirm_password = null
 					}
 				} else {
-					console.log('email are too short')
+					console.log('name are too short')
+					this.credential.name = null
 				}
 			},
 			registerUser() {
@@ -84,12 +110,9 @@
 		&__form {
 
 			&__buttons {
-				display: flex;
-				justify-content: space-evenly;
-				align-items: center;
 
-				&__btn {
-					width: 33%;
+
+				&__button {
 				}
 			}
 		}
