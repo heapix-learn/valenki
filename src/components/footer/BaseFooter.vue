@@ -1,9 +1,7 @@
 <template>
-			<div class="base-footer">
-						<div class="base-footer__info">
-									<span>Made with love and tears by 🄯HEAPIX dev</span>
-						</div>
-			</div>
+	<v-footer class="base-footer">
+		<span>Made with love and tears by 🄯HEAPIX dev</span>
+	</v-footer>
 </template>
 
 <script>
@@ -14,13 +12,8 @@
 
 <style lang="scss">
 
-			.base-footer	{
-						background-color: burlywood;
-						height: 7vh;
-						&__info {
-									padding-top: 2vh;
-									text-align: center;
-						}
-			}
+	.base-footer {
+		justify-content: space-around;
+	}
 
 </style>

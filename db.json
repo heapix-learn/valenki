@@ -1,0 +1,98 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "first_name": "Alex",
+      "last_name": "Born",
+      "nick_name": "ABorn",
+      "login": "111111",
+      "password": "111111",
+      "messages": [
+        {
+          "id": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "first_name": "Vova",
+      "last_name": "Green",
+      "nick_name": "VGreen",
+      "login": "vova@tut.by",
+      "password": "222222"
+    },
+    {
+      "id": 3,
+      "first_name": "Gena",
+      "last_name": "Pink",
+      "nick_name": "Violet",
+      "login": "pink@tut.by",
+      "password": "333333"
+    }
+  ],
+  "messages": [
+    {
+      "id": 101,
+      "author": {
+        "id": "1",
+        "nick_name": "ABorn"
+      },
+      "phrase": "Автор ABorn: Слово «apple» (яблоко) смягчало серьёзное «компьютер».",
+      "liked": 0,
+      "reposted": 0,
+      "chip": [
+        {
+          "tag": "Apple"
+        },
+        {
+          "tag": "Story"
+        },
+        {
+          "tag": "Jobs"
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "author": {
+        "id": "1",
+        "nick_name": "ABorn"
+      },
+      "phrase": "Автор ABorn: yarn global is a prefix used for a number of commands like ",
+      "liked": 0,
+      "reposted": 0,
+      "chip": [
+        {
+          "tag": "Yarn"
+        },
+        {
+          "tag": "global"
+        },
+        {
+          "tag": "check"
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "author": {
+        "id": "2",
+        "nick_name": "VGreen"
+      },
+      "phrase": "Автр VGreen: their normal versions except that they use a global directory ",
+      "liked": 0,
+      "reposted": 0,
+      "chip": [
+        {
+          "tag": "link"
+        },
+        {
+          "tag": "import"
+        },
+        {
+          "tag": "outdated"
+        }
+      ]
+    }
+  ]
+}
