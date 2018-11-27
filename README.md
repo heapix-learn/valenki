@@ -1,5 +1,7 @@
 # lemma
 
+We use Vuetify, json-server, JWT
+
 ## Project setup
 ```
 yarn install
