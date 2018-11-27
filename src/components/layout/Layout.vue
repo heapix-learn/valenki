@@ -20,12 +20,19 @@
 </script>
 
 <style lang="scss">
+
 	.base-layout {
+
+		&__header {
+		}
 
 		&__main {
 			margin-top: 56px;
-			padding-top: 1px;
 			min-height: calc(100vh - 56px - 36px);
 		}
+
+		&__footer {
+		}
 	}
+
 </style>

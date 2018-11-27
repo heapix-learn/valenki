@@ -11,7 +11,8 @@
 					</v-avatar>
 					<div class="base-main__page__cart__nickname">
 						<span
-							@click="getMessagesByUser(message.author)">{{message.author.nick_name}}</span>
+							@click="getMessagesByUser(message.author)">{{message.author.nick_name}}
+						</span>
 					</div>
 
 					<v-card-title primary-title>

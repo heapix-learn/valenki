@@ -5,7 +5,7 @@
 			<span>Авторизуйтесь на сайте, чтобы просматривать сообщения!</span>
 		</div>
 
-		<div class="base-main__page">
+		<div v-else class="base-main__page">
 
 			<div v-for="(message, index) in Messages" :key="index">
 
@@ -16,7 +16,7 @@
 
 		</div>
 
-		<router-view></router-view>
+		<router-view/>
 	</div>
 </template>
 
@@ -59,7 +59,6 @@
 
 		&__page {
 			text-align: center;
-			padding-top: 7px;
 
 			&__cart {
 				margin: 5px 5px 0 5px;

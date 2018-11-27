@@ -1,6 +1,8 @@
 <template>
 	<div class="register-page">
-		<div class="spacer"></div>
+
+		<div class="register-page__spacer"/>
+
 		<v-form ref="form" lazy-validation>
 			<v-text-field
 				v-model="credential.name"
@@ -18,14 +20,12 @@
 				required
 			/>
 			<div class="login-page__form__buttons">
-				<v-btn @click="checkFields()" class="login-page__form__buttons__btn"
-				>
+				<v-btn @click="checkFields()" class="login-page__form__buttons__btn">
 					Register Me
 				</v-btn>
-				<router-link :to="{name: 'LoginPage'}" class="link">
+				<router-link :to="{name: 'LoginPage'}">
 					<v-btn>already have an account</v-btn>
 				</router-link>
-
 			</div>
 		</v-form>
 
@@ -34,7 +34,6 @@
 
 <script>
 	import UserRepository from '../../classes/user/UserRepository.js'
-
 
 	export default {
 		name: 'RegisterPagePage',
@@ -50,61 +49,40 @@
 		},
 		methods: {
 			checkFields() {
-				if (this.credential.name.length >= 6) {
+				if ( this.credential.name.length >= 6 ) {
 					if (this.credential.password.length >= 6 && this.confirm_password.length >= 6) {
 						if (this.confirm_password == this.credential.password) {
-							alert('cool!');
+							console.log('credentials are correct');
 							this.registerUser();
 						} else {
-							alert('Сравни пароли!')
+							console.log('passwords are not the same')
 						}
 					} else {
-						alert('Удлинни пароль!')
+						console.log('password are too short')
 					}
 				} else {
-					alert('Введи емаил!')
+					console.log('email are too short')
 				}
 			},
-
-			// checkFields2() {
-			// 	alert('hi')
-			// 	switch (this.credential.name.length >=6) {
-			// 		case 'false':
-			// 			alert('Введи емаил!')
-			// 			switch (this.credential.password.length >= 6 && this.confirm_password.length >= 6) {
-			// 				case 'false':
-			// 					alert('Удлинни пароль!')
-			// 					switch (this.confirm_password == this.credential.password) {
-			// 						case 'false':
-			// 							alert('Сравни пароли!');
-			// 							break;
-			// 							default:
-			// 							alert('cool!');
-			// 					}
-			// 			}
-			// 	}
-			// },
-
 			registerUser() {
-				const userRepository = new UserRepository()
+				const userRepository = new UserRepository();
 				userRepository.createUser(this.credential)
 			}
 		}
-		,
 	}
 </script>
 
 <style lang="scss">
+
 	.register-page {
 		padding: 5vh;
-	}
 
-	.spacer {
-		height: 10vh;
-	}
+		&__spacer {
+			height: 10vh;
+		}
 
-	.register-page {
 		&__form {
+
 			&__buttons {
 				display: flex;
 				justify-content: space-evenly;
