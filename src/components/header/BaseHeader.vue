@@ -1,7 +1,8 @@
 <template>
 	<v-toolbar class="v-toolbar" :dark="false" :fixed="true">
 		<router-link :to="{name: 'BaseMain'}">
-			<img class="v-toolbar__logo" src="../../assets/logo.png" height="37" width="246"/>
+			<img class="v-toolbar__logo" src="../../assets/logo.png" height="37"
+					 width="246"/>
 		</router-link>
 		<v-spacer/>
 
@@ -10,13 +11,20 @@
 			<v-list class="link">
 
 				<v-list-tile>
-					<router-link :to="{name: 'LoginPage'}" class="link"><span>Login</span>
+					<router-link :to="{name: 'LoginPage'}" class="link">
+						<span>Login</span>
 					</router-link>
 				</v-list-tile>
 
 				<v-list-tile>
 					<router-link :to="{name: 'RegisterPage'}" class="link">
 						<span>Register</span>
+					</router-link>
+				</v-list-tile>
+
+				<v-list-tile>
+					<router-link :to="{name: 'Personal'}" class="link">
+						<span>Personal</span>
 					</router-link>
 				</v-list-tile>
 

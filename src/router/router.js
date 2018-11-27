@@ -2,8 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import LoginPage from "../components/authentication/LoginPage";
 import RegisterPage from "../components/authentication/RegisterPage";
-import Help from "../components/authentication/Help";
 import BaseMain from "../components/main/BaseMain";
+import PersonalPage from "../components/personal/PersonalPage";
 
 Vue.use(VueRouter);
 
@@ -22,13 +22,13 @@ const router = new VueRouter({
 		},
 		{
 			name: "RegisterPage",
-			path: "/authentication",
+			path: "/register",
 			component: RegisterPage
 		},
 		{
-			path: "/help",
-			name: "Help",
-			component: Help
+			name: "Personal",
+			path: "/personal",
+			component: PersonalPage
 		},
 	]
 })

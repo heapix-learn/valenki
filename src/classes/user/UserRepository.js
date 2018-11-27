@@ -2,8 +2,17 @@ import axios from 'axios'
 
 export default class UserRepository {
 	async getUsers() {
-		const users = (await axios.get('http://localhost:3000/users')).data
+		const users = (await axios.get('http://localhost:3000/users')).data;
 		return users
+	}
+
+	async getUserById(id) {
+		const user = (await axios.get('http://localhost:3000/users?id=' + id, {
+			headers: {
+				authorization: localStorage.getItem('token')
+			}
+		})).data[0];
+		return user
 	}
 
 	async getUserNickname(id) {
@@ -16,8 +25,8 @@ export default class UserRepository {
 	}
 
 	async signIn(credential) {
-		const token = (await axios.post('http://localhost:3000/auth/login', {credential})).data.access_token
-		return token
+		const  postResponse = (await axios.post('http://localhost:3000/auth/login', {credential}))
+		return postResponse
 	}
 
 }

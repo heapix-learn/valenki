@@ -1,10 +1,37 @@
 <template>
 	<div class="login-page">
 
-		<div class="login-page__spacer"/>
+		<div class="login-page__alert">
+			<v-alert
+				:value="true"
+				v-if="status.success"
+				color="success"
+				icon="check_circle"
+				outline
+			>
+				You have successfully logged in!
+			</v-alert>
+		</div>
 
-		<v-form @submit="checkFields()" ref="form" v-model="valid"
-						class="login-page__form" lazy-validation>
+		<div class="login-page__alert">
+			<v-alert
+				:value="true"
+				v-if="status.error"
+				color="error"
+				icon="warning"
+				outline
+			>
+				Wrong name or password!
+			</v-alert>
+		</div>
+
+		<v-form
+			@submit="checkFields()"
+			ref="form"
+			v-model="valid"
+			class="login-page__form"
+			lazy-validation
+		>
 			<v-text-field
 				v-model="credential.name"
 				:rules="nameRules"
@@ -20,8 +47,7 @@
 				required
 			/>
 			<div class="login-page__form__buttons">
-				<v-btn type="submit" class="login-page__form__buttons__btn"
-							 :disabled="!valid">
+				<v-btn type="submit" class="login-page__form__buttons__btn" :disabled="!valid">
 					Signin
 				</v-btn>
 
@@ -49,17 +75,37 @@
 					password: ''
 				},
 				valid: true,
-				nameRules: [
-					v => !!v || 'Name is required', //must be learn how it's works
-					v => (v && v.length >= 6) || 'Name must be more or equal than 6 characters'
-				],
-				passwordRules: [
-					v => !!v || 'Password is required',
-					v => (v && v.length >= 6) || 'Password must be more or equal than 6 characters'
-				],
+				status: {
+					success: false,
+					error: false
+				},
+				nameRules:
+					[
+						v => !!v || 'Name is required', //must be learn how it's works
+						v => (v && v.length >= 6) || 'Name must be more or equal than 6 characters'
+					],
+				passwordRules:
+					[
+						v => !!v || 'Password is required',
+						v => (v && v.length >= 6) || 'Password must be more or equal than 6 characters'
+					],
 			}
 		},
 		methods: {
+			async checkStatus(status) {
+				if (status) {
+					this.status.error = false;
+					this.status.success = true;
+					await this.goToMain()
+				} else {
+					this.status.error = true
+
+				}
+			},
+			async goToMain() {
+				await setTimeout("console.log('Вы будете перенаправлены на главную страницу')", 1000)
+				// await setTimeout(this.$router.push({name: 'BaseMain'}), 10000)
+			},
 			checkFields() {
 				if (this.credential.name.length >= 6) {
 					if (this.credential.password.length >= 6) {
@@ -76,16 +122,30 @@
 			},
 			async signIn() {
 				const userRepository = new UserRepository();
-				const token = await userRepository.signIn(this.credential);
-				localStorage.setItem('token', token)
+				this.status.success = false;
+				this.status.error = true;
+				const postResponse = await userRepository.signIn(this.credential);
+				console.log('response = ', postResponse)
+				localStorage.setItem('token', postResponse.access_token)
+				this.checkStatus(postResponse.status)
 			}
 		}
 	}
 </script>
 
 <style lang="scss">
+	.login-page__alert {
+		position: absolute;
+		margin-left: 10%;
+		margin-right: 10%;
+		left: 0;
+		right: 0;
+		top: 20%;
+	}
 
 	.login-page {
+		display: flex;
+		align-items: center;
 		padding: 5vh;
 
 		&__spacer {
@@ -93,6 +153,7 @@
 		}
 
 		&__form {
+			width: 100%;
 
 			&__buttons {
 				display: flex;
@@ -102,6 +163,16 @@
 				&__btn {
 					width: 20%;
 				}
+			}
+		}
+	}
+
+	@media screen and (min-width: 768px) {
+		.login-page {
+			justify-content: center;
+
+			&__form {
+				width: 50%;;
 			}
 		}
 	}
