@@ -47,7 +47,8 @@
 				required
 			/>
 			<div class="login-page__form__buttons">
-				<v-btn type="submit" class="login-page__form__buttons__btn" :disabled="!valid">
+				<v-btn type="submit" class="login-page__form__buttons__btn"
+							 :disabled="!valid">
 					Signin
 				</v-btn>
 
@@ -92,31 +93,32 @@
 			}
 		},
 		methods: {
-			async checkStatus(status) {
-				if (status) {
+			checkStatus(status) {
+				if (status === 200) {
 					this.status.error = false;
 					this.status.success = true;
-					await this.goToMain()
+					this.goToMain()
 				} else {
+					alert('hui')
 					this.status.error = true
-
 				}
 			},
-			async goToMain() {
-				await setTimeout("console.log('Вы будете перенаправлены на главную страницу')", 1000)
-				// await setTimeout(this.$router.push({name: 'BaseMain'}), 10000)
+			goToMain() {
+				setTimeout(() => {
+					this.$router.push({name: 'BaseMain'});
+				}, 2000);
 			},
 			checkFields() {
 				if (this.credential.name.length >= 6) {
 					if (this.credential.password.length >= 6) {
-						console.log('credentials are correct, you will be logged in');
+						// console.log('credentials are valid');
 						this.signIn();
 					} else {
-						console.log('password are too short');
+						// console.log('password are too short');
 						this.credential.password = null
 					}
 				} else {
-					console.log('name are too short');
+					// console.log('name are too short');
 					this.credential.name = null
 				}
 			},
@@ -125,8 +127,7 @@
 				this.status.success = false;
 				this.status.error = true;
 				const postResponse = await userRepository.signIn(this.credential);
-				console.log('response = ', postResponse)
-				localStorage.setItem('token', postResponse.access_token)
+				localStorage.setItem('token', postResponse.data.access_token);
 				this.checkStatus(postResponse.status)
 			}
 		}
