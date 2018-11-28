@@ -7,8 +7,9 @@
 
 					<v-avatar :tile="false" :size="66"
 										class="base-main__page__cart__avatar">
-						<img src="../../assets/1.png" height="130" width="130"/>
+						<img :src="imgPath" height="130" width="130"/>
 					</v-avatar>
+
 					<div class="base-main__page__cart__nickname">
 						<span
 							@click="getMessagesByUser(message.author)">{{message.author.nick_name}}
@@ -55,7 +56,13 @@
 		props: {
 			message: Object
 		},
+		computed: {
+			imgPath() {
+				return require('../../assets/' + this.message.author.id + '.png')
+			}
+		}
 	}
+
 </script>
 
 <style lang="scss">

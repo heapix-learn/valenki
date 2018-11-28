@@ -4,6 +4,8 @@ import LoginPage from "../components/authentication/LoginPage";
 import RegisterPage from "../components/authentication/RegisterPage";
 import BaseMain from "../components/main/BaseMain";
 import PersonalPage from "../components/personal/PersonalPage";
+import NewMessage from "../components/message/NewMessage";
+
 
 Vue.use(VueRouter);
 
@@ -29,6 +31,11 @@ const router = new VueRouter({
 			name: "Personal",
 			path: "/personal",
 			component: PersonalPage
+		},
+		{
+			name: "NewMessage",
+			path: "/new_message",
+			component: NewMessage
 		},
 	]
 })

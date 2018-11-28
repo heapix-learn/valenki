@@ -47,8 +47,7 @@
 				required
 			/>
 			<div class="login-page__form__buttons">
-				<v-btn type="submit" class="login-page__form__buttons__btn"
-							 :disabled="!valid">
+				<v-btn :disabled="!valid" type="submit" class="login-page__form__buttons__btn">
 					Signin
 				</v-btn>
 

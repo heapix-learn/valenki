@@ -36,7 +36,6 @@
 			async getUser(id) {
 				const userRepository = new UserRepository()
 				this.User = await (userRepository.getUserById(id))
-				console.log('this.User', this.User)
 			}
 		}
 	}

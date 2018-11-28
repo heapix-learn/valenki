@@ -2,7 +2,11 @@
 	<div class="base-main">
 
 		<div v-if="!Messages.length" class="base-main__note">
+
+			<v-progress-linear :indeterminate="true" color="red"/>
+
 			<span>Авторизуйтесь на сайте, чтобы просматривать сообщения!</span>
+
 		</div>
 
 		<div v-else class="base-main__page">
@@ -30,6 +34,7 @@
 		},
 		data() {
 			return {
+				dialog: true,
 				Users: [],
 				Messages: [],
 				MessagesByAuthor: []
@@ -53,12 +58,12 @@
 
 		&__note {
 			text-align: center;
-			line-height: 60vh;
+			line-height: 10vh;
 		}
 
 		&__page {
 			text-align: center;
-			padding: 5px 0 5px 0;
+			padding: 5px 0 10px 0;
 
 			&__cart {
 				padding: 5px;

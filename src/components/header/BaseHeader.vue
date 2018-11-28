@@ -1,13 +1,16 @@
 <template>
 	<v-toolbar class="v-toolbar" :dark="false" :fixed="true">
 		<router-link :to="{name: 'BaseMain'}">
-			<img class="v-toolbar__logo" src="../../assets/logo.png" height="37"
-					 width="246"/>
+			<img class="v-toolbar__logo" src="../../assets/logo.png" height="37" width="246"/>
 		</router-link>
 		<v-spacer/>
 
 		<v-menu offset-y>
-			<v-toolbar-side-icon slot="activator">M</v-toolbar-side-icon>
+			<v-toolbar-side-icon slot="activator">
+				<i class="material-icons">
+					menu
+				</i>
+			</v-toolbar-side-icon>
 			<v-list class="link">
 
 				<v-list-tile>
