@@ -28,6 +28,27 @@
       "nick_name": "Violet",
       "login": "pink@tut.by",
       "password": "333333"
+    },
+    {
+      "credential": {
+        "name": "testtest",
+        "password": "testtest"
+      },
+      "id": 4
+    },
+    {
+      "credential": {
+        "name": "vcxzvxvcz",
+        "password": "11111111"
+      },
+      "id": 5
+    },
+    {
+      "credential": {
+        "name": "vcxzvxvcz",
+        "password": "11111111"
+      },
+      "id": 6
     }
   ],
   "messages": [
