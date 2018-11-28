@@ -30,25 +30,16 @@
       "password": "333333"
     },
     {
-      "credential": {
-        "name": "testtest",
-        "password": "testtest"
-      },
-      "id": 4
+      "login": "11111122",
+      "password": "111111"
     },
     {
-      "credential": {
-        "name": "vcxzvxvcz",
-        "password": "11111111"
-      },
-      "id": 5
+      "login": "222222",
+      "password": "222222"
     },
     {
-      "credential": {
-        "name": "vcxzvxvcz",
-        "password": "11111111"
-      },
-      "id": 6
+      "login": "222222",
+      "password": "222222"
     }
   ],
   "messages": [

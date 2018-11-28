@@ -21,7 +21,7 @@ export default class UserRepository {
 	}
 
 	createUser(credential) {
-		axios.post('http://localhost:3000/users', {credential})
+		axios.post('http://localhost:3000/auth/register', {credential})
 	}
 
 	async signIn(credential) {

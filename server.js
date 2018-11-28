@@ -7,6 +7,11 @@ const router = jsonServer.router('db.json')
 const userdb = JSON.parse(fs.readFileSync('db.json', 'UTF-8'))
 const middlewares = jsonServer.defaults()
 
+const low = require('lowdb')
+const FileSync = require('lowdb/adapters/FileSync')
+const adapter = new FileSync('db.json')
+const db = low(adapter)
+
 server.use(middlewares)
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
@@ -48,6 +53,20 @@ server.post('/auth/login', (req, res) => {
   const access_token = createToken({ login, password })
   res.status(200).json({ access_token, user })
 })
+
+server.post('/auth/register', (req, res) => {
+  const login = req.body.credential.name
+  const password = req.body.credential.password
+  if (findUser({ login, password }) !== undefined) {
+    const status = 401
+    const message = 'This user already registered'
+    res.status(status).json({ status, message })
+    return
+  }
+  db.get('users').push({ login, password })
+    .write()
+})
+
 
 server.use(/^(?!\/users)(?!\/auth).*$/, (req, res, next) => {
   if (req.headers.authorization === undefined || req.headers.authorization === 'null') {
