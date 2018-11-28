@@ -9,7 +9,6 @@
 
 			<div v-for="(message, index) in Messages" :key="index">
 
-				<br>
 				<SinglePost :message="message"/>
 
 			</div>
@@ -59,9 +58,10 @@
 
 		&__page {
 			text-align: center;
+			padding: 5px 0 5px 0;
 
 			&__cart {
-				margin: 5px 5px 0 5px;
+				padding: 5px;
 
 				&__nickname {
 					text-align: left;
