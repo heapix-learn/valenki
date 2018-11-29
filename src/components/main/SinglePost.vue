@@ -12,7 +12,7 @@
 
 					<div class="base-main__page__cart__nickname">
 						<span
-							@click="getMessagesByUser(message.author)">{{message.author.nick_name}}
+							@click="getMessagesByUser(message.author)">{{message.author_nick}}
 						</span>
 					</div>
 
@@ -58,7 +58,7 @@
 		},
 		computed: {
 			imgPath() {
-				return require('../../assets/' + this.message.author.id + '.png')
+				return require('../../assets/' + this.message.author_id + '.png')
 			}
 		}
 	}
