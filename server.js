@@ -32,12 +32,13 @@ function verifyToken (token) {
 
 // Check if the user exists in database
 function isAuthenticated ({ login, password }) {
+  const userdb = JSON.parse(fs.readFileSync('db.json', 'UTF-8'))
   return userdb.users.findIndex(user => user.login === login && user.password === password) !== -1
 }
 
 function findUser ({ login, password }) {
+  const userdb = JSON.parse(fs.readFileSync('db.json', 'UTF-8'))
   return userdb.users.find(user => user.login === login && user.password === password)
-
 }
 
 server.post('/auth/login', (req, res) => {
@@ -66,8 +67,11 @@ server.post('/auth/register', (req, res) => {
     res.status(status).json({ status, message })
     return
   }
-  db.get('users').push({ login, password })
+  const userdb = JSON.parse(fs.readFileSync('db.json', 'UTF-8'))
+  const id = userdb.users[userdb.users.length-1].id + 1
+  db.get('users').push({ id, login, password })
     .write()
+  res.status(200).json(id)
 })
 
 
