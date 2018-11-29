@@ -11,8 +11,8 @@
 		</div>
 		<br>
 		<div class="personal-page__info">
-			<span>First Name: {{User.first_name}}</span><br>
-			<span>Last Name: {{User.last_name}}</span>
+			<span/>
+			<br>
 		</div>
 
 	</div>
@@ -44,7 +44,7 @@
 <style lang="scss">
 
 	.personal-page {
-		background: url("../../assets/slanted_lines.png");
+		background: lightsalmon;
 
 		&__avatar {
 		}

@@ -26,8 +26,8 @@ export default class UserRepository {
 		return nickname
 	}
 
-	createUser(credential) {
-		axios.post('http://localhost:3000/auth/register', credential)
+	createUser(user) {
+		axios.post('http://localhost:3000/auth/register', user)
 	}
 
 }

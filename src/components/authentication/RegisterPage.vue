@@ -5,14 +5,14 @@
 
 		<v-form @submit="checkFields()" ref="form" v-model="valid" lazy-validation>
 			<v-text-field
-				v-model="credential.login"
-				:rules="nameRules"
-				label="Name/Email"
-				type="text"
+				v-model="user.email"
+				:rules="emailRules"
+				label="Email"
+				type="email"
 				required
 			/>
 			<v-text-field
-				v-model="credential.password"
+				v-model="user.password"
 				:rules="passwordRules"
 				label="Password"
 				type="password"
@@ -41,25 +41,22 @@
 				</router-link>
 			</div>
 		</v-form>
-
 	</div>
 </template>
 
 <script>
 	import UserRepository from '../../classes/user/UserRepository.js'
+	import User from '../../classes/user/User'
 
 	export default {
 		name: 'RegisterPagePage',
 		components: {},
 		data() {
 			return {
-				credential: {
-					login: '',
-					password: ''
-				},
+				user:  new User,
 				valid: true,
 				confirm_password: '',
-				nameRules: [
+				emailRules: [
 					v => !!v || 'Name is required', //must be learn how its works
 					v => (v && v.length >= 6) || 'Name must be more or equal than 6 characters'
 				],
@@ -71,10 +68,10 @@
 		},
 		methods: {
 			checkFields() {
-				if (this.credential.login.length >= 6) {
-					if (this.credential.password.length >= 6) {
+				if (this.user.email.length >= 6) {
+					if (this.user.password.length >= 6) {
 						if (this.confirm_password.length >= 6) {
-							if (this.confirm_password == this.credential.password) {
+							if (this.confirm_password === this.user.password) {
 								console.log('credentials are correct, you have been registered');
 								this.registerUser();
 							} else {
@@ -87,17 +84,17 @@
 						}
 					} else {
 						console.log('password are too short');
-						this.credential.password = null;
+						this.user.password = null;
 						this.confirm_password = null
 					}
 				} else {
 					console.log('name are too short')
-					this.credential.login = null
+					this.user.email = null
 				}
 			},
 			registerUser() {
 				const userRepository = new UserRepository();
-				userRepository.createUser(this.credential)
+				userRepository.createUser(this.user)
 			}
 		}
 	}

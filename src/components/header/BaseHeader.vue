@@ -10,6 +10,8 @@
 		</router-link>
 		<v-spacer/>
 
+		{{userNick}}
+
 		<v-menu offset-y>
 			<v-toolbar-side-icon slot="activator">
 				<i class="material-icons">
@@ -46,34 +48,25 @@
 </template>
 
 <script>
-	import {
-		VToolbar,
-		VToolbarSideIcon,
-		VMenu,
-		VList,
-		VListTile,
-//   VBtn,
-		VSpacer
-	} from "vuetify/lib";
 
 	export default {
 		name: "BaseHeader",
-		components: {
-			VToolbar,
-			VToolbarSideIcon,
-			VMenu,
-			VList,
-			VListTile,
-			// VBtn,
-			VSpacer
-		},
 		methods: {
 			logOut() {
+
 				localStorage.removeItem('token');
+				localStorage.removeItem('nick');
 				localStorage.removeItem('id')
+				window.location.pathname = "/login"
+			}
+		},
+		computed: {
+			userNick() {
+				return localStorage.getItem('nick');
 			}
 		}
-	};
+	}
+
 </script>
 
 <style lang="scss">

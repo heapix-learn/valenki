@@ -44,11 +44,13 @@
 		},
 		methods: {
 			async getMessages() {
-				const messageRepository = new MessageRepository()
-				this.Messages = await (messageRepository.getAllMessages())
-			},
+				if (localStorage.getItem('nick')) {
+					const messageRepository = new MessageRepository()
+					this.Messages = await (messageRepository.getAllMessages())
+				}
+			}
 		}
-	};
+	}
 </script>
 
 <style lang="scss">

@@ -25,12 +25,7 @@
 						</div>
 					</v-card-title>
 
-					<v-chip color="lime" :small="true"
-									v-for="(chip, count) in message.chip"
-									:key="count">
-						<v-avatar class="teal">#</v-avatar>
-						{{chip.tag}}
-					</v-chip>
+					<span v-for="hashtags in message.chip"></span>
 
 					<v-card-actions>
 						<v-btn :flat="true" color="red">

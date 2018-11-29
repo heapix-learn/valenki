@@ -1,6 +1,6 @@
 <template>
 	<div class="new-message">
-		ваш ID {{message.author.id}}
+		message {{message}}
 		<v-textarea
 			:counter="140"
 			outline
@@ -50,29 +50,21 @@
 
 <script>
 	import MessageRepository from '../../classes/message/MessageRepository.js';
-
+	import Message from '../../classes/message/Message'
 
 	export default {
 		name: "NewMessage",
 		data() {
 			return {
-				message: {
-					author: {
-						id: 0,
-						nick_name: ""
-					},
-					phrase: "",
-					liked: 0,
-					reposted: 0,
-					chip: []
-				}
+				message: new Message,
 			}
 		},
 
 		methods: {
 			checkFields() {
-				this.message.author.id = localStorage.getItem('id');
-				if (this.message.phrase.length && this.message.author.id) {
+				this.message.author_id = localStorage.getItem('id');
+				this.message.author_nick = localStorage.getItem('nick');
+				if (this.message.phrase.length && this.message.author_id) {
 					this.createMessage()
 				} else {
 					console.log('Вы ничего не написали =(')

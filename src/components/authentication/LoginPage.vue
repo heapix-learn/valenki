@@ -21,7 +21,7 @@
 				icon="warning"
 				outline
 			>
-				Wrong name or password!
+				Wrong email or password!
 			</v-alert>
 		</div>
 
@@ -33,9 +33,9 @@
 			lazy-validation
 		>
 			<v-text-field
-				v-model="credential.name"
-				:rules="nameRules"
-				label="Name/Email"
+				v-model="credential.email"
+				:rules="emailRules"
+				label="Email"
 				type="text"
 				required
 			/>
@@ -58,7 +58,6 @@
 				</router-link>
 			</div>
 		</v-form>
-
 	</div>
 </template>
 
@@ -71,7 +70,7 @@
 		data() {
 			return {
 				credential: {
-					name: '',
+					email: '',
 					password: ''
 				},
 				valid: true,
@@ -79,10 +78,10 @@
 					success: false,
 					error: false
 				},
-				nameRules:
+				emailRules:
 					[
-						v => !!v || 'Name is required', //must be learn how it's works
-						v => (v && v.length >= 6) || 'Name must be more or equal than 6 characters'
+						v => !!v || 'Email is required', //must be learn how it's works
+						v => (v && v.length >= 6) || 'Email must be more or equal than 6 characters'
 					],
 				passwordRules:
 					[
@@ -98,7 +97,6 @@
 					this.status.success = true;
 					this.goToMain()
 				} else {
-					alert('hui')
 					this.status.error = true
 				}
 			},
@@ -108,7 +106,7 @@
 				}, 2000);
 			},
 			checkFields() {
-				if (this.credential.name.length >= 6) {
+				if (this.credential.email.length >= 6) {
 					if (this.credential.password.length >= 6) {
 						// console.log('credentials are valid');
 						this.signIn();
@@ -117,8 +115,8 @@
 						this.credential.password = null
 					}
 				} else {
-					// console.log('name are too short');
-					this.credential.name = null
+					// console.log('email are too short');
+					this.credential.email = null
 				}
 			},
 			async signIn() {
