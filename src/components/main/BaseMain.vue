@@ -1,6 +1,5 @@
 <template>
 	<div class="base-main">
-
 		<div v-if="!Messages.length" class="base-main__note">
 
 			<v-progress-linear :indeterminate="true" color="red"/>

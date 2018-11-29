@@ -1,10 +1,17 @@
 <template>
 	<div class="new-message">
+		ваш ID {{message.author.id}}
 		<v-textarea
 			:counter="140"
 			outline
+			height="150"
+			autofocus
+			background-color="blue"
+			validate-on-blur
 			label="Write your message there:"
+			v-model="message.phrase"
 		></v-textarea>
+
 		<div class="new-message__buttons">
 			<v-btn flat icon outline color="blue">
 				<i class="material-icons">
@@ -30,6 +37,7 @@
 				fab
 				:no-resize="true"
 				color="red"
+				@click="checkFields()"
 			>
 				<i class="material-icons">
 					create
@@ -41,11 +49,41 @@
 </template>
 
 <script>
-	import AddButton from "../layout/AddButton";
+	import MessageRepository from '../../classes/message/MessageRepository.js';
+
 
 	export default {
 		name: "NewMessage",
-		components: {AddButton}
+		data() {
+			return {
+				message: {
+					author: {
+						id: 0,
+						nick_name: ""
+					},
+					phrase: "",
+					liked: 0,
+					reposted: 0,
+					chip: []
+				}
+			}
+		},
+
+		methods: {
+			checkFields() {
+				this.message.author.id = localStorage.getItem('id');
+				if (this.message.phrase.length && this.message.author.id) {
+					this.createMessage()
+				} else {
+					console.log('Вы ничего не написали =(')
+				}
+			},
+			createMessage() {
+				const messageRepository = new MessageRepository();
+				const postResponse = messageRepository.createMessage(this.message);
+				console.log(postResponse)
+			}
+		}
 	}
 </script>
 
@@ -61,8 +99,11 @@
 		&__addButton {
 			top: 50px;
 		}
+
 		&__add-message-button {
-			position: fixed;
+			display: flex;
+			justify-content: center;
+			margin-top: 20px;
 		}
 	}
 

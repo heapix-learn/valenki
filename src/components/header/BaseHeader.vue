@@ -1,7 +1,12 @@
 <template>
 	<v-toolbar class="v-toolbar" :dark="false" :fixed="true">
 		<router-link :to="{name: 'BaseMain'}">
-			<img class="v-toolbar__logo" src="../../assets/logo.png" height="37" width="246"/>
+			<img
+				class="v-toolbar__logo"
+				src="../../assets/logo.png"
+				height="37"
+				width="246"
+			/>
 		</router-link>
 		<v-spacer/>
 
@@ -64,7 +69,8 @@
 		},
 		methods: {
 			logOut() {
-				localStorage.setItem('token', 'null')
+				localStorage.removeItem('token');
+				localStorage.removeItem('id')
 			}
 		}
 	};

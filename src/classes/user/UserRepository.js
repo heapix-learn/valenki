@@ -1,9 +1,15 @@
-import axios from 'axios'
+import axios from "axios";
 
 export default class UserRepository {
-	async getUsers() {
+
+	async getUsers () {
 		const users = (await axios.get('http://localhost:3000/users')).data;
 		return users
+	}
+
+	async signIn(credential) {
+		const  postResponse = (await axios.post('http://localhost:3000/auth/login', credential))
+		return postResponse
 	}
 
 	async getUserById(id) {
@@ -21,12 +27,7 @@ export default class UserRepository {
 	}
 
 	createUser(credential) {
-		axios.post('http://localhost:3000/auth/register', {credential})
-	}
-
-	async signIn(credential) {
-		const  postResponse = (await axios.post('http://localhost:3000/auth/login', {credential}))
-		return postResponse
+		axios.post('http://localhost:3000/auth/register', credential)
 	}
 
 }

@@ -41,9 +41,12 @@ function findUser ({ login, password }) {
 }
 
 server.post('/auth/login', (req, res) => {
-  const login = req.body.credential.name
-  const password = req.body.credential.password
-  if (isAuthenticated({ login, password }) === false) {
+  const login = req.body.name
+  console.log(login)
+  const password = req.body.password
+	console.log(password)
+
+	if (isAuthenticated({ login, password }) === false) {
     const status = 401
     const message = 'Incorrect login or password'
     res.status(status).json({ status, message })
@@ -55,8 +58,8 @@ server.post('/auth/login', (req, res) => {
 })
 
 server.post('/auth/register', (req, res) => {
-  const login = req.body.credential.name
-  const password = req.body.credential.password
+  const login = req.body.login
+  const password = req.body.password
   if (findUser({ login, password }) !== undefined) {
     const status = 401
     const message = 'This user already registered'

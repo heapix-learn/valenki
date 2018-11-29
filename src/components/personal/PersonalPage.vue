@@ -30,7 +30,7 @@
 			}
 		},
 		created() {
-			this.getUser(1)
+			this.getUser(localStorage.getItem('id'))
 		},
 		methods: {
 			async getUser(id) {

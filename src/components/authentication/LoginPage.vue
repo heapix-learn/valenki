@@ -127,6 +127,8 @@
 				this.status.error = true;
 				const postResponse = await userRepository.signIn(this.credential);
 				localStorage.setItem('token', postResponse.data.access_token);
+				localStorage.setItem('id', postResponse.data.user.id);
+				localStorage.setItem('nick', postResponse.data.user.nick_name);
 				this.checkStatus(postResponse.status)
 			}
 		}

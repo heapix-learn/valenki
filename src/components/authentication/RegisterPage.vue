@@ -5,7 +5,7 @@
 
 		<v-form @submit="checkFields()" ref="form" v-model="valid" lazy-validation>
 			<v-text-field
-				v-model="credential.name"
+				v-model="credential.login"
 				:rules="nameRules"
 				label="Name/Email"
 				type="text"
@@ -26,12 +26,17 @@
 				required
 			/>
 			<div class="login-page__form__buttons">
-				<v-btn type="submit" class="login-page__form__buttons__button"
-							 :disabled="!valid">
+				<v-btn
+					type="submit"
+					class="login-page__form__buttons__button"
+					:disabled="!valid"
+				>
 					Signup
 				</v-btn>
-				<router-link :to="{name: 'LoginPage'}"
-										 class="login-page__form__buttons__button">
+				<router-link
+					:to="{name: 'LoginPage'}"
+					class="login-page__form__buttons__button"
+				>
 					<v-btn>have an account</v-btn>
 				</router-link>
 			</div>
@@ -49,7 +54,7 @@
 		data() {
 			return {
 				credential: {
-					name: '',
+					login: '',
 					password: ''
 				},
 				valid: true,
@@ -66,7 +71,7 @@
 		},
 		methods: {
 			checkFields() {
-				if (this.credential.name.length >= 6) {
+				if (this.credential.login.length >= 6) {
 					if (this.credential.password.length >= 6) {
 						if (this.confirm_password.length >= 6) {
 							if (this.confirm_password == this.credential.password) {
@@ -87,7 +92,7 @@
 					}
 				} else {
 					console.log('name are too short')
-					this.credential.name = null
+					this.credential.login = null
 				}
 			},
 			registerUser() {

@@ -6,19 +6,14 @@
       "last_name": "Born",
       "nick_name": "ABorn",
       "login": "111111",
-      "password": "111111",
-      "messages": [
-        {
-          "id": 1
-        }
-      ]
+      "password": "111111"
     },
     {
       "id": 2,
       "first_name": "Vova",
       "last_name": "Green",
       "nick_name": "VGreen",
-      "login": "vova@tut.by",
+      "login": "222222",
       "password": "222222"
     },
     {
@@ -26,29 +21,23 @@
       "first_name": "Gena",
       "last_name": "Pink",
       "nick_name": "Violet",
-      "login": "pink@tut.by",
+      "login": "333333",
       "password": "333333"
     },
     {
-      "login": "11111122",
-      "password": "111111"
+      "login": "444444",
+      "password": "444444"
     },
     {
-      "login": "222222",
-      "password": "222222"
-    },
-    {
-      "login": "222222",
-      "password": "222222"
+      "login": "444444",
+      "password": "444444"
     }
   ],
   "messages": [
     {
       "id": 101,
-      "author": {
-        "id": "1",
-        "nick_name": "ABorn"
-      },
+      "author_id": "1",
+      "author_nick": "ABorn",
       "phrase": "Автор ABorn: Слово «apple» (яблоко) смягчало серьёзное «компьютер».",
       "liked": 0,
       "reposted": 0,
@@ -66,10 +55,8 @@
     },
     {
       "id": 102,
-      "author": {
-        "id": "1",
-        "nick_name": "ABorn"
-      },
+      "author_id": "1",
+      "author_nick": "ABorn",
       "phrase": "Автор ABorn: yarn global is a prefix used for a number of commands like ",
       "liked": 0,
       "reposted": 0,
@@ -87,10 +74,8 @@
     },
     {
       "id": 103,
-      "author": {
-        "id": "2",
-        "nick_name": "VGreen"
-      },
+      "author_id": "2",
+      "author_nick": "VGreen",
       "phrase": "Автр VGreen: their normal versions except that they use a global directory ",
       "liked": 0,
       "reposted": 0,
