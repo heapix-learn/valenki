@@ -56,7 +56,7 @@
 
 				localStorage.removeItem('token');
 				localStorage.removeItem('nick');
-				localStorage.removeItem('id')
+				localStorage.removeItem('id');
 				window.location.pathname = "/login"
 			}
 		},

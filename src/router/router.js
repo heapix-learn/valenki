@@ -10,7 +10,6 @@ import NewMessage from "../components/message/NewMessage";
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-	mode: 'history',
 	routes: [
 		{
 			path: "/",

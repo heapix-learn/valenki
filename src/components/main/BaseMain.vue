@@ -1,21 +1,13 @@
 <template>
 	<div class="base-main">
+
 		<div v-if="!Messages.length" class="base-main__note">
-
 			<v-progress-linear :indeterminate="true" color="red"/>
-
 			<span>Авторизуйтесь на сайте, чтобы просматривать сообщения!</span>
-
 		</div>
 
 		<div v-else class="base-main__page">
-
-			<div v-for="(message, index) in Messages" :key="index">
-
-				<SinglePost :message="message"/>
-
-			</div>
-
+			<MessageList :Messages="Messages"/>
 		</div>
 
 		<router-view/>
@@ -23,13 +15,13 @@
 </template>
 
 <script>
-	import SinglePost from './SinglePost'
+	import MessageList from './MessageList'
 	import MessageRepository from '../../classes/message/MessageRepository.js'
 
 	export default {
 		name: "BaseMain",
 		components: {
-			SinglePost,
+			MessageList
 		},
 		data() {
 			return {

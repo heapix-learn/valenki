@@ -3,5 +3,4 @@ export default class User {
 	email = "";
 	password = "";
 	nick_name = "";
-	messages = [];
 }

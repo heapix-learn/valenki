@@ -57,18 +57,20 @@
 				valid: true,
 				confirm_password: '',
 				emailRules: [
-					v => !!v || 'Name is required', //must be learn how its works
-					v => (v && v.length >= 6) || 'Name must be more or equal than 6 characters'
+					v => !!v || 'Email is incorrect', //must be learn how its works
+					v => (v && v.length >= 6) || '\n' + 'Email must contain 6 characters'
 				],
 				passwordRules: [
 					v => !!v || 'Password is required',
-					v => (v && v.length >= 6) || 'Password must be more or equal than 6 characters'
+					v => (v && v.length >= 6) || 'Password must contain 6 characters'
 				],
 			}
 		},
 		methods: {
 			checkFields() {
-				if (this.user.email.length >= 6) {
+				// eslint-disable-next-line
+				let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+				if (reg.test(this.user.email) === true) {
 					if (this.user.password.length >= 6) {
 						if (this.confirm_password.length >= 6) {
 							if (this.confirm_password === this.user.password) {
@@ -88,7 +90,7 @@
 						this.confirm_password = null
 					}
 				} else {
-					console.log('name are too short')
+					console.log('email are incorrect')
 					this.user.email = null
 				}
 			},
