@@ -22,7 +22,7 @@
 			}
 		},
 		props: {
-			Messages: []
+			Messages: Array
 		},
 	}
 </script>

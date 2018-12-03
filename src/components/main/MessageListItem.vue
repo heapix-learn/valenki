@@ -47,14 +47,13 @@
 								thumb_up_alt
 							</i>
 						</v-btn>
-						<v-btn :flat="true" color="blue" @click="openComments()">
+						<v-btn :flat="true" color="blue" @click="openComments(message.id)">
 							<i class="material-icons">
 								chat
 							</i>
 						</v-btn>
 					</v-card-actions>
-
-					<CommentsList v-if="readComments"/>
+					<CommentsList :comments="comments" v-if="readComments"/>
 
 				</v-card>
 			</v-flex>
@@ -65,7 +64,7 @@
 <script>
 	import CommentsList from './CommentsList'
 	import MessageRepository from '../../classes/message/MessageRepository.js'
-
+	import CommentRepository from '../../classes/comment/CommentRepository.js'
 
 	export default {
 		name: "MessageListItem",
@@ -75,7 +74,8 @@
 		data() {
 			return {
 				readComments: false,
-				messages: []
+				messages: [],
+				comments: []
 			}
 		},
 		props: {
@@ -87,7 +87,8 @@
 			}
 		},
 		methods: {
-			openComments() {
+			openComments(id) {
+				this.getComments(id)
 				if (this.readComments) {
 					this.readComments = false
 				} else {
@@ -97,6 +98,10 @@
 			async getMessagesByHashtag(hashtag) {
 				const messageRepository = new MessageRepository()
 				this.messages = await (messageRepository.getMessagesByHashtag(hashtag))
+			},
+			async getComments(id) {
+				const commentRepository = new CommentRepository();
+				this.comments = await (commentRepository.getComments(id))
 			}
 		}
 	}

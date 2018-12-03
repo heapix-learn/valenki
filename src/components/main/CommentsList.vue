@@ -1,6 +1,5 @@
 <template>
 	<div class="comments-list">
-
 		<div>
 			<div v-for="(comment, index) in comments" :key="index">
 				<CommentsListItem
@@ -20,7 +19,7 @@
 					type="email"
 					required
 				/>
-				<v-btn :flat="true" color="blue" @click="openComments()">
+				<v-btn :flat="true" color="blue" @click="">
 					<i class="material-icons">
 						send
 					</i>
@@ -41,13 +40,19 @@
 		},
 		data() {
 			return {
-				newComment: '',
-				comments: [
-					"i am first comment",
-					"i am second comment",
-					"and i am the third!"
-				]
+				newComment: ''
+				// comments: [
+				// 	"i am first comment",
+				// 	"i am second comment",
+				// 	"and i am the third!"
+				// ]
 			}
+		},
+		props: {
+			comments: Array
+		},
+		methods: {
+
 		}
 	}
 </script>
@@ -57,7 +62,6 @@
 	.comments-list {
 
 		&__add-comments {
-			border-top: 1px solid lightblue;
 			display: flex;
 			align-items: center;
 		}

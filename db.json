@@ -74,5 +74,42 @@
             "reposted": 0,
             "chip": []
         }
+    ],
+    "comments": [
+        {
+            "id": 1,
+            "message_id": 101,
+            "author_id": 1,
+            "author_nick": "first_user",
+            "phrase": "Сам себя лайкнул"
+        },
+        {
+            "id": 2,
+            "message_id": 101,
+            "author_id": 2,
+            "author_nick": "second_user",
+            "phrase": "Ну ты лолка)))"
+        },
+        {
+            "id": 3,
+            "message_id": 101,
+            "author_id": 1,
+            "author_nick": "first_user",
+            "phrase": "Сам такой"
+        },
+        {
+            "id": 4,
+            "message_id": 102,
+            "author_id": 1,
+            "author_nick": "first_user",
+            "phrase": "lalala"
+        },
+        {
+            "id": 5,
+            "message_id": 102,
+            "author_id": 2,
+            "author_nick": "second_user",
+            "phrase": "blablabla"
+        }
     ]
 }

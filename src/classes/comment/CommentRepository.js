@@ -2,13 +2,13 @@ import axios from 'axios'
 
 export default class CommentRepository {
 
-	async getComments(message_id) {
-		const comments = (await axios.get('http://localhost:3000/comments?message_id' + message_id, {
+	async getComments(id) {
+		const comments = (await axios.get("http://localhost:3000/comments?message_id=" + id, {
 			headers: {
 				authorization: localStorage.getItem('token')
 			}
-		})).data
-		return comments
+		})).data;
+		return comments;
 	}
 
 	getCommentsByUser(id) {
