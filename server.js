@@ -13,7 +13,7 @@ const FileSync = require('lowdb/adapters/FileSync')
 const adapter = new FileSync('db.json')
 const db = low(adapter)
 
-server.use(middlewares)
+server.use(middlewares);
 server.use(bodyParser.urlencoded({extended: true}))
 server.use(bodyParser.json())
 
@@ -42,23 +42,24 @@ function findUser({email, password}) {
 	return userdb.users.find(user => user.email === email && user.password === password)
 }
 
-function findMessage(id) {
+function likeMessage(id, count) {
 	const messagedb = JSON.parse(fs.readFileSync('db.json', 'UTF-8'))
 	const LikedMessage = messagedb.messages.find(message => message.id === id)
-	// console.log(LikedMessage)
-
-	LikedMessage.liked += 1;
-
+	LikedMessage.liked += count;
 	messagedb.messages[messagedb.messages.findIndex(message => message.id === id)] = LikedMessage;
-	// console.log(messagedb.messages.find(message => message.id === id))
-
-	console.log('message============', messagedb.messages[messagedb.messages.findIndex(message => message.id === id)])
-
-	db.get('messages').update(messagedb.messages[messagedb.messages.findIndex(message => message.id === id)].liked, +5 )
+	db.set('messages', messagedb.messages)
 		.write()
+	return LikedMessage.liked;
+}
 
-	// return messagedb.messages.findIndex(message => message.id === id)
-	console.log('log===', messagedb.messages.find(message => message.id === id).id)
+function dislikeMessage(id, count) {
+	const messagedb = JSON.parse(fs.readFileSync('db.json', 'UTF-8'))
+	const disLikedMessage = messagedb.messages.find(message => message.id === id)
+	disLikedMessage.disliked += count;
+	messagedb.messages[messagedb.messages.findIndex(message => message.id === id)] = disLikedMessage;
+	db.set('messages', messagedb.messages)
+		.write()
+	return disLikedMessage.disliked;
 
 }
 
@@ -97,12 +98,20 @@ server.post('/auth/register', (req, res) => {
 	res.status(200).json(id)
 })
 
-server.put('/messages', (req, res) => {
+server.put('/messages_like', (req, res) => {
 	const id = req.body.id;
-	console.log(id);
-	const message = findMessage(id)
-	console.log('найденной сообщение', message)
-	// res.status(200).json({access_token, user})
+	const count = req.body.count
+	const counter = likeMessage(id, count)
+	res.status(200).json(counter)
+	return
+})
+
+server.put('/messages_dislike', (req, res) => {
+	const id = req.body.id;
+	const count = req.body.count
+	const counter = dislikeMessage(id, count)
+	res.status(200).json(counter)
+	return
 })
 
 server.use(/^(?!\/users)(?!\/auth).*$/, (req, res, next) => {
@@ -122,7 +131,7 @@ server.use(/^(?!\/users)(?!\/auth).*$/, (req, res, next) => {
 	}
 })
 
-server.use(router)
+server.use(router);
 server.listen(3000, () => {
 	console.log('JSON Server is running')
 })

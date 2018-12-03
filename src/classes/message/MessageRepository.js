@@ -31,13 +31,14 @@ export default class MessageRepository {
 		}).data;
 	}
 
-	async likePost(id) {
-		await console.log('liked', id);
-		console.log(axios.put('http://localhost:3000/messages?id=' + id, {"id": id}).then(response => response.data));
+	async likePost(id, count) {
+		const counter = (await axios.put('http://localhost:3000/messages_like', {"id": id,"count": count})).data
+		return counter
 	}
 
-	async dislikePost() {
-		await console.log('disliked');
+	async dislikePost(id, count) {
+		const counter = (await axios.put('http://localhost:3000/messages_dislike', {"id": id,"count": count})).data
+		return counter
 	}
 
 	async repostPost() {

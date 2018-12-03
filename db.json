@@ -21,8 +21,8 @@
       "author_id": 1,
       "author_nick": "first_user",
       "phrase": "Слово «apple» (яблоко) смягчало серьёзное «компьютер».",
-      "liked": 50,
-      "disliked": 2,
+      "liked": 4,
+      "disliked": 3,
       "reposted": 2,
       "chip": [
         "Apple",
@@ -35,7 +35,7 @@
       "author_id": 1,
       "author_nick": "first_user",
       "phrase": "Yarn global is a prefix used for a number of commands like ",
-      "liked": 7,
+      "liked": 4,
       "disliked": 5,
       "reposted": 2,
       "chip": [
@@ -50,7 +50,7 @@
       "author_id": 2,
       "author_nick": "second_user",
       "phrase": "Their normal versions except that they use a global directory ",
-      "liked": 9,
+      "liked": 3,
       "disliked": 7,
       "reposted": 2,
       "chip": [
@@ -64,8 +64,8 @@
       "author_id": 1,
       "author_nick": "first_user",
       "phrase": "hi! i am the first published message",
-      "liked": 0,
-      "disliked": 0,
+      "liked": 1,
+      "disliked": 1,
       "reposted": 0,
       "chip": []
     },
@@ -74,58 +74,21 @@
       "author_id": 1,
       "author_nick": "first_user",
       "phrase": "lalala blablabla tags",
-      "liked": 0,
-      "disliked": 0,
+      "liked": 2,
+      "disliked": 1,
       "reposted": 0,
       "chip": []
     },
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
+    {
+      "id": 106,
+      "author_id": "1",
+      "author_nick": "first_user",
+      "phrase": "123456789645321",
+      "liked": 3,
+      "disliked": 1,
+      "reposted": 0,
+      "chip": []
+    }
   ],
   "comments": [
     {
@@ -253,6 +216,27 @@
       "author_nick": "first_user",
       "message_id": 101,
       "id": 18
+    },
+    {
+      "phrase": "dasdasd",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 101,
+      "id": 19
+    },
+    {
+      "phrase": "dsfsdfsdf",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 101,
+      "id": 20
+    },
+    {
+      "phrase": "fdgdfgdf",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 101,
+      "id": 21
     }
   ]
 }

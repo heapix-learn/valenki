@@ -1,8 +1,8 @@
 <template>
 
 	<div class="comments-list-item">
-		{{comment.author_nick}}
-		- {{comment.phrase}}
+		<span class="comments-list-item__nickname">{{comment.author_nick}}:</span>
+		&nbsp;&nbsp;&nbsp;{{comment.phrase}}
 	</div>
 
 </template>
@@ -24,6 +24,15 @@
 	.comments-list-item {
 		display: flex;
 		padding-left: 5%;
+
+		&__nickname {
+			font-weight: 600;
+			color: cornflowerblue;
+		}
+
+		&__nickname:hover {
+			color: midnightblue;
+		}
 	}
 
 </style>

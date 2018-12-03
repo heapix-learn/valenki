@@ -83,7 +83,9 @@
 			return {
 				readComments: false,
 				messages: [],
-				comments: []
+				comments: [],
+				disliked: false,
+				liked: false
 			}
 		},
 		props: {
@@ -112,12 +114,30 @@
 				this.comments = await (commentRepository.getComments(id))
 			},
 			async like() {
+				let count = 1;
 				const messageRepository = new MessageRepository();
-				await (messageRepository.likePost(this.message.id))
+				if (this.liked) {
+					count = -1
+					this.message.liked = await (messageRepository.likePost(this.message.id, count));
+					this.liked = false
+				} else {
+					count = 1
+					this.message.liked = await (messageRepository.likePost(this.message.id, count));
+					this.liked = true
+				}
 			},
 			async dislike() {
+				let count = 1;
 				const messageRepository = new MessageRepository();
-				await (messageRepository.dislikePost(this.message.dislike + 1))
+				if (this.disliked) {
+					count = -1
+					this.message.disliked = await (messageRepository.dislikePost(this.message.id, count));
+					this.disliked = false
+				} else {
+					count = 1
+					this.message.disliked = await (messageRepository.dislikePost(this.message.id, count));
+					this.disliked = true
+				}
 			},
 			async repost() {
 				const messageRepository = new MessageRepository();
