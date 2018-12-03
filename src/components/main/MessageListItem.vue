@@ -23,7 +23,7 @@
 
 								<span v-for="(hashtag, index) in message.chip" :key="index"
 											class="hashtag"
-								@click="getMessagesByHashtag(hashtag)">
+											@click="getMessagesByHashtag(hashtag)">
 									#{{hashtag}}
 								</span>
 
@@ -53,7 +53,12 @@
 							</i>
 						</v-btn>
 					</v-card-actions>
-					<CommentsList :comments="comments" v-if="readComments"/>
+					<CommentList
+						:comments="comments"
+						:message_id="message.id"
+						v-if="readComments"
+						v-on:refresh="getComments(message.id)"
+					/>
 
 				</v-card>
 			</v-flex>
@@ -62,14 +67,14 @@
 </template>
 
 <script>
-	import CommentsList from './CommentsList'
+	import CommentList from './CommentList'
 	import MessageRepository from '../../classes/message/MessageRepository.js'
 	import CommentRepository from '../../classes/comment/CommentRepository.js'
 
 	export default {
 		name: "MessageListItem",
 		components: {
-			CommentsList,
+			CommentList,
 		},
 		data() {
 			return {
@@ -96,7 +101,7 @@
 				}
 			},
 			async getMessagesByHashtag(hashtag) {
-				const messageRepository = new MessageRepository()
+				const messageRepository = new MessageRepository();
 				this.messages = await (messageRepository.getMessagesByHashtag(hashtag))
 			},
 			async getComments(id) {
@@ -124,6 +129,7 @@
 	.hashtag {
 		color: dodgerblue;
 	}
+
 	.hashtag:hover {
 		cursor: pointer;
 		color: hotpink;

@@ -1,115 +1,115 @@
 {
-    "users": [
-        {
-            "id": 1,
-            "email": "test@test.com",
-            "password": "111111",
-            "nick_name": "first_user",
-            "messages": []
-        },
-        {
-            "id": 2,
-            "email": "test@test.by",
-            "password": "222222",
-            "nick_name": "second_user",
-            "messages": []
-        }
-    ],
-    "messages": [
-        {
-            "id": 101,
-            "author_id": 1,
-            "author_nick": "first_user",
-            "phrase": "Слово «apple» (яблоко) смягчало серьёзное «компьютер».",
-            "liked": 0,
-            "reposted": 0,
-            "chip": [
-                "Apple",
-                "Story",
-                "Jobs"
-            ]
-        },
-        {
-            "id": 102,
-            "author_id": 1,
-            "author_nick": "first_user",
-            "phrase": "Yarn global is a prefix used for a number of commands like ",
-            "liked": 0,
-            "reposted": 0,
-            "chip": [
-                "Yarn",
-                "global",
-                "Apple",
-                "check"
-            ]
-        },
-        {
-            "id": 103,
-            "author_id": 2,
-            "author_nick": "second_user",
-            "phrase": "Their normal versions except that they use a global directory ",
-            "liked": 0,
-            "reposted": 0,
-            "chip": [
-                "link",
-                "import",
-                "outdated"
-            ]
-        },
-        {
-            "id": 104,
-            "author_id": 1,
-            "author_nick": "first_user",
-            "phrase": "hi! i am the first published message",
-            "liked": 0,
-            "reposted": 0,
-            "chip": []
-        },
-        {
-            "id": 105,
-            "author_id": 1,
-            "author_nick": "first_user",
-            "phrase": "lalala blablabla tags",
-            "liked": 0,
-            "reposted": 0,
-            "chip": []
-        }
-    ],
-    "comments": [
-        {
-            "id": 1,
-            "message_id": 101,
-            "author_id": 1,
-            "author_nick": "first_user",
-            "phrase": "Сам себя лайкнул"
-        },
-        {
-            "id": 2,
-            "message_id": 101,
-            "author_id": 2,
-            "author_nick": "second_user",
-            "phrase": "Ну ты лолка)))"
-        },
-        {
-            "id": 3,
-            "message_id": 101,
-            "author_id": 1,
-            "author_nick": "first_user",
-            "phrase": "Сам такой"
-        },
-        {
-            "id": 4,
-            "message_id": 102,
-            "author_id": 1,
-            "author_nick": "first_user",
-            "phrase": "lalala"
-        },
-        {
-            "id": 5,
-            "message_id": 102,
-            "author_id": 2,
-            "author_nick": "second_user",
-            "phrase": "blablabla"
-        }
-    ]
+  "users": [
+    {
+      "id": 1,
+      "email": "test@test.com",
+      "password": "111111",
+      "nick_name": "first_user",
+      "messages": []
+    },
+    {
+      "id": 2,
+      "email": "test@test.by",
+      "password": "222222",
+      "nick_name": "second_user",
+      "messages": []
+    }
+  ],
+  "messages": [
+    {
+      "id": 101,
+      "author_id": 1,
+      "author_nick": "first_user",
+      "phrase": "Слово «apple» (яблоко) смягчало серьёзное «компьютер».",
+      "liked": 0,
+      "reposted": 0,
+      "chip": [
+        "Apple",
+        "Story",
+        "Jobs"
+      ]
+    },
+    {
+      "id": 102,
+      "author_id": 1,
+      "author_nick": "first_user",
+      "phrase": "Yarn global is a prefix used for a number of commands like ",
+      "liked": 0,
+      "reposted": 0,
+      "chip": [
+        "Yarn",
+        "global",
+        "Apple",
+        "check"
+      ]
+    },
+    {
+      "id": 103,
+      "author_id": 2,
+      "author_nick": "second_user",
+      "phrase": "Their normal versions except that they use a global directory ",
+      "liked": 0,
+      "reposted": 0,
+      "chip": [
+        "link",
+        "import",
+        "outdated"
+      ]
+    },
+    {
+      "id": 104,
+      "author_id": 1,
+      "author_nick": "first_user",
+      "phrase": "hi! i am the first published message",
+      "liked": 0,
+      "reposted": 0,
+      "chip": []
+    },
+    {
+      "id": 105,
+      "author_id": 1,
+      "author_nick": "first_user",
+      "phrase": "lalala blablabla tags",
+      "liked": 0,
+      "reposted": 0,
+      "chip": []
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "message_id": 101,
+      "author_id": 1,
+      "author_nick": "first_user",
+      "phrase": "Сам себя лайкнул"
+    },
+    {
+      "id": 2,
+      "message_id": 101,
+      "author_id": 2,
+      "author_nick": "second_user",
+      "phrase": "Ну ты лолка)))"
+    },
+    {
+      "phrase": "Сам такой!",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 101,
+      "id": 3
+    },
+    {
+      "phrase": "Привет)",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 102,
+      "id": 4
+    },
+    {
+      "phrase": "Привет!",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 103,
+      "id": 5
+    }
+  ]
 }

@@ -7,10 +7,12 @@
 </template>
 
 <script>
+	import Comment from "../../classes/comment/Comment.js"
+
 	export default {
 		name: "CommentsListItem",
 		props: {
-			comment: Object,
+			comment: {type: Comment},
 			index: Number
 		},
 	}
@@ -20,7 +22,7 @@
 
 	.comments-list-item {
 		display: flex;
-		padding-left: 5%;+
+		padding-left: 5%;
 	}
 
 </style>

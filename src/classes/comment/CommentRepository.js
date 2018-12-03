@@ -11,15 +11,16 @@ export default class CommentRepository {
 		return comments;
 	}
 
+	async addComment(comment) {
+		return  (await axios.post('http://localhost:3000/comments', comment, {
+			headers: {
+				authorization: localStorage.getItem('token')
+			}
+		})).data;
+	}
+
 	getCommentsByUser(id) {
 		return axios.get('http://localhost:3000/comments?author=' + id).then(response => response.data);
 	}
 
-	createComment(comment) {
-		return axios.post('http://localhost:3000/comments', comment, {
-			headers: {
-				authorization: localStorage.getItem('token')
-			}
-		}).data;
-	}
 }
