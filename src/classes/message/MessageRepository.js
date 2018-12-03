@@ -30,4 +30,17 @@ export default class MessageRepository {
 			}
 		}).data;
 	}
+
+	async likePost(id) {
+		await console.log('liked', id);
+		console.log(axios.put('http://localhost:3000/messages?id=' + id, {"id": id}).then(response => response.data));
+	}
+
+	async dislikePost() {
+		await console.log('disliked');
+	}
+
+	async repostPost() {
+		await console.log('reposted');
+	}
 }

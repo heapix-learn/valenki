@@ -21,8 +21,9 @@
       "author_id": 1,
       "author_nick": "first_user",
       "phrase": "Слово «apple» (яблоко) смягчало серьёзное «компьютер».",
-      "liked": 0,
-      "reposted": 0,
+      "liked": 50,
+      "disliked": 2,
+      "reposted": 2,
       "chip": [
         "Apple",
         "Story",
@@ -34,8 +35,9 @@
       "author_id": 1,
       "author_nick": "first_user",
       "phrase": "Yarn global is a prefix used for a number of commands like ",
-      "liked": 0,
-      "reposted": 0,
+      "liked": 7,
+      "disliked": 5,
+      "reposted": 2,
       "chip": [
         "Yarn",
         "global",
@@ -48,8 +50,9 @@
       "author_id": 2,
       "author_nick": "second_user",
       "phrase": "Their normal versions except that they use a global directory ",
-      "liked": 0,
-      "reposted": 0,
+      "liked": 9,
+      "disliked": 7,
+      "reposted": 2,
       "chip": [
         "link",
         "import",
@@ -62,6 +65,7 @@
       "author_nick": "first_user",
       "phrase": "hi! i am the first published message",
       "liked": 0,
+      "disliked": 0,
       "reposted": 0,
       "chip": []
     },
@@ -71,9 +75,57 @@
       "author_nick": "first_user",
       "phrase": "lalala blablabla tags",
       "liked": 0,
+      "disliked": 0,
       "reposted": 0,
       "chip": []
-    }
+    },
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
   ],
   "comments": [
     {
@@ -110,6 +162,97 @@
       "author_nick": "first_user",
       "message_id": 103,
       "id": 5
+    },
+    {
+      "phrase": "рвпрапр",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 101,
+      "id": 6
+    },
+    {
+      "phrase": "апывапывап",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 101,
+      "id": 7
+    },
+    {
+      "phrase": "апывапывап",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 101,
+      "id": 8
+    },
+    {
+      "phrase": "ывапывапы",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 102,
+      "id": 9
+    },
+    {
+      "phrase": "ывапывап",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 102,
+      "id": 10
+    },
+    {
+      "phrase": "sadasd",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 102,
+      "id": 11
+    },
+    {
+      "phrase": "asdfasdf",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 103,
+      "id": 12
+    },
+    {
+      "phrase": "asdfasdfasdf",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 105,
+      "id": 13
+    },
+    {
+      "phrase": "asdasd",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 101,
+      "id": 14
+    },
+    {
+      "phrase": "asdasd",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 101,
+      "id": 15
+    },
+    {
+      "phrase": "asdasd",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 101,
+      "id": 16
+    },
+    {
+      "phrase": "fsdfsdf",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 101,
+      "id": 17
+    },
+    {
+      "phrase": "sdfsdf",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 101,
+      "id": 18
     }
   ]
 }

@@ -1,7 +1,8 @@
 <template>
 
 	<div class="comments-list-item">
-		{{index+1}}. {{comment.author_nick}}: &nbsp;&nbsp;&nbsp;{{comment.phrase}}
+		{{comment.author_nick}}
+		- {{comment.phrase}}
 	</div>
 
 </template>

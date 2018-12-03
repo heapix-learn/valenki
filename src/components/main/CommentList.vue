@@ -8,7 +8,7 @@
 		</div>
 		<CreateComment
 			:message_id="message_id"
-			v-on:refresh="refresh()"
+			@refresh="$emit('refresh')"
 		/>
 	</div>
 </template>
@@ -27,11 +27,6 @@
 		props: {
 			comments: Array,
 			message_id: Number,
-		},
-		methods: {
-			refresh() {
-				this.$emit('refresh')
-			},
 		}
 	}
 </script>

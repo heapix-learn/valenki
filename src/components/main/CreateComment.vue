@@ -41,8 +41,7 @@
 				const commentRepository = new CommentRepository();
 				await commentRepository.addComment(this.newComment);
 				this.newComment.phrase = '';
-				await this.$emit('refresh');
-				console.log('comment added!');
+				this.$emit('refresh');
 			}
 		}
 	}

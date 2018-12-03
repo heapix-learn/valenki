@@ -32,17 +32,20 @@
 					</v-card-title>
 
 					<v-card-actions>
-						<v-btn :flat="true" color="red">
+						<v-btn :flat="true" color="red" @click="dislike(message.id)">
+							{{message.disliked}}
 							<i class="material-icons">
 								thumb_down_alt
 							</i>
 						</v-btn>
-						<v-btn :flat="true" color="orange">
+						<v-btn :flat="true" color="orange" @click="repost(message.id)">
+							{{message.reposted}}
 							<i class="material-icons">
 								reply_all
 							</i>
 						</v-btn>
-						<v-btn :flat="true" color="green">
+						<v-btn :flat="true" color="green" @click="like(message.id)">
+							{{message.liked}}
 							<i class="material-icons">
 								thumb_up_alt
 							</i>
@@ -57,7 +60,7 @@
 						:comments="comments"
 						:message_id="message.id"
 						v-if="readComments"
-						v-on:refresh="getComments(message.id)"
+						@refresh="getComments(message.id)"
 					/>
 
 				</v-card>
@@ -93,10 +96,10 @@
 		},
 		methods: {
 			openComments(id) {
-				this.getComments(id)
 				if (this.readComments) {
 					this.readComments = false
 				} else {
+					this.getComments(id);
 					this.readComments = true
 				}
 			},
@@ -107,6 +110,18 @@
 			async getComments(id) {
 				const commentRepository = new CommentRepository();
 				this.comments = await (commentRepository.getComments(id))
+			},
+			async like() {
+				const messageRepository = new MessageRepository();
+				await (messageRepository.likePost(this.message.id))
+			},
+			async dislike() {
+				const messageRepository = new MessageRepository();
+				await (messageRepository.dislikePost(this.message.dislike + 1))
+			},
+			async repost() {
+				const messageRepository = new MessageRepository();
+				await (messageRepository.repostPost(this.message.repost))
 			}
 		}
 	}

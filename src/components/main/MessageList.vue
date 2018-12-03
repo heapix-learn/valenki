@@ -17,13 +17,9 @@
 		components: {
 			MessageListItem
 		},
-		data() {
-			return {
-			}
-		},
 		props: {
 			Messages: Array
-		},
+		}
 	}
 </script>
 
