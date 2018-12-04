@@ -32,25 +32,37 @@
 					</v-card-title>
 
 					<v-card-actions>
-						<v-btn :flat="true" color="red" @click="dislike(message.id)">
+						<v-btn
+							@click="dislike(message.id)"
+							:flat="true"
+							:style="{ color: disliked ? 'red' : 'grey' }">
 							{{message.disliked}}
 							<i class="material-icons">
 								thumb_down_alt
 							</i>
 						</v-btn>
-						<v-btn :flat="true" color="orange" @click="repost(message.id)">
+						<v-btn
+							@click="repost(message.id)"
+							:flat="true"
+							color="orange">
 							{{message.reposted}}
 							<i class="material-icons">
 								reply_all
 							</i>
 						</v-btn>
-						<v-btn :flat="true" color="green" @click="like(message.id)">
+						<v-btn
+							@click="like(message.id)"
+							:flat="true"
+							:style="{ color: liked ? 'green' : 'grey' }">
 							{{message.liked}}
 							<i class="material-icons">
 								thumb_up_alt
 							</i>
 						</v-btn>
-						<v-btn :flat="true" color="blue" @click="openComments(message.id)">
+						<v-btn
+							@click="openComments(message.id)"
+							:flat="true"
+							color="blue">
 							<i class="material-icons">
 								chat
 							</i>
