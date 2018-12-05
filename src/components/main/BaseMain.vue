@@ -47,7 +47,7 @@
 
 <style lang="scss">
 	.base-main {
-		background: linear-gradient(60deg, #F2C14E, #F78154);
+		background: #36393F;
 
 		&__note {
 			text-align: center;

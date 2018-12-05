@@ -7,4 +7,5 @@ export default class Message {
 	disliked = 0;
 	reposted = 0;
 	chip = [];
+	created = {};
 }

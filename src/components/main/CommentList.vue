@@ -25,7 +25,10 @@
 		},
 
 		props: {
-			comments: Array,
+			comments: {
+				type: Array,
+				required: true
+			},
 			message_id: Number,
 		}
 	}

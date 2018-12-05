@@ -102,7 +102,7 @@
 			},
 			goToMain() {
 				setTimeout(() => {
-					this.$router.push({name: 'BaseMain'});
+					window.location.href = "/"
 				}, 2000);
 			},
 			checkFields() {

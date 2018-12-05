@@ -1,5 +1,6 @@
 <template>
 	<div class="new-message">
+{{typeof date}}
 		message {{message}}
 		<v-textarea
 			:counter="140"
@@ -57,6 +58,7 @@
 		data() {
 			return {
 				message: new Message,
+				date: {}
 			}
 		},
 
@@ -64,6 +66,7 @@
 			checkFields() {
 				this.message.author_id = localStorage.getItem('id');
 				this.message.author_nick = localStorage.getItem('nick');
+				this.message.created = this.getDate();
 				if (this.message.phrase.length && this.message.author_id) {
 					this.createMessage()
 				} else {
@@ -74,6 +77,20 @@
 				const messageRepository = new MessageRepository();
 				const postResponse = messageRepository.createMessage(this.message);
 				console.log(postResponse)
+			},
+			getDate () {
+				let d = new Date();
+
+				let dd = d.getDate();
+				if (dd < 10) { dd = '0' + dd;
+					}
+				let mm = d.getMonth() + 1;
+				if (mm < 10) { mm = '0' + mm; }
+
+				let yy = d.getFullYear() % 100;
+				if (yy < 10) { yy = '0' + yy; }
+
+				return dd + '.' + mm + '.' + yy;
 			}
 		}
 	}

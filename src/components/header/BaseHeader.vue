@@ -20,25 +20,25 @@
 			</v-toolbar-side-icon>
 			<v-list class="link">
 
-				<v-list-tile>
+				<v-list-tile v-if="!userNick">
 					<router-link :to="{name: 'LoginPage'}" class="link">
 						<span>Login</span>
 					</router-link>
 				</v-list-tile>
 
-				<v-list-tile>
+				<v-list-tile v-if="!userNick">
 					<router-link :to="{name: 'RegisterPage'}" class="link">
 						<span>Register</span>
 					</router-link>
 				</v-list-tile>
 
-				<v-list-tile>
-					<router-link :to="{name: 'Personal'}" class="link">
+				<v-list-tile v-if="userNick">
+					<router-link :to="{name: 'Personal'}" class="link" >
 						<span>Personal</span>
 					</router-link>
 				</v-list-tile>
 
-				<v-list-tile @click="logOut()">
+				<v-list-tile @click="logOut()" v-if="userNick">
 					Logout
 				</v-list-tile>
 			</v-list>
@@ -49,20 +49,29 @@
 
 <script>
 
+	import UserRepository from "../../classes/user/UserRepository";
+
 	export default {
 		name: "BaseHeader",
 		methods: {
 			logOut() {
-
 				localStorage.removeItem('token');
 				localStorage.removeItem('nick');
 				localStorage.removeItem('id');
-				window.location.pathname = "/login"
+				window.location.href = "/"
 			}
 		},
 		computed: {
 			userNick() {
-				return localStorage.getItem('nick');
+				if (localStorage.getItem('nick')) {
+					const userRepository = new UserRepository()
+					if (userRepository.checkLogin()) {
+						return localStorage.getItem('nick')
+					} else {
+						this.logOut()
+						return false
+					}
+				}
 			}
 		}
 	}

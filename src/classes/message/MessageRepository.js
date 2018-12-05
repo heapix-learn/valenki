@@ -1,4 +1,5 @@
 import axios from 'axios'
+import MessageMapper from "./MessageMapper";
 
 export default class MessageRepository {
 
@@ -7,8 +8,8 @@ export default class MessageRepository {
 			headers: {
 				authorization: localStorage.getItem('token')
 			}
-		})).data
-		return messages
+		})).data;
+		return messages.map(MessageMapper.map);
 	}
 
 	getMessagesByUser(id) {
@@ -33,11 +34,6 @@ export default class MessageRepository {
 
 	async likePost(id, count) {
 		const counter = (await axios.put('http://localhost:3000/messages_like', {"id": id,"count": count})).data
-		return counter
-	}
-
-	async dislikePost(id, count) {
-		const counter = (await axios.put('http://localhost:3000/messages_dislike', {"id": id,"count": count})).data
 		return counter
 	}
 

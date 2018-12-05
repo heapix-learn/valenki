@@ -27,7 +27,7 @@
 
 		&__nickname {
 			font-weight: 600;
-			color: cornflowerblue;
+			color: darkcyan;
 		}
 
 		&__nickname:hover {

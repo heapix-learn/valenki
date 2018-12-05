@@ -1,4 +1,5 @@
 import axios from 'axios'
+import CommentMapper from "./CommentMapper";
 
 export default class CommentRepository {
 
@@ -8,7 +9,7 @@ export default class CommentRepository {
 				authorization: localStorage.getItem('token')
 			}
 		})).data;
-		return comments;
+		return comments.map(CommentMapper.map);
 	}
 
 	async addComment(comment) {

@@ -2,13 +2,13 @@ import axios from "axios";
 
 export default class UserRepository {
 
-	async getUsers () {
+	async getUsers() {
 		const users = (await axios.get('http://localhost:3000/users')).data;
 		return users
 	}
 
 	async signIn(credential) {
-		const  postResponse = (await axios.post('http://localhost:3000/auth/login', credential))
+		const postResponse = (await axios.post('http://localhost:3000/auth/login', credential))
 		return postResponse
 	}
 
@@ -28,6 +28,14 @@ export default class UserRepository {
 
 	createUser(user) {
 		axios.post('http://localhost:3000/auth/register', user)
+	}
+
+	async checkLogin() {
+		console.log((await axios.get('http://localhost:3000/messages?id=101', {
+			headers: {
+				authorization: localStorage.getItem('token')
+			}
+		})).statusText)
 	}
 
 }

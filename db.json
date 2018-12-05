@@ -21,14 +21,15 @@
       "author_id": 1,
       "author_nick": "first_user",
       "phrase": "Слово «apple» (яблоко) смягчало серьёзное «компьютер».",
-      "liked": 4,
-      "disliked": 4,
+      "liked": 7,
+      "disliked": 5,
       "reposted": 2,
       "chip": [
         "Apple",
         "Story",
         "Jobs"
-      ]
+      ],
+      "created": "28.11.18"
     },
     {
       "id": 102,
@@ -43,7 +44,8 @@
         "global",
         "Apple",
         "check"
-      ]
+      ],
+      "created": "29.11.18"
     },
     {
       "id": 103,
@@ -57,17 +59,19 @@
         "link",
         "import",
         "outdated"
-      ]
+      ],
+      "created": "30.11.18"
     },
     {
       "id": 104,
       "author_id": 1,
       "author_nick": "first_user",
       "phrase": "hi! i am the first published message",
-      "liked": 1,
+      "liked": 2,
       "disliked": 1,
       "reposted": 0,
-      "chip": []
+      "chip": [],
+      "created": "01.12.18"
     },
     {
       "id": 105,
@@ -77,7 +81,8 @@
       "liked": 2,
       "disliked": 1,
       "reposted": 0,
-      "chip": []
+      "chip": [],
+      "created": "02.12.18"
     },
     {
       "id": 106,
@@ -87,7 +92,8 @@
       "liked": 3,
       "disliked": 1,
       "reposted": 0,
-      "chip": []
+      "chip": [],
+      "created": "03.12.18"
     },
     {
       "id": 107,
@@ -97,7 +103,30 @@
       "liked": 0,
       "disliked": 0,
       "reposted": 0,
-      "chip": []
+      "chip": [],
+      "created": "04.12.18"
+    },
+    {
+      "id": 108,
+      "author_id": "1",
+      "author_nick": "first_user",
+      "phrase": "123456789",
+      "liked": 0,
+      "disliked": 0,
+      "reposted": 0,
+      "chip": [],
+      "created": "05.12.18"
+    },
+    {
+      "id": 109,
+      "author_id": "1",
+      "author_nick": "first_user",
+      "phrase": "Hi there!",
+      "liked": 0,
+      "disliked": 0,
+      "reposted": 0,
+      "chip": [],
+      "created": "05.12.18"
     }
   ],
   "comments": [
