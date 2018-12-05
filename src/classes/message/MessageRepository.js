@@ -12,8 +12,13 @@ export default class MessageRepository {
 		return messages.map(MessageMapper.map);
 	}
 
-	getMessagesByUser(id) {
-		return axios.get('http://localhost:3000/messages?author=' + id).then(response => response.data);
+	async getMessagesByUser(id) {
+		const messages = (await  axios.get('http://localhost:3000/messages?author_id=' + id,  {
+			headers: {
+				authorization: localStorage.getItem('token')
+			}
+		})).data;
+		return messages.map(MessageMapper.map);
 	}
 
 	async getMessagesByHashtag(hashtag) {

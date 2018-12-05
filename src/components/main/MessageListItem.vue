@@ -9,11 +9,14 @@
 						<img :src="imgPath" height="130" width="130"/>
 					</v-avatar>
 
-					<div
-						class="message-item__nickname"
-						@click="getMessagesByUser(message.author)">
+					<!--<div-->
+						<!--class="message-item__nickname"-->
+						<!--@click="getMessagesByUser(message.author)">-->
+						<!--{{message.author_nick}}-->
+					<!--</div>-->
+					<router-link :to="{path: '/messages/user='}" class="message-item__nickname">
 						{{message.author_nick}}
-					</div>
+					</router-link>
 					<div class="message-item__created">
 						{{message.created}}
 					</div>
@@ -194,6 +197,9 @@
 			async repost() {
 				const messageRepository = new MessageRepository();
 				await (messageRepository.repostPost(this.message.repost))
+			},
+			getMessagesByUser () {
+
 			}
 		}
 	}
@@ -219,15 +225,10 @@
 			color: darkcyan;
 		}
 
-		span {
+		&__nickname:hover {
 			cursor: pointer;
-		}
-
-		span:hover {
 			color: cornflowerblue;
-			padding-left: 1px;
 		}
-
 
 		&__text {
 			width: 80%;
