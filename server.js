@@ -98,6 +98,14 @@ server.post('/auth/register', (req, res) => {
 	res.status(200).json(id)
 })
 
+server.post('/likes', (req, res) => {
+	const like = req.body;
+	db.get('likes').push(like)
+		.write()
+	res.status(200).json('lalala')
+	return
+})
+
 server.put('/messages_like', (req, res) => {
 	const id = req.body.id;
 	const count = req.body.count

@@ -52,7 +52,7 @@
       "author_id": 2,
       "author_nick": "second_user",
       "phrase": "Their normal versions except that they use a global directory ",
-      "liked": 3,
+      "liked": 1,
       "disliked": 8,
       "reposted": 2,
       "chip": [
@@ -67,7 +67,7 @@
       "author_id": 1,
       "author_nick": "first_user",
       "phrase": "hi! i am the first published message",
-      "liked": 2,
+      "liked": 3,
       "disliked": 1,
       "reposted": 0,
       "chip": [],
@@ -127,6 +127,100 @@
       "reposted": 0,
       "chip": [],
       "created": "05.12.18"
+    }
+  ],
+  "likes": [
+    {
+      "message_id": 101,
+      "user_id": 1
+    },
+    {
+      "message_id": 101,
+      "user_id": 1
+    },
+    {
+      "message_id": 101,
+      "user_id": 1
+    },
+    {
+      "message_id": 101,
+      "user_id": 1
+    },
+    {
+      "message_id": 101,
+      "user_id": 1
+    },
+    {
+      "message_id": 101,
+      "user_id": 1
+    },
+    {
+      "message_id": 101,
+      "user_id": 1
+    },
+    {
+      "message_id": 102,
+      "user_id": 1
+    },
+    {
+      "message_id": 102,
+      "user_id": 1
+    },
+    {
+      "message_id": 102,
+      "user_id": 1
+    },
+    {
+      "message_id": 102,
+      "user_id": 1
+    },
+    {
+      "message_id": 102,
+      "user_id": 1
+    },
+    {
+      "message_id": 103,
+      "user_id": 1
+    },
+    {
+      "message_id": 103,
+      "user_id": 1
+    },
+    {
+      "message_id": 103,
+      "user_id": 1
+    },
+    {
+      "message_id": 104,
+      "user_id": "1"
+    },
+    {
+      "message_id": 105,
+      "user_id": "1"
+    },
+    {
+      "message_id": 105,
+      "user_id": "1"
+    },
+    {
+      "message_id": 105,
+      "user_id": "1"
+    },
+    {
+      "message_id": 105,
+      "user_id": "1"
+    },
+    {
+      "message_id": 105,
+      "user_id": "1"
+    },
+    {
+      "message_id": 106,
+      "user_id": "1"
+    },
+    {
+      "message_id": 106,
+      "user_id": "1"
     }
   ],
   "comments": [

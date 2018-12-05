@@ -53,9 +53,13 @@
 								thumb_down_alt
 							</i>
 						</v-btn>
+
 						{{message.liked}}
+						{{Likes}}
+						{{likes.length}}
+
 						<v-btn
-							@click="like(message.id)"
+							@click="likePost1()"
 							:flat="true"
 							:style="{ color: liked ? 'green' : 'grey' }">
 							<i class="material-icons">
@@ -77,7 +81,6 @@
 						v-if="readComments"
 						@refresh="getComments(message.id)"
 					/>
-
 				</v-card>
 			</v-flex>
 		</v-layout>
@@ -86,8 +89,10 @@
 
 <script>
 	import CommentList from './CommentList'
+	// import Like from '../../classes/like/Like.js'
 	import MessageRepository from '../../classes/message/MessageRepository.js'
 	import CommentRepository from '../../classes/comment/CommentRepository.js'
+	import LikeRepository from "../../classes/like/LikeRepository";
 
 	export default {
 		name: "MessageListItem",
@@ -100,7 +105,8 @@
 				messages: [],
 				comments: [],
 				disliked: false,
-				liked: false
+				liked: false,
+				likes: []
 			}
 		},
 		props: {
@@ -112,7 +118,10 @@
 		computed: {
 			imgPath() {
 				return require('../../assets/' + this.message.author_id + '.png')
-			}
+			},
+			Likes() {
+				this.getLikes()
+			},
 		},
 		methods: {
 			openComments(id) {
@@ -131,22 +140,40 @@
 				const commentRepository = new CommentRepository();
 				this.comments = await (commentRepository.getComments(id));
 			},
-			async like() {
-				let count = 1;
-				const messageRepository = new MessageRepository();
-				if (this.liked) {
-					count = -1;
-					this.message.liked = await (messageRepository.likePost(this.message.id, count));
-					this.liked = false
-				} else {
-					if (this.disliked) {
-						count = 2;
+			async getLikes(id) {
+				const likeRepository = new LikeRepository();
+				const idd = localStorage.getItem('id');
+				this.likes = await likeRepository.getLikes(this.message.id);
+				for (let i = 0; i < this.likes.length; i++) {
+					if (Number(this.likes[i].user_id) == Number(idd)) {
+						this.liked = true;
+						break
 					}
-					this.message.liked = await (messageRepository.likePost(this.message.id, count));
-					this.disliked = false;
-					this.liked = true
 				}
 			},
+			async likePost1() {
+				if (!this.liked) {
+					const likeRepository = new LikeRepository();
+					const user_id = localStorage.getItem('id')
+					let like = {"message_id": this.message.id, "user_id": user_id}
+					await (likeRepository.likePost(like));
+				}
+			},
+			// let count = 1;
+			// const messageRepository = new MessageRepository();
+			// if (this.liked) {
+			// 	count = -1;
+			// 	this.message.liked = await (messageRepository.likePost(this.message.id, count));
+			// 	this.liked = false
+			// } else {
+			// 	if (this.disliked) {
+			// 		count = 2;
+			// 	}
+			// 	this.message.liked = await (messageRepository.likePost(this.message.id, count));
+			// 	this.disliked = false;
+			// 	this.liked = true
+			// }
+
 			async dislike() {
 				let count = 1;
 				const messageRepository = new MessageRepository();
