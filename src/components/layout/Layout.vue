@@ -1,7 +1,11 @@
 <template>
 	<div class="base-layout">
 		<BaseHeader/>
-		<router-view class="base-layout__main"></router-view>
+		<div class="base-layout__main">
+			<router-view>
+				<slot/>
+			</router-view>
+		</div>
 		<AddButton/>
 		<BaseFooter/>
 	</div>

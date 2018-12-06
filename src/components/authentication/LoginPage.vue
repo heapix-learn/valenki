@@ -1,6 +1,5 @@
 <template>
 	<div class="login-page">
-
 		<div class="login-page__alert">
 			<v-alert
 				:value="true"

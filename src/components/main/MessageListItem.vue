@@ -10,11 +10,14 @@
 					</v-avatar>
 
 					<!--<div-->
-						<!--class="message-item__nickname"-->
-						<!--@click="getMessagesByUser(message.author)">-->
-						<!--{{message.author_nick}}-->
+					<!--class="message-item__nickname"-->
+					<!--@click="getMessagesByUser(message.author)">-->
+					<!--{{message.author_nick}}-->
 					<!--</div>-->
-					<router-link :to="{path: '/messages/user='}" class="message-item__nickname">
+
+					<router-link
+						:to="{name: 'user-messages', params: {nick_name: message.author_nick}}"
+						class="message-item__nickname">
 						{{message.author_nick}}
 					</router-link>
 					<div class="message-item__created">
@@ -92,7 +95,7 @@
 
 <script>
 	import CommentList from './CommentList'
-	// import Like from '../../classes/like/Like.js'
+	import Like from '../../classes/like/Like.js'
 	import MessageRepository from '../../classes/message/MessageRepository.js'
 	import CommentRepository from '../../classes/comment/CommentRepository.js'
 	import LikeRepository from "../../classes/like/LikeRepository";
@@ -109,7 +112,7 @@
 				comments: [],
 				disliked: false,
 				liked: false,
-				likes: []
+				likes: [],
 			}
 		},
 		props: {
@@ -122,6 +125,7 @@
 			imgPath() {
 				return require('../../assets/' + this.message.author_id + '.png')
 			},
+			// eslint-disable-next-line
 			Likes() {
 				this.getLikes()
 			},
@@ -143,10 +147,20 @@
 				const commentRepository = new CommentRepository();
 				this.comments = await (commentRepository.getComments(id));
 			},
-			async getLikes(id) {
+			async getLikes() {
 				const likeRepository = new LikeRepository();
 				const idd = localStorage.getItem('id');
 				this.likes = await likeRepository.getLikes(this.message.id);
+
+				// let res = ''
+				// this.likes.forEach(function (element) {
+				// 	if ((element.user_id) === idd) {
+				// 		console.log('this res', res)
+				// 		this.res = 'true';
+				// 	}
+				// 	console.log('res', res)
+				// })
+								
 				for (let i = 0; i < this.likes.length; i++) {
 					if (Number(this.likes[i].user_id) == Number(idd)) {
 						this.liked = true;
@@ -156,10 +170,12 @@
 			},
 			async likePost1() {
 				if (!this.liked) {
+					const like = new Like
+					like.message_id = this.message.id
+					like.user_id = localStorage.getItem('id')
+					console.log('new Like', like)
 					const likeRepository = new LikeRepository();
-					const user_id = localStorage.getItem('id')
-					let like = {"message_id": this.message.id, "user_id": user_id}
-					await (likeRepository.likePost(like));
+					await likeRepository.likePost(like);
 				}
 			},
 			// let count = 1;
@@ -198,7 +214,7 @@
 				const messageRepository = new MessageRepository();
 				await (messageRepository.repostPost(this.message.repost))
 			},
-			getMessagesByUser () {
+			getMessagesByUser() {
 
 			}
 		}
