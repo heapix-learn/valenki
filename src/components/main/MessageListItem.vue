@@ -1,47 +1,84 @@
 <template>
 	<div>
 		<v-layout class="message-item">
+
 			<v-flex xs12 sm6 offset-sm3>
 				<v-card dark>
+					<div class="message-item__info">
+						<div class="message-item__info__ava">
+							<router-link
+								:to="{name: 'user-messages', params: {nick_name: message.author_nick, author_id: message.author_id}}">
+								<v-avatar :tile="false" :size="40"
+													class="message-item__avatar">
+									<img :src="imgPath" height="130" width="130"/>
+								</v-avatar>
+							</router-link>
+						</div>
 
-					<v-avatar :tile="false" :size="66"
-										class="message-item__avatar">
-						<img :src="imgPath" height="130" width="130"/>
-					</v-avatar>
+						<!--<div-->
+						<!--class="message-item__nickname"-->
+						<!--@click="getMessagesByUser(message.author)">-->
+						<!--{{message.author_nick}}-->
+						<!--</div>-->
 
-					<!--<div-->
-					<!--class="message-item__nickname"-->
-					<!--@click="getMessagesByUser(message.author)">-->
-					<!--{{message.author_nick}}-->
-					<!--</div>-->
-
-					<router-link
-						:to="{name: 'user-messages', params: {nick_name: message.author_nick}}"
-						class="message-item__nickname">
-						{{message.author_nick}}
-					</router-link>
-					<div class="message-item__created">
-						{{message.created}}
+						<div class="message-item__info__nick">
+							<router-link
+								class="message-item__nickname"
+								:to="{name: 'user-messages', params: {nick_name: message.author_nick, author_id: message.author_id}}">
+								{{message.author_nick}}
+							</router-link>
+							<div class="message-item__created">
+								posted: {{message.created}}
+							</div>
+						</div>
 					</div>
 
-					<v-card-title class="message-item__text">
-						<div>
-							<h3 class="headline mb-0"></h3>
-							<div>
-								{{message.phrase}}
+					<div class="message-item__entity">
 
-								<span v-for="(hashtag, index) in message.chip" :key="index"
-											class="message-item__text__hashtag"
-											@click="getMessagesByHashtag(hashtag)">
+						<v-card-title class="message-item__text">
+							<div>
+								<h3 class="headline mb-0"></h3>
+								<div>
+									{{message.phrase}}
+
+									<span v-for="(hashtag, index) in message.chip" :key="index"
+												class="message-item__text__hashtag"
+												@click="getMessagesByHashtag(hashtag)">
 									#{{hashtag}}
 								</span>
 
+								</div>
 							</div>
-						</div>
-					</v-card-title>
+						</v-card-title>
 
-					<v-card-actions class="message-item__buttons">
+						<v-card-actions class="message-item__buttons">
 
+							<v-btn
+								@click="dislike(message.id)"
+								:flat="true"
+								:style="{ color: disliked ? 'red' : 'grey' }">
+								<i class="material-icons">
+									thumb_down_alt
+								</i>
+							</v-btn>
+
+							<!--{{message.liked}}-->
+							{{Likes}}
+							{{likes.length}}
+
+							<v-btn
+								@click="likePost1()"
+								:flat="true"
+								:style="{ color: liked ? 'green' : 'grey' }">
+								<i class="material-icons">
+									thumb_up_alt
+								</i>
+							</v-btn>
+
+						</v-card-actions>
+					</div>
+
+					<div class="message-item__but">
 						<v-btn
 							@click="repost(message.id)"
 							:flat="true"
@@ -52,27 +89,6 @@
 							</i>
 						</v-btn>
 						<v-btn
-							@click="dislike(message.id)"
-							:flat="true"
-							:style="{ color: disliked ? 'red' : 'grey' }">
-							<i class="material-icons">
-								thumb_down_alt
-							</i>
-						</v-btn>
-
-						{{message.liked}}
-						{{Likes}}
-						{{likes.length}}
-
-						<v-btn
-							@click="likePost1()"
-							:flat="true"
-							:style="{ color: liked ? 'green' : 'grey' }">
-							<i class="material-icons">
-								thumb_up_alt
-							</i>
-						</v-btn>
-						<v-btn
 							@click="openComments(message.id)"
 							:flat="true"
 							color="blue">
@@ -80,7 +96,8 @@
 								chat
 							</i>
 						</v-btn>
-					</v-card-actions>
+					</div>
+
 					<CommentList
 						:comments="comments"
 						:message_id="message.id"
@@ -160,7 +177,7 @@
 				// 	}
 				// 	console.log('res', res)
 				// })
-								
+
 				for (let i = 0; i < this.likes.length; i++) {
 					if (Number(this.likes[i].user_id) == Number(idd)) {
 						this.liked = true;
@@ -225,10 +242,31 @@
 <style lang="scss">
 
 	.message-item {
-		padding: 5px 10px;
+		/*padding: 5px 10px;*/
+		border-bottom: 2px solid lightblue;
+		border-radius: 5px;
+
+		&__info {
+			&__nick {
+				padding: 0 10px;
+				display: flex;
+				justify-content: space-between;
+			}
+		}
+
+		&__entity {
+			display: flex;
+			justify-content: flex-start;
+		}
+
+		&__but {
+			display: flex;
+			justify-content: space-between;
+		}
 
 		&__avatar {
 			float: left;
+			padding-left: 20px;
 		}
 
 		&__nickname,
@@ -238,7 +276,7 @@
 		}
 
 		&__created {
-			color: darkcyan;
+			color: #111419;
 		}
 
 		&__nickname:hover {
@@ -248,8 +286,11 @@
 
 		&__text {
 			width: 80%;
-			padding: 0 0 0 10px !important;
+			padding: 0 10px 0 10px !important;
 			text-align: left;
+			background-color: #2F3136;
+			border-radius: 10px;
+			border: 2px solid #202328;
 
 			&__hashtag {
 				color: dodgerblue;
@@ -263,6 +304,8 @@
 
 		&__buttons {
 			padding: 0 !important;
+			display: flex;
+			flex-direction: column;
 		}
 
 	}

@@ -50,7 +50,7 @@
 					Signin
 				</v-btn>
 
-				<router-link :to="{name: 'RegisterPage'}">
+				<router-link :to="{name: 'register-page'}">
 					<v-btn>
 						Register
 					</v-btn>
@@ -99,10 +99,12 @@
 					this.status.error = true
 				}
 			},
-			goToMain() {
-				setTimeout(() => {
-					window.location.href = "/"
-				}, 2000);
+			async goToMain() {
+				await (window.location.href = "/")
+
+				// setTimeout(() => {
+				// 	window.location.href = "/"
+				// }, 2000);
 			},
 			checkFields() {
 				if (this.credential.email.length >= 6) {

@@ -1,7 +1,7 @@
 <template>
 	<div class="new-message">
-{{typeof date}}
-		message {{message}}
+		<!--{{typeof date}}-->
+		<!--message {{message}}-->
 		<v-textarea
 			:counter="140"
 			outline

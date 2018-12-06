@@ -22,19 +22,19 @@
 				<v-list class="link">
 
 					<v-list-tile v-if="!userNick">
-						<router-link :to="{name: 'LoginPage'}" class="link">
+						<router-link :to="{name: 'login-page'}" class="link">
 							<span>Login</span>
 						</router-link>
 					</v-list-tile>
 
 					<v-list-tile v-if="!userNick">
-						<router-link :to="{name: 'RegisterPage'}" class="link">
+						<router-link :to="{name: 'register-page'}" class="link">
 							<span>Register</span>
 						</router-link>
 					</v-list-tile>
 
 					<v-list-tile v-if="userNick">
-						<router-link :to="{name: 'Personal'}" class="link">
+						<router-link :to="{name: 'user-profile'}" class="link">
 							<span>Personal</span>
 						</router-link>
 					</v-list-tile>

@@ -34,7 +34,7 @@
 					Signup
 				</v-btn>
 				<router-link
-					:to="{name: 'LoginPage'}"
+					:to="{name: 'login-page'}"
 					class="login-page__form__buttons__button"
 				>
 					<v-btn>have an account</v-btn>

@@ -18,8 +18,8 @@ const router = new VueRouter({
 	routes: [
 		{
 			path: "/",
-			component: Layout,
 			name: "Layout",
+			component: Layout,
 			children: [
 				{
 					path: '',
@@ -58,7 +58,6 @@ const router = new VueRouter({
 					name: "NewMessage",
 					component: NewMessage
 				},
-
 			]
 		}
 	]

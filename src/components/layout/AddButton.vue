@@ -21,8 +21,8 @@
 		name: "AddButton",
 		methods: {
 			createNewMessage() {
-				if (this.$route.path != "/new_message") {
-					this.$router.push("/new_message")
+				if (this.$route.path != "/messages/new_message") {
+					this.$router.push("/messages/new_message")
 				} else {
 					alert("Вообще-то Вы уже создаете сообщение!")
 				}

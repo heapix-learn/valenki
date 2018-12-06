@@ -13,6 +13,12 @@
       "password": "222222",
       "nick_name": "second_user",
       "messages": []
+    },
+    {
+      "id": 3,
+      "email": "asdfasdf@sdfg.fdg",
+      "password": ";lkj;ljk",
+      "nick_name": ""
     }
   ],
   "messages": [
@@ -21,7 +27,7 @@
       "author_id": 1,
       "author_nick": "first_user",
       "phrase": "Слово «apple» (яблоко) смягчало серьёзное «компьютер».",
-      "liked": 7,
+      "liked": 6,
       "disliked": 5,
       "reposted": 2,
       "chip": [
@@ -52,7 +58,7 @@
       "author_id": 2,
       "author_nick": "second_user",
       "phrase": "Their normal versions except that they use a global directory ",
-      "liked": 1,
+      "liked": 0,
       "disliked": 8,
       "reposted": 2,
       "chip": [
@@ -145,6 +151,26 @@
     {
       "user_id": "1",
       "message_id": 107
+    },
+    {
+      "user_id": "1",
+      "message_id": 102
+    },
+    {
+      "user_id": "1",
+      "message_id": 101
+    },
+    {
+      "user_id": "1",
+      "message_id": 101
+    },
+    {
+      "user_id": "1",
+      "message_id": 103
+    },
+    {
+      "user_id": "1",
+      "message_id": 103
     }
   ],
   "comments": [
