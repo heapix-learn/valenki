@@ -67,7 +67,7 @@
 							{{likes.length}}
 
 							<v-btn
-								@click="likePost1()"
+								@click="likePost()"
 								:flat="true"
 								:style="{ color: liked ? 'green' : 'grey' }">
 								<i class="material-icons">
@@ -185,15 +185,21 @@
 					}
 				}
 			},
-			async likePost1() {
+			async likePost() {
+				const like = new Like
+				like.message_id = this.message.id
+				like.user_id = localStorage.getItem('id')
+				const likeRepository = new LikeRepository();
 				if (!this.liked) {
-					const like = new Like
-					like.message_id = this.message.id
-					like.user_id = localStorage.getItem('id')
-					console.log('new Like', like)
-					const likeRepository = new LikeRepository();
 					await likeRepository.likePost(like);
+					this.liked = true;
+					this.likes.push(1);
 				}
+					// else {
+				// 	await likeRepository.unlikePost(like.message_id);
+				// 	this.likes.splice(0, 1);
+				// 	this.liked = false;
+				// }
 			},
 			// let count = 1;
 			// const messageRepository = new MessageRepository();
@@ -248,7 +254,8 @@
 
 		&__info {
 			&__nick {
-				padding: 0 10px;
+				padding: 10px;
+				padding-top: 0px;
 				display: flex;
 				justify-content: space-between;
 			}
@@ -266,7 +273,7 @@
 
 		&__avatar {
 			float: left;
-			padding-left: 20px;
+			margin-left: 10px;
 		}
 
 		&__nickname,

@@ -75,7 +75,6 @@
 		},
 		computed: {
 			imgPath() {
-				console.log('id from prev page', this.id)
 				return require('../../assets/' + this.id + '.png')
 			}
 		},

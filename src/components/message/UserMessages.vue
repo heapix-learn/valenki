@@ -39,7 +39,6 @@
 		methods: {
 			async getMessagesByUser() {
 				this.id = this.$route.params.author_id
-				console.log(this.id)
 				const messageRepository = new MessageRepository();
 				this.MessagesByAuthor = await (messageRepository.getMessagesByUser(this.id))
 			},

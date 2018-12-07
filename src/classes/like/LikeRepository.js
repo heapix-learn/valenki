@@ -10,11 +10,19 @@ export default class LikeRepository {
 		})).data
 	}
 
-	likePost(like) {
-		axios.post('http://localhost:3000/likes', like,  {
+	async likePost(like) {
+		await (axios.post('http://localhost:3000/likes', like,  {
 			headers: {
 				authorization: localStorage.getItem('token')
 			}
-		})
+		}))
+	}
+
+	async unlikePost(id) {
+		console.log(await (axios.get('http://localhost:3000/likes?message_id='+ id, {
+			headers: {
+				authorization: localStorage.getItem('token')
+			}
+		})))
 	}
 }

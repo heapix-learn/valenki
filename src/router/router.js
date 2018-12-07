@@ -9,8 +9,6 @@ import LoginPage from "../components/authentication/LoginPage";
 import PersonalPage from "../components/personal/PersonalPage";
 import RegisterPage from "../components/authentication/RegisterPage";
 
-
-
 Vue.use(VueRouter);
 
 const router = new VueRouter({
