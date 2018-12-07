@@ -3,15 +3,14 @@
 		<v-layout class="message-item">
 
 			<v-flex xs12 sm6 offset-sm3>
-				<v-card dark>
+				<v-card>
 					<div class="message-item__info">
-						<div class="message-item__info__ava">
+						<div class="message-item__info__avatar">
 							<router-link
 								:to="{name: 'user-messages', params: {nick_name: message.author_nick, author_id: message.author_id}}">
-								<v-avatar :tile="false" :size="40"
-													class="message-item__avatar">
-									<img :src="imgPath" height="130" width="130"/>
-								</v-avatar>
+								<div style="width: 40px;">
+									<img style="max-width: 40px;" :src="imgPath"/>
+								</div>
 							</router-link>
 						</div>
 
@@ -21,79 +20,86 @@
 						<!--{{message.author_nick}}-->
 						<!--</div>-->
 
-						<div class="message-item__info__nick">
+						<div class="message-item__info__title">
 							<router-link
-								class="message-item__nickname"
+								class="message-item__info__title__nickname"
 								:to="{name: 'user-messages', params: {nick_name: message.author_nick, author_id: message.author_id}}">
 								{{message.author_nick}}
 							</router-link>
-							<div class="message-item__created">
-								posted: {{message.created}}
-							</div>
+							<a class="message-item__info__title__liked">
+								{{likes.length}}
+							</a>
 						</div>
 					</div>
 
-					<div class="message-item__entity">
+					<div>
 
-						<v-card-title class="message-item__text">
-							<div>
-								<h3 class="headline mb-0"></h3>
-								<div>
-									{{message.phrase}}
-
-									<span v-for="(hashtag, index) in message.chip" :key="index"
-												class="message-item__text__hashtag"
-												@click="getMessagesByHashtag(hashtag)">
-									#{{hashtag}}
-								</span>
-
+						<div class="message-item__content-group">
+							<div class="message-item__content-group__text">
+								{{message.phrase}}
+							</div>
+							<div class="message-item__content-group__hashtag-group">
+								<div
+									v-for="(hashtag, index) in message.chip" :key="index"
+									class="message-item__content-group__hashtag-group__hashtag"
+								>
+									<router-link
+										:to="{name: 'hashtag-messages', params: {hashtag: hashtag}}">
+										#{{hashtag}}
+									</router-link>
 								</div>
 							</div>
-						</v-card-title>
+							<div class="message-item__content-group__date">
+								posted: {{message.created}}
+							</div>
 
+						</div>
 						<v-card-actions class="message-item__buttons">
+							<!--<v-btn-->
+							<!--@click="dislike(message.id)"-->
+							<!--:flat="true"-->
+							<!--:style="{ color: disliked ? 'red' : 'grey' }">-->
+							<!--<i class="material-icons">-->
+							<!--thumb_down_alt-->
+							<!--</i>-->
+							<!--</v-btn>-->
 
-							<v-btn
-								@click="dislike(message.id)"
-								:flat="true"
-								:style="{ color: disliked ? 'red' : 'grey' }">
-								<i class="material-icons">
-									thumb_down_alt
-								</i>
-							</v-btn>
-
-							<!--{{message.liked}}-->
-							{{Likes}}
-							{{likes.length}}
-
-							<v-btn
-								@click="likePost()"
-								:flat="true"
-								:style="{ color: liked ? 'green' : 'grey' }">
-								<i class="material-icons">
-									thumb_up_alt
-								</i>
-							</v-btn>
 
 						</v-card-actions>
 					</div>
 
-					<div class="message-item__but">
+					<div class="message-item__button-group">
 						<v-btn
+							class="message-item__button-group__button"
 							@click="repost(message.id)"
 							:flat="true"
-							color="orange">
+							fab
+							color="orange"
+						>
 							{{message.reposted}}&nbsp;
 							<i class="material-icons">
 								reply_all
 							</i>
 						</v-btn>
 						<v-btn
+							class="message-item__button-group__button"
 							@click="openComments(message.id)"
 							:flat="true"
-							color="blue">
+							fab
+							color="#00887A">
 							<i class="material-icons">
 								chat
+							</i>
+						</v-btn>
+						<v-btn
+							class="message-item__button-group__button"
+							@click="likePost()"
+							:flat="true"
+							fab
+							:style="{ color: liked ? '#FFCCBC' : 'lightgrey' }"
+						>
+							<i class="material-icons">
+								thumb_up_alt
 							</i>
 						</v-btn>
 					</div>
@@ -127,9 +133,10 @@
 				readComments: false,
 				messages: [],
 				comments: [],
-				disliked: false,
+				saved: false,
 				liked: false,
 				likes: [],
+				like_id: null
 			}
 		},
 		props: {
@@ -138,14 +145,13 @@
 				required: true
 			}
 		},
+		created() {
+			this.getLikes()
+		},
 		computed: {
 			imgPath() {
 				return require('../../assets/' + this.message.author_id + '.png')
-			},
-			// eslint-disable-next-line
-			Likes() {
-				this.getLikes()
-			},
+			}
 		},
 		methods: {
 			openComments(id) {
@@ -155,10 +161,6 @@
 					this.getComments(id);
 					this.readComments = true
 				}
-			},
-			async getMessagesByHashtag(hashtag) {
-				const messageRepository = new MessageRepository();
-				this.messages = await (messageRepository.getMessagesByHashtag(hashtag))
 			},
 			async getComments(id) {
 				const commentRepository = new CommentRepository();
@@ -180,6 +182,7 @@
 
 				for (let i = 0; i < this.likes.length; i++) {
 					if (Number(this.likes[i].user_id) == Number(idd)) {
+						this.like_id = this.likes[i].id
 						this.liked = true;
 						break
 					}
@@ -189,17 +192,18 @@
 				const like = new Like
 				like.message_id = this.message.id
 				like.user_id = localStorage.getItem('id')
+				like.id = this.like_id
 				const likeRepository = new LikeRepository();
 				if (!this.liked) {
 					await likeRepository.likePost(like);
+					await this.getLikes()
 					this.liked = true;
-					this.likes.push(1);
+				} else {
+					await likeRepository.unlikePost(like.id);
+					await this.getLikes()
+					console.log('unliked')
+					this.liked = false;
 				}
-					// else {
-				// 	await likeRepository.unlikePost(like.message_id);
-				// 	this.likes.splice(0, 1);
-				// 	this.liked = false;
-				// }
 			},
 			// let count = 1;
 			// const messageRepository = new MessageRepository();
@@ -216,23 +220,23 @@
 			// 	this.liked = true
 			// }
 
-			async dislike() {
-				let count = 1;
-				const messageRepository = new MessageRepository();
-				if (this.disliked) {
-					this.message.liked = await (messageRepository.likePost(this.message.id, count));
-					this.disliked = false
-				} else {
-					if (this.liked) {
-						count = -2;
-					} else {
-						count = -1;
-					}
-					this.message.liked = await (messageRepository.likePost(this.message.id, count));
-					this.liked = false;
-					this.disliked = true
-				}
-			},
+			// async dislike() {
+			// 	let count = 1;
+			// 	const messageRepository = new MessageRepository();
+			// 	if (this.disliked) {
+			// 		this.message.liked = await (messageRepository.likePost(this.message.id, count));
+			// 		this.disliked = false
+			// 	} else {
+			// 		if (this.liked) {
+			// 			count = -2;
+			// 		} else {
+			// 			count = -1;
+			// 		}
+			// 		this.message.liked = await (messageRepository.likePost(this.message.id, count));
+			// 		this.liked = false;
+			// 		this.disliked = true
+			// 	}
+			// },
 			async repost() {
 				const messageRepository = new MessageRepository();
 				await (messageRepository.repostPost(this.message.repost))
@@ -248,73 +252,91 @@
 <style lang="scss">
 
 	.message-item {
-		/*padding: 5px 10px;*/
-		border-bottom: 2px solid lightblue;
-		border-radius: 5px;
+		margin-bottom: 5px;
 
 		&__info {
-			&__nick {
-				padding: 10px;
-				padding-top: 0px;
+			&__avatar {
+				float: left;
+				margin-left: 10px;
+			}
+
+			&__title {
+				margin-bottom: 10px;
+				margin-right: 10px;
 				display: flex;
 				justify-content: space-between;
+				border-bottom: 3px solid lightgrey;
+				border-radius: 4px;
+				padding: 10px 5px 5px 10px;
+
+				&__nickname:hover {
+					cursor: pointer;
+					color: cornflowerblue;
+				}
+				&__liked {
+					font-weight: 600;
+				}
 			}
 		}
 
-		&__entity {
-			display: flex;
-			justify-content: flex-start;
+		&__content-group {
+			padding: 0 20px;
+			flex-direction: column;
+
+			&__text {
+				text-align: left;
+			}
+
+			&__hashtag-group {
+				display: flex;
+				padding: 0 20px !important;
+
+				&__hashtag {
+					padding-right: 10px;
+				}
+
+				&__hashtag:hover {
+					cursor: pointer;
+					color: yellow;
+				}
+			}
+
+			&__date {
+				color: #616161;
+				font-size: smaller;
+				text-align: right;
+			}
 		}
 
-		&__but {
+		&__button-group {
 			display: flex;
 			justify-content: space-between;
-		}
 
-		&__avatar {
-			float: left;
-			margin-left: 10px;
-		}
-
-		&__nickname,
-		&__created {
-			float: left;
-			padding: 10px 5px 5px 10px;
-		}
-
-		&__created {
-			color: #111419;
-		}
-
-		&__nickname:hover {
-			cursor: pointer;
-			color: cornflowerblue;
-		}
-
-		&__text {
-			width: 80%;
-			padding: 0 10px 0 10px !important;
-			text-align: left;
-			background-color: #2F3136;
-			border-radius: 10px;
-			border: 2px solid #202328;
-
-			&__hashtag {
-				color: dodgerblue;
-			}
-
-			&__hashtag:hover {
-				cursor: pointer;
-				color: hotpink;
+			&__button {
+				margin: 0 !important;
 			}
 		}
+
 
 		&__buttons {
 			padding: 0 !important;
 			display: flex;
 			flex-direction: column;
+
+			&__button {
+			}
+
+
 		}
 
 	}
 
+	.v-card__title .message-item__content-group {
+		text-align: left;
+		padding: 0;
+	}
+
+	.message-item__buttons__button {
+		min-width: unset;
+	}
 </style>

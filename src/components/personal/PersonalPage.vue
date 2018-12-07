@@ -5,11 +5,12 @@
 			<img :src="imgPath"/>
 		</v-avatar>
 		<br>
-		<!--<v-btn small class="personal-page__button" @click="edit=true">-->
-		<!--<i class="material-icons">-->
-		<!--settings-->
-		<!--</i>-->
-		<!--</v-btn>-->
+		{{$route.path}}
+		<v-btn v-if="$route.path.includes('profile')" small class="personal-page__button" @click="edit=true">
+		<i class="material-icons">
+		settings
+		</i>
+		</v-btn>
 		<div class="personal-page__nickname">
 			<h1>{{User.nick_name}}</h1>
 		</div>
@@ -75,11 +76,12 @@
 		},
 		computed: {
 			imgPath() {
-				return require('../../assets/' + this.id + '.png')
+
+				return require('../../assets/' + localStorage.getItem('id') + '.png')
 			}
 		},
 		created() {
-			this.getUser(this.id)
+			this.getUser(localStorage.getItem('id'))
 		},
 		methods: {
 			async getUser(id) {

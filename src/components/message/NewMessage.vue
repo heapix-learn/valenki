@@ -75,8 +75,7 @@
 			},
 			createMessage() {
 				const messageRepository = new MessageRepository();
-				const postResponse = messageRepository.createMessage(this.message);
-				console.log(postResponse)
+				messageRepository.createMessage(this.message);
 			},
 			getDate () {
 				let d = new Date();

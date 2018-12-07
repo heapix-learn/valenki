@@ -7,6 +7,7 @@ import NewMessage from "../components/message/NewMessage";
 import UserMessages from "../components/message/UserMessages";
 import LoginPage from "../components/authentication/LoginPage";
 import PersonalPage from "../components/personal/PersonalPage";
+import HashtagMessages from "../components/message/HashtagMessages";
 import RegisterPage from "../components/authentication/RegisterPage";
 
 Vue.use(VueRouter);
@@ -50,6 +51,11 @@ const router = new VueRouter({
 							component: UserMessages
 						}
 					]
+				},
+				{
+					path: "/messages/hashtag=:hashtag",
+					name: "hashtag-messages",
+					component: HashtagMessages
 				},
 				{
 					path: "/messages/new_message",

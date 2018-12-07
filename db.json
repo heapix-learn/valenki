@@ -81,71 +81,38 @@
     },
     {
       "id": 105,
-      "author_id": 1,
-      "author_nick": "first_user",
-      "phrase": "lalala blablabla tags",
-      "liked": 2,
-      "disliked": 1,
-      "reposted": 0,
-      "chip": [],
-      "created": "02.12.18"
-    },
-    {
-      "id": 106,
       "author_id": "1",
       "author_nick": "first_user",
-      "phrase": "123456789645321",
-      "liked": 3,
-      "disliked": 1,
+      "phrase": "Hi, i am fine!",
       "reposted": 0,
       "chip": [],
-      "created": "03.12.18"
-    },
-    {
-      "id": 107,
-      "author_id": "1",
-      "author_nick": "first_user",
-      "phrase": "bxgvbvzcxcnmbvdsAdghmgdfsadgbvc",
-      "liked": 0,
-      "disliked": 0,
-      "reposted": 0,
-      "chip": [],
-      "created": "04.12.18"
-    },
-    {
-      "id": 108,
-      "author_id": "1",
-      "author_nick": "first_user",
-      "phrase": "123456789",
-      "liked": 0,
-      "disliked": 0,
-      "reposted": 0,
-      "chip": [],
-      "created": "05.12.18"
-    },
-    {
-      "id": 109,
-      "author_id": "1",
-      "author_nick": "first_user",
-      "phrase": "Hi there!",
-      "liked": 0,
-      "disliked": 0,
-      "reposted": 0,
-      "chip": [],
-      "created": "05.12.18"
+      "created": "07.12.18"
     }
   ],
   "likes": [
     {
-      "user_id": "1",
+      "id": 1,
+      "user_id": 1,
       "message_id": 101
     },
     {
-      "user_id": "1",
+      "id": 2,
+      "user_id": 2,
+      "message_id": 101
+    },
+    {
+      "id": 3,
+      "user_id": 3,
+      "message_id": 101
+    },
+    {
+      "id": 4,
+      "user_id": 1,
       "message_id": 102
     },
     {
-      "user_id": "1",
+      "id": 5,
+      "user_id": 2,
       "message_id": 103
     }
   ],

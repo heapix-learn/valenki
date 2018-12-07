@@ -19,10 +19,10 @@ export default class LikeRepository {
 	}
 
 	async unlikePost(id) {
-		console.log(await (axios.get('http://localhost:3000/likes?message_id='+ id, {
+		await (axios.delete(`http://localhost:3000/likes/${id}`, {
 			headers: {
-				authorization: localStorage.getItem('token')
-			}
-		})))
+				authorization: localStorage.getItem('token'),
+			},
+		}))
 	}
 }

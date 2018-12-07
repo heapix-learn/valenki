@@ -47,7 +47,7 @@
 
 <style lang="scss">
 	.base-main {
-		background: #36393F;
+		background: #D3E3FC;
 		min-height: calc(100vh - 56px - 36px);
 		&__note {
 			text-align: center;

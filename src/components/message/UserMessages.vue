@@ -2,6 +2,8 @@
 	<div>
 		<PersonalPage :id="id"/>
 
+		Messages by user #{{this.$route.params.author_id}}:
+
 		<div class="user-messages">
 			<div v-if="!MessagesByAuthor.length" class="base-main__note">
 			<span>

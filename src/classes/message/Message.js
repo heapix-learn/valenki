@@ -3,8 +3,6 @@ export default class Message {
 	author_id = null;
 	author_nick = "";
 	phrase = "";
-	liked = 0;
-	disliked = 0;
 	reposted = 0;
 	chip = [];
 	created = {};

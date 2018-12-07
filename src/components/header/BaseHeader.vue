@@ -34,7 +34,7 @@
 					</v-list-tile>
 
 					<v-list-tile v-if="userNick">
-						<router-link :to="{name: 'user-profile'}" class="link">
+						<router-link :to="{name: 'user-profile', params: {nick_name: userNick}}" class="link">
 							<span>Personal</span>
 						</router-link>
 					</v-list-tile>
@@ -54,19 +54,28 @@
 
 	export default {
 		name: "BaseHeader",
+		data() {
+			return {
+				id: 0
+		}
+		},
 		methods: {
 			logOut() {
 				localStorage.removeItem('token');
 				localStorage.removeItem('nick');
 				localStorage.removeItem('id');
 				window.location.href = "/"
+			},
+			getId() {
+				this.id = localStorage.getItem('id');
 			}
 		},
 		computed: {
 			userNick() {
 				if (localStorage.getItem('nick')) {
-					const userRepository = new UserRepository()
+					const userRepository = new UserRepository();
 					if (userRepository.checkLogin()) {
+						this.getId();
 						return localStorage.getItem('nick')
 					} else {
 						this.logOut()
