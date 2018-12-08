@@ -87,6 +87,114 @@
       "reposted": 0,
       "chip": [],
       "created": "07.12.18"
+    },
+    {
+      "id": 106,
+      "author_id": "1",
+      "author_nick": "first_user",
+      "phrase": "ADAsdASDAsd",
+      "reposted": 0,
+      "chip": [],
+      "created": "08.12.18"
+    },
+    {
+      "id": 107,
+      "author_id": "1",
+      "author_nick": "first_user",
+      "phrase": "ADAsdASDAsd",
+      "reposted": 0,
+      "chip": [],
+      "created": "08.12.18"
+    },
+    {
+      "id": 108,
+      "author_id": "1",
+      "author_nick": "first_user",
+      "phrase": "ADAsdASDAsd",
+      "reposted": 0,
+      "chip": [],
+      "created": "08.12.18"
+    },
+    {
+      "id": 109,
+      "author_id": "1",
+      "author_nick": "first_user",
+      "phrase": "ADAsdASDAsd",
+      "reposted": 0,
+      "chip": [],
+      "created": "08.12.18"
+    },
+    {
+      "id": 110,
+      "author_id": "1",
+      "author_nick": "first_user",
+      "phrase": "ADAsdASDAsd",
+      "reposted": 0,
+      "chip": [],
+      "created": "08.12.18"
+    },
+    {
+      "id": 111,
+      "author_id": "1",
+      "author_nick": "first_user",
+      "phrase": "ADAsdASDAsd",
+      "reposted": 0,
+      "chip": [],
+      "created": "08.12.18"
+    },
+    {
+      "id": 112,
+      "author_id": "1",
+      "author_nick": "first_user",
+      "phrase": "ADAsdASDAsd",
+      "reposted": 0,
+      "chip": [],
+      "created": "08.12.18"
+    },
+    {
+      "id": 113,
+      "author_id": "1",
+      "author_nick": "first_user",
+      "phrase": "ADAsdASDAsd",
+      "reposted": 0,
+      "chip": [],
+      "created": "08.12.18"
+    },
+    {
+      "id": 114,
+      "author_id": "1",
+      "author_nick": "first_user",
+      "phrase": "ADAsdASDAsd",
+      "reposted": 0,
+      "chip": [],
+      "created": "08.12.18"
+    },
+    {
+      "id": 115,
+      "author_id": "1",
+      "author_nick": "first_user",
+      "phrase": "ADAsdASDAsd",
+      "reposted": 0,
+      "chip": [],
+      "created": "08.12.18"
+    },
+    {
+      "id": 116,
+      "author_id": "1",
+      "author_nick": "first_user",
+      "phrase": "ASDAsdASDA",
+      "reposted": 0,
+      "chip": [],
+      "created": "08.12.18"
+    },
+    {
+      "id": 117,
+      "author_id": "1",
+      "author_nick": "first_user",
+      "phrase": "ASDAsd",
+      "reposted": 0,
+      "chip": [],
+      "created": "08.12.18"
     }
   ],
   "likes": [
@@ -106,14 +214,14 @@
       "message_id": 101
     },
     {
-      "id": 4,
-      "user_id": 1,
-      "message_id": 102
-    },
-    {
       "id": 5,
       "user_id": 2,
       "message_id": 103
+    },
+    {
+      "id": 4,
+      "user_id": "1",
+      "message_id": 102
     }
   ],
   "comments": [
@@ -263,6 +371,27 @@
       "author_nick": "first_user",
       "message_id": 101,
       "id": 21
+    },
+    {
+      "phrase": "sdfsdfhdfjfhg",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 101,
+      "id": 22
+    },
+    {
+      "phrase": "sdfgsdfgsdfg",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 101,
+      "id": 23
+    },
+    {
+      "phrase": "lkjhlkjh",
+      "author_id": "1",
+      "author_nick": "first_user",
+      "message_id": 102,
+      "id": 24
     }
   ]
 }

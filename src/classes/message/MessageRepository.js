@@ -3,8 +3,8 @@ import MessageMapper from "./MessageMapper";
 
 export default class MessageRepository {
 
-	async getAllMessages() {
-		const messages = (await axios.get('http://localhost:3000/messages', {
+	async getAllMessages(page) {
+		const messages = (await axios.get('http://localhost:3000/messages?_page='+page, {
 			headers: {
 				authorization: localStorage.getItem('token')
 			}

@@ -14,9 +14,6 @@
 		<div class="personal-page__nickname">
 			<h1>{{User.nick_name}}</h1>
 		</div>
-		<!--<div class="personal-page__nickname">-->
-		<!--<h1>Your email: {{User.email}}</h1>-->
-		<!--</div>-->
 		<div v-if="edit">
 			Enter Your Nickname here:
 			<v-text-field
@@ -76,7 +73,6 @@
 		},
 		computed: {
 			imgPath() {
-
 				return require('../../assets/' + localStorage.getItem('id') + '.png')
 			}
 		},

@@ -26,9 +26,9 @@
 								:to="{name: 'user-messages', params: {nick_name: message.author_nick, author_id: message.author_id}}">
 								{{message.author_nick}}
 							</router-link>
-							<a class="message-item__info__title__liked">
-								{{likes.length}}
-							</a>
+							<div class="message-item__content-group__date">
+								posted: {{message.created}}
+							</div>
 						</div>
 					</div>
 
@@ -39,6 +39,12 @@
 								{{message.phrase}}
 							</div>
 							<div class="message-item__content-group__hashtag-group">
+								<img
+									src="../../assets/hashtag.png"
+									height="18"
+									width="18"
+									v-if="message.chip.length"
+									class="message-item__content-group__hashtag-group__image"/>
 								<div
 									v-for="(hashtag, index) in message.chip" :key="index"
 									class="message-item__content-group__hashtag-group__hashtag"
@@ -49,9 +55,7 @@
 									</router-link>
 								</div>
 							</div>
-							<div class="message-item__content-group__date">
-								posted: {{message.created}}
-							</div>
+
 
 						</div>
 						<v-card-actions class="message-item__buttons">
@@ -74,6 +78,7 @@
 							@click="repost(message.id)"
 							:flat="true"
 							fab
+							small
 							color="orange"
 						>
 							{{message.reposted}}&nbsp;
@@ -86,6 +91,7 @@
 							@click="openComments(message.id)"
 							:flat="true"
 							fab
+							small
 							color="#00887A">
 							<i class="material-icons">
 								chat
@@ -96,8 +102,10 @@
 							@click="likePost()"
 							:flat="true"
 							fab
+							small
 							:style="{ color: liked ? '#FFCCBC' : 'lightgrey' }"
 						>
+								{{likes.length}}&nbsp;
 							<i class="material-icons">
 								thumb_up_alt
 							</i>
@@ -136,7 +144,7 @@
 				saved: false,
 				liked: false,
 				likes: [],
-				like_id: null
+				like_id: null,
 			}
 		},
 		props: {
@@ -255,6 +263,8 @@
 		margin-bottom: 5px;
 
 		&__info {
+			background: aliceblue;;
+
 			&__avatar {
 				float: left;
 				margin-left: 10px;
@@ -265,14 +275,14 @@
 				margin-right: 10px;
 				display: flex;
 				justify-content: space-between;
-				border-bottom: 3px solid lightgrey;
-				border-radius: 4px;
+				/*border-bottom: 1px solid #00887A;*/
 				padding: 10px 5px 5px 10px;
 
 				&__nickname:hover {
 					cursor: pointer;
 					color: cornflowerblue;
 				}
+
 				&__liked {
 					font-weight: 600;
 				}
@@ -289,15 +299,28 @@
 
 			&__hashtag-group {
 				display: flex;
-				padding: 0 20px !important;
+				padding: 5px 10px 0 5px !important;
+
+				&__image {
+					margin-right: 10px;
+				}
 
 				&__hashtag {
+					font-size: smaller;
 					padding-right: 10px;
+
+					a {
+						color: #00887A !important;
+						text-transform: lowercase;
+					}
 				}
 
 				&__hashtag:hover {
 					cursor: pointer;
-					color: yellow;
+
+					a {
+						color: darkblue !important;
+					}
 				}
 			}
 
@@ -309,6 +332,7 @@
 		}
 
 		&__button-group {
+			padding: 0 10px;
 			display: flex;
 			justify-content: space-between;
 
@@ -317,7 +341,6 @@
 			}
 		}
 
-
 		&__buttons {
 			padding: 0 !important;
 			display: flex;
@@ -325,10 +348,7 @@
 
 			&__button {
 			}
-
-
 		}
-
 	}
 
 	.v-card__title .message-item__content-group {

@@ -7,7 +7,12 @@
 		</div>
 
 		<div v-else class="base-main__page">
-			<MessageList :Messages="Messages"/>
+			<MessageList
+				:Messages="Messages"
+				:page="pageNumber"
+				@next="goToNext()"
+				@prev="goToPrev()"
+			/>
 		</div>
 
 		<router-view/>
@@ -28,19 +33,30 @@
 				dialog: true,
 				Users: [],
 				Messages: [],
-				MessagesByAuthor: []
+				MessagesByAuthor: [],
+				pageNumber: 1,
 			};
 		},
 		created() {
-			this.getMessages()
+			this.getMessages(this.pageNumber)
 		},
 		methods: {
-			async getMessages() {
+			async getMessages(page) {
 				if (localStorage.getItem('nick')) {
 					const messageRepository = new MessageRepository()
-					this.Messages = await (messageRepository.getAllMessages())
+					this.Messages = await (messageRepository.getAllMessages(page))
 				}
-			}
+			},
+			goToNext() {
+				this.pageNumber += 1;
+				this.getMessages(this.pageNumber)
+			},
+			goToPrev() {
+				if (this.pageNumber > 1) {
+					this.pageNumber -= 1;
+					this.getMessages(this.pageNumber)
+				}
+			},
 		}
 	}
 </script>
@@ -49,6 +65,7 @@
 	.base-main {
 		background: #D3E3FC;
 		min-height: calc(100vh - 56px - 36px);
+
 		&__note {
 			text-align: center;
 			line-height: 10vh;
