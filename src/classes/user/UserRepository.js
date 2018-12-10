@@ -1,10 +1,11 @@
-import axios from "axios";
+import axios from "axios"
+import UserMapper from "./UserMapper"
 
 export default class UserRepository {
 
 	async getUsers() {
 		const users = (await axios.get('http://localhost:3000/users')).data;
-		return users
+		return users.map(UserMapper.map)
 	}
 
 	async signIn(credential) {
@@ -13,17 +14,20 @@ export default class UserRepository {
 	}
 
 	async getUserById(id) {
+		console.log(id)
+
 		const user = (await axios.get('http://localhost:3000/users?id=' + id, {
 			headers: {
 				authorization: localStorage.getItem('token')
 			}
-		})).data[0];
-		return user
+		})).data;
+		console.log(user)
+		return user.map(UserMapper.map)
 	}
 
-	async getUserNickname(id) {
-		const nickname = (await axios.get('http://localhost:3000/users?id=' + id)).data[0].nick_name;
-		return nickname
+	async findUser(nick_name) {
+		const user = (await axios.get('http://localhost:3000/users?nick_name_like=' + nick_name)).data;
+		return user.map(UserMapper.map)
 	}
 
 	createUser(user) {

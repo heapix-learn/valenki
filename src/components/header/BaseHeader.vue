@@ -21,6 +21,12 @@
 				</v-toolbar-side-icon>
 				<v-list class="link">
 
+					<v-list-tile v-if="userNick">
+						<router-link :to="{name: 'find-user'}" class="link">
+							<span>Find user</span>
+						</router-link>
+					</v-list-tile>
+
 					<v-list-tile v-if="!userNick">
 						<router-link :to="{name: 'login-page'}" class="link">
 							<span>Login</span>

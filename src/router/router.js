@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import User from "../components/personal/User";
 import BaseMain from "../components/main/BaseMain";
 import Layout from "../components/layout/Layout.vue";
+import FindUser from "../components/personal/FindUser";
 import NewMessage from "../components/message/NewMessage";
 import UserMessages from "../components/message/UserMessages";
 import LoginPage from "../components/authentication/LoginPage";
@@ -34,6 +35,11 @@ const router = new VueRouter({
 					path: "/register",
 					name: "register-page",
 					component: RegisterPage
+				},
+				{
+					path: "/find-user",
+					name: "find-user",
+					component: FindUser
 				},
 				{
 					path: "/users/@:nick_name",

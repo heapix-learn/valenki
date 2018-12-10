@@ -29,6 +29,7 @@
 <style lang="scss">
 
 	.base-layout {
+		background-color: #D3E3FC;
 
 		&__header {
 		}

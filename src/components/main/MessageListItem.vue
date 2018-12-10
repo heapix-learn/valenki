@@ -6,7 +6,7 @@
 					<div class="message-item__info">
 						<div class="message-item__info__avatar">
 							<router-link
-								:to="{name: 'user-messages', params: {nick_name: message.author_nick, author_id: message.author_id}}">
+								:to="{name: 'user-messages', params: {nick_name: message.author_nick, user_id: message.author_id}}">
 								<div style="width: 40px;">
 									<img style="max-width: 40px;" :src="imgPath"/>
 								</div>
@@ -16,7 +16,7 @@
 						<div class="message-item__info__title">
 							<router-link
 								class="message-item__info__title__nickname"
-								:to="{name: 'user-messages', params: {nick_name: message.author_nick, author_id: message.author_id}}">
+								:to="{name: 'user-messages', params: {nick_name: message.author_nick, user_id: message.author_id}}">
 								{{message.author_nick}}
 							</router-link>
 							<div class="message-item__content-group__date">

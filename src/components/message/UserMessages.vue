@@ -2,7 +2,7 @@
 	<div>
 		<PersonalPage :id="id"/>
 
-		Messages by user #{{this.$route.params.author_id}}:
+		Messages by @{{$route.params.nick_name}}:
 
 		<div class="user-messages">
 			<div v-if="!MessagesByAuthor.length" class="base-main__note">
@@ -32,7 +32,6 @@
 		data() {
 			return {
 				MessagesByAuthor: [],
-				id: 0
 			}
 		},
 		created() {
@@ -40,9 +39,9 @@
 		},
 		methods: {
 			async getMessagesByUser() {
-				this.id = this.$route.params.author_id
+				const id = this.$route.params.user_id
 				const messageRepository = new MessageRepository();
-				this.MessagesByAuthor = await (messageRepository.getMessagesByUser(this.id))
+				this.MessagesByAuthor = await (messageRepository.getMessagesByUser(id))
 			},
 		}
 	}

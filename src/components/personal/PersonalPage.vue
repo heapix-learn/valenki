@@ -5,14 +5,14 @@
 			<img :src="imgPath"/>
 		</v-avatar>
 		<br>
-		{{$route.path}}
-		<v-btn v-if="$route.path.includes('profile')" small class="personal-page__button" @click="edit=true">
-		<i class="material-icons">
-		settings
-		</i>
+		<v-btn v-if="$route.path.includes('profile')" small
+					 class="personal-page__button" @click="edit=true">
+			<i class="material-icons">
+				settings
+			</i>
 		</v-btn>
 		<div class="personal-page__nickname">
-			<h1>{{User.nick_name}}</h1>
+			<h1>{{User[0].nick_name}}</h1>
 		</div>
 		<div v-if="edit">
 			Enter Your Nickname here:
@@ -77,10 +77,12 @@
 			}
 		},
 		created() {
-			this.getUser(localStorage.getItem('id'))
+			// console.log(this.$route.params.author_id)
+			this.getUser()
 		},
 		methods: {
-			async getUser(id) {
+			async getUser() {
+				const id = this.$route.params.user_id
 				const userRepository = new UserRepository()
 				this.User = await (userRepository.getUserById(id))
 			},

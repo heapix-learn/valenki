@@ -1,8 +1,10 @@
 <template>
 
 	<div class="comments-list-item">
-		<span class="comments-list-item__nickname">{{comment.author_nick}}:</span>
-		&nbsp;&nbsp;&nbsp;{{comment.phrase}}
+		<div>
+			<span class="comments-list-item__nickname" @click="replyUser()">{{comment.author_nick}}</span>
+		</div>
+		&nbsp;&nbsp;&nbsp;<div>{{comment.phrase}}</div>
 	</div>
 
 </template>
@@ -24,10 +26,14 @@
 	.comments-list-item {
 		display: flex;
 		padding-left: 5%;
+		line-height: 25px;
+		border-bottom: 1px solid lightgrey;
 
 		&__nickname {
 			font-weight: 600;
 			color: darkcyan;
+			border-left: 1px solid lightgrey;
+			padding-left: 10px;
 		}
 
 		&__nickname:hover {
