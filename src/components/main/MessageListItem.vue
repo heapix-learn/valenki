@@ -1,7 +1,6 @@
 <template>
 	<div>
 		<v-layout class="message-item">
-
 			<v-flex xs12 sm6 offset-sm3>
 				<v-card>
 					<div class="message-item__info">
@@ -13,12 +12,6 @@
 								</div>
 							</router-link>
 						</div>
-
-						<!--<div-->
-						<!--class="message-item__nickname"-->
-						<!--@click="getMessagesByUser(message.author)">-->
-						<!--{{message.author_nick}}-->
-						<!--</div>-->
 
 						<div class="message-item__info__title">
 							<router-link
@@ -55,21 +48,7 @@
 									</router-link>
 								</div>
 							</div>
-
-
 						</div>
-						<v-card-actions class="message-item__buttons">
-							<!--<v-btn-->
-							<!--@click="dislike(message.id)"-->
-							<!--:flat="true"-->
-							<!--:style="{ color: disliked ? 'red' : 'grey' }">-->
-							<!--<i class="material-icons">-->
-							<!--thumb_down_alt-->
-							<!--</i>-->
-							<!--</v-btn>-->
-
-
-						</v-card-actions>
 					</div>
 
 					<div class="message-item__button-group">
@@ -105,7 +84,7 @@
 							small
 							:style="{ color: liked ? '#FFCCBC' : 'lightgrey' }"
 						>
-								{{likes.length}}&nbsp;
+							{{likes.length}}&nbsp;
 							<i class="material-icons">
 								thumb_up_alt
 							</i>
@@ -178,80 +157,35 @@
 				const likeRepository = new LikeRepository();
 				const idd = localStorage.getItem('id');
 				this.likes = await likeRepository.getLikes(this.message.id);
-
-				// let res = ''
-				// this.likes.forEach(function (element) {
-				// 	if ((element.user_id) === idd) {
-				// 		console.log('this res', res)
-				// 		this.res = 'true';
-				// 	}
-				// 	console.log('res', res)
-				// })
-
-				for (let i = 0; i < this.likes.length; i++) {
-					if (Number(this.likes[i].user_id) == Number(idd)) {
-						this.like_id = this.likes[i].id
+				let Like_id = this.like_id;
+				this.likes.forEach((item) => {
+					if (Number(item.user_id) == Number(idd)) {
+						Like_id = item.id;
 						this.liked = true;
-						break
 					}
-				}
+				})
+				this.like_id = Like_id
 			},
 			async likePost() {
-				const like = new Like
-				like.message_id = this.message.id
-				like.user_id = localStorage.getItem('id')
-				like.id = this.like_id
+				const like = new Like;
+				like.message_id = this.message.id;
+				like.user_id = localStorage.getItem('id');
+				like.id = this.like_id;
 				const likeRepository = new LikeRepository();
 				if (!this.liked) {
 					await likeRepository.likePost(like);
-					await this.getLikes()
+					await this.getLikes();
 					this.liked = true;
 				} else {
 					await likeRepository.unlikePost(like.id);
-					await this.getLikes()
-					console.log('unliked')
+					await this.getLikes();
 					this.liked = false;
 				}
 			},
-			// let count = 1;
-			// const messageRepository = new MessageRepository();
-			// if (this.liked) {
-			// 	count = -1;
-			// 	this.message.liked = await (messageRepository.likePost(this.message.id, count));
-			// 	this.liked = false
-			// } else {
-			// 	if (this.disliked) {
-			// 		count = 2;
-			// 	}
-			// 	this.message.liked = await (messageRepository.likePost(this.message.id, count));
-			// 	this.disliked = false;
-			// 	this.liked = true
-			// }
-
-			// async dislike() {
-			// 	let count = 1;
-			// 	const messageRepository = new MessageRepository();
-			// 	if (this.disliked) {
-			// 		this.message.liked = await (messageRepository.likePost(this.message.id, count));
-			// 		this.disliked = false
-			// 	} else {
-			// 		if (this.liked) {
-			// 			count = -2;
-			// 		} else {
-			// 			count = -1;
-			// 		}
-			// 		this.message.liked = await (messageRepository.likePost(this.message.id, count));
-			// 		this.liked = false;
-			// 		this.disliked = true
-			// 	}
-			// },
 			async repost() {
 				const messageRepository = new MessageRepository();
 				await (messageRepository.repostPost(this.message.repost))
 			},
-			getMessagesByUser() {
-
-			}
 		}
 	}
 

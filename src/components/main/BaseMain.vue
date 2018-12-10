@@ -1,8 +1,7 @@
 <template>
 	<div class="base-main">
-
 		<div v-if="!Messages.length" class="base-main__note">
-			<v-progress-linear :indeterminate="true" color="red"/>
+			<v-progress-linear :indeterminate="true" color="blue"/>
 			<span>Авторизуйтесь на сайте, чтобы просматривать сообщения!</span>
 		</div>
 
@@ -33,6 +32,7 @@
 				dialog: true,
 				Users: [],
 				Messages: [],
+				newMessages: [],
 				MessagesByAuthor: [],
 				pageNumber: 1,
 			};
@@ -43,8 +43,13 @@
 		methods: {
 			async getMessages(page) {
 				if (localStorage.getItem('nick')) {
-					const messageRepository = new MessageRepository()
-					this.Messages = await (messageRepository.getAllMessages(page))
+					const messageRepository = new MessageRepository();
+					this.newMessages = await (messageRepository.getAllMessages(page));
+					let messages = this.Messages;
+					this.newMessages.forEach( (item) => {
+						messages.push(item)
+					});
+					this.Messages = messages;
 				}
 			},
 			goToNext() {
@@ -73,7 +78,7 @@
 
 		&__page {
 			text-align: center;
-			padding: 5px 0 10px 0;
+			padding: 5px 0 5px 0;
 
 			&__cart {
 				padding: 5px;

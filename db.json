@@ -199,11 +199,6 @@
   ],
   "likes": [
     {
-      "id": 1,
-      "user_id": 1,
-      "message_id": 101
-    },
-    {
       "id": 2,
       "user_id": 2,
       "message_id": 101
@@ -219,9 +214,24 @@
       "message_id": 103
     },
     {
-      "id": 4,
+      "id": 6,
+      "user_id": "1",
+      "message_id": 101
+    },
+    {
+      "id": 7,
       "user_id": "1",
       "message_id": 102
+    },
+    {
+      "id": 8,
+      "user_id": "1",
+      "message_id": 103
+    },
+    {
+      "id": 9,
+      "user_id": "1",
+      "message_id": 104
     }
   ],
   "comments": [
