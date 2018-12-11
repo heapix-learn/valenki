@@ -71,7 +71,9 @@
 							:flat="true"
 							fab
 							small
-							color="#00887A">
+							color="#00887A"
+						>
+							{{comments.length}}
 							<i class="material-icons">
 								chat
 							</i>
@@ -133,6 +135,7 @@
 			}
 		},
 		created() {
+			this.getComments()
 			this.getLikes()
 		},
 		computed: {
@@ -151,7 +154,8 @@
 			},
 			async getComments(id) {
 				const commentRepository = new CommentRepository();
-				this.comments = await (commentRepository.getComments(id));
+				this.comments = await (commentRepository.getComments(this.message.id));
+				console.log('kol-vo comments', this.comments.length)
 			},
 			async getLikes() {
 				const likeRepository = new LikeRepository();

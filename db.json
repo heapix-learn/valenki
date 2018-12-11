@@ -141,60 +141,6 @@
       "reposted": 0,
       "chip": [],
       "created": "08.12.18"
-    },
-    {
-      "id": 112,
-      "author_id": "1",
-      "author_nick": "first_user",
-      "phrase": "ADAsdASDAsd",
-      "reposted": 0,
-      "chip": [],
-      "created": "08.12.18"
-    },
-    {
-      "id": 113,
-      "author_id": "1",
-      "author_nick": "first_user",
-      "phrase": "ADAsdASDAsd",
-      "reposted": 0,
-      "chip": [],
-      "created": "08.12.18"
-    },
-    {
-      "id": 114,
-      "author_id": "1",
-      "author_nick": "first_user",
-      "phrase": "ADAsdASDAsd",
-      "reposted": 0,
-      "chip": [],
-      "created": "08.12.18"
-    },
-    {
-      "id": 115,
-      "author_id": "1",
-      "author_nick": "first_user",
-      "phrase": "ADAsdASDAsd",
-      "reposted": 0,
-      "chip": [],
-      "created": "08.12.18"
-    },
-    {
-      "id": 116,
-      "author_id": "1",
-      "author_nick": "first_user",
-      "phrase": "ASDAsdASDA",
-      "reposted": 0,
-      "chip": [],
-      "created": "08.12.18"
-    },
-    {
-      "id": 117,
-      "author_id": "1",
-      "author_nick": "first_user",
-      "phrase": "ASDAsd",
-      "reposted": 0,
-      "chip": [],
-      "created": "08.12.18"
     }
   ],
   "likes": [
@@ -257,102 +203,32 @@
       "id": 3
     },
     {
-      "phrase": "second_user,     Ну ты лолка)))",
+      "phrase": "dfasd",
       "author_id": "1",
       "author_nick": "first_user",
       "message_id": 101,
       "id": 4
     },
     {
-      "phrase": "asdfasdf",
+      "phrase": "dfghdgh",
       "author_id": "1",
       "author_nick": "first_user",
       "message_id": 101,
       "id": 5
     },
     {
-      "phrase": "first_userasdfasdfasdf",
+      "phrase": "Lalala",
       "author_id": "1",
       "author_nick": "first_user",
-      "message_id": 101,
+      "message_id": 102,
       "id": 6
     },
     {
-      "phrase": "",
+      "phrase": "first_user, hi!",
       "author_id": "1",
       "author_nick": "first_user",
-      "message_id": 101,
+      "message_id": 102,
       "id": 7
-    },
-    {
-      "phrase": "first_user, lalala!",
-      "author_id": "1",
-      "author_nick": "first_user",
-      "message_id": 101,
-      "id": 8
-    },
-    {
-      "phrase": "second_user, comment",
-      "author_id": "1",
-      "author_nick": "first_user",
-      "message_id": 101,
-      "id": 9
-    },
-    {
-      "phrase": "first_user, ",
-      "author_id": "1",
-      "author_nick": "first_user",
-      "message_id": 101,
-      "id": 10
-    },
-    {
-      "phrase": "first_user, ",
-      "author_id": "1",
-      "author_nick": "first_user",
-      "message_id": 101,
-      "id": 11
-    },
-    {
-      "phrase": "",
-      "author_id": "1",
-      "author_nick": "first_user",
-      "message_id": 103,
-      "id": 12
-    },
-    {
-      "phrase": "second_user, asdasdasdasd",
-      "author_id": "1",
-      "author_nick": "first_user",
-      "message_id": 101,
-      "id": 13
-    },
-    {
-      "phrase": "second_user, xhgzdc",
-      "author_id": "1",
-      "author_nick": "first_user",
-      "message_id": 101,
-      "id": 14
-    },
-    {
-      "phrase": "second_user, afsdfasdf",
-      "author_id": "1",
-      "author_nick": "first_user",
-      "message_id": 101,
-      "id": 15
-    },
-    {
-      "phrase": "second_user, ASDAsdASD",
-      "author_id": "1",
-      "author_nick": "first_user",
-      "message_id": 101,
-      "id": 16
-    },
-    {
-      "phrase": "first_user, GHDFGHDFGH",
-      "author_id": "1",
-      "author_nick": "first_user",
-      "message_id": 101,
-      "id": 17
     }
   ]
 }
