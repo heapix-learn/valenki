@@ -1,15 +1,24 @@
 <template>
 
 	<div class="comments-list-item">
-		<div>
-			<span
-				class="comments-list-item__nickname"
+		<div class="comments-list-item__avatar">
+			<div>
+				<div>
+					<img style="max-width: 30px;" :src="imgPath"/>
+				</div>
+			</div>
+		</div>
+		<div class="comments-list-item__body">
+			<div
+				class="comments-list-item__body__nickname"
 				@click="replyUser(comment.author_nick)"
 			>
 				{{comment.author_nick}}
-			</span>
+			</div>
+			<div class="comments-list-item__body__text truncate">
+				<div>{{comment.phrase}}</div>
+			</div>
 		</div>
-		&nbsp;&nbsp;&nbsp;<div>{{comment.phrase}}</div>
 	</div>
 
 </template>
@@ -23,8 +32,13 @@
 			comment: {type: Comment},
 			index: Number
 		},
+		computed: {
+			imgPath() {
+				return require('../../assets/' + this.comment.author_id + '.png')
+			}
+		},
 		methods: {
-			replyUser(nick) {
+			replyUser() {
 				this.$emit('reply', this.comment.author_nick)
 			}
 		}
@@ -36,21 +50,42 @@
 
 	.comments-list-item {
 		display: flex;
-		padding-left: 5%;
-		line-height: 25px;
-		border-bottom: 1px solid lightgrey;
+		padding-right: 5px;
 
-		&__nickname {
-			font-weight: 600;
-			color: $green;
-			border-left: 1px solid lightgrey;
-			padding-left: 10px;
-			cursor: pointer;
+		&__avatar {
+			padding: 0 5px 0 10px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 		}
 
-		&__nickname:hover {
-			color: midnightblue;
+		&__body {
+			width: 89%;
+			border-bottom: 1px solid lightgrey;
+
+			&__nickname {
+				font-weight: 600;
+				color: $green;
+				border-left: 1px solid lightgrey;
+				padding-left: 10px;
+				cursor: pointer;
+			}
+
+			&__text {
+				padding-left: 10px;
+				border-left: 1px solid lightgrey;
+			}
+
+			&__nickname:hover {
+				color: $blue;
+			}
 		}
+	}
+
+	.truncate {
+		width: 99%;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 </style>

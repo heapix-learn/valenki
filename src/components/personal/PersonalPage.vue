@@ -6,7 +6,7 @@
 		</v-avatar>
 		<br>
 		<v-btn
-			v-if="$route.path.includes('profile')"
+			v-if="loggedUser()"
 			small
 			class="personal-page__button"
 			@click="edit=true"
@@ -15,36 +15,30 @@
 				settings
 			</i>
 		</v-btn>
+		user - {{user}}
 		<div class="personal-page__nickname">
-			<h1>{{User[0].nick_name}}</h1>
+			<h1>{{user}}</h1>
 		</div>
 		<div v-if="edit">
 			Enter Your Nickname here:
 			<v-text-field
-				v-model="User.nick_name"
-				:rules="passwordRules"
+				v-model="user.nick_name"
 				label="Enter Your NickName"
 				type="text"
-				required
 			/>
 			if you want to change your password, fill next:
 			<v-text-field
 				v-model="old_password"
-				:rules="passwordRules"
 				label="Enter Old Password"
 				type="password"
-				required
 			/>
 			<v-text-field
 				v-model="new_password"
-				:rules="passwordRules"
 				label="Enter New Password"
 				type="password"
-				required
 			/>
 			<v-text-field
 				v-model="confirm_new_password"
-				:rules="passwordRules"
 				label="Confirm New Password"
 				type="password"
 				required
@@ -59,17 +53,21 @@
 
 <script>
 	import UserRepository from '../../classes/user/UserRepository.js'
+	import User from '../../classes/user/User'
 
 	export default {
 		name: "PersonalPage",
 		components: {},
 		data() {
 			return {
-				User: {},
+				user: {
+					type: User,
+					required: true
+				},
 				edit: false,
 				new_password: '',
 				old_password: '',
-				conf_new_password: ''
+				confirm_new_password: ''
 			}
 		},
 		props: {
@@ -81,19 +79,25 @@
 			}
 		},
 		created() {
-			// console.log(this.$route.params.author_id)
 			this.getUser()
 		},
 		methods: {
 			async getUser() {
-				const id = this.$route.params.user_id
-				const userRepository = new UserRepository()
-				this.User = await (userRepository.getUserById(id))
+				const id = this.$route.params.user_id;
+				const userRepository = new UserRepository();
+				this.user = await (userRepository.getUserById(id))
 			},
 			async changePassword() {
 				if (this.old_password === this.old_password) {
 					const userRepository = new UserRepository()
-					this.User = await (userRepository.changePassword(this.new_password))
+					this.user = await (userRepository.changePassword(this.new_password))
+				}
+			},
+			loggedUser() {
+				if (this.$route.path.includes('profile') && (this.$route.params.user_id === localStorage.getItem('id'))) {
+					return true
+				} else {
+					return false
 				}
 			}
 		}

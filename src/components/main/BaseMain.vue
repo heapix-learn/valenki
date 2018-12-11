@@ -7,12 +7,13 @@
 
 		<div v-else class="base-main">
 			<div class="base-main__list">
-			Sort by date:
-			<i class="material-icons base-main__list__sortButton"
-				 :class="{'base-main__list__sortButton__reversed': direction === 'down'}"
-				 @click="sortByDate()">
-				sort
-			</i>
+				Sort by date:
+				<i
+					class="material-icons base-main__list__sortButton"
+					:class="{'base-main__list__sortButton__reversed': direction === 'down'}"
+					@click="sortByDate()">
+					sort
+				</i>
 			</div>
 			<MessageList
 				:Messages="Messages"
@@ -110,8 +111,10 @@
 			display: flex;
 			justify-content: center;
 			align-items: end;
+
 			&__sortButton {
 				transition: transform 1s;
+
 				&__reversed {
 					transition: transform 1s;
 					transform: rotate(180deg)

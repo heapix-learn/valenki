@@ -1,13 +1,11 @@
 <template>
 	<div>
 		<PersonalPage :id="id"/>
-
 		Messages by @{{$route.params.nick_name}}:
-
 		<div class="user-messages">
 			<div v-if="!MessagesByAuthor.length" class="base-main__note">
 			<span>
-				Пользователь ещё ен опубликовал сообщений!
+				Пользователь ещё не опубликовал сообщений!
 		</span>
 				{{MessagesByAuthor}}
 			</div>
@@ -32,6 +30,7 @@
 		data() {
 			return {
 				MessagesByAuthor: [],
+				id: null
 			}
 		},
 		created() {
@@ -39,9 +38,9 @@
 		},
 		methods: {
 			async getMessagesByUser() {
-				const id = this.$route.params.user_id
+				this.id = this.$route.params.user_id
 				const messageRepository = new MessageRepository();
-				this.MessagesByAuthor = await (messageRepository.getMessagesByUser(id))
+				this.MessagesByAuthor = await (messageRepository.getMessagesByUser(this.id))
 			},
 		}
 	}

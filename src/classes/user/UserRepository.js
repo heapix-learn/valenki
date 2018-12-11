@@ -14,15 +14,12 @@ export default class UserRepository {
 	}
 
 	async getUserById(id) {
-		console.log(id)
-
 		const user = (await axios.get('http://localhost:3000/users?id=' + id, {
 			headers: {
 				authorization: localStorage.getItem('token')
 			}
 		})).data;
-		console.log(user)
-		return user.map(UserMapper.map)
+		return UserMapper.map(user[0])
 	}
 
 	async findUser(nick_name) {

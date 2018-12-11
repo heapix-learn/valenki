@@ -40,7 +40,7 @@
 					</v-list-tile>
 
 					<v-list-tile v-if="userNick">
-						<router-link :to="{name: 'user-profile', params: {nick_name: userNick}}" class="link">
+						<router-link :to="{name: 'user-profile', params: {nick_name: userNick, user_id: id}}" class="link">
 							<span>Personal</span>
 						</router-link>
 					</v-list-tile>
@@ -84,7 +84,7 @@
 						this.getId();
 						return localStorage.getItem('nick')
 					} else {
-						this.logOut()
+						this.logOut();
 						return false
 					}
 				}

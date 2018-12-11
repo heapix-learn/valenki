@@ -158,13 +158,11 @@
 					this.readComments = true
 				}
 			},
-			async getComments(id) {
-				console.log('getComments')
+			async getComments() {
 				const commentRepository = new CommentRepository();
 				this.comments = await (commentRepository.getComments(this.message.id));
 			},
 			async getLikes() {
-				console.log('getLikes')
 				const likeRepository = new LikeRepository();
 				const idd = localStorage.getItem('id');
 				this.likes = await likeRepository.getLikes(this.message.id);

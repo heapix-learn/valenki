@@ -23,7 +23,6 @@
 			async getMessagesByHashtag(hashtag) {
 				const messageRepository = new MessageRepository();
 				this.Messages = await (messageRepository.getMessagesByHashtag(hashtag))
-				console.log(this.Messages)
 			},
 		}
 	}
