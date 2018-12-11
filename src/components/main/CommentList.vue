@@ -4,11 +4,13 @@
 			<CommentListItem
 				:comment="comment"
 				:index="index"
+				@reply="reply"
 			/>
 		</div>
 		<CreateComment
+			:replyedUser="replyedUser"
 			:message_id="message_id"
-			@refresh="$emit('refresh')"
+			@refresh="refresh()"
 		/>
 	</div>
 </template>
@@ -19,11 +21,24 @@
 
 	export default {
 		name: "CommentsList",
+		data() {
+			return {
+				replyedUser: ''
+			}
+		},
 		components: {
 			CommentListItem,
 			CreateComment
 		},
-
+		methods: {
+			reply(nick) {
+				this.replyedUser = nick + ', '
+			},
+			refresh () {
+				this.replyedUser = ''
+				this.$emit('refresh')
+			}
+		},
 		props: {
 			comments: {
 				type: Array,

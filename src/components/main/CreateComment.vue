@@ -6,9 +6,10 @@
 			</i>
 		</div>
 		<v-text-field
-			v-model="newComment.phrase"
 			type="email"
 			required
+			v-model="comment.phrase"
+			:prefix="replyedUser"
 		/>
 		<v-btn :flat="true" color="blue" @click="addComment()">
 			<i class="material-icons">
@@ -27,20 +28,22 @@
 		components: {},
 		data() {
 			return {
-				newComment: {type: Comment}
+				comment: {type: Comment},
 			}
 		},
 		props: {
-			message_id: Number
+			message_id: Number,
+			replyedUser: String
 		},
 		methods: {
 			async addComment() {
-				this.newComment.author_id = localStorage.getItem('id');
-				this.newComment.author_nick = localStorage.getItem('nick');
-				this.newComment.message_id = this.message_id;
+				this.comment.phrase = this.replyedUser + this.comment.phrase;
+				this.comment.author_id = localStorage.getItem('id');
+				this.comment.author_nick = localStorage.getItem('nick');
+				this.comment.message_id = this.message_id;
 				const commentRepository = new CommentRepository();
-				await commentRepository.addComment(this.newComment);
-				this.newComment.phrase = '';
+				await commentRepository.addComment(this.comment);
+				this.comment.phrase = '';
 				this.$emit('refresh');
 			}
 		}

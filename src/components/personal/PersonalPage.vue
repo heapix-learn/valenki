@@ -5,8 +5,12 @@
 			<img :src="imgPath"/>
 		</v-avatar>
 		<br>
-		<v-btn v-if="$route.path.includes('profile')" small
-					 class="personal-page__button" @click="edit=true">
+		<v-btn
+			v-if="$route.path.includes('profile')"
+			small
+			class="personal-page__button"
+			@click="edit=true"
+		>
 			<i class="material-icons">
 				settings
 			</i>
