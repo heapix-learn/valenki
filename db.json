@@ -141,6 +141,15 @@
       "reposted": 0,
       "chip": [],
       "created": "08.12.18"
+    },
+    {
+      "id": 112,
+      "author_id": "1",
+      "author_nick": "first_user",
+      "phrase": "New message for testing sort by date)",
+      "reposted": 0,
+      "chip": [],
+      "created": "11.12.18"
     }
   ],
   "likes": [

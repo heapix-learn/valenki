@@ -138,26 +138,33 @@
 			this.getComments()
 			this.getLikes()
 		},
+		watch: {
+			message : function () {
+				this.getComments()
+				this.getLikes()
+			}
+		},
 		computed: {
 			imgPath() {
 				return require('../../assets/' + this.message.author_id + '.png')
 			}
 		},
 		methods: {
-			openComments(id) {
+			async openComments(id) {
 				if (this.readComments) {
 					this.readComments = false
 				} else {
-					this.getComments(id);
+					await this.getComments(id);
 					this.readComments = true
 				}
 			},
 			async getComments(id) {
+				console.log('getComments')
 				const commentRepository = new CommentRepository();
 				this.comments = await (commentRepository.getComments(this.message.id));
-				console.log('kol-vo comments', this.comments.length)
 			},
 			async getLikes() {
+				console.log('getLikes')
 				const likeRepository = new LikeRepository();
 				const idd = localStorage.getItem('id');
 				this.likes = await likeRepository.getLikes(this.message.id);

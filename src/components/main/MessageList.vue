@@ -20,7 +20,6 @@
 <script>
 	import MessageListItem from './MessageListItem'
 
-
 	export default {
 		name: "MessageList",
 		data() {
