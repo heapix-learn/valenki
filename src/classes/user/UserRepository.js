@@ -14,21 +14,25 @@ export default class UserRepository {
 	}
 
 	async getUserById(id) {
-		const user = (await axios.get('http://localhost:3000/users?id=' + id, {
+		const user = (await axios.get('http://localhost:3000/users/' + id, {
 			headers: {
 				authorization: localStorage.getItem('token')
 			}
 		})).data;
-		return UserMapper.map(user[0])
+		return UserMapper.map(user);
 	}
 
-	async findUser(nick_name) {
+	async findUsers(nick_name) {
 		const user = (await axios.get('http://localhost:3000/users?nick_name_like=' + nick_name)).data;
-		return user.map(UserMapper.map)
+		return user.map(UserMapper.map);
 	}
 
 	createUser(user) {
 		axios.post('http://localhost:3000/auth/register', user)
+	}
+
+	async editUser(user) {
+		return (await axios.put('http://localhost:3000/users/' + user.id, user)).status;
 	}
 
 	async checkLogin() {

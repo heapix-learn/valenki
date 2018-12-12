@@ -139,7 +139,7 @@
 			this.getLikes()
 		},
 		watch: {
-			message : function () {
+			message: function () {
 				this.getComments()
 				this.getLikes()
 			}
@@ -151,11 +151,9 @@
 		},
 		methods: {
 			async openComments(id) {
+				this.readComments = (this.readComments) ? false : true
 				if (this.readComments) {
-					this.readComments = false
-				} else {
 					await this.getComments(id);
-					this.readComments = true
 				}
 			},
 			async getComments() {

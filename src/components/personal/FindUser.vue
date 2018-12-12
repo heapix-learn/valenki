@@ -10,7 +10,7 @@
 				type="text"
 				required
 			/>
-			<v-btn class="find-user__btn" @click="findUser()">
+			<v-btn class="find-user__btn" @click="findUsers()">
 				Find
 			</v-btn>
 		</v-form>
@@ -44,9 +44,9 @@
 			}
 		},
 		methods: {
-			async findUser() {
+			async findUsers() {
 				const userRepository = new UserRepository();
-				this.Users = await userRepository.findUser(this.user_name);
+				this.Users = await userRepository.findUsers(this.user_name);
 			}
 		}
 	}

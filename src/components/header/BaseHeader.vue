@@ -9,9 +9,10 @@
 					width="246"
 				/>
 			</router-link>
+
 			<v-spacer/>
 
-			{{userNick}}
+			{{provideNick.name}}
 
 			<v-menu offset-y>
 				<v-toolbar-side-icon slot="activator">
@@ -76,6 +77,7 @@
 				this.id = localStorage.getItem('id');
 			}
 		},
+		inject: ['provideNick'],
 		computed: {
 			userNick() {
 				if (localStorage.getItem('nick')) {

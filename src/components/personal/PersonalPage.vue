@@ -9,7 +9,7 @@
 			v-if="loggedUser()"
 			small
 			class="personal-page__button"
-			@click="edit=true"
+			@click="openEdit()"
 		>
 			<i class="material-icons">
 				settings
@@ -22,7 +22,7 @@
 		<div v-if="edit">
 			Enter Your Nickname here:
 			<v-text-field
-				v-model="user.nick_name"
+				v-model="editUser.nick_name"
 				label="Enter Your NickName"
 				type="text"
 			/>
@@ -40,11 +40,11 @@
 			<v-text-field
 				v-model="confirm_new_password"
 				label="Confirm New Password"
-				type="password"
+				type="text"
 				required
 			/>
 
-			<v-btn @click="edit=false">Save</v-btn>
+			<v-btn @click="saveEditUser()">Save</v-btn>
 		</div>
 		<br>
 
@@ -64,12 +64,17 @@
 					type: User,
 					required: true
 				},
+				editUser: {
+					type: User,
+					required: true
+				},
 				edit: false,
 				new_password: '',
 				old_password: '',
 				confirm_new_password: ''
 			}
 		},
+		inject: ['provideNick'],
 		props: {
 			id: Number
 		},
@@ -98,6 +103,22 @@
 					return true
 				} else {
 					return false
+				}
+			},
+			openEdit() {
+				this.edit = (this.edit) ? false : true
+				for (let key in this.user) {
+					this.editUser[key] = this.user[key]
+				}
+			},
+			async saveEditUser() {
+				const userRepository = new UserRepository();
+				let response = await (userRepository.editUser(this.editUser));
+				if (response === 200) {
+					console.log('response = ', response);
+					await this.getUser();
+					localStorage.setItem('nick', this.user.nick_name)
+					this.provideNick.name = localStorage.getItem('nick')
 				}
 			}
 		}

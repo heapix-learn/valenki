@@ -18,11 +18,36 @@
 
 	export default {
 		name: 'layout',
+		data() {
+			return {
+				nick: this.getNick(),
+				bar: 'baz'
+			}
+		},
+		provide () {
+			const provideNick = {}
+			Object.defineProperty(provideNick, 'name', {
+				enumerable: true,
+				get: () => this.nick,
+				set: () => this.getNick(),
+			})
+			return { provideNick }
+		},
 		components: {
 			BaseHeader,
 			AddButton,
 			BaseFooter
 		},
+		created() {
+			this.getNick()
+		},
+
+		methods: {
+			getNick() {
+				this.nick = localStorage.getItem('nick')
+				return this.nick
+			}
+		}
 	}
 </script>
 
