@@ -15,11 +15,11 @@
 				settings
 			</i>
 		</v-btn>
-		user - {{user}}
+		User: {{user.nick_name}}
 		<div class="personal-page__nickname">
 			<h1>{{user}}</h1>
 		</div>
-		<div v-if="edit">
+		<div v-if="edit" class="personal-page__edit-area">
 			Enter Your Nickname here:
 			<v-text-field
 				v-model="editUser.nick_name"
@@ -29,16 +29,20 @@
 			if you want to change your password, fill next:
 			<v-text-field
 				v-model="old_password"
+				:rules="passwordRules"
 				label="Enter Old Password"
-				type="password"
+				type="text"
+
 			/>
 			<v-text-field
 				v-model="new_password"
+				:rules="passwordRules"
 				label="Enter New Password"
-				type="password"
+				type="text"
 			/>
 			<v-text-field
 				v-model="confirm_new_password"
+				:rules="passwordRules"
 				label="Confirm New Password"
 				type="text"
 				required
@@ -71,7 +75,11 @@
 				edit: false,
 				new_password: '',
 				old_password: '',
-				confirm_new_password: ''
+				confirm_new_password: '',
+				passwordRules: [
+					v => !!v || 'Password is required',
+					v => (v && v.length >= 6) || 'Password must contain 6 characters'
+				],
 			}
 		},
 		inject: ['provideNick'],
@@ -112,13 +120,36 @@
 				}
 			},
 			async saveEditUser() {
-				const userRepository = new UserRepository();
-				let response = await (userRepository.editUser(this.editUser));
-				if (response === 200) {
-					console.log('response = ', response);
-					await this.getUser();
-					localStorage.setItem('nick', this.user.nick_name)
-					this.provideNick.name = localStorage.getItem('nick')
+				if (this.old_password || this.new_password || this.confirm_new_password) {
+					if (this.old_password === this.user.password) { //	console.log('old password correct')
+						if (this.new_password.length > 5) {
+							if (this.new_password === this.confirm_new_password) { //	console.log(' new passwords are correct')
+								this.editUser.password = this.new_password
+							} else { //	console.log(' new passwords incorrect')
+							}
+						} else { //	console.log('new password so short')
+						}
+					} else { //	console.log('old password incorrect')
+					}
+				} else { // console.log('fields are empty')
+				}
+				let edited = false
+				for (let key in this.user) {
+					if (this.editUser[key] != this.user[key]) {
+						edited = true
+					}
+				}
+				if (edited) {
+					const userRepository = new UserRepository();
+					let response = await (userRepository.editUser(this.editUser));
+					if (response === 200) {
+						console.log('response = ', response);
+						await this.getUser();
+						localStorage.setItem('nick', this.user.nick_name)
+						this.provideNick.name = localStorage.getItem('nick')
+					}
+				} else {
+					console.log('you have changed nothing')
 				}
 			}
 		}
@@ -153,6 +184,10 @@
 			background-color: turquoise;
 			border-top: 2px solid darkslategrey;
 			border-bottom: 2px solid darkslategrey;
+		}
+
+		&__edit-area {
+			padding: 0 10px;
 		}
 	}
 

@@ -59,7 +59,7 @@ const router = new VueRouter({
 					]
 				},
 				{
-					path: "/messages/hashtag=:hashtag",
+					path: "/messages/hashtag:hashtag",
 					name: "hashtag-messages",
 					component: HashtagMessages
 				},

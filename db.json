@@ -5,7 +5,7 @@
       "id": 1,
       "email": "test@test.com",
       "password": "111111",
-      "nick_name": "first_user1"
+      "nick_name": "first_user"
     },
     {
       "id": 2,
@@ -18,7 +18,7 @@
       "id": 3,
       "email": "asdfasdf@sdfg.fdg",
       "password": ";lkj;ljk",
-      "nick_name": ""
+      "nick_name": "third-user"
     }
   ],
   "messages": [
@@ -150,6 +150,33 @@
       "reposted": 0,
       "chip": [],
       "created": "11.12.18"
+    },
+    {
+      "id": 113,
+      "author_id": "1",
+      "author_nick": "first_user1",
+      "phrase": "adfasdfasdf",
+      "reposted": 0,
+      "chip": [],
+      "created": "12.12.18"
+    },
+    {
+      "id": 114,
+      "author_id": "1",
+      "author_nick": "first_user1",
+      "phrase": "dfgsdfgdfgsdfg",
+      "reposted": 0,
+      "chip": [],
+      "created": "12.12.18"
+    },
+    {
+      "id": 115,
+      "author_id": "1",
+      "author_nick": "first_user1",
+      "phrase": "dfgsdfgdfgsdfggsfdgdfsdfgvx",
+      "reposted": 0,
+      "chip": [],
+      "created": "12.12.18"
     }
   ],
   "likes": [
@@ -169,16 +196,6 @@
       "message_id": 103
     },
     {
-      "id": 6,
-      "user_id": "1",
-      "message_id": 101
-    },
-    {
-      "id": 7,
-      "user_id": "1",
-      "message_id": 102
-    },
-    {
       "id": 8,
       "user_id": "1",
       "message_id": 103
@@ -187,6 +204,11 @@
       "id": 9,
       "user_id": "1",
       "message_id": 104
+    },
+    {
+      "id": 7,
+      "user_id": "1",
+      "message_id": 102
     }
   ],
   "comments": [
@@ -273,6 +295,20 @@
       "author_nick": "first_user",
       "message_id": 101,
       "id": 12
+    },
+    {
+      "phrase": "sdfgsdfg",
+      "author_id": "1",
+      "author_nick": "first_user1",
+      "message_id": 101,
+      "id": 13
+    },
+    {
+      "phrase": "second_user, sdfgsdfgsdfg",
+      "author_id": "1",
+      "author_nick": "first_user1",
+      "message_id": 101,
+      "id": 14
     }
   ]
 }

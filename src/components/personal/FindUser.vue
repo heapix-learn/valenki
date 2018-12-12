@@ -23,7 +23,7 @@
 				<router-link
 					class="message-item__info__title__nickname"
 					:to="{name: 'user-messages', params: {nick_name: user.nick_name, user_id: user.id}}">
-					<div class="find-user__cards">{{index+1}}. {{user.email}}</div>
+					<div class="find-user__cards">{{index+1}}. {{user.nick_name}}</div>
 				</router-link>
 			</div>
 		</div>
