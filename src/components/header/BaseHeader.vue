@@ -3,10 +3,10 @@
 		<v-toolbar class="v-toolbar" :dark="false" :fixed="true">
 			<router-link :to="{name: 'main'}">
 				<img
-					class="v-toolbar__logo"
-					src="../../assets/logo.png"
-					height="37"
-					width="246"
+					class="base-header__logo"
+					src="../../assets/lemma_new.png"
+					height="51"
+					width="225"
 				/>
 			</router-link>
 
@@ -98,11 +98,13 @@
 
 <style lang="scss">
 	@import "../../scss/global.scss";
+.base-header {
 
-	.v-toolbar {
-		&__logo {
-			margin-top: 1vh;
-		}
+	&__logo {
+		margin-top: 5px;
 	}
+	.v-toolbar {
 
+	}
+}
 </style>

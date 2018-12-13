@@ -100,12 +100,6 @@
 				const userRepository = new UserRepository();
 				this.user = await (userRepository.getUserById(id))
 			},
-			async changePassword() {
-				if (this.old_password === this.old_password) {
-					const userRepository = new UserRepository()
-					this.user = await (userRepository.changePassword(this.new_password))
-				}
-			},
 			loggedUser() {
 				if (this.$route.path.includes('profile') && (this.$route.params.user_id === localStorage.getItem('id'))) {
 					return true

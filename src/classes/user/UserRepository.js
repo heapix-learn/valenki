@@ -27,8 +27,8 @@ export default class UserRepository {
 		return user.map(UserMapper.map);
 	}
 
-	createUser(user) {
-		axios.post('http://localhost:3000/auth/register', user)
+	async createUser(user) {
+		await axios.post('http://localhost:3000/auth/register', user)
 	}
 
 	async editUser(user) {

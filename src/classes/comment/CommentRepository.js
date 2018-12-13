@@ -20,8 +20,8 @@ export default class CommentRepository {
 		})).data;
 	}
 
-	getCommentsByUser(id) {
-		return axios.get('http://localhost:3000/comments?author=' + id).then(response => response.data);
+	async getCommentsByUser(id) {
+		return (await axios.get('http://localhost:3000/comments?author=' + id));
 	}
 
 }

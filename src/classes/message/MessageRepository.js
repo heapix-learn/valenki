@@ -29,12 +29,12 @@ export default class MessageRepository {
 		})).data
 	}
 
-	createMessage(message) {
-		return axios.post('http://localhost:3000/messages', message, {
+	async createMessage(message) {
+		return (await axios.post('http://localhost:3000/messages', message, {
 			headers: {
 				authorization: localStorage.getItem('token')
 			}
-		}).data;
+		})).data;
 	}
 
 	async likePost(id, count) {
