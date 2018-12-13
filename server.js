@@ -98,30 +98,6 @@ server.post('/auth/register', (req, res) => {
 	res.status(200).json(id)
 })
 
-// server.post('/likes', (req, res) => {
-// 	const like = req.body;
-// 	db.get('likes').push(like)
-// 		.write()
-// 	res.status(200).json('lalala')
-// 	return
-// })
-
-// server.put('/messages_like', (req, res) => {
-// 	const id = req.body.id;
-// 	const count = req.body.count
-// 	const counter = likeMessage(id, count)
-// 	res.status(200).json(counter)
-// 	return
-// })
-//
-// server.put('/messages_dislike', (req, res) => {
-// 	const id = req.body.id;
-// 	const count = req.body.count
-// 	const counter = dislikeMessage(id, count)
-// 	res.status(200).json(counter)
-// 	return
-// })
-
 server.use(/^(?!\/users)(?!\/auth).*$/, (req, res, next) => {
 	if (req.headers.authorization === undefined || req.headers.authorization === 'null') {
 		const status = 401
@@ -141,5 +117,5 @@ server.use(/^(?!\/users)(?!\/auth).*$/, (req, res, next) => {
 
 server.use(router);
 server.listen(3000, () => {
-	console.log('JSON Server is running')
+	console.log('JSON Server is running on 3000')
 })

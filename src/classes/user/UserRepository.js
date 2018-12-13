@@ -9,8 +9,7 @@ export default class UserRepository {
 	}
 
 	async signIn(credential) {
-		const postResponse = (await axios.post('http://localhost:3000/auth/login', credential))
-		return postResponse
+		return (await axios.post('http://localhost:3000/auth/login', credential))
 	}
 
 	async getUserById(id) {

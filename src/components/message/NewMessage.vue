@@ -51,6 +51,7 @@
 
 <script>
 	import MessageRepository from '../../classes/message/MessageRepository.js';
+	import MessageMapper from '../../classes/message/MessageMapper'
 	import Message from '../../classes/message/Message'
 
 	export default {
@@ -75,7 +76,7 @@
 			},
 			createMessage() {
 				const messageRepository = new MessageRepository();
-				messageRepository.createMessage(this.message);
+				messageRepository.createMessage(MessageMapper.map(this.message));
 			},
 			getDate () {
 				let d = new Date();
@@ -111,7 +112,6 @@
 		&__add-message-button {
 			display: flex;
 			justify-content: center;
-			margin-top: 20px;
 		}
 	}
 

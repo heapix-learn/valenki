@@ -2,7 +2,7 @@
 	<div class="personal-page">
 		<v-avatar :tile="false" :size="130"
 							class="base-main__page__cart__avatar">
-			<img :src="imgPath"/>
+			<img :src="user.avatar" class="round"/>
 		</v-avatar>
 		<br>
 		<v-btn
@@ -17,9 +17,14 @@
 		</v-btn>
 		User: {{user.nick_name}}
 		<div class="personal-page__nickname">
-			<h1>{{user}}</h1>
+			<h1></h1>
+			<h1></h1>
 		</div>
 		<div v-if="edit" class="personal-page__edit-area">
+			<div class="personal-page__edit-area__avatar-upload">
+			<label for="image_upload" >Choose avatar:</label>
+			<input id="image_upload" type="file" @change="setAvatar">
+			</div>
 			Enter Your Nickname here:
 			<v-text-field
 				v-model="editUser.nick_name"
@@ -73,6 +78,7 @@
 					required: true
 				},
 				edit: false,
+				edited: false,
 				new_password: '',
 				old_password: '',
 				confirm_new_password: '',
@@ -127,13 +133,12 @@
 					}
 				} else { // console.log('fields are empty')
 				}
-				let edited = false
 				for (let key in this.user) {
 					if (this.editUser[key] != this.user[key]) {
-						edited = true
+						this.edited = true
 					}
 				}
-				if (edited) {
+				if (this.edited) {
 					const userRepository = new UserRepository();
 					let response = await (userRepository.editUser(this.editUser));
 					if (response === 200) {
@@ -145,6 +150,23 @@
 				} else {
 					console.log('you have changed nothing')
 				}
+			},
+			setAvatar (e) {
+				var files = e.target.files || e.dataTransfer.files
+				if (!files.length) {
+					return
+				}
+				this.createImage(files[0])
+			},
+			createImage (file) {
+				this.edited = true
+				var reader = new FileReader();
+				reader.onload = (e) => {
+					this.image = e.target.result
+					this.user.avatar = this.image
+					this.editUser.avatar = this.image
+				}
+				reader.readAsDataURL(file)
 			}
 		}
 	}
@@ -182,6 +204,11 @@
 
 		&__edit-area {
 			padding: 0 10px;
+			&__avatar-upload {
+				display: flex;
+				justify-content: center;
+				padding: 10px;
+			}
 		}
 	}
 

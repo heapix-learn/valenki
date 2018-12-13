@@ -8,16 +8,15 @@
 							<router-link
 								:to="{name: 'user-messages', params: {nick_name: message.author_nick, user_id: message.author_id}}">
 								<div style="width: 40px;">
-									<img style="max-width: 40px;" :src="imgPath"/>
+									<img style="max-width: 40px;" :src="user.avatar"/>
 								</div>
 							</router-link>
 						</div>
-
 						<div class="message-item__info__title">
 							<router-link
 								class="message-item__info__title__nickname"
 								:to="{name: 'user-messages', params: {nick_name: message.author_nick, user_id: message.author_id}}">
-								{{message.author_nick}}
+								{{user.nick_name}}
 							</router-link>
 							<div class="message-item__content-group__date">
 								posted: {{message.created}}
@@ -106,11 +105,13 @@
 </template>
 
 <script>
-	import CommentList from './CommentList'
-	import Like from '../../classes/like/Like.js'
-	import MessageRepository from '../../classes/message/MessageRepository.js'
-	import CommentRepository from '../../classes/comment/CommentRepository.js'
+	import CommentList from './CommentList';
+	import Like from '../../classes/like/Like.js';
+	import MessageRepository from '../../classes/message/MessageRepository.js';
+	import CommentRepository from '../../classes/comment/CommentRepository.js';
 	import LikeRepository from "../../classes/like/LikeRepository";
+	import User from '../../classes/user/User';
+	import UserRepository from "../../classes/user/UserRepository";
 
 	export default {
 		name: "MessageListItem",
@@ -122,6 +123,10 @@
 				readComments: false,
 				messages: [],
 				comments: [],
+				user: {
+					type: User,
+					required: true
+				},
 				saved: false,
 				liked: false,
 				likes: [],
@@ -135,6 +140,7 @@
 			}
 		},
 		created() {
+			this.getUser()
 			this.getComments()
 			this.getLikes()
 		},
@@ -172,6 +178,11 @@
 					}
 				})
 				this.like_id = Like_id
+			},
+			async getUser() {
+				const id = this.message.author_id;
+				const userRepository = new UserRepository();
+				this.user = await (userRepository.getUserById(id))
 			},
 			async likePost() {
 				const like = new Like;

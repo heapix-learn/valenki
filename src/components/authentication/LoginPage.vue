@@ -1,9 +1,12 @@
 <template>
 	<div class="login-page">
+
+		<div class="login-page__spacer"/>
+
 		<div class="login-page__alert">
 			<v-alert
 				:value="true"
-				v-if="status.success"
+				v-if="status === 'success'"
 				color="success"
 				icon="check_circle"
 				outline
@@ -15,7 +18,7 @@
 		<div class="login-page__alert">
 			<v-alert
 				:value="true"
-				v-if="status.error"
+				v-if="status === 'error'"
 				color="error"
 				icon="warning"
 				outline
@@ -25,7 +28,6 @@
 		</div>
 
 		<v-form
-			@submit="checkFields()"
 			ref="form"
 			v-model="valid"
 			class="login-page__form"
@@ -46,7 +48,7 @@
 				required
 			/>
 			<div class="login-page__form__buttons">
-				<v-btn :disabled="!valid" type="submit" class="login-page__form__buttons__btn">
+				<v-btn :disabled="!valid" @click="checkFields()" class="login-page__form__buttons__btn">
 					Signin
 				</v-btn>
 
@@ -73,10 +75,7 @@
 					password: ''
 				},
 				valid: true,
-				status: {
-					success: false,
-					error: false
-				},
+				status: '',
 				emailRules:
 					[
 						v => !!v || 'Email is required', //must be learn how it's works
@@ -92,19 +91,18 @@
 		methods: {
 			checkStatus(status) {
 				if (status === 200) {
-					this.status.error = false;
-					this.status.success = true;
+					this.status = 'success';
 					this.goToMain()
 				} else {
-					this.status.error = true
+					this.status = 'error'
 				}
 			},
 			async goToMain() {
-				await (window.location.href = "/")
+				// await (window.location.href = "/")
 
-				// setTimeout(() => {
-				// 	window.location.href = "/"
-				// }, 2000);
+				setTimeout(() => {
+					window.location.href = "/"
+				}, 2000);
 			},
 			checkFields() {
 				if (this.credential.email.length >= 6) {
@@ -122,9 +120,8 @@
 			},
 			async signIn() {
 				const userRepository = new UserRepository();
-				this.status.success = false;
-				this.status.error = true;
 				const postResponse = await userRepository.signIn(this.credential);
+				console.log('resp', postResponse)
 				localStorage.setItem('token', postResponse.data.access_token);
 				localStorage.setItem('id', postResponse.data.user.id);
 				localStorage.setItem('nick', postResponse.data.user.nick_name);
@@ -141,12 +138,10 @@
 		margin-right: 10%;
 		left: 0;
 		right: 0;
-		top: 20%;
+		top: 12%;
 	}
 
 	.login-page {
-		display: flex;
-		align-items: center;
 		padding: 5vh;
 
 		&__spacer {

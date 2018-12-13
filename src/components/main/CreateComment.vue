@@ -20,8 +20,8 @@
 </template>
 
 <script>
-	import CommentRepository from "../../classes/comment/CommentRepository.js"
-	import Comment from "../../classes/comment/Comment.js"
+	import CommentRepository from '../../classes/comment/CommentRepository.js'
+	import Comment from '../../classes/comment/Comment.js'
 
 	export default {
 		name: "CreateComment",

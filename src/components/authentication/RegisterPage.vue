@@ -46,6 +46,7 @@
 
 <script>
 	import UserRepository from '../../classes/user/UserRepository.js'
+	import UserMapper from '../../classes/user/UserMapper'
 	import User from '../../classes/user/User'
 
 	export default {
@@ -96,7 +97,7 @@
 			},
 			registerUser() {
 				const userRepository = new UserRepository();
-				userRepository.createUser(this.user)
+				userRepository.createUser(UserMapper.map(this.user))
 			}
 		}
 	}
