@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<PersonalPage :id="id"/>
-		Messages by @{{$route.params.nick_name}}:
+		Messages by @{{userNickName}}:
 		<div class="user-messages">
 			<div v-if="!MessagesByAuthor.length" class="base-main__note">
 			<span>
@@ -35,6 +35,11 @@
 		},
 		created() {
 			this.getMessagesByUser()
+		},
+		computed: {
+			userNickName() {
+				return this.$route.params.nick_name
+			}
 		},
 		methods: {
 			async getMessagesByUser() {

@@ -55,8 +55,8 @@
 		</v-toolbar>
 	</div>
 </template>
-<script>
 
+<script>
 	import UserRepository from "../../classes/user/UserRepository";
 
 	export default {
