@@ -45,6 +45,7 @@
 		methods: {
 			getNick() {
 				this.nick = localStorage.getItem('nick')
+				this.id = localStorage.getItem('id')
 				return this.nick
 			}
 		}

@@ -7,7 +7,7 @@
 
 		<div v-else class="base-main">
 			<div class="base-main__list">
-				Sort by date:
+				<div style="padding-top: 5px">Sort by date:</div>
 				<i
 					class="material-icons base-main__list__sortButton"
 					:class="{'base-main__list__sortButton__reversed': direction === 'down'}"
@@ -110,7 +110,9 @@
 		&__list {
 			display: flex;
 			justify-content: center;
-			align-items: end;
+			align-items: center;
+			padding-top: 5px;
+			margin-bottom: -10px;
 
 			&__sortButton {
 				transition: transform 1s;

@@ -37,6 +37,23 @@ export default class MessageRepository {
 		})).data;
 	}
 
+	async getSavedMessages(id) {
+		return (await axios.get('http://localhost:3000/saved_messages?user_id='+ id, {
+			headers: {
+				authorization: localStorage.getItem('token')
+			}
+		})).data;
+	}
+
+	async getMessageById(id) {
+		let message =  (await axios.get('http://localhost:3000/messages/'+ id, {
+			headers: {
+				authorization: localStorage.getItem('token')
+			}
+		})).data;
+		return MessageMapper.map(message);
+	}
+
 	async likePost(id, count) {
 		const counter = (await axios.put('http://localhost:3000/messages_like', {"id": id,"count": count})).data
 		return counter

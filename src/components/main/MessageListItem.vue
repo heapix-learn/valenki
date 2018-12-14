@@ -7,23 +7,23 @@
 						<div class="message-item__info__avatar">
 							<router-link
 								:to="{name: 'user-messages', params: {nick_name: message.author_nick, user_id: message.author_id}}">
-								<div style="width: 40px;">
-									<img style="max-width: 40px;" :src="user.avatar"/>
+								<div style="width: 50px;">
+									<img :src="user.avatar"/>
 								</div>
 							</router-link>
 						</div>
 						<div class="message-item__info__title">
-							<router-link
-								class="message-item__info__title__nickname"
-								:to="{name: 'user-messages', params: {nick_name: message.author_nick, user_id: message.author_id}}">
-								{{user.nick_name}}
-							</router-link>
+							<div class="message-item__info__title__nickname">
+								<router-link
+									:to="{name: 'user-messages', params: {nick_name: message.author_nick, user_id: message.author_id}}">
+									{{user.nick_name}}
+								</router-link>
+							</div>
 							<div class="message-item__content-group__date">
 								posted: {{message.created}}
 							</div>
 						</div>
 					</div>
-
 					<div>
 
 						<div class="message-item__content-group">
@@ -106,12 +106,12 @@
 
 <script>
 	import CommentList from './CommentList';
+	import User from '../../classes/user/User';
 	import Like from '../../classes/like/Like.js';
+	import LikeRepository from "../../classes/like/LikeRepository";
+	import UserRepository from "../../classes/user/UserRepository";
 	import MessageRepository from '../../classes/message/MessageRepository.js';
 	import CommentRepository from '../../classes/comment/CommentRepository.js';
-	import LikeRepository from "../../classes/like/LikeRepository";
-	import User from '../../classes/user/User';
-	import UserRepository from "../../classes/user/UserRepository";
 
 	export default {
 		name: "MessageListItem",
@@ -212,23 +212,27 @@
 <style lang="scss">
 
 	.message-item {
+		padding-top: 15px;
 		margin-bottom: 5px;
 
 		&__info {
-			background: aliceblue;;
+			display: flex;
+			align-items: center;
+			height: 35px;
+			background: aliceblue;
 
 			&__avatar {
-				float: left;
 				margin-left: 10px;
 			}
 
 			&__title {
-				margin-bottom: 10px;
+				width: 100%;
 				margin-right: 10px;
 				display: flex;
 				justify-content: space-between;
 				/*border-bottom: 1px solid #00887A;*/
-				padding: 10px 5px 5px 10px;
+				padding: 10px 5px 10px 10px;
+				align-items: baseline;
 
 				&__nickname:hover {
 					cursor: pointer;
@@ -247,6 +251,7 @@
 
 			&__text {
 				text-align: left;
+				padding-top: 5px;
 			}
 
 			&__hashtag-group {

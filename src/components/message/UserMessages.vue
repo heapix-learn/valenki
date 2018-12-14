@@ -6,7 +6,7 @@
 			<div v-if="!MessagesByAuthor.length" class="base-main__note">
 			<span>
 				Пользователь ещё не опубликовал сообщений!
-		</span>
+			</span>
 				{{MessagesByAuthor}}
 			</div>
 
