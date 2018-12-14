@@ -3,70 +3,101 @@
 
 		<div class="register-page__spacer"/>
 
-		<v-form ref="form" lazy-validation>
+		<v-form @submit="checkFields()" ref="form" v-model="valid" lazy-validation>
 			<v-text-field
-				v-model="credential.name"
-				label="Name/Email"
+				v-model="user.email"
+				:rules="emailRules"
+				label="Email"
+				type="email"
 				required
 			/>
 			<v-text-field
-				v-model="credential.password"
+				v-model="user.password"
+				:rules="passwordRules"
 				label="Password"
+				type="password"
 				required
 			/>
 			<v-text-field
 				v-model="confirm_password"
+				:rules="passwordRules"
 				label="Confirm Password"
+				type="password"
 				required
 			/>
 			<div class="login-page__form__buttons">
-				<v-btn @click="checkFields()" class="login-page__form__buttons__btn">
-					Register Me
+				<v-btn
+					type="submit"
+					class="login-page__form__buttons__button"
+					:disabled="!valid"
+				>
+					Signup
 				</v-btn>
-				<router-link :to="{name: 'LoginPage'}">
-					<v-btn>already have an account</v-btn>
+				<router-link
+					:to="{name: 'login-page'}"
+					class="login-page__form__buttons__button"
+				>
+					<v-btn>have an account</v-btn>
 				</router-link>
 			</div>
 		</v-form>
-
 	</div>
 </template>
 
 <script>
 	import UserRepository from '../../classes/user/UserRepository.js'
+	import UserMapper from '../../classes/user/UserMapper'
+	import User from '../../classes/user/User'
 
 	export default {
 		name: 'RegisterPagePage',
 		components: {},
 		data() {
 			return {
-				credential: {
-					name: '',
-					password: ''
-				},
-				confirm_password: ''
+				user:  new User,
+				valid: true,
+				confirm_password: '',
+				emailRules: [
+					v => !!v || 'Email is incorrect', //must be learn how its works
+					v => (v && v.length >= 6) || '\n' + 'Email must contain 6 characters'
+				],
+				passwordRules: [
+					v => !!v || 'Password is required',
+					v => (v && v.length >= 6) || 'Password must contain 6 characters'
+				],
 			}
 		},
 		methods: {
 			checkFields() {
-				if ( this.credential.name.length >= 6 ) {
-					if (this.credential.password.length >= 6 && this.confirm_password.length >= 6) {
-						if (this.confirm_password == this.credential.password) {
-							console.log('credentials are correct');
-							this.registerUser();
+				// eslint-disable-next-line
+				let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+				if (reg.test(this.user.email) === true) {
+					if (this.user.password.length >= 6) {
+						if (this.confirm_password.length >= 6) {
+							if (this.confirm_password === this.user.password) {
+								console.log('credentials are correct, you have been registered');
+								this.registerUser();
+							} else {
+								console.log('passwords are not the same');
+								this.confirm_password = null
+							}
 						} else {
-							console.log('passwords are not the same')
+							console.log('password are too short');
+							this.confirm_password = null
 						}
 					} else {
-						console.log('password are too short')
+						console.log('password are too short');
+						this.user.password = null;
+						this.confirm_password = null
 					}
 				} else {
-					console.log('email are too short')
+					console.log('email are incorrect')
+					this.user.email = null
 				}
 			},
 			registerUser() {
 				const userRepository = new UserRepository();
-				userRepository.createUser(this.credential)
+				userRepository.createUser(UserMapper.map(this.user))
 			}
 		}
 	}
@@ -84,12 +115,9 @@
 		&__form {
 
 			&__buttons {
-				display: flex;
-				justify-content: space-evenly;
-				align-items: center;
 
-				&__btn {
-					width: 33%;
+
+				&__button {
 				}
 			}
 		}
