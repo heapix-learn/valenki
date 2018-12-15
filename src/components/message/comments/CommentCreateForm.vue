@@ -20,11 +20,11 @@
 </template>
 
 <script>
-	import CommentRepository from '../../classes/comment/CommentRepository.js'
-	import Comment from '../../classes/comment/Comment.js'
+	import Comment from '../../../classes/comment/Comment.js'
+	import CommentRepository from '../../../classes/comment/CommentRepository.js'
 
 	export default {
-		name: "CreateComment",
+		name: "NewCommentForm",
 		components: {},
 		data() {
 			return {

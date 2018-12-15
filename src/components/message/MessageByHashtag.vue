@@ -6,10 +6,10 @@
 </template>
 
 <script>
-	import MessageList from "../main/MessageList";
+	import MessageList from "./MessageList";
 	import MessageRepository from "../../classes/message/MessageRepository"
 	export default {
-		name: "HashtagMessages",
+		name: "MessageByHashtag",
 		data() {
 			return {
 				Messages: []

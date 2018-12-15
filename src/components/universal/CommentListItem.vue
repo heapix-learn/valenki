@@ -27,7 +27,7 @@
 	import Comment from "../../classes/comment/Comment.js"
 
 	export default {
-		name: "CommentsListItem",
+		name: "CommentListItem",
 		props: {
 			comment: {type: Comment},
 			index: Number

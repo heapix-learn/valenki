@@ -1,15 +1,15 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import User from "../components/personal/User";
-import BaseMain from "../components/main/BaseMain";
 import Layout from "../components/layout/Layout.vue";
 import FindUser from "../components/personal/FindUser";
-import NewMessage from "../components/message/NewMessage";
-import UserMessages from "../components/message/UserMessages";
-import LoginPage from "../components/authentication/LoginPage";
+import BaseMain from "../components/universal/BaseMain";
+import LoginUserForm from "../components/personal/LoginUserForm";
+import MessageByUser from "../components/message/MessageByUser";
 import PersonalPage from "../components/personal/PersonalPage";
-import HashtagMessages from "../components/message/HashtagMessages";
-import RegisterPage from "../components/authentication/RegisterPage";
+import MessageCreateForm from "../components/message/MessageCreateForm";
+import RegisterPage from "../components/personal/RegisterUserForm";
+import MessageByHashtag from "../components/message/MessageByHashtag";
 
 Vue.use(VueRouter);
 
@@ -23,13 +23,13 @@ const router = new VueRouter({
 			children: [
 				{
 					path: '',
-					name: "main",
+					name: "universal",
 					component: BaseMain
 				},
 				{
 					path: "/login",
 					name: "login-page",
-					component: LoginPage
+					component: LoginUserForm
 				},
 				{
 					path: "/register",
@@ -54,19 +54,19 @@ const router = new VueRouter({
 						{
 							path: "messages",
 							name: "user-messages",
-							component: UserMessages
+							component: MessageByUser
 						}
 					]
 				},
 				{
 					path: "/messages/hashtag:hashtag",
 					name: "hashtag-messages",
-					component: HashtagMessages
+					component: MessageByHashtag
 				},
 				{
 					path: "/messages/new_message",
-					name: "NewMessage",
-					component: NewMessage
+					name: "MessageCreateForm",
+					component: MessageCreateForm
 				},
 			]
 		}

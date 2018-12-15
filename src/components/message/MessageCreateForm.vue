@@ -55,7 +55,7 @@
 	import Message from '../../classes/message/Message'
 
 	export default {
-		name: "NewMessage",
+		name: "MessageCreateForm",
 		data() {
 			return {
 				message: new Message,

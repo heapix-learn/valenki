@@ -21,14 +21,19 @@
 				@next="goToNext()"
 				@prev="goToPrev()"
 			/>
+			<v-progress-circular
+				:indeterminate="true"
+				v-if="loading"
+				color="blue"
+				:size="25" :width="3"
+			/>
 		</div>
-
 		<router-view/>
 	</div>
 </template>
 
 <script>
-	import MessageList from './MessageList'
+	import MessageList from '../message/MessageList'
 	import MessageRepository from '../../classes/message/MessageRepository.js'
 
 	export default {
@@ -44,7 +49,8 @@
 				newMessages: [],
 				MessagesByAuthor: [],
 				pageNumber: 1,
-				direction: 'up'
+				direction: 'up',
+				loading: false
 			};
 		},
 		created() {
@@ -62,9 +68,13 @@
 					this.Messages = messages;
 				}
 			},
-			goToNext() {
-				this.pageNumber += 1;
-				this.getMessages(this.pageNumber)
+			async goToNext() {
+				if (this.pageNumber < 2) {
+					this.loading = true
+					this.pageNumber += 1;
+					await this.getMessages(this.pageNumber)
+					this.loading = false
+				}
 			},
 			goToPrev() {
 				if (this.pageNumber > 1) {
@@ -111,7 +121,6 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			padding-top: 5px;
 			margin-bottom: -10px;
 
 			&__sortButton {
@@ -127,26 +136,6 @@
 		&__note {
 			text-align: center;
 			line-height: 10vh;
-		}
-
-		&__page {
-			text-align: center;
-			padding: 5px 0 5px 0;
-
-			&__cart {
-				padding: 5px;
-
-				&__nickname {
-					text-align: left;
-					font-weight: 600;
-					height: 26px;
-					padding: 20px;
-				}
-
-				&__avatar {
-					float: left;
-				}
-			}
 		}
 	}
 

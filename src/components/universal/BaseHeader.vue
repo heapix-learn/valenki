@@ -1,7 +1,7 @@
 <template>
 	<div class="base-header">
 		<v-toolbar class="v-toolbar" :dark="false" :fixed="true">
-			<router-link :to="{name: 'main'}">
+			<router-link :to="{name: 'universal'}">
 				<img
 					class="base-header__logo"
 					src="../../assets/lemma_new.png"
@@ -97,7 +97,7 @@
 </script>
 
 <style lang="scss">
-	@import "../../scss/global.scss";
+	@import "../../scss/global";
 .base-header {
 
 	&__logo {

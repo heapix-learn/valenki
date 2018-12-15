@@ -104,9 +104,9 @@
 </template>
 
 <script>
-	import CommentList from './CommentList';
 	import User from '../../classes/user/User';
 	import Like from '../../classes/like/Like.js';
+	import CommentList from './comments/CommentList.vue';
 	import LikeRepository from "../../classes/like/LikeRepository";
 	import UserRepository from "../../classes/user/UserRepository";
 	import MessageRepository from '../../classes/message/MessageRepository.js';
@@ -246,7 +246,6 @@
 
 	.message-item {
 		padding-top: 15px;
-		margin-bottom: 5px;
 
 		&__info {
 			display: flex;
@@ -263,7 +262,6 @@
 				margin-right: 10px;
 				display: flex;
 				justify-content: space-between;
-				/*border-bottom: 1px solid #00887A;*/
 				padding: 10px 5px 10px 10px;
 				align-items: baseline;
 

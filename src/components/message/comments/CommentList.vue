@@ -7,7 +7,7 @@
 				@reply="reply"
 			/>
 		</div>
-		<CreateComment
+		<NewCommentForm
 			:replyedUser="replyedUser"
 			:message_id="message_id"
 			@refresh="refresh()"
@@ -16,11 +16,11 @@
 </template>
 
 <script>
-	import CommentListItem from './CommentListItem'
-	import CreateComment from './CreateComment'
+	import CommentListItem from '../../universal/CommentListItem'
+	import NewCommentForm from './CommentCreateForm'
 
 	export default {
-		name: "CommentsList",
+		name: "CommentList",
 		data() {
 			return {
 				replyedUser: ''
@@ -28,7 +28,7 @@
 		},
 		components: {
 			CommentListItem,
-			CreateComment
+			NewCommentForm
 		},
 		methods: {
 			reply(nick) {

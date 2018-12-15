@@ -12,9 +12,9 @@
 </template>
 
 <script>
-	import BaseHeader from '../header/BaseHeader'
-	import BaseFooter from '../footer/BaseFooter'
-	import AddButton from './AddButton'
+	import BaseHeader from '../universal/BaseHeader'
+	import BaseFooter from '../universal/BaseFooter'
+	import AddButton from '../universal/AddButton'
 
 	export default {
 		name: 'layout',

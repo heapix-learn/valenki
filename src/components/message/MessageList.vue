@@ -8,12 +8,7 @@
 			<div v-for="(message, index) in Messages" :key="index">
 				<MessageListItem :message="message"/>
 			</div>
-			<v-progress-circular
-				:indeterminate="true"
-				v-if="loading"
-				color="blue"
-				:size="25" :width="3"
-			/>
+
 		</v-infinite-scroll>
 	</div>
 </template>
@@ -22,11 +17,6 @@
 
 	export default {
 		name: "MessageList",
-		data() {
-			return {
-				loading: false
-			}
-		},
 		components: {
 			MessageListItem
 		},

@@ -66,7 +66,7 @@
 	import UserRepository from '../../classes/user/UserRepository.js'
 
 	export default {
-		name: 'LoginPage',
+		name: 'LoginUserForm',
 		components: {},
 		data() {
 			return {

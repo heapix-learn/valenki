@@ -102,7 +102,7 @@
 
 <script>
 	import User from '../../classes/user/User'
-	import MessageList from '../main/MessageList'
+	import MessageList from '../message/MessageList'
 	import UserRepository from '../../classes/user/UserRepository.js'
 	import MessageRepository from '../../classes/message/MessageRepository.js'
 

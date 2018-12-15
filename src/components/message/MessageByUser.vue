@@ -19,13 +19,13 @@
 </template>
 
 <script>
-	import MessageList from "../../components/main/MessageList";
+	import MessageList from "./MessageList";
 	import MessageRepository from '../../classes/message/MessageRepository.js'
 	import PersonalPage from "../personal/PersonalPage";
 
 
 	export default {
-		name: "UserMessages",
+		name: "MessageByUser",
 		components: {PersonalPage, MessageList},
 		data() {
 			return {
