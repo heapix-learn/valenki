@@ -90,7 +90,7 @@
 				<v-tab-item
 					:key="2"
 				>
-					<v-card flat>
+					<v-card flat color="#d3e3fc">
 						<MessageList :Messages="messagesSaved"/>
 					</v-card>
 				</v-tab-item>

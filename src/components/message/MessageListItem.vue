@@ -228,7 +228,7 @@
 					message_id: 0
 				};
 				repost.id = this.saved_id;
-				repost.user_id = this.user.id;
+				repost.user_id = localStorage.getItem('id');
 				repost.message_id = this.message.id;
 				const messageRepository = new MessageRepository();
 				if (!this.saved) {
