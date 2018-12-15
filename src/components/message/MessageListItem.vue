@@ -26,6 +26,12 @@
 					</div>
 					<div>
 
+						<div class="message-item__content-group__delete" v-if="this.$route.path.includes('profile')">
+							<i class="material-icons small" @click="deletePost()">
+								add_circle
+							</i>
+						</div>
+
 						<div class="message-item__content-group">
 							<div class="message-item__content-group__text">
 								{{message.phrase}}
@@ -183,7 +189,7 @@
 						Like_id = item.id;
 						this.liked = true;
 					}
-				})
+				});
 				this.like_id = Like_id
 			},
 			async getUser() {
@@ -207,7 +213,6 @@
 					this.liked = false;
 				}
 			},
-
 			async getSaved() {
 				const messageRepository = new MessageRepository();
 				const user_id = localStorage.getItem('id');
@@ -218,10 +223,9 @@
 						Saved_id = item.id;
 						this.saved = true;
 					}
-				})
+				});
 				this.saved_id = Saved_id
 			},
-
 			async saveThisPost() {
 				let repost = {
 					user_id: 0,
@@ -237,6 +241,9 @@
 					this.saved = true;
 				}
 			},
+			deletePost() {
+
+			}
 		}
 	}
 
@@ -279,6 +286,14 @@
 		&__content-group {
 			padding: 0 20px;
 			flex-direction: column;
+
+			&__delete {
+				transform: rotate(45deg);
+				color: indianred;
+				position: absolute;
+				top: -13px;
+				right: 4px;
+			}
 
 			&__text {
 				text-align: left;
