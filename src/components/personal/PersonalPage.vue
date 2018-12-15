@@ -72,13 +72,13 @@
 					:key="1"
 					ripple
 				>
-					Your messages
+					Your messages {{messagesById.length}}
 				</v-tab>
 				<v-tab
 					:key="2"
 					ripple
 				>
-					Saved messages
+					Saved messages {{messagesSaved.length}}
 				</v-tab>
 				<v-tab-item
 					:key="1"
@@ -243,7 +243,7 @@
 
 		&__button {
 			float: right;
-			border: 2px solid #77a6f7;;
+			border: 2px solid #77a6f7;
 		}
 
 		&__info {

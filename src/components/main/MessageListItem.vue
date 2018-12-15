@@ -53,13 +53,13 @@
 					<div class="message-item__button-group">
 						<v-btn
 							class="message-item__button-group__button"
-							@click="repost(message.id)"
+							@click="saveThisPost()"
 							:flat="true"
 							fab
 							small
-							color="orange"
+							:style="{ color: saved ? 'gold' : 'lightgrey' }"
 						>
-							{{message.reposted}}&nbsp;
+							{{saved_messages.length}}&nbsp;
 							<i class="material-icons">
 								reply_all
 							</i>
@@ -91,7 +91,6 @@
 							</i>
 						</v-btn>
 					</div>
-
 					<CommentList
 						:comments="comments"
 						:message_id="message.id"
@@ -128,9 +127,16 @@
 					required: true
 				},
 				saved: false,
+				saved_messages: [],
+				saved_id: null,
 				liked: false,
 				likes: [],
 				like_id: null,
+				savePost: {
+					id: null,
+					user_id: null,
+					message_id: null
+				}
 			}
 		},
 		props: {
@@ -143,13 +149,14 @@
 			this.getUser()
 			this.getComments()
 			this.getLikes()
+			this.getSaved()
 		},
-		watch: {
-			message: function () {
-				this.getComments()
-				this.getLikes()
-			}
-		},
+		// watch: {
+		// 	message: function () {
+		// 		this.getComments()
+		// 		this.getLikes()
+		// 	}
+		// },
 		computed: {
 			imgPath() {
 				return require('../../assets/' + this.message.author_id + '.png')
@@ -168,11 +175,11 @@
 			},
 			async getLikes() {
 				const likeRepository = new LikeRepository();
-				const idd = localStorage.getItem('id');
+				const user_id = localStorage.getItem('id');
 				this.likes = await likeRepository.getLikes(this.message.id);
 				let Like_id = this.like_id;
 				this.likes.forEach((item) => {
-					if (Number(item.user_id) == Number(idd)) {
+					if (Number(item.user_id) == Number(user_id)) {
 						Like_id = item.id;
 						this.liked = true;
 					}
@@ -200,9 +207,35 @@
 					this.liked = false;
 				}
 			},
-			async repost() {
+
+			async getSaved() {
 				const messageRepository = new MessageRepository();
-				await (messageRepository.repostPost(this.message.repost))
+				const user_id = localStorage.getItem('id');
+				this.saved_messages = await messageRepository.getSaved(this.message.id);
+				let Saved_id = this.saved_id;
+				this.saved_messages.forEach((item) => {
+					if (Number(item.user_id) === Number(user_id)) {
+						Saved_id = item.id;
+						this.saved = true;
+					}
+				})
+				this.saved_id = Saved_id
+			},
+
+			async saveThisPost() {
+				let repost = {
+					user_id: 0,
+					message_id: 0
+				};
+				repost.id = this.saved_id;
+				repost.user_id = this.user.id;
+				repost.message_id = this.message.id;
+				const messageRepository = new MessageRepository();
+				if (!this.saved) {
+					await messageRepository.savePost(repost)
+					await this.getSaved();
+					this.saved = true;
+				}
 			},
 		}
 	}

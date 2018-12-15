@@ -235,23 +235,18 @@
     },
     {
       "id": 1,
-      "user_id": 1,
-      "message_id": 103
+      "user_id": 2,
+      "message_id": 101
     },
     {
       "id": 2,
-      "user_id": 1,
-      "message_id": 105
+      "user_id": 3,
+      "message_id": 101
     },
     {
       "id": 3,
-      "user_id": 2,
-      "message_id": 106
-    },
-    {
-      "id": 4,
-      "user_id": 2,
-      "message_id": 101
+      "user_id": 1,
+      "message_id": 102
     }
   ],
   "comments": [

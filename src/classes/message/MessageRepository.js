@@ -58,6 +58,21 @@ export default class MessageRepository {
 		const counter = (await axios.put('http://localhost:3000/messages_like', {"id": id,"count": count})).data
 		return counter
 	}
+async getSaved(id) {
+	return (await axios.get('http://localhost:3000/saved_messages?message_id=' + id, {
+		headers: {
+			authorization: localStorage.getItem('token')
+		}
+	})).data
+}
+
+	async savePost(repost) {
+		await (axios.post('http://localhost:3000/saved_messages', repost,  {
+			headers: {
+				authorization: localStorage.getItem('token')
+			}
+		}))
+	}
 
 	async repostPost() {
 		await console.log('reposted');
