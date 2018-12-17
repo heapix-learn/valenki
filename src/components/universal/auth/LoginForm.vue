@@ -11,7 +11,7 @@
 				icon="check_circle"
 				outline
 			>
-				You have successfully logged in!
+				{{ $t('$general.success_enter') }}
 			</v-alert>
 		</div>
 
@@ -23,7 +23,7 @@
 				icon="warning"
 				outline
 			>
-				Wrong email or password!
+				{{ $t('$general.wrong_credentials') }}
 			</v-alert>
 		</div>
 
@@ -43,18 +43,18 @@
 			<v-text-field
 				v-model="credential.password"
 				:rules="passwordRules"
-				label="Password"
+				:label="$t('$general.password')"
 				type="password"
 				required
 			/>
 			<div class="login-page__form__buttons">
 				<v-btn :disabled="!valid" @click="checkFields()" class="login-page__form__buttons__btn">
-					Signin
+					{{ $t('$general.sign_in') }}
 				</v-btn>
 
 				<router-link :to="{name: 'register-page'}">
 					<v-btn>
-						Register
+						{{ $t('$general.register') }}
 					</v-btn>
 				</router-link>
 			</div>
@@ -64,6 +64,7 @@
 
 <script>
 	import UserRepository from '../../../classes/user/UserRepository.js'
+	import i18n from '../../../plugins/vuei18n/i18n'
 
 	export default {
 		name: 'LoginForm',
@@ -125,6 +126,8 @@
 				localStorage.setItem('token', postResponse.data.access_token);
 				localStorage.setItem('id', postResponse.data.user.id);
 				localStorage.setItem('nick', postResponse.data.user.nick_name);
+				i18n.locale = postResponse.data.user.locale
+				localStorage.setItem('locale', postResponse.data.user.locale)
 				this.checkStatus(postResponse.status)
 			}
 		}

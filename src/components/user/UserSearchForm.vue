@@ -27,15 +27,18 @@
 				</router-link>
 			</div>
 		</div>
-		<p>{{ $t('text.words.one') }}</p>
-		<p>{{ $t('text.words.two') }}</p>
-		<p>{{ $t('text.words.three') }}</p>
+		<p>{{ $t('$general.menu') }}</p>
+		<p>{{ $t('$general.login') }}</p>
+		<p>{{ $t('$general.register') }}</p>
+		<v-btn @click="changeLang()"></v-btn>
 	</div>
 </template>
 
 <script>
 
 	import UserRepository from "../../classes/user/UserRepository";
+	import i18n from '../../plugins/vuei18n/i18n'
+
 
 	export default {
 		name: "UserSearchForm",
@@ -51,6 +54,9 @@
 			async findUsers() {
 				const userRepository = new UserRepository();
 				this.Users = await userRepository.findUsers(this.user_name);
+			},
+			changeLang() {
+				i18n.locale = "ru"
 			}
 		}
 	}

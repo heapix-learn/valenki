@@ -24,30 +24,30 @@
 
 					<v-list-tile v-if="userNick">
 						<router-link :to="{name: 'find-user'}" class="link">
-							<span>Find user</span>
+							<span>{{ $t('$general.fund_user') }}</span>
 						</router-link>
 					</v-list-tile>
 
 					<v-list-tile v-if="!userNick">
 						<router-link :to="{name: 'login-page'}" class="link">
-							<span>Login</span>
+							<span>{{ $t('$general.login') }}</span>
 						</router-link>
 					</v-list-tile>
 
 					<v-list-tile v-if="!userNick">
 						<router-link :to="{name: 'register-page'}" class="link">
-							<span>Register</span>
+							<span>{{ $t('$general.register') }}</span>
 						</router-link>
 					</v-list-tile>
 
 					<v-list-tile v-if="userNick">
 						<router-link :to="{name: 'user-profile', params: {nick_name: userNick, user_id: id}}" class="link">
-							<span>Personal</span>
+							<span>{{ $t('$general.personal') }}</span>
 						</router-link>
 					</v-list-tile>
 
 					<v-list-tile @click="logOut()" v-if="userNick">
-						Logout
+						{{ $t('$general.logout') }}
 					</v-list-tile>
 				</v-list>
 			</v-menu>

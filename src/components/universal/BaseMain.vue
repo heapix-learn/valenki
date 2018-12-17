@@ -2,12 +2,12 @@
 	<div class="base-main">
 		<div v-if="!Messages.length" class="base-main__note">
 			<v-progress-linear :indeterminate="true" color="blue"/>
-			<span>Авторизуйтесь на сайте, чтобы просматривать сообщения!</span>
+			<span>{{ $t('$general.no_login_alert') }}</span>
 		</div>
 
 		<div v-else class="base-main">
 			<div class="base-main__list">
-				<div style="padding-top: 5px">Sort by date:</div>
+				<div style="padding-top: 5px">{{ $t('$general.sort_by_date') }}:</div>
 				<i
 					class="material-icons base-main__list__sortButton"
 					:class="{'base-main__list__sortButton__reversed': direction === 'down'}"

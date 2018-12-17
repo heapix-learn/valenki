@@ -26,7 +26,9 @@
 					</div>
 					<div>
 
-						<div class="message-item__content-group__delete" v-if="this.$route.path.includes('profile')">
+						<div
+							class="message-item__content-group__delete"
+							v-if="this.$route.path.includes('profile')">
 							<i class="material-icons small" @click="deletePost()">
 								add_circle
 							</i>
@@ -240,11 +242,14 @@
 					await this.getSaved();
 					this.saved = true;
 				} else {
-					await  messageRepository.deleteSavedPost(repost.id);
+					await messageRepository.deleteSavedPost(repost.id);
 					await this.getSaved();
 					this.saved = false;
 				}
 			},
+			deletePost() {
+
+			}
 		}
 	}
 

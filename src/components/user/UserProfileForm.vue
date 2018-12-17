@@ -23,6 +23,8 @@
 		</div>
 
 		<div v-if="edit" class="personal-page__edit-area">
+			<p>{{ $t('$general.pick_lang') }}</p>
+			<SetLanguage @changeLocale="changeLocale()"/>
 			<div class="personal-page__edit-area__avatar-upload">
 				<label for="image_upload">Choose avatar:</label>
 				<input id="image_upload" type="file" @change="setAvatar">
@@ -72,13 +74,13 @@
 					:key="1"
 					ripple
 				>
-					Your messages {{messagesById.length}}
+					{{ $t('$message.your_messages') }} {{messagesById.length}}
 				</v-tab>
 				<v-tab
 					:key="2"
 					ripple
 				>
-					Saved messages {{messagesSaved.length}}
+					{{ $t('$message.saved_messages') }} {{messagesSaved.length}}
 				</v-tab>
 				<v-tab-item
 					:key="1"
@@ -103,12 +105,16 @@
 <script>
 	import User from '../../classes/user/User'
 	import MessageList from '../message/MessageList'
+	import SetLanguage from '../universal/SetLanguage'
 	import UserRepository from '../../classes/user/UserRepository.js'
 	import MessageRepository from '../../classes/message/MessageRepository.js'
 
 	export default {
 		name: "UserProfileForm",
-		components: {MessageList},
+		components: {
+			MessageList,
+			SetLanguage
+		},
 		data() {
 			return {
 				user: {
@@ -228,12 +234,19 @@
 				}
 				reader.readAsDataURL(file)
 			},
+			changeLocale() {
+				if (this.editUser.locale !== localStorage.getItem('locale')) {
+					this.edited = true
+					this.editUser.locale = localStorage.getItem('locale')
+				}
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
 	@import '../../scss/colors';
+
 	.spacer {
 		height: 52px;
 	}
@@ -280,6 +293,7 @@
 
 		&__edit-area {
 			padding: 0 10px;
+			text-align: center;
 
 			&__avatar-upload {
 				display: flex;

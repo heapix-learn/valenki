@@ -14,14 +14,14 @@
 			<v-text-field
 				v-model="user.password"
 				:rules="passwordRules"
-				label="Password"
+				:label="$t('$general.password')"
 				type="password"
 				required
 			/>
 			<v-text-field
 				v-model="confirm_password"
 				:rules="passwordRules"
-				label="Confirm Password"
+				:label="$t('$general.confirm_pass')"
 				type="password"
 				required
 			/>
@@ -31,16 +31,17 @@
 					class="login-page__form__buttons__button"
 					:disabled="!valid"
 				>
-					Signup
+					{{ $t('$general.sign_up') }}
 				</v-btn>
 				<router-link
 					:to="{name: 'login-page'}"
 					class="login-page__form__buttons__button"
 				>
-					<v-btn>have an account</v-btn>
+					<v-btn>{{ $t('$general.have_account') }}</v-btn>
 				</router-link>
 			</div>
 		</v-form>
+		<SetLanguage/>
 	</div>
 </template>
 
@@ -48,13 +49,14 @@
 	import User from '../../../classes/user/User'
 	import UserMapper from '../../../classes/user/UserMapper'
 	import UserRepository from '../../../classes/user/UserRepository.js'
+	import SetLanguage from '../SetLanguage'
 
 	export default {
 		name: 'RegisterForm',
-		components: {},
+		components: { SetLanguage },
 		data() {
 			return {
-				user:  new User,
+				user: new User,
 				valid: true,
 				confirm_password: '',
 				emailRules: [
@@ -76,6 +78,7 @@
 						if (this.confirm_password.length >= 6) {
 							if (this.confirm_password === this.user.password) {
 								console.log('credentials are correct, you have been registered');
+								this.user.locale = localStorage.getItem('locale');
 								this.registerUser();
 							} else {
 								console.log('passwords are not the same');
@@ -112,14 +115,10 @@
 			height: 10vh;
 		}
 
-		&__form {
-
-			&__buttons {
-
-
-				&__button {
-				}
-			}
+		&__pick-langs {
+			padding-top: 10px;
+			display: flex;
+			justify-content: space-around;
 		}
 	}
 </style>
