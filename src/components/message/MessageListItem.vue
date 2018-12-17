@@ -63,11 +63,11 @@
 							:flat="true"
 							fab
 							small
-							:style="{ color: saved ? 'gold' : 'lightgrey' }"
+							:style="{ color: saved ? 'orange' : 'lightgrey' }"
 						>
 							{{saved_messages.length}}&nbsp;
 							<i class="material-icons">
-								reply_all
+								stars
 							</i>
 						</v-btn>
 						<v-btn
@@ -236,14 +236,15 @@
 				repost.message_id = this.message.id;
 				const messageRepository = new MessageRepository();
 				if (!this.saved) {
-					await messageRepository.savePost(repost)
+					await messageRepository.savePost(repost);
 					await this.getSaved();
 					this.saved = true;
+				} else {
+					await  messageRepository.deleteSavedPost(repost.id);
+					await this.getSaved();
+					this.saved = false;
 				}
 			},
-			deletePost() {
-
-			}
 		}
 	}
 
@@ -314,7 +315,6 @@
 
 					a {
 						color: #00887A !important;
-						text-transform: lowercase;
 					}
 				}
 

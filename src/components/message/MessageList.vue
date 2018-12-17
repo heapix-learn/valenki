@@ -3,7 +3,7 @@
 		<v-infinite-scroll
 			@bottom="nextPage"
 			:offset='20'
-			style="max-height: 91vh; overflow-y: scroll;"
+			style="max-height: 100vh; overflow-y: scroll;"
 		>
 			<div v-for="(message, index) in Messages" :key="index">
 				<MessageListItem :message="message"/>

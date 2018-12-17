@@ -27,7 +27,7 @@
 				</router-link>
 			</div>
 		</div>
-
+		<p>{{ $t("message.hello") }}</p>
 	</div>
 </template>
 
@@ -36,11 +36,13 @@
 	import UserRepository from "../../classes/user/UserRepository";
 
 	export default {
-		name: "FindUser",
+		name: "UserSearchForm",
 		data() {
 			return {
 				user_name: '',
-				Users: []
+				Users: {
+					type: Array
+				},
 			}
 		},
 		methods: {
@@ -61,10 +63,12 @@
 			display: flex;
 			padding: 10px;
 		}
+
 		&__cards {
 			border: 2px solid #77A6F7;
 			border-radius: 5px;
 		}
+
 		&__cards:hover {
 			border: 2px solid #00887A;
 			border-radius: 5px;

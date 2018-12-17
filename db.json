@@ -5,7 +5,7 @@
       "id": 1,
       "email": "test@test.com",
       "password": "111111",
-      "nick_name": "first_user",
+      "nick_name": "First_User",
       "avatar": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDI4MC4wNTggMjgwLjA1OCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjgwLjA1OCAyODAuMDU4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8Zz4NCgk8cGF0aCBzdHlsZT0iZmlsbDojMzI0RDVCOyIgZD0iTTE0MC4wMjcsMjE0LjQxYy0xNC40OTEsMC0yNi4yNTMsMTEuNzYxLTI2LjI1MywyNi4yNTNzMTEuNzYxLDI2LjI1MywyNi4yNTMsMjYuMjUzDQoJCWMxNC40OTEsMCwyNi4yNTMtMTEuNzYxLDI2LjI1My0yNi4yNTNTMTU0LjUxOCwyMTQuNDEsMTQwLjAyNywyMTQuNDF6IE0yMTAuMDM0LDE5Ni45MWMtMTQuNDkxLDAtMjYuMjUzLDExLjc1Mi0yNi4yNTMsMjYuMjUzDQoJCXMxMS43NjEsMjYuMjUzLDI2LjI1MywyNi4yNTNjMTQuNDkxLDAsMjYuMjUzLTExLjc1MiwyNi4yNTMtMjYuMjUzUzIyNC41MjUsMTk2LjkxLDIxMC4wMzQsMTk2LjkxeiBNNzAuMDIsMTk2LjkxDQoJCWMtMTQuNDkxLDAtMjYuMjUzLDExLjc1Mi0yNi4yNTMsMjYuMjUzczExLjc2MSwyNi4yNTMsMjYuMjUzLDI2LjI1M3MyNi4yNTMtMTEuNzUyLDI2LjI1My0yNi4yNTNTODQuNTExLDE5Ni45MSw3MC4wMiwxOTYuOTF6Ii8+DQoJPHBhdGggc3R5bGU9ImZpbGw6I0Y0QjQ1OTsiIGQ9Ik01OS41MzYsMTI5Ljg1OWM0NC4zNzYtMjcuMzQ2LDExNi4zMjUtMjcuMzQ2LDE2MC43MDksMHM0NC4zNzYsNzEuNjc4LDAsOTkuMDI1DQoJCXMtMTE2LjMzNCwyNy4zNDYtMTYwLjcwOSwwUzE1LjE1MiwxNTcuMjA2LDU5LjUzNiwxMjkuODU5eiIvPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiMzMjRENUI7IiBkPSJNNDEuMDIsODEuMjIyYzU0LjY3NS0zMi40NjYsMTQzLjMzOS0zMi40NjYsMTk4LjAzMiwwYzU0LjY3NSwzMi40NjYsNTQuNjc1LDg1LjEwMiwwLDExNy41NjgNCgkJYy01NC42OTMsMzIuNDc0LTE0My4zNTYsMzIuNDc0LTE5OC4wMzIsMEMtMTMuNjczLDE2Ni4zMjQtMTMuNjczLDExMy42ODgsNDEuMDIsODEuMjIyeiIvPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNFNEU3RTc7IiBkPSJNMTQwLjAyNywxMy4xNDJjNDguMzMxLDAsODcuNTA5LDM5LjE3OCw4Ny41MDksODcuNTA5cy0zOS4xNzgsNzAuMDA3LTg3LjUwOSw3MC4wMDcNCgkJcy04Ny41MDktMjEuNjc2LTg3LjUwOS03MC4wMDdTOTEuNjk2LDEzLjE0MiwxNDAuMDI3LDEzLjE0MnoiLz4NCgk8cGF0aCBzdHlsZT0iZmlsbDojM0RCMzlFOyIgZD0iTTE4OS44OTgsMTYwLjc2OGMxLjY5OC01LjE1NCwyLjYzNC0xMC42NTksMi42MzQtMTYuMzY0di00My43NTUNCgkJYzAtMjguOTkyLTIzLjUwNS01Mi41MDUtNTIuNTA1LTUyLjUwNWMtMjguOTkyLDAtNTIuNTA1LDIzLjUwNS01Mi41MDUsNTIuNTA1djQzLjc1NGMwLDUuNzA2LDAuOTQ1LDExLjIxLDIuNjM0LDE2LjM2NA0KCQljMTQuMTUsNi42NjgsMzEuMzE5LDkuODg4LDQ5Ljg3MSw5Ljg4OEMxNTguNTcsMTcwLjY1NiwxNzUuNzM5LDE2Ny40MzYsMTg5Ljg5OCwxNjAuNzY4eiIvPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNGRkZGRkY7IiBkPSJNMTQwLjAyNyw4My4xNDdjMTQuNDkxLDAsMjYuMjUzLDExLjc1MiwyNi4yNTMsMjYuMjUzYzAsMTQuNTA5LTExLjc2MSwyNi4yNjEtMjYuMjUzLDI2LjI2MQ0KCQljLTE0LjQ5MSwwLTI2LjI1My0xMS43NTItMjYuMjUzLTI2LjI2MUMxMTMuNzc0LDk0LjksMTI1LjUzNSw4My4xNDcsMTQwLjAyNyw4My4xNDd6Ii8+DQoJPHBhdGggc3R5bGU9ImZpbGw6IzMyNEQ1QjsiIGQ9Ik0xNDAuMDI3LDEwMC42NDljNC44MzksMCw4Ljc1MSwzLjkyLDguNzUxLDguNzUxYzAsNC44MzktMy45MTIsOC43NTEtOC43NTEsOC43NTENCgkJcy04Ljc1MS0zLjkxMi04Ljc1MS04Ljc1MUMxMzEuMjc2LDEwNC41NywxMzUuMTg4LDEwMC42NDksMTQwLjAyNywxMDAuNjQ5eiIvPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPC9zdmc+DQo="
     },
     {
@@ -27,7 +27,7 @@
     {
       "id": 101,
       "author_id": 1,
-      "author_nick": "first_user",
+      "author_nick": "First_User",
       "phrase": "Слово «apple» (яблоко) смягчало серьёзное «компьютер».",
       "liked": 6,
       "disliked": 5,
@@ -42,7 +42,7 @@
     {
       "id": 102,
       "author_id": 1,
-      "author_nick": "first_user",
+      "author_nick": "First_User",
       "phrase": "Yarn global is a prefix used for a number of commands like ",
       "liked": 5,
       "disliked": 6,
@@ -73,7 +73,7 @@
     {
       "id": 104,
       "author_id": 1,
-      "author_nick": "first_user",
+      "author_nick": "First_User",
       "phrase": "hi! i am the first published message",
       "liked": 3,
       "disliked": 1,
@@ -84,7 +84,7 @@
     {
       "id": 105,
       "author_id": "1",
-      "author_nick": "first_user",
+      "author_nick": "First_User",
       "phrase": "Hi, i am fine!",
       "reposted": 0,
       "chip": [],
@@ -93,7 +93,7 @@
     {
       "id": 106,
       "author_id": "1",
-      "author_nick": "first_user",
+      "author_nick": "First_User",
       "phrase": "ADAsdASDAsd",
       "reposted": 0,
       "chip": [],
@@ -102,7 +102,7 @@
     {
       "id": 107,
       "author_id": "1",
-      "author_nick": "first_user",
+      "author_nick": "First_User",
       "phrase": "ADAsdASDAsd",
       "reposted": 0,
       "chip": [],
@@ -111,7 +111,7 @@
     {
       "id": 108,
       "author_id": "1",
-      "author_nick": "first_user",
+      "author_nick": "First_User",
       "phrase": "ADAsdASDAsd",
       "reposted": 0,
       "chip": [],
@@ -120,7 +120,7 @@
     {
       "id": 109,
       "author_id": "1",
-      "author_nick": "first_user",
+      "author_nick": "First_User",
       "phrase": "ADAsdASDAsd",
       "reposted": 0,
       "chip": [],
@@ -129,7 +129,7 @@
     {
       "id": 110,
       "author_id": "1",
-      "author_nick": "first_user",
+      "author_nick": "First_User",
       "phrase": "ADAsdASDAsd",
       "reposted": 0,
       "chip": [],
@@ -138,7 +138,7 @@
     {
       "id": 111,
       "author_id": "1",
-      "author_nick": "first_user",
+      "author_nick": "First_User",
       "phrase": "ADAsdASDAsd",
       "reposted": 0,
       "chip": [],
@@ -147,7 +147,7 @@
     {
       "id": 112,
       "author_id": "1",
-      "author_nick": "first_user",
+      "author_nick": "First_User",
       "phrase": "New message for testing sort by date)",
       "reposted": 0,
       "chip": [],
@@ -156,7 +156,7 @@
     {
       "id": 113,
       "author_id": "1",
-      "author_nick": "first_user1",
+      "author_nick": "First_User1",
       "phrase": "adfasdfasdf",
       "reposted": 0,
       "chip": [],
@@ -165,7 +165,7 @@
     {
       "id": 114,
       "author_id": "1",
-      "author_nick": "first_user1",
+      "author_nick": "First_User1",
       "phrase": "dfgsdfgdfgsdfg",
       "reposted": 0,
       "chip": [],
@@ -174,7 +174,7 @@
     {
       "id": 115,
       "author_id": "1",
-      "author_nick": "first_user1",
+      "author_nick": "First_User1",
       "phrase": "dfgsdfgdfgsdfggsfdgdfsdfgvx",
       "reposted": 0,
       "chip": [],
@@ -183,22 +183,26 @@
     {
       "id": 116,
       "author_id": "1",
-      "author_nick": "first_user",
+      "author_nick": "First_User",
       "phrase": "asdfasdfasdfasdf",
       "reposted": 0,
       "chip": [],
       "created": "13.12.18"
+    },
+    {
+      "id": 117,
+      "author_id": "1",
+      "author_nick": "First_User",
+      "phrase": "allala-lala",
+      "reposted": 0,
+      "chip": [],
+      "created": "17.12.18"
     }
   ],
   "likes": [
     {
       "id": 2,
       "user_id": 2,
-      "message_id": 101
-    },
-    {
-      "id": 3,
-      "user_id": 3,
       "message_id": 101
     },
     {
@@ -229,11 +233,6 @@
   ],
   "saved_messages": [
     {
-      "id": 0,
-      "user_id": 1,
-      "message_id": 101
-    },
-    {
       "id": 1,
       "user_id": 2,
       "message_id": 101
@@ -242,16 +241,6 @@
       "id": 2,
       "user_id": 3,
       "message_id": 101
-    },
-    {
-      "id": 3,
-      "user_id": 1,
-      "message_id": 102
-    },
-    {
-      "user_id": 1,
-      "message_id": 104,
-      "id": 4
     },
     {
       "user_id": 2,
@@ -269,7 +258,7 @@
       "id": 1,
       "message_id": 101,
       "author_id": 1,
-      "author_nick": "first_user",
+      "author_nick": "First_User",
       "phrase": "Сам себя лайкнул"
     },
     {
@@ -280,144 +269,60 @@
       "phrase": "Ну ты лолка)))"
     },
     {
-      "phrase": "Сам такой!",
-      "author_id": "1",
-      "author_nick": "first_user",
-      "message_id": 101,
-      "id": 3
-    },
-    {
-      "phrase": "dfasd",
-      "author_id": "1",
-      "author_nick": "first_user",
-      "message_id": 101,
-      "id": 4
-    },
-    {
-      "phrase": "dfghdgh",
-      "author_id": "1",
-      "author_nick": "first_user",
-      "message_id": 101,
-      "id": 5
-    },
-    {
       "phrase": "Lalala",
       "author_id": "1",
-      "author_nick": "first_user",
+      "author_nick": "First_User",
       "message_id": 102,
       "id": 6
     },
     {
-      "phrase": "first_user, hi!",
+      "phrase": "First_User, hi!",
       "author_id": "1",
-      "author_nick": "first_user",
+      "author_nick": "First_User",
       "message_id": 102,
       "id": 7
     },
     {
-      "phrase": "fgsgdfgsdf",
-      "author_id": "1",
-      "author_nick": "first_user",
-      "message_id": 101,
-      "id": 8
-    },
-    {
-      "phrase": "sfgsdfg",
-      "author_id": "1",
-      "author_nick": "first_user",
-      "message_id": 101,
-      "id": 9
-    },
-    {
-      "phrase": "second_user, sdfgsdfg",
-      "author_id": "1",
-      "author_nick": "first_user",
-      "message_id": 101,
-      "id": 10
-    },
-    {
-      "phrase": "first_user,kfjghlsdfkjghldf",
-      "author_id": "1",
-      "author_nick": "first_user",
-      "message_id": 101,
-      "id": 11
-    },
-    {
-      "phrase": " lkj lk lkj lkj lkj lkj",
-      "author_id": "1",
-      "author_nick": "first_user",
-      "message_id": 101,
-      "id": 12
-    },
-    {
-      "phrase": "sdfgsdfg",
-      "author_id": "1",
-      "author_nick": "first_user1",
-      "message_id": 101,
-      "id": 13
-    },
-    {
-      "phrase": "second_user, sdfgsdfgsdfg",
-      "author_id": "1",
-      "author_nick": "first_user1",
-      "message_id": 101,
-      "id": 14
-    },
-    {
       "phrase": "sdfsdf",
       "author_id": "1",
-      "author_nick": "first_user",
+      "author_nick": "First_User",
       "message_id": 102,
       "id": 15
     },
     {
-      "phrase": "asdf",
-      "author_id": "1",
-      "author_nick": "first_user",
-      "message_id": 101,
-      "id": 16
-    },
-    {
-      "phrase": "asdad",
-      "author_id": "1",
-      "author_nick": "first_user",
-      "message_id": 101,
-      "id": 17
-    },
-    {
       "phrase": "Hi new!",
       "author_id": "1",
-      "author_nick": "first_user",
+      "author_nick": "First_User",
       "message_id": 103,
       "id": 18
     },
     {
       "phrase": "Hi old",
       "author_id": "1",
-      "author_nick": "first_user",
+      "author_nick": "First_User",
       "message_id": 103,
       "id": 19
     },
     {
       "phrase": "1212",
       "author_id": "1",
-      "author_nick": "first_user",
+      "author_nick": "First_User",
       "message_id": 104,
       "id": 20
     },
     {
-      "phrase": "asdfasdf",
-      "author_id": "1",
-      "author_nick": "first_user",
-      "message_id": 101,
-      "id": 21
-    },
-    {
       "phrase": "asdfaf",
       "author_id": "1",
-      "author_nick": "first_user",
+      "author_nick": "First_User",
       "message_id": 103,
       "id": 22
+    },
+    {
+      "phrase": "undefined",
+      "author_id": "1",
+      "author_nick": "First_User",
+      "message_id": 102,
+      "id": 23
     }
   ]
 }

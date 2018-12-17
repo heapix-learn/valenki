@@ -1,7 +1,7 @@
 <template>
 	<div class="base-header">
 		<v-toolbar class="v-toolbar" :dark="false" :fixed="true">
-			<router-link :to="{name: 'universal'}">
+			<router-link :to="{name: 'base-main'}">
 				<img
 					class="base-header__logo"
 					src="../../assets/lemma_new.png"

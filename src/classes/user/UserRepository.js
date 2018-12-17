@@ -1,5 +1,7 @@
 import axios from "axios"
-import UserMapper from "./UserMapper"
+import UserMapper from "./UserMapper";
+
+axios.defaults.headers.common['authorization'] = localStorage.getItem('token');
 
 export default class UserRepository {
 
@@ -13,11 +15,7 @@ export default class UserRepository {
 	}
 
 	async getUserById(id) {
-		const user = (await axios.get('http://localhost:3000/users/' + id, {
-			headers: {
-				authorization: localStorage.getItem('token')
-			}
-		})).data;
+		const user = (await axios.get('http://localhost:3000/users/' + id)).data;
 		return UserMapper.map(user);
 	}
 
@@ -27,7 +25,7 @@ export default class UserRepository {
 	}
 
 	async createUser(user) {
-		await axios.post('http://localhost:3000/auth/register', user)
+		await axios.post('http://localhost:3000/auth/register', user);
 	}
 
 	async editUser(user) {
@@ -35,11 +33,7 @@ export default class UserRepository {
 	}
 
 	async checkLogin() {
-		console.log((await axios.get('http://localhost:3000/messages?id=101', {
-			headers: {
-				authorization: localStorage.getItem('token')
-			}
-		})).statusText)
+		console.log((await axios.get('http://localhost:3000/messages?id=101')).statusText)
 	}
 
 }

@@ -45,12 +45,12 @@
 </template>
 
 <script>
-	import User from '../../classes/user/User'
-	import UserMapper from '../../classes/user/UserMapper'
-	import UserRepository from '../../classes/user/UserRepository.js'
+	import User from '../../../classes/user/User'
+	import UserMapper from '../../../classes/user/UserMapper'
+	import UserRepository from '../../../classes/user/UserRepository.js'
 
 	export default {
-		name: 'RegisterUserForm',
+		name: 'RegisterForm',
 		components: {},
 		data() {
 			return {

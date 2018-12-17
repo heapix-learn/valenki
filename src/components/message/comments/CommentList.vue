@@ -5,6 +5,7 @@
 				:comment="comment"
 				:index="index"
 				@reply="reply"
+				@refresh="refresh()"
 			/>
 		</div>
 		<NewCommentForm
@@ -16,7 +17,7 @@
 </template>
 
 <script>
-	import CommentListItem from '../../universal/CommentListItem'
+	import CommentListItem from './CommentListItem'
 	import NewCommentForm from './CommentCreateForm'
 
 	export default {

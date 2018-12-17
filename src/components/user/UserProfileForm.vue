@@ -107,7 +107,7 @@
 	import MessageRepository from '../../classes/message/MessageRepository.js'
 
 	export default {
-		name: "PersonalPage",
+		name: "UserProfileForm",
 		components: {MessageList},
 		data() {
 			return {

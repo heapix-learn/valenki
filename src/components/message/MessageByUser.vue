@@ -21,7 +21,7 @@
 <script>
 	import MessageList from "./MessageList";
 	import MessageRepository from '../../classes/message/MessageRepository.js'
-	import PersonalPage from "../personal/PersonalPage";
+	import PersonalPage from "../user/UserProfileForm";
 
 
 	export default {

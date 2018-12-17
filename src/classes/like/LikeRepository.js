@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 
 export default class LikeRepository {
 
@@ -22,7 +22,7 @@ export default class LikeRepository {
 		await (axios.delete(`http://localhost:3000/likes/${id}`, {
 			headers: {
 				authorization: localStorage.getItem('token'),
-			},
+			}
 		}))
 	}
 }

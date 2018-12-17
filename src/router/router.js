@@ -1,19 +1,21 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import User from "../components/personal/User";
+import User from "../components/user/User";
 import Layout from "../components/layout/Layout.vue";
-import FindUser from "../components/personal/FindUser";
+import FindUser from "../components/user/UserSearchForm";
 import BaseMain from "../components/universal/BaseMain";
-import LoginUserForm from "../components/personal/LoginUserForm";
+import LoginUserForm from "../components/universal/auth/LoginForm";
 import MessageByUser from "../components/message/MessageByUser";
-import PersonalPage from "../components/personal/PersonalPage";
+import UserProfileForm from "../components/user/UserProfileForm";
 import MessageCreateForm from "../components/message/MessageCreateForm";
-import RegisterPage from "../components/personal/RegisterUserForm";
+import RegisterPage from "../components/universal/auth/RegisterForm";
 import MessageByHashtag from "../components/message/MessageByHashtag";
 
 Vue.use(VueRouter);
 
 const router = new VueRouter({
+	linkActiveClass: 'li',
+	linkExactActiveClass: 'li',
 	mode: 'history',
 	routes: [
 		{
@@ -23,7 +25,7 @@ const router = new VueRouter({
 			children: [
 				{
 					path: '',
-					name: "universal",
+					name: "base-main",
 					component: BaseMain
 				},
 				{
@@ -49,7 +51,7 @@ const router = new VueRouter({
 						{
 							path: "profile",
 							name: "user-profile",
-							component: PersonalPage
+							component: UserProfileForm
 						},
 						{
 							path: "messages",

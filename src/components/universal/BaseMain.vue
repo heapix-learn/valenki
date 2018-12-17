@@ -121,7 +121,6 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			margin-bottom: -10px;
 
 			&__sortButton {
 				transition: transform 1s;

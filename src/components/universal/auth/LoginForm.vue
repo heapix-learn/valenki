@@ -63,10 +63,10 @@
 </template>
 
 <script>
-	import UserRepository from '../../classes/user/UserRepository.js'
+	import UserRepository from '../../../classes/user/UserRepository.js'
 
 	export default {
-		name: 'LoginUserForm',
+		name: 'LoginForm',
 		components: {},
 		data() {
 			return {
