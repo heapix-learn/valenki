@@ -7,28 +7,35 @@ import 'vuetify/dist/vuetify.min.css';
 import InfiniteScroll from 'v-infinite-scroll';
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
 
+
+
 Vue.config.productionTip = false;
 
 Vue.use(VueI18n)
 Vue.use(VueRouter);
 Vue.use(InfiniteScroll);
 
-const messages = {
-  en: {
-    message: {
-      hello: 'hello world'
-    }
-  },
-  ja: {
-    message: {
-      hello: 'こんにちは、世界'
-    }
-  }
+const config = {
+  en: ['text'],
+  ru: ['text'],
 }
 
+let messages = {}
+for (let lang in config) {
+  let bag = {}
+  config[lang].forEach(function (fileName) {
+    let txt = require(`./components/lang/langs/${lang}/${fileName}.json`)
+    bag[fileName] = txt
+  })
+  messages[lang] = bag
+}
+
+let locale = navigator.language.split('-')[0]
+console.log('Language "', locale, '"')
+
 const i18n = new VueI18n({
-  locale: 'ja', // set locale
-  messages // set locale messages
+  locale,
+  messages
 })
 
 Vue.use(Vuetify, {

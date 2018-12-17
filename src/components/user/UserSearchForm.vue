@@ -27,7 +27,9 @@
 				</router-link>
 			</div>
 		</div>
-		<p>{{ $t("message.hello") }}</p>
+		<p>{{ $t('text.words.one') }}</p>
+		<p>{{ $t('text.words.two') }}</p>
+		<p>{{ $t('text.words.three') }}</p>
 	</div>
 </template>
 
