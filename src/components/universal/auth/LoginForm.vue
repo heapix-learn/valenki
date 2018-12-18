@@ -63,8 +63,8 @@
 </template>
 
 <script>
-	import UserRepository from '../../../classes/user/UserRepository.js'
 	import i18n from '../../../plugins/vuei18n/i18n'
+	import UserRepository from '../../../classes/user/UserRepository.js'
 
 	export default {
 		name: 'LoginForm',
@@ -122,7 +122,7 @@
 			async signIn() {
 				const userRepository = new UserRepository();
 				const postResponse = await userRepository.signIn(this.credential);
-				console.log('resp', postResponse)
+				// console.log('resp', postResponse)
 				localStorage.setItem('token', postResponse.data.access_token);
 				localStorage.setItem('id', postResponse.data.user.id);
 				localStorage.setItem('nick', postResponse.data.user.nick_name);

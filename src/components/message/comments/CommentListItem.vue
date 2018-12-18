@@ -1,31 +1,41 @@
 <template>
-
-	<div class="comment-list-item">
-		<div class="comment-list-item__avatar">
-			<div>
+	<div>
+		<div class="comment-list-item">
+			<div class="comment-list-item__avatar">
 				<div>
-					<img style="max-width: 30px;" :src="imgPath"/>
+					<div>
+						<img style="max-width: 30px;" :src="imgPath"/>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="comment-list-item__body">
-			<div
-				class="comment-list-item__body__nickname"
-				@click="replyUser(comment.author_nick)"
-			>
-				{{comment.author_nick}}
+			<div class="comment-list-item__body">
+				<div
+					class="comment-list-item__body__nickname"
+					@click="replyUser(comment.author_nick)"
+				>
+					{{comment.author_nick}}
+				</div>
+				<div class="comment-list-item__body__text truncate">
+					<div>{{comment.phrase}}</div>
+				</div>
 			</div>
-			<div class="comment-list-item__body__text truncate">
-				<div>{{comment.phrase}}</div>
+			<div class="comment-list-item__delete">
+				<i class="material-icons small" @click="deleteComment()">
+					close
+				</i>
 			</div>
 		</div>
-		<div class="comment-list-item__delete">
-			<i class="material-icons small" @click="deleteComment()">
-				close
-			</i>
-		</div>
-	</div>
 
+		<div v-for="(comment, index) in comment.sub_comments" :key="index" class="comment-list-item__sub-comment">
+					<div class="comment-list-item__sub-comment__nickname">
+							{{comment.author_nick}}
+					</div>
+
+					<div class="comment-list-item__sub-comment__text truncate">
+							{{comment.phrase}}
+					</div>
+		</div>
+</div>
 </template>
 
 <script>
@@ -45,7 +55,7 @@
 		},
 		methods: {
 			replyUser() {
-				this.$emit('reply', this.comment.author_nick)
+				this.$emit('reply', this.comment)
 			},
 			async deleteComment() {
 				const commentRepository = new CommentRepository();
@@ -86,7 +96,12 @@
 			justify-content: center;
 		}
 
-		&__body {
+		&__sub-comment {
+			padding-left: 60px;
+		}
+
+		&__body,
+		&__sub-comment {
 			width: 89%;
 			border-bottom: 1px solid lightgrey;
 
@@ -107,6 +122,7 @@
 				color: $blue;
 			}
 		}
+
 
 	}
 

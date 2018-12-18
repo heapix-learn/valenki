@@ -14,6 +14,11 @@ export default class CommentRepository {
 		return (await axios.post('http://localhost:3000/comments', comment)).data;
 	}
 
+	async addSubComment(id, comment) {
+		console.log('id = ', id , 'comment = ', comment)
+		return (await axios.post(`http://localhost:3000/comments/${id}/sub_comments/`, comment)).data;
+	}
+
 	async deleteComment(id) {
 		await axios.delete(`http://localhost:3000/comments/${id}`)
 	}

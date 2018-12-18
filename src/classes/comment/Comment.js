@@ -4,4 +4,5 @@ export default class Comment {
 	author_id = null;
 	author_nick = "";
 	phrase = "";
+	sub_comments = []
 }

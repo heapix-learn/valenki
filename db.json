@@ -258,74 +258,46 @@
   ],
   "comments": [
     {
+      "phrase": "Hi!",
+      "author_id": "1",
+      "author_nick": "First_User",
+      "message_id": 103,
       "id": 1,
-      "message_id": 101,
-      "author_id": 1,
-      "author_nick": "First_User",
-      "phrase": "Сам себя лайкнул"
+      "sub_comments": [
+        {
+          "phrase": "First_User, Hello!",
+          "author_id": "1",
+          "author_nick": "First_User",
+          "message_id": 103,
+          "id": 4
+        }
+      ]
     },
     {
+      "phrase": "Hi again!",
+      "author_id": "1",
+      "author_nick": "First_User",
+      "message_id": 103,
       "id": 2,
-      "message_id": 101,
-      "author_id": 2,
-      "author_nick": "second_user",
-      "phrase": "Ну ты лолка)))"
+      "sub_comments": []
     },
     {
-      "phrase": "Lalala",
-      "author_id": "1",
-      "author_nick": "First_User",
-      "message_id": 102,
-      "id": 6
-    },
-    {
-      "phrase": "First_User, hi!",
-      "author_id": "1",
-      "author_nick": "First_User",
-      "message_id": 102,
-      "id": 7
-    },
-    {
-      "phrase": "sdfsdf",
-      "author_id": "1",
-      "author_nick": "First_User",
-      "message_id": 102,
-      "id": 15
-    },
-    {
-      "phrase": "Hi new!",
+      "phrase": "First_User, Hello, first time!",
       "author_id": "1",
       "author_nick": "First_User",
       "message_id": 103,
-      "id": 18
+      "commentId": "1",
+      "id": 3,
+      "sub_comments": []
+
     },
     {
-      "phrase": "Hi old",
+      "phrase": "sdfgsdfgsdfg",
       "author_id": "1",
       "author_nick": "First_User",
       "message_id": 103,
-      "id": 19
-    },
-    {
-      "phrase": "1212",
-      "author_id": "1",
-      "author_nick": "First_User",
-      "message_id": 104,
-      "id": 20
-    },
-    {
-      "phrase": "asdfaf",
-      "author_id": "1",
-      "author_nick": "First_User",
-      "message_id": 103,
-      "id": 22
-    },
-    {
-      "phrase": "undefined",
-      "author_id": "1",
-      "author_nick": "First_User",
-      "message_id": 102,
-      "id": 23
+      "id": 4,
+      "sub_comments": []
     }
   ]
 }

@@ -1,5 +1,6 @@
 <template>
 	<div class="create-comments__add-comments">
+
 		<div class="create-comments__avatar">
 			<i class="material-icons">
 				sentiment_satisfied_alt
@@ -9,7 +10,7 @@
 			type="email"
 			required
 			v-model="comment.phrase"
-			:prefix="replyedUser"
+			:prefix="replyedComment.nick"
 		/>
 		<v-btn :flat="true" color="blue" @click="addComment()">
 			<i class="material-icons">
@@ -33,16 +34,31 @@
 		},
 		props: {
 			message_id: Number,
-			replyedUser: String
+			replyedComment: Object
 		},
 		methods: {
 			async addComment() {
-				this.comment.phrase = this.replyedUser + this.comment.phrase;
+				let replyed_comment = {}
+				for (let key in this.replyedComment) {
+					replyed_comment[key] = this.replyedComment[key]
+				}
 				this.comment.author_id = localStorage.getItem('id');
 				this.comment.author_nick = localStorage.getItem('nick');
 				this.comment.message_id = this.message_id;
-				const commentRepository = new CommentRepository();
-				await commentRepository.addComment(this.comment);
+				// const commentRepository = new CommentRepository();
+				console.log('before-before', this.replyedComment)
+				if (replyed_comment.author_nick) {
+					this.comment.phrase = replyed_comment.author_nick + ', ' + this.comment.phrase;
+					console.log('before', replyed_comment, 'phrase', this.comment.phrase)
+					console.log('this.comm', this.comment.phrase)
+					replyed_comment.sub_comments.push(this.comment)
+					console.log('after', replyed_comment)
+					// await commentRepository.addSubComment(this.replyedComment.comment_id, this.comment);
+				} else {
+					console.log(this.replyedComment)
+
+					// await commentRepository.addComment(this.comment);
+				}
 				this.comment.phrase = '';
 				this.$emit('refresh');
 			}

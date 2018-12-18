@@ -8,8 +8,8 @@
 				@refresh="refresh()"
 			/>
 		</div>
-		<NewCommentForm
-			:replyedUser="replyedUser"
+		<CommentCreateForm
+			:replyedComment="replyedComment"
 			:message_id="message_id"
 			@refresh="refresh()"
 		/>
@@ -18,22 +18,22 @@
 
 <script>
 	import CommentListItem from './CommentListItem'
-	import NewCommentForm from './CommentCreateForm'
+	import CommentCreateForm from './CommentCreateForm'
 
 	export default {
 		name: "CommentList",
 		data() {
 			return {
-				replyedUser: ''
+				replyedComment: {}
 			}
 		},
 		components: {
 			CommentListItem,
-			NewCommentForm
+			CommentCreateForm
 		},
 		methods: {
-			reply(nick) {
-				this.replyedUser = nick + ', '
+			reply(replyedComment) {
+				this.replyedComment = replyedComment
 			},
 			refresh () {
 				this.replyedUser = ''
