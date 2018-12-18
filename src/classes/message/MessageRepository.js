@@ -10,7 +10,7 @@ export default class MessageRepository {
 	}
 
 	async getAllMessages(page) {
-		const messages = (await axios.get('http://localhost:3000/messages?_embed=likes&_embed=comments&_embed=favourites&?_page=' + page)).data;
+		const messages = (await axios.get('http://localhost:3000/messages?_embed=likes&_embed=comments&_embed=featured&_expand=user&?_page=' + page)).data;
 		return messages.map(MessageMapper.map);
 	}
 
@@ -37,11 +37,11 @@ export default class MessageRepository {
 	}
 
 	async savePost(message) {
-		await (axios.post('http://localhost:3000/favourites', message))
+		return (await (axios.post('http://localhost:3000/featured', message))).data.id
 	}
 
 	async deleteSavedPost(id) {
-		await (axios.delete(`http://localhost:3000/favourites/${id}`))
+		await (axios.delete(`http://localhost:3000/featured/${id}`))
 	}
 
 }

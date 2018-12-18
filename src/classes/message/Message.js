@@ -7,7 +7,7 @@ export default class Message {
 	body = "";
 	likes = [];
 	comments = [];
-	favourite = false
+	featured = false
 	tags = [];
 	created = {};
 }

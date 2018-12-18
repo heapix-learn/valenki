@@ -8,7 +8,7 @@
               <router-link
                 :to="{name: 'user-messages', params: {nick_name: message.userNickname, user_id: message.userId}}">
                 <div style="width: 50px;">
-                  <img :src="user.avatar"/>
+                  <img :src="message.user.avatar"/>
                 </div>
               </router-link>
             </div>
@@ -16,7 +16,7 @@
               <div class="message-item__info__title__nickname">
                 <router-link
                   :to="{name: 'user-messages', params: {nick_name: message.userNickname, user_id: message.userId}}">
-                  {{user.nick_name}}
+                  {{message.user.nick_name}}
                 </router-link>
               </div>
               <div class="message-item__content-group__date">
@@ -61,13 +61,12 @@
           <div class="message-item__button-group">
             <v-btn
               class="message-item__button-group__button"
-              @click="addTofavourite()"
+              @click="addToFeatured()"
               :flat="true"
               fab
               small
-              :style="{ color: favourite.added ? 'orange' : 'lightgrey' }"
+              :style="{ color: featured.added ? 'orange' : 'lightgrey' }"
             >
-              {{favouriteCounter}}&nbsp;
               <i class="material-icons">
                 stars
               </i>
@@ -119,7 +118,7 @@ import LikeRepository from '../../classes/like/LikeRepository'
 import UserRepository from '../../classes/user/UserRepository'
 import MessageRepository from '../../classes/message/MessageRepository.js'
 import CommentRepository from '../../classes/comment/CommentRepository.js'
-
+import Message from '../../classes/message/Message'
 export default {
   name: 'MessageListItem',
   components: {
@@ -138,7 +137,7 @@ export default {
         type: User,
         required: true,
       },
-      favourite: {
+      featured: {
         id: null,
         added: false,
       },
@@ -147,17 +146,17 @@ export default {
         liked: false,
         quantity: this.message.likes.length,
       },
-      favourite_id: null,
     }
   },
   props: {
     message: {
-      type: Object,
+      type: Message,
       required: true,
     },
   },
   created () {
-    this.getUser()
+    // this.getUser()
+    console.log('this.message', this.message)
     this.setLikeState()
     this.setFavouriteState()
   },
@@ -167,9 +166,6 @@ export default {
     },
     commentsLength () {
       return this.message.comments.length ? this.message.comments.length : 0
-    },
-    favouriteCounter () {
-      return this.message.favourite.length
     },
   },
   methods: {
@@ -183,16 +179,17 @@ export default {
     },
     setFavouriteState () {
       const userId = localStorage.getItem('id')
-      const isFavourite = this.message.favourite.filter(item => item.userId === userId)
-      if (isFavourite.length !== 0) {
-        this.favourite.id = isFavourite[0].id
-        this.favourite.added = true
+      const isFeatured = this.message.featured.filter(item => item.userId === userId)
+      console.log('isFeatured', isFeatured)
+      if (isFeatured.length !== 0) {
+        this.featured.id = isFeatured[0].id
+        this.featured.added = true
       }
     },
     isSavedMessage () {
       const userId = localStorage.getItem('id')
-      const favourite = this.message.favourite.filter(item => item.userId === userId)
-      return favourite.length ? true : false
+      const featured = this.message.featured.filter(item => item.userId === userId)
+      return featured.length ? true : false
     },
     async openComments (id) {
       this.readComments = (this.readComments) ? false : true
@@ -204,11 +201,11 @@ export default {
       const commentRepository = new CommentRepository()
       this.comments = await (commentRepository.getComments(this.message.id))
     },
-    async getUser () {
-      const id = this.message.userId
-      const userRepository = new UserRepository()
-      this.user = await (userRepository.getUserById(id))
-    },
+    // async getUser () {
+    //   const id = this.message.userId
+    //   const userRepository = new UserRepository()
+    //   this.user = await (userRepository.getUserById(id))
+    // },
     async likePost () {
       const like = new Like
       like.messageId = this.message.id
@@ -228,30 +225,31 @@ export default {
     async getSaved () {
       const messageRepository = new MessageRepository()
       const userId = localStorage.getItem('id')
-      this.favourite = await messageRepository.getSaved(this.message.id)
-      let Saved_id = this.favourite_id
-      this.favourite.forEach((item) => {
+      this.featured = await messageRepository.getSaved(this.message.id)
+      let Saved_id = this.featured_id
+      this.featured.forEach((item) => {
         if (Number(item.userId) === Number(userId)) {
           Saved_id = item.id
-          this.favourite = true
+          this.featured = true
         }
       })
-      this.favourite_id = Saved_id
+      this.featured_id = Saved_id
     },
-    async addTofavourite () {
+    async addToFeatured () {
       let message = {}
-      // message.id = this.favourite_id
+      // message.id = this.featured_id
       message.userId = localStorage.getItem('id')
       message.messageId = this.message.id
       const messageRepository = new MessageRepository()
-      if (!this.favourite) {
-        await messageRepository.savePost(message)
-        await this.getSaved()
-        this.favourite = true
+      if (!this.featured.added) {
+        const id = await messageRepository.savePost(message)
+        // await this.getSaved()
+        this.featured.id = id
+        this.featured.added = true
       } else {
-        await messageRepository.deleteSavedPost(message.id)
-        await this.getSaved()
-        this.favourite = false
+        await messageRepository.deleteSavedPost(this.featured.id)
+        // await this.getSaved()
+        this.featured.added = false
       }
     },
     deletePost () {
