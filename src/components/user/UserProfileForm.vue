@@ -98,7 +98,6 @@
 				</v-tab-item>
 			</v-tabs>
 		</div>
-		<!--<MessageList :Messages="messagesById"/>-->
 	</div>
 </template>
 
@@ -151,23 +150,28 @@
 			async getId() {
 				const userRepository = new UserRepository();
 				if (this.$route.params.user_id) {
-					this.userId = this.$route.params.user_id;
+					this.userId = await this.$route.params.user_id;
+					console.log('1', this.userId)
 				} else {
 					this.userId = (await userRepository.findUsers(this.$route.params.nick_name))[0].id;
+					console.log('2', this.userId)
 				}
-				if (this.$route.path.includes('profile') && (this.userId === localStorage.getItem('id'))) {
+				if (this.$route.path.includes('profile') && (this.userId == localStorage.getItem('id'))) {
 					this.personal = true
 				} else {
 					this.personal = false
 				}
 				this.getUser()
 			},
+
 			async getUser() {
+				console.log('getUser')
 				const userRepository = new UserRepository();
 				this.user = await (userRepository.getUserById(this.userId))
 				this.getMessages()
 			},
 			async getMessages() {
+				console.log('getMessages')
 				const messageRepository = new MessageRepository();
 				this.messagesById = await (messageRepository.getMessagesByUser(this.userId))
 				this.getSavedMessages()

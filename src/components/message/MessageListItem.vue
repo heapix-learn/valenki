@@ -114,6 +114,7 @@
 <script>
 	import User from '../../classes/user/User';
 	import Like from '../../classes/like/Like.js';
+	import Message from '../../classes/message/Message';
 	import CommentList from './comments/CommentList.vue';
 	import LikeRepository from "../../classes/like/LikeRepository";
 	import UserRepository from "../../classes/user/UserRepository";
@@ -128,7 +129,6 @@
 		data() {
 			return {
 				readComments: false,
-				messages: [],
 				comments: [],
 				user: {
 					type: User,
@@ -140,16 +140,11 @@
 				liked: false,
 				likes: [],
 				like_id: null,
-				savePost: {
-					id: null,
-					user_id: null,
-					message_id: null
-				}
 			}
 		},
 		props: {
 			message: {
-				type: Object,
+				type: Message,
 				required: true
 			}
 		},
