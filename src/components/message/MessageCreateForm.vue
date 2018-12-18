@@ -12,7 +12,11 @@
 			label="Write your message there:"
 			v-model="message.phrase"
 		></v-textarea>
-
+kartinka - {{message.picture}}
+		<div class="personal-page__edit-area__avatar-upload">
+			<input id="image_upload" type="file" @change="addPicture">
+		</div>
+		<img src="message.avatar" alt="">
 		<div class="new-message__buttons">
 			<v-btn flat icon outline color="blue">
 				<i class="material-icons">
@@ -91,7 +95,23 @@
 				if (yy < 10) { yy = '0' + yy; }
 
 				return dd + '.' + mm + '.' + yy;
-			}
+			},
+			addPicture(e) {
+				var files = e.target.files || e.dataTransfer.files
+				if (!files.length) {
+					return
+				}
+				this.createImage(files[0])
+			},
+			createImage(file) {
+				this.edited = true
+				var reader = new FileReader();
+				reader.onload = (e) => {
+					this.image = e.target.result
+					this.message.picture = this.image
+				}
+				reader.readAsDataURL(file)
+			},
 		}
 	}
 </script>

@@ -38,6 +38,18 @@
 							<div class="message-item__content-group__text">
 								{{message.phrase}}
 							</div>
+							<div
+								class="message-item__content-group__picture"
+								v-if="message.picture">
+								<img
+									:src="message.picture"
+									alt=""
+									height="60%"
+									width="60%">
+							</div>
+							<div class="message-item__content-group__url" v-if="message.url">
+								<a :href="message.url">{{message.url}}</a>
+							</div>
 							<div class="message-item__content-group__hashtag-group">
 								<img
 									src="../../assets/hashtag.png"
@@ -120,10 +132,15 @@
 	import UserRepository from "../../classes/user/UserRepository";
 	import MessageRepository from '../../classes/message/MessageRepository.js';
 	import CommentRepository from '../../classes/comment/CommentRepository.js';
+	// import { VLayout, VFlex, VCard, VBtn } from 'vuetify/lib'
 
 	export default {
 		name: "MessageListItem",
 		components: {
+			// VLayout,
+			// VFlex,
+			// VCard,
+			// VBtn,
 			CommentList,
 		},
 		data() {
@@ -154,12 +171,6 @@
 			this.getLikes()
 			this.getSaved()
 		},
-		// watch: {
-		// 	message: function () {
-		// 		this.getComments()
-		// 		this.getLikes()
-		// 	}
-		// },
 		computed: {
 			imgPath() {
 				return require('../../assets/' + this.message.author_id + '.png')
@@ -253,7 +264,8 @@
 <style lang="scss">
 
 	.message-item {
-		padding-top: 15px;
+		padding-top: 10px;
+		padding-bottom: 5px;
 
 		&__info {
 			display: flex;
@@ -299,6 +311,29 @@
 			&__text {
 				text-align: left;
 				padding-top: 5px;
+			}
+
+			&__picture {
+				display: flex;
+				justify-content: center;
+			}
+
+			&__url:hover {
+
+				a {
+					color: blue !important;
+				}
+			}
+
+			&__url {
+				white-space: nowrap;
+				font-style: oblique;
+				text-decoration: underline;
+				padding-left: 5px;
+
+				a {
+					color: darkblue !important;
+				}
 			}
 
 			&__hashtag-group {

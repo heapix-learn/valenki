@@ -6,6 +6,7 @@ axios.defaults.headers.common['authorization'] = localStorage.getItem('token');
 export default class MessageRepository {
 
 	async createMessage(message) {
+		console.log('message post', message)
 		return (await axios.post('http://localhost:3000/messages', message)).data;
 	}
 

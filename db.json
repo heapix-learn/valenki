@@ -74,132 +74,15 @@
       "created": "30.11.18"
     },
     {
-      "id": 104,
-      "author_id": 1,
-      "author_nick": "First_User",
-      "phrase": "hi! i am the first published message",
-      "liked": 3,
-      "disliked": 1,
-      "reposted": 0,
-      "chip": [],
-      "created": "01.12.18"
-    },
-    {
-      "id": 105,
+      "id": 120,
       "author_id": "1",
       "author_nick": "First_User",
-      "phrase": "Hi, i am fine!",
+      "phrase": "See my picture:",
       "reposted": 0,
       "chip": [],
-      "created": "07.12.18"
-    },
-    {
-      "id": 106,
-      "author_id": "1",
-      "author_nick": "First_User",
-      "phrase": "ADAsdASDAsd",
-      "reposted": 0,
-      "chip": [],
-      "created": "08.12.18"
-    },
-    {
-      "id": 107,
-      "author_id": "1",
-      "author_nick": "First_User",
-      "phrase": "ADAsdASDAsd",
-      "reposted": 0,
-      "chip": [],
-      "created": "08.12.18"
-    },
-    {
-      "id": 108,
-      "author_id": "1",
-      "author_nick": "First_User",
-      "phrase": "ADAsdASDAsd",
-      "reposted": 0,
-      "chip": [],
-      "created": "08.12.18"
-    },
-    {
-      "id": 109,
-      "author_id": "1",
-      "author_nick": "First_User",
-      "phrase": "ADAsdASDAsd",
-      "reposted": 0,
-      "chip": [],
-      "created": "08.12.18"
-    },
-    {
-      "id": 110,
-      "author_id": "1",
-      "author_nick": "First_User",
-      "phrase": "ADAsdASDAsd",
-      "reposted": 0,
-      "chip": [],
-      "created": "08.12.18"
-    },
-    {
-      "id": 111,
-      "author_id": "1",
-      "author_nick": "First_User",
-      "phrase": "ADAsdASDAsd",
-      "reposted": 0,
-      "chip": [],
-      "created": "08.12.18"
-    },
-    {
-      "id": 112,
-      "author_id": "1",
-      "author_nick": "First_User",
-      "phrase": "New message for testing sort by date)",
-      "reposted": 0,
-      "chip": [],
-      "created": "11.12.18"
-    },
-    {
-      "id": 113,
-      "author_id": "1",
-      "author_nick": "First_User1",
-      "phrase": "adfasdfasdf",
-      "reposted": 0,
-      "chip": [],
-      "created": "12.12.18"
-    },
-    {
-      "id": 114,
-      "author_id": "1",
-      "author_nick": "First_User1",
-      "phrase": "dfgsdfgdfgsdfg",
-      "reposted": 0,
-      "chip": [],
-      "created": "12.12.18"
-    },
-    {
-      "id": 115,
-      "author_id": "1",
-      "author_nick": "First_User1",
-      "phrase": "dfgsdfgdfgsdfggsfdgdfsdfgvx",
-      "reposted": 0,
-      "chip": [],
-      "created": "12.12.18"
-    },
-    {
-      "id": 116,
-      "author_id": "1",
-      "author_nick": "First_User",
-      "phrase": "asdfasdfasdfasdf",
-      "reposted": 0,
-      "chip": [],
-      "created": "13.12.18"
-    },
-    {
-      "id": 117,
-      "author_id": "1",
-      "author_nick": "First_User",
-      "phrase": "allala-lala",
-      "reposted": 0,
-      "chip": [],
-      "created": "17.12.18"
+      "created": "18.12.18",
+      "picture": "data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjUxMnB0IiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgd2lkdGg9IjUxMnB0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Im01MTIgMjU2YzAgMTQxLjM4NjcxOS0xMTQuNjEzMjgxIDI1Ni0yNTYgMjU2cy0yNTYtMTE0LjYxMzI4MS0yNTYtMjU2IDExNC42MTMyODEtMjU2IDI1Ni0yNTYgMjU2IDExNC42MTMyODEgMjU2IDI1NnptMCAwIiBmaWxsPSIjZmFjMTVjIi8+PHBhdGggZD0ibTMzNS42Nzk2ODggNDk5LjMzNTkzOGMxMDIuMzY3MTg3LTMzLjUgMTc2LjMyMDMxMi0xMjkuNzczNDM4IDE3Ni4zMjAzMTItMjQzLjMzNTkzOCAwLTcuNDY0ODQ0LS4zMzk4NDQtMTQuODQ3NjU2LS45NjQ4NDQtMjIuMTQ4NDM4bC0xMTYuNDQxNDA2LTExNi40NDUzMTItOTIuODE2NDA2LTIzLjQ2ODc1LTE4MS4xNjc5NjkgNzQuOTcyNjU2IDUyLjM3ODkwNiA1MS44ODY3MTktNTIuMTMyODEyIDYzLjcxNDg0NHptMCAwIiBmaWxsPSIjZmI4NDU0Ii8+PHBhdGggZD0ibTMwMS43NzM0MzggOTMuOTI5Njg4IDUuNzI2NTYyIDE5LjE5MTQwNi0xODYuODg2NzE5IDU1Ljc4MTI1LTUuNzMwNDY5LTE5LjE5MTQwNnptMCAwIiBmaWxsPSIjMWQ3MWI4Ii8+PHBhdGggZD0ibTIzOS45Njg3NSAxNzAuOTg4MjgxIDExLjk0OTIxOSAxNi4wNzAzMTMtMTMxLjA2NjQwNyA5Ny40NDE0MDYtMTEuOTQ5MjE4LTE2LjA3NDIxOXptMCAwIiBmaWxsPSIjMWQ3MWI4Ii8+PGcgZmlsbD0iIzEzNGE3OSI+PHBhdGggZD0ibTQxOC4wNzQyMTkgMjEwLjIxODc1LTU1Ljc4NTE1NyAxODYuODkwNjI1LTE5LjE4NzUtNS43MzA0NjkgNTUuNzgxMjUtMTg2Ljg4NjcxOHptMCAwIi8+PHBhdGggZD0ibTM0MS4wMTU2MjUgMjcyLjAzNTE1Ni05Ny40Mzc1IDEzMS4wNjY0MDYtMTYuMDc0MjE5LTExLjk0NTMxMiA5Ny40NDE0MDYtMTMxLjA3MDMxMnptMCAwIi8+PHBhdGggZD0ibTM5NC41OTM3NSAxMTcuNDA2MjVjLTMxLjYzNjcxOS0zMS42MzY3MTktODAuMzEyNS0zNS44NDM3NS0xMTYuNDg4MjgxLTEyLjYzMjgxMmwzMS41NTQ2ODcgNTkuODc1LTU5Ljg3NS0zMS41NTQ2ODhjLTIzLjIxMDkzNyAzNi4xNzU3ODEtMTkuMDAzOTA2IDg0Ljg1MTU2MiAxMi42MzI4MTMgMTE2LjQ4ODI4MWw3NS41MjczNDMtNTYuNjQ4NDM3em0wIDAiLz48L2c+PHBhdGggZD0ibTM5NC41OTM3NSAxMTcuNDA2MjVjMzEuNjM2NzE5IDMxLjYzNjcxOSAzNS44NDM3NSA4MC4zMTI1IDEyLjYzMjgxMiAxMTYuNDg4MjgxbC01OS44NzUtMzEuNTU0Njg3IDMxLjU1NDY4OCA1OS44NzVjLTM2LjE3NTc4MSAyMy4yMTA5MzctODQuODUxNTYyIDE5LjAwMzkwNi0xMTYuNDg4MjgxLTEyLjYzMjgxM3ptMCAwIiBmaWxsPSIjMDkyMzM5Ii8+PHBhdGggZD0ibTM0Mi42Njc5NjkgMTY5LjMzMjAzMS02NC41NjI1LTY0LjU2MjVjLTUuNTU4NTk0IDMuNTcwMzEzLTEwLjgyNDIxOSA3Ljc3NzM0NC0xNS42ODc1IDEyLjYzNjcxOS00Ljg1OTM3NSA0Ljg1OTM3NS05LjA2NjQwNyAxMC4xMjg5MDYtMTIuNjMyODEzIDE1LjY4NzVsNjQuNTU4NTk0IDY0LjU1ODU5NCAyMy42MDE1NjItNC43MTg3NXptMCAwIiBmaWxsPSIjZjliMjMzIi8+PHBhdGggZD0ibTQwNy4yMjY1NjIgMjMzLjg5NDUzMS02NC41NTg1OTMtNjQuNTYyNS0yOC4zMjQyMTkgMjguMzI0MjE5IDY0LjU2MjUgNjQuNTU4NTk0YzUuNTU4NTk0LTMuNTY2NDA2IDEwLjgyNDIxOS03Ljc3MzQzOCAxNS42ODc1LTEyLjYzMjgxMyA0Ljg1OTM3NS00Ljg2MzI4MSA5LjA2NjQwNi0xMC4xMjg5MDYgMTIuNjMyODEyLTE1LjY4NzV6bTAgMCIgZmlsbD0iI2ZiODQ1NCIvPjwvc3ZnPg==",
+      "url": "https://www.youtube.com/watch?v=mDFBTdToRmw"
     }
   ],
   "likes": [
@@ -254,6 +137,16 @@
       "user_id": "1",
       "message_id": 103,
       "id": 6
+    },
+    {
+      "user_id": "1",
+      "message_id": 101,
+      "id": 7
+    },
+    {
+      "user_id": "1",
+      "message_id": 105,
+      "id": 8
     }
   ],
   "comments": [
@@ -373,6 +266,23 @@
       "author_id": "1",
       "author_nick": "First_User",
       "phrase": "hello",
+      "sub_comments": [
+        {
+          "id": "7.0",
+          "message_id": 101,
+          "author_id": "1",
+          "author_nick": "First_User",
+          "phrase": "First_User, asdasdasd",
+          "sub_comments": []
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "message_id": 101,
+      "author_id": "1",
+      "author_nick": "First_User",
+      "phrase": "asdasdasd",
       "sub_comments": []
     }
   ]

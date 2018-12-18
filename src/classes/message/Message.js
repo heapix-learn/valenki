@@ -6,4 +6,6 @@ export default class Message {
 	reposted = 0;
 	chip = [];
 	created = {};
+	picture = '';
+	url = '';
 }
