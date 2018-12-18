@@ -28,14 +28,11 @@
   ],
   "messages": [
     {
-      "id": 101,
-      "author_id": 1,
-      "author_nick": "First_User",
-      "phrase": "Слово «apple» (яблоко) смягчало серьёзное «компьютер».",
-      "liked": 6,
-      "disliked": 5,
-      "reposted": 2,
-      "chip": [
+      "id": 1,
+      "userId": 1,
+      "userNickname": "First_User",
+      "body": "Слово «apple» (яблоко) смягчало серьёзное «компьютер».",
+      "tags": [
         "Apple",
         "Story",
         "Jobs"
@@ -43,261 +40,61 @@
       "created": "28.11.18"
     },
     {
-      "id": 102,
-      "author_id": 1,
-      "author_nick": "First_User",
-      "phrase": "Yarn global is a prefix used for a number of commands like ",
-      "liked": 5,
-      "disliked": 6,
-      "reposted": 2,
-      "chip": [
-        "Yarn",
-        "global",
+      "id": 2,
+      "userId": 1,
+      "userNickname": "First_User",
+      "body": "Слово «apple» (яблоко) смягчало серьёзное «компьютер».",
+      "tags": [
         "Apple",
-        "check"
+        "Story",
+        "Jobs"
       ],
-      "created": "29.11.18"
+      "created": "28.11.18"
     },
     {
-      "id": 103,
-      "author_id": 2,
-      "author_nick": "second_user",
-      "phrase": "Their normal versions except that they use a global directory ",
-      "liked": 0,
-      "disliked": 8,
-      "reposted": 2,
-      "chip": [
-        "link",
-        "import",
-        "outdated"
+      "id": 3,
+      "userId": 2,
+      "userNickname": "First_User",
+      "body": "Слово «apple» (яблоко) смягчало серьёзное «компьютер».",
+      "tags": [
+        "Apple",
+        "Story",
+        "Jobs"
       ],
-      "created": "30.11.18"
+      "created": "28.11.18"
     },
     {
-      "id": 104,
-      "author_id": 1,
-      "author_nick": "First_User",
-      "phrase": "hi! i am the first published message",
-      "liked": 3,
-      "disliked": 1,
-      "reposted": 0,
-      "chip": [],
-      "created": "01.12.18"
-    },
-    {
-      "id": 105,
-      "author_id": "1",
-      "author_nick": "First_User",
-      "phrase": "Hi, i am fine!",
-      "reposted": 0,
-      "chip": [],
-      "created": "07.12.18"
-    },
-    {
-      "id": 106,
-      "author_id": "1",
-      "author_nick": "First_User",
-      "phrase": "ADAsdASDAsd",
-      "reposted": 0,
-      "chip": [],
-      "created": "08.12.18"
-    },
-    {
-      "id": 107,
-      "author_id": "1",
-      "author_nick": "First_User",
-      "phrase": "ADAsdASDAsd",
-      "reposted": 0,
-      "chip": [],
-      "created": "08.12.18"
-    },
-    {
-      "id": 108,
-      "author_id": "1",
-      "author_nick": "First_User",
-      "phrase": "ADAsdASDAsd",
-      "reposted": 0,
-      "chip": [],
-      "created": "08.12.18"
-    },
-    {
-      "id": 109,
-      "author_id": "1",
-      "author_nick": "First_User",
-      "phrase": "ADAsdASDAsd",
-      "reposted": 0,
-      "chip": [],
-      "created": "08.12.18"
-    },
-    {
-      "id": 110,
-      "author_id": "1",
-      "author_nick": "First_User",
-      "phrase": "ADAsdASDAsd",
-      "reposted": 0,
-      "chip": [],
-      "created": "08.12.18"
-    },
-    {
-      "id": 111,
-      "author_id": "1",
-      "author_nick": "First_User",
-      "phrase": "ADAsdASDAsd",
-      "reposted": 0,
-      "chip": [],
-      "created": "08.12.18"
-    },
-    {
-      "id": 112,
-      "author_id": "1",
-      "author_nick": "First_User",
-      "phrase": "New message for testing sort by date)",
-      "reposted": 0,
-      "chip": [],
-      "created": "11.12.18"
-    },
-    {
-      "id": 113,
-      "author_id": "1",
-      "author_nick": "First_User1",
-      "phrase": "adfasdfasdf",
-      "reposted": 0,
-      "chip": [],
-      "created": "12.12.18"
-    },
-    {
-      "id": 114,
-      "author_id": "1",
-      "author_nick": "First_User1",
-      "phrase": "dfgsdfgdfgsdfg",
-      "reposted": 0,
-      "chip": [],
-      "created": "12.12.18"
-    },
-    {
-      "id": 115,
-      "author_id": "1",
-      "author_nick": "First_User1",
-      "phrase": "dfgsdfgdfgsdfggsfdgdfsdfgvx",
-      "reposted": 0,
-      "chip": [],
-      "created": "12.12.18"
-    },
-    {
-      "id": 116,
-      "author_id": "1",
-      "author_nick": "First_User",
-      "phrase": "asdfasdfasdfasdf",
-      "reposted": 0,
-      "chip": [],
-      "created": "13.12.18"
-    },
-    {
-      "id": 117,
-      "author_id": "1",
-      "author_nick": "First_User",
-      "phrase": "allala-lala",
-      "reposted": 0,
-      "chip": [],
-      "created": "17.12.18"
+      "id": 4,
+      "userId": 2,
+      "userNickname": "First_User",
+      "body": "Слово «apple» (яблоко) смягчало серьёзное «компьютер».",
+      "tags": [
+        "Apple",
+        "Story",
+        "Jobs"
+      ],
+      "created": "28.11.18"
     }
   ],
   "likes": [
     {
       "id": 2,
-      "user_id": 2,
-      "message_id": 101
+      "userId": "1",
+      "messageId": 2
     },
     {
-      "id": 5,
-      "user_id": 2,
-      "message_id": 103
-    },
-    {
-      "id": 8,
-      "user_id": "1",
-      "message_id": 103
-    },
-    {
-      "id": 9,
-      "user_id": "1",
-      "message_id": 104
-    },
-    {
-      "id": 7,
-      "user_id": "1",
-      "message_id": 102
-    },
-    {
-      "id": 10,
-      "user_id": "1",
-      "message_id": 101
-    }
-  ],
-  "saved_messages": [
-    {
-      "id": 1,
-      "user_id": 2,
-      "message_id": 101
-    },
-    {
-      "id": 2,
-      "user_id": 3,
-      "message_id": 101
-    },
-    {
-      "user_id": 2,
-      "message_id": 103,
-      "id": 5
-    },
-    {
-      "user_id": "1",
-      "message_id": 103,
-      "id": 6
+      "id": 3,
+      "userId": "1",
+      "messageId": 3
     }
   ],
   "comments": [
     {
-      "phrase": "Hi!",
-      "author_id": "1",
-      "author_nick": "First_User",
-      "message_id": 103,
       "id": 1,
-      "sub_comments": [
-        {
-          "phrase": "First_User, Hello!",
-          "author_id": "1",
-          "author_nick": "First_User",
-          "message_id": 103,
-          "id": 4
-        }
-      ]
-    },
-    {
-      "phrase": "Hi again!",
-      "author_id": "1",
-      "author_nick": "First_User",
-      "message_id": 103,
-      "id": 2,
-      "sub_comments": []
-    },
-    {
-      "phrase": "First_User, Hello, first time!",
-      "author_id": "1",
-      "author_nick": "First_User",
-      "message_id": 103,
-      "commentId": "1",
-      "id": 3,
-      "sub_comments": []
-
-    },
-    {
-      "phrase": "sdfgsdfgsdfg",
-      "author_id": "1",
-      "author_nick": "First_User",
-      "message_id": 103,
-      "id": 4,
-      "sub_comments": []
+      "messageId": 1,
+      "userId": 1,
+      "userNickname": "First_User",
+      "body": "Hello"
     }
-  ]
+  ],
 }

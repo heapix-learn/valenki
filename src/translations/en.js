@@ -20,7 +20,7 @@ export default {
 	},
 	$message: {
 		your_messages: 'Your Messages',
-		saved_messages: 'Saved Messages'
+		favourites: 'Saved Messages'
 	},
 	$comment: {},
 }

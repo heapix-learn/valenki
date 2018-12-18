@@ -10,17 +10,17 @@ export default class MessageRepository {
 	}
 
 	async getAllMessages(page) {
-		const messages = (await axios.get('http://localhost:3000/messages?_page=' + page)).data;
+		const messages = (await axios.get('http://localhost:3000/messages?_embed=likes&_embed=comments&_embed=favourites&?_page=' + page)).data;
 		return messages.map(MessageMapper.map);
 	}
 
 	async getMessagesByUser(id) {
-		const messages = (await axios.get('http://localhost:3000/messages?author_id=' + id)).data;
+		const messages = (await axios.get('http://localhost:3000/messages?userId=' + id)).data;
 		return messages.map(MessageMapper.map);
 	}
 
 	async getMessagesByHashtag(hashtag) {
-		return (await axios.get('http://localhost:3000/messages?chip_like=' + hashtag)).data;
+		return (await axios.get('http://localhost:3000/messages?tags_like=' + hashtag)).data;
 	}
 
 	async getMessageById(id) {
@@ -29,19 +29,19 @@ export default class MessageRepository {
 	}
 
 	async getSaved(id) {
-		return (await axios.get('http://localhost:3000/saved_messages?message_id=' + id)).data;
+		return (await axios.get('http://localhost:3000/favourites?messageId=' + id)).data;
 	}
 
 	async getSavedMessages(id) {
-		return (await axios.get('http://localhost:3000/saved_messages?user_id=' + id)).data;
+		return (await axios.get('http://localhost:3000/favourites?user_id=' + id)).data;
 	}
 
-	async savePost(repost) {
-		await (axios.post('http://localhost:3000/saved_messages', repost))
+	async savePost(message) {
+		await (axios.post('http://localhost:3000/favourites', message))
 	}
 
 	async deleteSavedPost(id) {
-		await (axios.delete(`http://localhost:3000/saved_messages/${id}`))
+		await (axios.delete(`http://localhost:3000/favourites/${id}`))
 	}
 
 }

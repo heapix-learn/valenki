@@ -20,7 +20,7 @@ export default {
 	},
 	$message: {
 		your_messages: 'Ваши сообщения',
-		saved_messages: 'Сохраненные сообщения'
+		favourites: 'Сохраненные сообщения'
 	},
 	$comment: {},
 }

@@ -10,7 +10,7 @@
 			background-color="blue"
 			validate-on-blur
 			label="Write your message there:"
-			v-model="message.phrase"
+			v-model="message.body"
 		></v-textarea>
 
 		<div class="new-message__buttons">
@@ -65,10 +65,10 @@
 
 		methods: {
 			checkFields() {
-				this.message.author_id = localStorage.getItem('id');
-				this.message.author_nick = localStorage.getItem('nick');
+				this.message.userId = localStorage.getItem('id');
+				this.message.userNickname = localStorage.getItem('nick');
 				this.message.created = this.getDate();
-				if (this.message.phrase.length && this.message.author_id) {
+				if (this.message.body.length && this.message.userId) {
 					this.createMessage()
 				} else {
 					console.log('Вы ничего не написали =(')

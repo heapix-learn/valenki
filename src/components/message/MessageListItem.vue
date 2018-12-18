@@ -1,370 +1,377 @@
 <template>
-	<div>
-		<v-layout class="message-item">
-			<v-flex xs12 sm6 offset-sm3>
-				<v-card>
-					<div class="message-item__info">
-						<div class="message-item__info__avatar">
-							<router-link
-								:to="{name: 'user-messages', params: {nick_name: message.author_nick, user_id: message.author_id}}">
-								<div style="width: 50px;">
-									<img :src="user.avatar"/>
-								</div>
-							</router-link>
-						</div>
-						<div class="message-item__info__title">
-							<div class="message-item__info__title__nickname">
-								<router-link
-									:to="{name: 'user-messages', params: {nick_name: message.author_nick, user_id: message.author_id}}">
-									{{user.nick_name}}
-								</router-link>
-							</div>
-							<div class="message-item__content-group__date">
-								posted: {{message.created}}
-							</div>
-						</div>
-					</div>
-					<div>
+  <div>
+    <v-layout class="message-item">
+      <v-flex xs12 sm6 offset-sm3>
+        <v-card>
+          <div class="message-item__info">
+            <div class="message-item__info__avatar">
+              <router-link
+                :to="{name: 'user-messages', params: {nick_name: message.userNickname, user_id: message.userId}}">
+                <div style="width: 50px;">
+                  <img :src="user.avatar"/>
+                </div>
+              </router-link>
+            </div>
+            <div class="message-item__info__title">
+              <div class="message-item__info__title__nickname">
+                <router-link
+                  :to="{name: 'user-messages', params: {nick_name: message.userNickname, user_id: message.userId}}">
+                  {{user.nick_name}}
+                </router-link>
+              </div>
+              <div class="message-item__content-group__date">
+                posted: {{message.created}}
+              </div>
+            </div>
+          </div>
+          <div>
 
-						<div
-							class="message-item__content-group__delete"
-							v-if="this.$route.path.includes('profile')">
-							<i class="material-icons small" @click="deletePost()">
-								add_circle
-							</i>
-						</div>
+            <div
+              class="message-item__content-group__delete"
+              v-if="this.$route.path.includes('profile')">
+              <i class="material-icons small" @click="deletePost()">
+                add_circle
+              </i>
+            </div>
 
-						<div class="message-item__content-group">
-							<div class="message-item__content-group__text">
-								{{message.phrase}}
-							</div>
-							<div class="message-item__content-group__hashtag-group">
-								<img
-									src="../../assets/hashtag.png"
-									height="18"
-									width="18"
-									v-if="message.chip.length"
-									class="message-item__content-group__hashtag-group__image"/>
-								<div
-									v-for="(hashtag, index) in message.chip" :key="index"
-									class="message-item__content-group__hashtag-group__hashtag"
-								>
-									<router-link
-										:to="{name: 'hashtag-messages', params: {hashtag: hashtag}}">
-										#{{hashtag}}
-									</router-link>
-								</div>
-							</div>
-						</div>
-					</div>
+            <div class="message-item__content-group">
+              <div class="message-item__content-group__text">
+                {{message.body}}
+              </div>
+              <div class="message-item__content-group__hashtag-group">
+                <img
+                  src="../../assets/hashtag.png"
+                  height="18"
+                  width="18"
+                  v-if="message.tags.length"
+                  class="message-item__content-group__hashtag-group__image"/>
+                <div
+                  v-for="(hashtag, index) in message.tags" :key="index"
+                  class="message-item__content-group__hashtag-group__hashtag"
+                >
+                  <router-link
+                    :to="{name: 'hashtag-messages', params: {hashtag: hashtag}}">
+                    #{{hashtag}}
+                  </router-link>
+                </div>
+              </div>
+            </div>
+          </div>
 
-					<div class="message-item__button-group">
-						<v-btn
-							class="message-item__button-group__button"
-							@click="saveThisPost()"
-							:flat="true"
-							fab
-							small
-							:style="{ color: saved ? 'orange' : 'lightgrey' }"
-						>
-							{{saved_messages.length}}&nbsp;
-							<i class="material-icons">
-								stars
-							</i>
-						</v-btn>
-						<v-btn
-							class="message-item__button-group__button"
-							@click="openComments(message.id)"
-							:flat="true"
-							fab
-							small
-							color="#00887A"
-						>
-							{{comments.length}}
-							<i class="material-icons">
-								chat
-							</i>
-						</v-btn>
-						<v-btn
-							class="message-item__button-group__button"
-							@click="likePost()"
-							:flat="true"
-							fab
-							small
-							:style="{ color: liked ? '#FFCCBC' : 'lightgrey' }"
-						>
-							{{likes.length}}&nbsp;
-							<i class="material-icons">
-								thumb_up_alt
-							</i>
-						</v-btn>
-					</div>
-					<CommentList
-						:comments="comments"
-						:message_id="message.id"
-						v-if="readComments"
-						@refresh="getComments(message.id)"
-					/>
-				</v-card>
-			</v-flex>
-		</v-layout>
-	</div>
+          <div class="message-item__button-group">
+            <v-btn
+              class="message-item__button-group__button"
+              @click="addTofavourite()"
+              :flat="true"
+              fab
+              small
+              :style="{ color: favourite.added ? 'orange' : 'lightgrey' }"
+            >
+              {{favouriteCounter}}&nbsp;
+              <i class="material-icons">
+                stars
+              </i>
+            </v-btn>
+            <v-btn
+              class="message-item__button-group__button"
+              @click="openComments(message.id)"
+              :flat="true"
+              fab
+              small
+              color="#00887A"
+            >
+              {{commentsLength}}
+              <i class="material-icons">
+                chat
+              </i>
+            </v-btn>
+            <v-btn
+              class="message-item__button-group__button"
+              @click="likePost()"
+              :flat="true"
+              fab
+              small
+              :style="{ color: like.liked ? '#FFCCBC' : 'lightgrey' }"
+            >
+              {{like.quantity}}&nbsp;
+              <i class="material-icons">
+                thumb_up_alt
+              </i>
+            </v-btn>
+          </div>
+          <CommentList
+            :comments="comments"
+            :messageId="message.id"
+            v-if="readComments"
+            @refresh="getComments(message.id)"
+          />
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </div>
 </template>
 
 <script>
-	import User from '../../classes/user/User';
-	import Like from '../../classes/like/Like.js';
-	import CommentList from './comments/CommentList.vue';
-	import LikeRepository from "../../classes/like/LikeRepository";
-	import UserRepository from "../../classes/user/UserRepository";
-	import MessageRepository from '../../classes/message/MessageRepository.js';
-	import CommentRepository from '../../classes/comment/CommentRepository.js';
+import User from '../../classes/user/User'
+import Like from '../../classes/like/Like.js'
+import CommentList from './comments/CommentList.vue'
+import LikeRepository from '../../classes/like/LikeRepository'
+import UserRepository from '../../classes/user/UserRepository'
+import MessageRepository from '../../classes/message/MessageRepository.js'
+import CommentRepository from '../../classes/comment/CommentRepository.js'
 
-	export default {
-		name: "MessageListItem",
-		components: {
-			CommentList,
-		},
-		data() {
-			return {
-				readComments: false,
-				messages: [],
-				comments: [],
-				user: {
-					type: User,
-					required: true
-				},
-				saved: false,
-				saved_messages: [],
-				saved_id: null,
-				liked: false,
-				likes: [],
-				like_id: null,
-				savePost: {
-					id: null,
-					user_id: null,
-					message_id: null
-				}
-			}
-		},
-		props: {
-			message: {
-				type: Object,
-				required: true
-			}
-		},
-		created() {
-			this.getUser()
-			this.getComments()
-			this.getLikes()
-			this.getSaved()
-		},
-		// watch: {
-		// 	message: function () {
-		// 		this.getComments()
-		// 		this.getLikes()
-		// 	}
-		// },
-		computed: {
-			imgPath() {
-				return require('../../assets/' + this.message.author_id + '.png')
-			}
-		},
-		methods: {
-			async openComments(id) {
-				this.readComments = (this.readComments) ? false : true
-				if (this.readComments) {
-					await this.getComments(id);
-				}
-			},
-			async getComments() {
-				const commentRepository = new CommentRepository();
-				this.comments = await (commentRepository.getComments(this.message.id));
-			},
-			async getLikes() {
-				const likeRepository = new LikeRepository();
-				const user_id = localStorage.getItem('id');
-				this.likes = await likeRepository.getLikes(this.message.id);
-				let Like_id = this.like_id;
-				this.likes.forEach((item) => {
-					if (Number(item.user_id) == Number(user_id)) {
-						Like_id = item.id;
-						this.liked = true;
-					}
-				});
-				this.like_id = Like_id
-			},
-			async getUser() {
-				const id = this.message.author_id;
-				const userRepository = new UserRepository();
-				this.user = await (userRepository.getUserById(id))
-			},
-			async likePost() {
-				const like = new Like;
-				like.message_id = this.message.id;
-				like.user_id = localStorage.getItem('id');
-				like.id = this.like_id;
-				const likeRepository = new LikeRepository();
-				if (!this.liked) {
-					await likeRepository.likePost(like);
-					await this.getLikes();
-					this.liked = true;
-				} else {
-					await likeRepository.unlikePost(like.id);
-					await this.getLikes();
-					this.liked = false;
-				}
-			},
-			async getSaved() {
-				const messageRepository = new MessageRepository();
-				const user_id = localStorage.getItem('id');
-				this.saved_messages = await messageRepository.getSaved(this.message.id);
-				let Saved_id = this.saved_id;
-				this.saved_messages.forEach((item) => {
-					if (Number(item.user_id) === Number(user_id)) {
-						Saved_id = item.id;
-						this.saved = true;
-					}
-				});
-				this.saved_id = Saved_id
-			},
-			async saveThisPost() {
-				let repost = {
-					user_id: 0,
-					message_id: 0
-				};
-				repost.id = this.saved_id;
-				repost.user_id = localStorage.getItem('id');
-				repost.message_id = this.message.id;
-				const messageRepository = new MessageRepository();
-				if (!this.saved) {
-					await messageRepository.savePost(repost);
-					await this.getSaved();
-					this.saved = true;
-				} else {
-					await messageRepository.deleteSavedPost(repost.id);
-					await this.getSaved();
-					this.saved = false;
-				}
-			},
-			deletePost() {
+export default {
+  name: 'MessageListItem',
+  components: {
+    CommentList,
+  },
+  data () {
+    return {
+      readComments: false,
+      messages: {
+        type: Array,
+      },
+      comments: {
+        type: Array,
+      },
+      user: {
+        type: User,
+        required: true,
+      },
+      favourite: {
+        id: null,
+        added: false,
+      },
+      like: {
+        id: null,
+        liked: false,
+        quantity: this.message.likes.length,
+      },
+      favourite_id: null,
+    }
+  },
+  props: {
+    message: {
+      type: Object,
+      required: true,
+    },
+  },
+  created () {
+    this.getUser()
+    this.setLikeState()
+    this.setFavouriteState()
+  },
+  computed: {
+    imgPath () {
+      return require('../../assets/' + this.message.userId + '.png')
+    },
+    commentsLength () {
+      return this.message.comments.length ? this.message.comments.length : 0
+    },
+    favouriteCounter () {
+      return this.message.favourite.length
+    },
+  },
+  methods: {
+    setLikeState () {
+      const userId = localStorage.getItem('id')
+      const isLiked = this.message.likes.filter(item => item.userId === userId)
+      if (isLiked.length !== 0) {
+        this.like.id = isLiked[0].id
+        this.like.liked = true
+      }
+    },
+    setFavouriteState () {
+      const userId = localStorage.getItem('id')
+      const isFavourite = this.message.favourite.filter(item => item.userId === userId)
+      if (isFavourite.length !== 0) {
+        this.favourite.id = isFavourite[0].id
+        this.favourite.added = true
+      }
+    },
+    isSavedMessage () {
+      const userId = localStorage.getItem('id')
+      const favourite = this.message.favourite.filter(item => item.userId === userId)
+      return favourite.length ? true : false
+    },
+    async openComments (id) {
+      this.readComments = (this.readComments) ? false : true
+      if (this.readComments) {
+        await this.getComments(id)
+      }
+    },
+    async getComments () {
+      const commentRepository = new CommentRepository()
+      this.comments = await (commentRepository.getComments(this.message.id))
+    },
+    async getUser () {
+      const id = this.message.userId
+      const userRepository = new UserRepository()
+      this.user = await (userRepository.getUserById(id))
+    },
+    async likePost () {
+      const like = new Like
+      like.messageId = this.message.id
+      like.userId = localStorage.getItem('id')
+      const likeRepository = new LikeRepository()
+      if (!this.like.liked) {
+        const id = await likeRepository.likePost(like)
+        this.like.id = id
+        this.like.liked = true
+        this.like.quantity++
+      } else {
+        await likeRepository.unlikePost(this.like.id)
+        this.like.liked = false
+        this.like.quantity--
+      }
+    },
+    async getSaved () {
+      const messageRepository = new MessageRepository()
+      const userId = localStorage.getItem('id')
+      this.favourite = await messageRepository.getSaved(this.message.id)
+      let Saved_id = this.favourite_id
+      this.favourite.forEach((item) => {
+        if (Number(item.userId) === Number(userId)) {
+          Saved_id = item.id
+          this.favourite = true
+        }
+      })
+      this.favourite_id = Saved_id
+    },
+    async addTofavourite () {
+      let message = {}
+      // message.id = this.favourite_id
+      message.userId = localStorage.getItem('id')
+      message.messageId = this.message.id
+      const messageRepository = new MessageRepository()
+      if (!this.favourite) {
+        await messageRepository.savePost(message)
+        await this.getSaved()
+        this.favourite = true
+      } else {
+        await messageRepository.deleteSavedPost(message.id)
+        await this.getSaved()
+        this.favourite = false
+      }
+    },
+    deletePost () {
 
-			}
-		}
-	}
+    },
+  },
+}
 
 </script>
 
 <style lang="scss">
 
-	.message-item {
-		padding-top: 15px;
+.message-item {
+  padding-top: 15px;
 
-		&__info {
-			display: flex;
-			align-items: center;
-			height: 35px;
-			background: aliceblue;
+  &__info {
+    display: flex;
+    align-items: center;
+    height: 35px;
+    background: aliceblue;
 
-			&__avatar {
-				margin-left: 10px;
-			}
+    &__avatar {
+      margin-left: 10px;
+    }
 
-			&__title {
-				width: 100%;
-				margin-right: 10px;
-				display: flex;
-				justify-content: space-between;
-				padding: 10px 5px 10px 10px;
-				align-items: baseline;
+    &__title {
+      width: 100%;
+      margin-right: 10px;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 5px 10px 10px;
+      align-items: baseline;
 
-				&__nickname:hover {
-					cursor: pointer;
-					color: cornflowerblue;
-				}
+      &__nickname:hover {
+        cursor: pointer;
+        color: cornflowerblue;
+      }
 
-				&__liked {
-					font-weight: 600;
-				}
-			}
-		}
+      &__liked {
+        font-weight: 600;
+      }
+    }
+  }
 
-		&__content-group {
-			padding: 0 20px;
-			flex-direction: column;
+  &__content-group {
+    padding: 0 20px;
+    flex-direction: column;
 
-			&__delete {
-				transform: rotate(45deg);
-				color: indianred;
-				position: absolute;
-				top: -13px;
-				right: 4px;
-			}
+    &__delete {
+      transform: rotate(45deg);
+      color: indianred;
+      position: absolute;
+      top: -13px;
+      right: 4px;
+    }
 
-			&__text {
-				text-align: left;
-				padding-top: 5px;
-			}
+    &__text {
+      text-align: left;
+      padding-top: 5px;
+    }
 
-			&__hashtag-group {
-				display: flex;
-				padding: 5px 10px 0 5px !important;
+    &__hashtag-group {
+      display: flex;
+      padding: 5px 10px 0 5px !important;
 
-				&__image {
-					margin-right: 10px;
-				}
+      &__image {
+        margin-right: 10px;
+      }
 
-				&__hashtag {
-					font-size: smaller;
-					padding-right: 10px;
+      &__hashtag {
+        font-size: smaller;
+        padding-right: 10px;
 
-					a {
-						color: #00887A !important;
-					}
-				}
+        a {
+          color: #00887A !important;
+        }
+      }
 
-				&__hashtag:hover {
-					cursor: pointer;
+      &__hashtag:hover {
+        cursor: pointer;
 
-					a {
-						color: darkblue !important;
-					}
-				}
-			}
+        a {
+          color: darkblue !important;
+        }
+      }
+    }
 
-			&__date {
-				color: #616161;
-				font-size: smaller;
-				text-align: right;
-			}
-		}
+    &__date {
+      color: #616161;
+      font-size: smaller;
+      text-align: right;
+    }
+  }
 
-		&__button-group {
-			padding: 0 10px;
-			display: flex;
-			justify-content: space-between;
+  &__button-group {
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
 
-			&__button {
-				margin: 0 !important;
-			}
-		}
+    &__button {
+      margin: 0 !important;
+    }
+  }
 
-		&__buttons {
-			padding: 0 !important;
-			display: flex;
-			flex-direction: column;
+  &__buttons {
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
 
-			&__button {
-			}
-		}
-	}
+    &__button {
+    }
+  }
+}
 
-	.v-card__title .message-item__content-group {
-		text-align: left;
-		padding: 0;
-	}
+.v-card__title .message-item__content-group {
+  text-align: left;
+  padding: 0;
+}
 
-	.message-item__buttons__button {
-		min-width: unset;
-	}
+.message-item__buttons__button {
+  min-width: unset;
+}
 </style>

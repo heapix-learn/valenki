@@ -10,7 +10,7 @@
 		</div>
 		<CommentCreateForm
 			:replyedComment="replyedComment"
-			:message_id="message_id"
+			:messageId="messageId"
 			@refresh="refresh()"
 		/>
 	</div>
@@ -45,7 +45,7 @@
 				type: Array,
 				required: true
 			},
-			message_id: Number,
+			messageId: Number,
 		}
 	}
 </script>

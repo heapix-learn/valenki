@@ -1,9 +1,13 @@
+import User from '../user/User'
+
 export default class Message {
 	id = null;
-	author_id = null;
-	author_nick = "";
-	phrase = "";
-	reposted = 0;
-	chip = [];
+	user = User;
+	userNickname = "";
+	body = "";
+	likes = [];
+	comments = [];
+	favourite = false
+	tags = [];
 	created = {};
 }

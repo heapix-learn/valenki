@@ -80,7 +80,7 @@
 					:key="2"
 					ripple
 				>
-					{{ $t('$message.saved_messages') }} {{messagesSaved.length}}
+					{{ $t('$message.favourites') }} {{messagesSaved.length}}
 				</v-tab>
 				<v-tab-item
 					:key="1"
@@ -178,7 +178,7 @@
 					const messageRepository = new MessageRepository();
 					messagesSavedIndex = await (messageRepository.getSavedMessages(this.userId))
 					messagesSavedIndex.forEach(async (item) => {
-						let message = await (messageRepository.getMessageById(item.message_id))
+						let message = await (messageRepository.getMessageById(item.messageId))
 						this.messagesSaved.push(message)
 					});
 				}

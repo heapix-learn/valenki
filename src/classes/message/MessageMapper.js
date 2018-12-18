@@ -3,17 +3,17 @@ import Message from './Message';
 
 export default class MessageMapper {
 	static map({
-							 id, author_id, author_nick, phrase, liked, disliked, reposted, chip, created
+							 id, userId, userNickname, body, tags, likes, favourites, comments, created
 						 }) {
 		const message = new Message()
 		message.id = id,
-			message.author_id = author_id,
-			message.author_nick = author_nick,
-			message.phrase = phrase,
-			message.liked = liked,
-			message.disliked = disliked,
-			message.reposted = reposted,
-			message.chip = chip;
+			message.userId = userId,
+			message.userNickname = userNickname,
+			message.body = body,
+			message.likes = likes,
+			message.favourites = favourites,
+			message.comments = comments,
+			message.tags = tags;
 			message.created = created;
 		return message
 	}

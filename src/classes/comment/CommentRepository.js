@@ -6,7 +6,7 @@ axios.defaults.headers.common['authorization'] = localStorage.getItem('token');
 export default class CommentRepository {
 
 	async getComments(id) {
-		const comments = (await axios.get("http://localhost:3000/comments?message_id=" + id)).data;
+		const comments = (await axios.get("http://localhost:3000/comments?messageId=" + id)).data;
 		return comments.map(CommentMapper.map);
 	}
 
