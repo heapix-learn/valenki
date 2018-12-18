@@ -19,12 +19,14 @@
 <script>
 	import CommentListItem from './CommentListItem'
 	import CommentCreateForm from './CommentCreateForm'
+	import Comment from '../../../classes/comment/Comment'
+	import CommentMapper from '../../../classes/comment/CommentMapper'
 
 	export default {
 		name: "CommentList",
 		data() {
 			return {
-				replyedComment: {}
+				replyedComment: new Comment
 			}
 		},
 		components: {
@@ -33,10 +35,14 @@
 		},
 		methods: {
 			reply(replyedComment) {
-				this.replyedComment = replyedComment
+				for (let key in replyedComment) {
+					this.replyedComment[key] = replyedComment[key]
+				}
+				this.replyedComment = CommentMapper.map(this.replyedComment);
+				// console.log('replyedComment', this.replyedComment)
 			},
-			refresh () {
-				this.replyedUser = ''
+			refresh() {
+				this.replyedComment = new Comment
 				this.$emit('refresh')
 			}
 		},

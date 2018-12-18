@@ -1,16 +1,15 @@
 <template>
 	<div class="create-comments__add-comments">
-
 		<div class="create-comments__avatar">
 			<i class="material-icons">
 				sentiment_satisfied_alt
 			</i>
 		</div>
 		<v-text-field
-			type="email"
+			type="text"
 			required
-			v-model="comment.phrase"
-			:prefix="replyedComment.nick"
+			v-model="phrase"
+			:prefix="replyedComment.author_nick"
 		/>
 		<v-btn :flat="true" color="blue" @click="addComment()">
 			<i class="material-icons">
@@ -21,46 +20,46 @@
 </template>
 
 <script>
-	import Comment from '../../../classes/comment/Comment.js'
+	import Comment from '../../../classes/comment/Comment'
 	import CommentRepository from '../../../classes/comment/CommentRepository.js'
 
 	export default {
-		name: "NewCommentForm",
+		name: "CommentCreateForm",
 		components: {},
 		data() {
 			return {
-				comment: {type: Comment},
+				comment: new Comment,
+				phrase: ''
 			}
 		},
 		props: {
 			message_id: Number,
-			replyedComment: Object
+			replyedComment: {
+				type: Comment //i send "type: Comment" from "Comment-list", but receiving "type: Object"
+			}
 		},
 		methods: {
 			async addComment() {
+
 				let replyed_comment = {}
 				for (let key in this.replyedComment) {
 					replyed_comment[key] = this.replyedComment[key]
 				}
+				this.comment.phrase = this.phrase
 				this.comment.author_id = localStorage.getItem('id');
 				this.comment.author_nick = localStorage.getItem('nick');
 				this.comment.message_id = this.message_id;
-				// const commentRepository = new CommentRepository();
-				console.log('before-before', this.replyedComment)
-				if (replyed_comment.author_nick) {
-					this.comment.phrase = replyed_comment.author_nick + ', ' + this.comment.phrase;
-					console.log('before', replyed_comment, 'phrase', this.comment.phrase)
-					console.log('this.comm', this.comment.phrase)
+				const commentRepository = new CommentRepository();
+				if (this.replyedComment.author_nick) {
+					this.comment.phrase = this.replyedComment.author_nick + ', ' + this.comment.phrase;
+					this.comment.id = this.replyedComment.id + '.' + this.replyedComment.sub_comments.length
 					replyed_comment.sub_comments.push(this.comment)
-					console.log('after', replyed_comment)
-					// await commentRepository.addSubComment(this.replyedComment.comment_id, this.comment);
+					await commentRepository.addSubComment(replyed_comment.id, replyed_comment);
 				} else {
-					console.log(this.replyedComment)
-
-					// await commentRepository.addComment(this.comment);
+					await commentRepository.addComment(this.comment);
 				}
-				this.comment.phrase = '';
-				this.$emit('refresh');
+				await this.$emit('refresh');
+				this.phrase = '';
 			}
 		}
 	}

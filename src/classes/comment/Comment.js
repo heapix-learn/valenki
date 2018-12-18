@@ -3,6 +3,6 @@ export default class Comment {
 	message_id = null;
 	author_id = null;
 	author_nick = "";
-	phrase = "";
+	phrase = String;
 	sub_comments = []
 }

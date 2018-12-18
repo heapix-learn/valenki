@@ -42,27 +42,6 @@ function findUser({email, password}) {
 	return userdb.users.find(user => user.email === email && user.password === password)
 }
 
-function likeMessage(id, count) {
-	const messagedb = JSON.parse(fs.readFileSync('db.json', 'UTF-8'))
-	const LikedMessage = messagedb.messages.find(message => message.id === id)
-	LikedMessage.liked += count;
-	messagedb.messages[messagedb.messages.findIndex(message => message.id === id)] = LikedMessage;
-	db.set('messages', messagedb.messages)
-		.write()
-	return LikedMessage.liked;
-}
-
-function dislikeMessage(id, count) {
-	const messagedb = JSON.parse(fs.readFileSync('db.json', 'UTF-8'))
-	const disLikedMessage = messagedb.messages.find(message => message.id === id)
-	disLikedMessage.disliked += count;
-	messagedb.messages[messagedb.messages.findIndex(message => message.id === id)] = disLikedMessage;
-	db.set('messages', messagedb.messages)
-		.write()
-	return disLikedMessage.disliked;
-
-}
-
 server.post('/auth/login', (req, res) => {
 	const email = req.body.email
 	console.log(email)
