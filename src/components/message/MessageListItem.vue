@@ -79,7 +79,7 @@
               small
               color="#00887A"
             >
-              {{commentsLength}}
+              {{comments.length}}
               <i class="material-icons">
                 chat
               </i>
@@ -115,7 +115,7 @@ import User from '../../classes/user/User'
 import Like from '../../classes/like/Like.js'
 import CommentList from './comments/CommentList.vue'
 import LikeRepository from '../../classes/like/LikeRepository'
-import UserRepository from '../../classes/user/UserRepository'
+// import UserRepository from '../../classes/user/UserRepository'
 import MessageRepository from '../../classes/message/MessageRepository.js'
 import CommentRepository from '../../classes/comment/CommentRepository.js'
 import Message from '../../classes/message/Message'
@@ -156,38 +156,39 @@ export default {
   },
   created () {
     // this.getUser()
-    console.log('this.message', this.message)
+    // console.log('this.message', this.message)
     this.setLikeState()
     this.setFavouriteState()
+    this.setCommentsState()
   },
   computed: {
     imgPath () {
       return require('../../assets/' + this.message.userId + '.png')
     },
-    commentsLength () {
-      return this.message.comments.length ? this.message.comments.length : 0
-    },
+
   },
   methods: {
     setLikeState () {
-      const userId = localStorage.getItem('id')
+      const userId = Number(localStorage.getItem('id'))
       const isLiked = this.message.likes.filter(item => item.userId === userId)
       if (isLiked.length !== 0) {
         this.like.id = isLiked[0].id
         this.like.liked = true
       }
     },
+    setCommentsState () {
+      this.comments = this.message.comments
+    },
     setFavouriteState () {
-      const userId = localStorage.getItem('id')
+      const userId = Number(localStorage.getItem('id'))
       const isFeatured = this.message.featured.filter(item => item.userId === userId)
-      console.log('isFeatured', isFeatured)
       if (isFeatured.length !== 0) {
         this.featured.id = isFeatured[0].id
         this.featured.added = true
       }
     },
     isSavedMessage () {
-      const userId = localStorage.getItem('id')
+      const userId = Number(localStorage.getItem('id'))
       const featured = this.message.featured.filter(item => item.userId === userId)
       return featured.length ? true : false
     },
@@ -209,7 +210,7 @@ export default {
     async likePost () {
       const like = new Like
       like.messageId = this.message.id
-      like.userId = localStorage.getItem('id')
+      like.userId = Number(localStorage.getItem('id'))
       const likeRepository = new LikeRepository()
       if (!this.like.liked) {
         const id = await likeRepository.likePost(like)
@@ -224,7 +225,7 @@ export default {
     },
     async getSaved () {
       const messageRepository = new MessageRepository()
-      const userId = localStorage.getItem('id')
+      const userId = Number(localStorage.getItem('id'))
       this.featured = await messageRepository.getSaved(this.message.id)
       let Saved_id = this.featured_id
       this.featured.forEach((item) => {
@@ -238,7 +239,7 @@ export default {
     async addToFeatured () {
       let message = {}
       // message.id = this.featured_id
-      message.userId = localStorage.getItem('id')
+      message.userId = Number(localStorage.getItem('id'))
       message.messageId = this.message.id
       const messageRepository = new MessageRepository()
       if (!this.featured.added) {

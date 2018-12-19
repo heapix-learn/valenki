@@ -22,31 +22,33 @@
 				</v-toolbar-side-icon>
 				<v-list class="link">
 
-					<v-list-tile v-if="userNick">
+					<v-list-tile v-if="provideNick.name">
 						<router-link :to="{name: 'find-user'}" class="link">
 							<span>{{ $t('$general.fund_user') }}</span>
 						</router-link>
 					</v-list-tile>
 
-					<v-list-tile v-if="!userNick">
+					<v-list-tile v-if="!provideNick.name">
 						<router-link :to="{name: 'login-page'}" class="link">
 							<span>{{ $t('$general.login') }}</span>
 						</router-link>
 					</v-list-tile>
 
-					<v-list-tile v-if="!userNick">
+					<v-list-tile v-if="!provideNick.name">
 						<router-link :to="{name: 'register-page'}" class="link">
 							<span>{{ $t('$general.register') }}</span>
 						</router-link>
 					</v-list-tile>
 
-					<v-list-tile v-if="userNick">
-						<router-link :to="{name: 'user-profile', params: {nick_name: userNick, user_id: id}}" class="link">
+					<v-list-tile v-if="provideNick.name">
+						<router-link
+							:to="{name: 'user-profile', params: {nick_name: provideNick.name, user_id: id}}"
+							class="link">
 							<span>{{ $t('$general.personal') }}</span>
 						</router-link>
 					</v-list-tile>
 
-					<v-list-tile @click="logOut()" v-if="userNick">
+					<v-list-tile @click="logOut()" v-if="provideNick.name">
 						{{ $t('$general.logout') }}
 					</v-list-tile>
 				</v-list>
@@ -57,14 +59,13 @@
 </template>
 
 <script>
-	import UserRepository from "../../classes/user/UserRepository";
 
 	export default {
 		name: "BaseHeader",
 		data() {
 			return {
 				id: 0
-		}
+			}
 		},
 		methods: {
 			logOut() {
@@ -72,39 +73,24 @@
 				localStorage.removeItem('nick');
 				localStorage.removeItem('id');
 				window.location.href = "/"
-			},
-			getId() {
-				this.id = localStorage.getItem('id');
 			}
 		},
-		inject: ['provideNick'],
-		computed: {
-			userNick() {
-				if (localStorage.getItem('nick')) {
-					const userRepository = new UserRepository();
-					if (userRepository.checkLogin()) {
-						this.getId();
-						return localStorage.getItem('nick')
-					} else {
-						this.logOut();
-						return false
-					}
-				}
-			}
-		}
+		inject: ['provideNick']
 	}
 
 </script>
 
 <style lang="scss">
 	@import "../../scss/global";
-.base-header {
 
-	&__logo {
-		margin-top: 5px;
-	}
-	.v-toolbar {
+	.base-header {
 
+		&__logo {
+			margin-top: 5px;
+		}
+
+		.v-toolbar {
+
+		}
 	}
-}
 </style>

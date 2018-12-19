@@ -8,6 +8,7 @@
 				@refresh="refresh()"
 			/>
 		</div>
+
 		<CommentCreateForm
 			:replyedComment="replyedComment"
 			:messageId="messageId"
@@ -20,7 +21,7 @@
 	import CommentListItem from './CommentListItem'
 	import CommentCreateForm from './CommentCreateForm'
 	import Comment from '../../../classes/comment/Comment'
-	import CommentMapper from '../../../classes/comment/CommentMapper'
+	// import CommentMapper from '../../../classes/comment/CommentMapper'
 
 	export default {
 		name: "CommentList",
@@ -29,29 +30,29 @@
 				replyedComment: new Comment
 			}
 		},
+		props: {
+			comments: {
+				type: Array,
+			},
+			messageId: Number,
+		},
 		components: {
 			CommentListItem,
 			CommentCreateForm
+		},
+		created() {
+			console.log('from list', this.comments)
 		},
 		methods: {
 			reply(replyedComment) {
 				for (let key in replyedComment) {
 					this.replyedComment[key] = replyedComment[key]
 				}
-				this.replyedComment = CommentMapper.map(this.replyedComment);
-				// console.log('replyedComment', this.replyedComment)
 			},
 			refresh() {
 				this.replyedComment = new Comment
 				this.$emit('refresh')
 			}
-		},
-		props: {
-			comments: {
-				type: Array,
-				required: true
-			},
-			messageId: Number,
 		}
 	}
 </script>

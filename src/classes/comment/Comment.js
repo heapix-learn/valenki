@@ -1,7 +1,8 @@
 export default class Comment {
 	id = null;
 	messageId = null;
-	userId = null;
+	userId = Number;
 	userNickname = "";
 	body = "";
+	replies = [];
 }

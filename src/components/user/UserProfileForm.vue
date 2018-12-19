@@ -156,7 +156,7 @@
 					this.userId = (await userRepository.findUsers(this.$route.params.nick_name))[0].id;
 					console.log('2', this.userId)
 				}
-				if (this.$route.path.includes('profile') && (this.userId == localStorage.getItem('id'))) {
+				if (this.$route.path.includes('profile') && (this.userId == Number(localStorage.getItem('id')))) {
 					this.personal = true
 				} else {
 					this.personal = false

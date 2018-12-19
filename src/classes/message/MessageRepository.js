@@ -10,10 +10,10 @@ export default class MessageRepository {
 		return (await axios.post('http://localhost:3000/messages', message)).data;
 	}
 
-	async getAllMessages(page) {
-		const messages = (await axios.get('http://localhost:3000/messages?_embed=likes&_embed=comments&_embed=featured&_expand=user&?_page=' + page)).data;
-		return messages.map(MessageMapper.map);
-	}
+				async getAllMessages(page) {
+					const messages = (await axios.get('http://localhost:3000/messages?_embed=likes&_embed=comments&_embed=featured&_expand=user&?_page=' + page)).data;
+					return messages.map(MessageMapper.map);
+				}
 
 	async getMessagesByUser(id) {
 		const messages = (await axios.get('http://localhost:3000/messages?userId=' + id)).data;

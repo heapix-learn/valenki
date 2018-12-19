@@ -3,7 +3,7 @@ import Comment from './Comment';
 
 export default class CommentMapper {
 	static map({
-							 id, messageId, userId, userNickname, body, sub_comments
+							 id, messageId, userId, userNickname, body, replies
 						 }) {
 		const comment = new Comment()
 		comment.id = id;
@@ -11,7 +11,7 @@ export default class CommentMapper {
 		comment.userId = userId;
 		comment.userNickname = userNickname;
 		comment.body = body;
-		comment.sub_comments = sub_comments;
+		comment.replies = replies;
 		return comment;
 	}
 }

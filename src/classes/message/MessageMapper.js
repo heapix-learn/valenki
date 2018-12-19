@@ -3,7 +3,7 @@ import Message from './Message';
 
 export default class MessageMapper {
 	static map({
-							 id, user, userId, userNickname, body, tags, likes, featured, comments, created
+							 id, user, userId, userNickname, body, tags, likes, featured, comments, created, image, url
 						 }) {
 		const message = new Message()
 		message.id = id,
@@ -16,7 +16,7 @@ export default class MessageMapper {
 			message.comments = comments,
 			message.tags = tags;
 			message.created = created;
-			message.picture = picture;
+			message.image = image;
 			message.url = url;
 		return message
 	}

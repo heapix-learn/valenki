@@ -11,7 +11,7 @@
 			<div class="comment-list-item__body">
 				<div
 					class="comment-list-item__body__nickname"
-					@click="replyUser(comment.userNickname)"
+					@click="replyComment()"
 				>
 					{{comment.userNickname}}
 				</div>
@@ -26,15 +26,15 @@
 			</div>
 		</div>
 
-		<div v-for="(comment, index) in comment.sub_comments" :key="index" class="comment-list-item__sub-comment">
+		<div v-for="(comment, index) in comment.replies" :key="index" class="comment-list-item__sub-comment">
 					<div class="comment-list-item__sub-comment__nickname">
 							{{comment.userNickname}}
 					</div>
-
 					<div class="comment-list-item__sub-comment__text truncate">
 							{{comment.body}}
 					</div>
 		</div>
+
 </div>
 </template>
 
@@ -53,8 +53,12 @@
 				return require('../../../assets/' + this.comment.userId + '.png')
 			}
 		},
+		created() {
+			console.log('this.comment from created', this.comment)
+		},
 		methods: {
-			replyUser() {
+			replyComment() {
+				console.log('this.comment from item', this.comment)
 				this.$emit('reply', this.comment)
 			},
 			async deleteComment() {

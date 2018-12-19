@@ -12,7 +12,7 @@
 			label="Write your message there:"
 			v-model="message.body"
 		></v-textarea>
-kartinka - {{message.picture}}
+kartinka - {{message.image}}
 		<div class="personal-page__edit-area__avatar-upload">
 			<input id="image_upload" type="file" @change="addPicture">
 		</div>
@@ -69,7 +69,7 @@ kartinka - {{message.picture}}
 
 		methods: {
 			checkFields() {
-				this.message.userId = localStorage.getItem('id');
+				this.message.userId = Number(localStorage.getItem('id'));
 				this.message.userNickname = localStorage.getItem('nick');
 				this.message.created = this.getDate();
 				if (this.message.body.length && this.message.userId) {
@@ -108,7 +108,7 @@ kartinka - {{message.picture}}
 				var reader = new FileReader();
 				reader.onload = (e) => {
 					this.image = e.target.result
-					this.message.picture = this.image
+					this.message.image = this.image
 				}
 				reader.readAsDataURL(file)
 			},

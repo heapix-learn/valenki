@@ -2,7 +2,7 @@
 	<div class="find-user">
 		<v-form
 			ref="form"
-			class="find-iser__form"
+			class="find-user__form"
 		>
 			<v-text-field
 				v-model="user_name"
@@ -10,35 +10,41 @@
 				type="text"
 				required
 			/>
-			<v-btn class="find-user__btn" @click="findUsers()">
+			<v-btn class="find-user__form__btn" @click="findUsers()">
 				Find
 			</v-btn>
 		</v-form>
 
-		<div v-if="Users.length">
-				<span>
-					Perhaps, these are the people you were looking for:
-				</span>
-			<div v-for="(user, index) in Users" :key="index">
-				<router-link
-					class="message-item__info__title__nickname"
-					:to="{name: 'user-messages', params: {nick_name: user.nick_name, user_id: user.id}}">
-					<div class="find-user__cards">{{index+1}}. {{user.nick_name}}</div>
-				</router-link>
+		<div v-if="Users.length" class="find-user__results">
+			<div class="find-user__results__title">
+				Perhaps, these are the people you were looking for:
+			</div>
+
+			<div class="find-user__results__items">
+				<div
+					v-for="(user, index) in Users"
+					:key="index"
+					class="find-user__results__items__one-item"
+				>
+					<router-link
+						:to="{name: 'user-messages', params: {nick_name: user.nick_name, user_id: user.id}}">
+						<div class="find-user__results__items__one-item__card">
+							{{index+1}}.
+							<div style="width: 50px;">
+								<img :src="user.avatar"/>
+							</div>
+							{{user.nick_name}}
+						</div>
+					</router-link>
+				</div>
 			</div>
 		</div>
-		<p>{{ $t('$general.menu') }}</p>
-		<p>{{ $t('$general.login') }}</p>
-		<p>{{ $t('$general.register') }}</p>
-		<v-btn @click="changeLang()"></v-btn>
 	</div>
 </template>
 
 <script>
 
 	import UserRepository from "../../classes/user/UserRepository";
-	import i18n from '../../plugins/vuei18n/i18n'
-
 
 	export default {
 		name: "UserSearchForm",
@@ -54,9 +60,6 @@
 			async findUsers() {
 				const userRepository = new UserRepository();
 				this.Users = await userRepository.findUsers(this.user_name);
-			},
-			changeLang() {
-				i18n.locale = "ru"
 			}
 		}
 	}
@@ -72,18 +75,37 @@
 			padding: 10px;
 		}
 
-		&__cards {
-			border: 2px solid #77A6F7;
-			border-radius: 5px;
-		}
+		&__results {
+			padding: 0 10px;
 
-		&__cards:hover {
-			border: 2px solid #00887A;
-			border-radius: 5px;
-		}
+			&__title {
+				padding-bottom: 10px;
+			}
 
-		& __btn {
-		}
+			&__items {
+				display: flex;
+				justify-content: space-around;
+				flex-wrap: wrap;
 
+				&__one-item {
+					width: 45%;
+					margin: 5px;
+					border: 2px solid white;
+
+					&__card {
+						height: 70px;
+						display: flex;
+						justify-content: space-around;
+						align-items: center;
+					}
+				}
+
+				&__one-item:hover {
+					border: 2px solid #00887A;
+				}
+			}
+
+
+		}
 	}
 </style>

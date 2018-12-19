@@ -10,6 +10,6 @@ export default class Message {
 	featured = false
 	tags = [];
 	created = {};
-	picture = '';
+	image = '';
 	url = '';
 }
