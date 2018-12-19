@@ -155,8 +155,6 @@ export default {
     },
   },
   created () {
-    // this.getUser()
-    // console.log('this.message', this.message)
     this.setLikeState()
     this.setFavouriteState()
     this.setCommentsState()
@@ -193,10 +191,10 @@ export default {
       return featured.length ? true : false
     },
     async openComments (id) {
-      this.readComments = (this.readComments) ? false : true
-      if (this.readComments) {
+      if (!this.readComments) {
         await this.getComments(id)
       }
+        this.readComments = !this.readComments
     },
     async getComments () {
       const commentRepository = new CommentRepository()

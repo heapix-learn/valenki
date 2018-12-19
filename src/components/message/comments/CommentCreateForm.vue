@@ -7,27 +7,27 @@
 		</div>
 
 		<div class="create-comments__delete-reply">
-		<i
-			v-if="replyedComment.userNickname"
-			class="material-icons small blue"
-			@click="$emit('refresh')">
-			format_clear
-		</i>
+			<i
+				v-show="replyedComment.userNickname"
+				class="material-icons small white"
+				@click="$emit('refresh')">
+				format_clear
+			</i>
 		</div>
 
 		<div class="create-comments__text-input">
-		<v-text-field
-			type="text"
-			required
-			v-model="comment.body"
-			:prefix="replyedComment.userNickname"
-		/>
+			<v-text-field
+				type="text"
+				required
+				v-model="comment.body"
+				:prefix="replyedComment.userNickname"
+			/>
 		</div>
 
 		<div class="create-comments__send-button">
-		<i class="material-icons" color="blue" @click="addComment()">
-			send
-		</i>
+			<i class="material-icons" @click="addComment()">
+				send
+			</i>
 		</div>
 	</div>
 </template>
@@ -51,21 +51,17 @@
 		},
 		methods: {
 			async addComment() {
-				let replyed_comment = {}
-				for (let key in this.replyedComment) {
-					replyed_comment[key] = this.replyedComment[key]
-				}
+
 				this.comment.userId = Number(localStorage.getItem('id'));
 				this.comment.userNickname = localStorage.getItem('nick');
 				this.comment.messageId = this.messageId;
+
 				const commentRepository = new CommentRepository();
-				console.log('before-before', this.replyedComment)
-				if (replyed_comment.userNickname) {
-					this.comment.body = replyed_comment.userNickname + ', ' + this.comment.body;
-					console.log('before', replyed_comment, 'body', this.comment.body)
-					console.log('this.comm', this.comment.body)
-					replyed_comment.sub_comments.push(this.comment)
-					await commentRepository.addSubComment(replyed_comment.id, replyed_comment);
+
+				if (this.replyedComment.userNickname) {
+					this.comment.commentId = this.replyedComment.id;
+					this.comment.body = this.replyedComment.userNickname + ',' + this.comment.body;
+					await commentRepository.addReply(this.comment);
 				} else {
 					await commentRepository.addComment(this.comment);
 				}
@@ -81,8 +77,11 @@
 	.create-comments {
 		display: flex;
 		align-items: center;
+		justify-content: space-around;
+		color: darkcyan;
 
-		&__avatar {
+		&__text-input {
+			width: 55%;
 		}
 	}
 

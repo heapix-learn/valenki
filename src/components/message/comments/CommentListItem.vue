@@ -26,16 +26,26 @@
 			</div>
 		</div>
 
-		<div v-for="(comment, index) in comment.replies" :key="index" class="comment-list-item__sub-comment">
-					<div class="comment-list-item__sub-comment__nickname">
-							{{comment.userNickname}}
-					</div>
-					<div class="comment-list-item__sub-comment__text truncate">
-							{{comment.body}}
-					</div>
+		<div
+			v-for="(reply, index) in comment.replies"
+			:key="index"
+			class="comment-list-item__replies">
+			<div class="comment-list-item__replies__reply">
+				<div class="comment-list-item__replies__reply__nickname">
+					{{reply.userNickname}}
+				</div>
+				<div class="comment-list-item__replies__reply__text">
+					{{reply.body}}
+				</div>
+			</div>
+			<div class="comment-list-item__replies__reply__delete">
+				<i class="material-icons small" @click="deleteReply(reply.id)">
+					close
+				</i>
+			</div>
 		</div>
 
-</div>
+	</div>
 </template>
 
 <script>
@@ -53,17 +63,18 @@
 				return require('../../../assets/' + this.comment.userId + '.png')
 			}
 		},
-		created() {
-			console.log('this.comment from created', this.comment)
-		},
 		methods: {
 			replyComment() {
-				console.log('this.comment from item', this.comment)
 				this.$emit('reply', this.comment)
 			},
 			async deleteComment() {
 				const commentRepository = new CommentRepository();
 				await commentRepository.deleteComment(this.comment.id);
+				this.$emit('refresh');
+			},
+			async deleteReply(id) {
+				const commentRepository = new CommentRepository();
+				await commentRepository.deleteReply(id);
 				this.$emit('refresh');
 			}
 		}
@@ -100,12 +111,29 @@
 			justify-content: center;
 		}
 
-		&__sub-comment {
+		&__replies {
+			display: flex;
 			padding-left: 60px;
+
+			&__reply {
+
+				&__delete {
+					color: lightgrey;
+					position: absolute;
+					right: 0px;
+					padding-top: 9px;
+
+				}
+
+				&__delete:hover {
+					color: crimson;
+				}
+			}
+
 		}
 
 		&__body,
-		&__sub-comment {
+		&__replies__reply {
 			width: 89%;
 			border-bottom: 1px solid lightgrey;
 

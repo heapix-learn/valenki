@@ -40,9 +40,6 @@
 			CommentListItem,
 			CommentCreateForm
 		},
-		created() {
-			console.log('from list', this.comments)
-		},
 		methods: {
 			reply(replyedComment) {
 				for (let key in replyedComment) {
