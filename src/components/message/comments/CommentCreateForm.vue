@@ -8,8 +8,8 @@
 		<v-text-field
 			type="text"
 			required
-			v-model="phrase"
-			:prefix="replyedComment.author_nick"
+			v-model="comment.body"
+			:prefix="replyedComment.nick"
 		/>
 		<v-btn :flat="true" color="blue" @click="addComment()">
 			<i class="material-icons">
@@ -33,10 +33,8 @@
 			}
 		},
 		props: {
-			message_id: Number,
-			replyedComment: {
-				type: Comment //i send "type: Comment" from "Comment-list", but receiving "type: Object"
-			}
+			messageId: Number,
+			replyedComment: Object
 		},
 		methods: {
 			async addComment() {
@@ -45,21 +43,22 @@
 				for (let key in this.replyedComment) {
 					replyed_comment[key] = this.replyedComment[key]
 				}
-				this.comment.phrase = this.phrase
-				this.comment.author_id = localStorage.getItem('id');
-				this.comment.author_nick = localStorage.getItem('nick');
-				this.comment.message_id = this.message_id;
-				const commentRepository = new CommentRepository();
-				if (this.replyedComment.author_nick) {
-					this.comment.phrase = this.replyedComment.author_nick + ', ' + this.comment.phrase;
-					this.comment.id = this.replyedComment.id + '.' + this.replyedComment.sub_comments.length
+				this.comment.userId = localStorage.getItem('id');
+				this.comment.userNickname = localStorage.getItem('nick');
+				this.comment.messageId = this.messageId;
+				// const commentRepository = new CommentRepository();
+				console.log('before-before', this.replyedComment)
+				if (replyed_comment.userNickname) {
+					this.comment.body = replyed_comment.userNickname + ', ' + this.comment.body;
+					console.log('before', replyed_comment, 'body', this.comment.body)
+					console.log('this.comm', this.comment.body)
 					replyed_comment.sub_comments.push(this.comment)
 					await commentRepository.addSubComment(replyed_comment.id, replyed_comment);
 				} else {
 					await commentRepository.addComment(this.comment);
 				}
-				await this.$emit('refresh');
-				this.phrase = '';
+				this.comment.body = '';
+				this.$emit('refresh');
 			}
 		}
 	}

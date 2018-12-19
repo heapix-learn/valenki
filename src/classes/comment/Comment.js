@@ -1,8 +1,7 @@
 export default class Comment {
 	id = null;
-	message_id = null;
-	author_id = null;
-	author_nick = "";
-	phrase = String;
-	sub_comments = []
+	messageId = null;
+	userId = null;
+	userNickname = "";
+	body = "";
 }

@@ -11,12 +11,12 @@
 			<div class="comment-list-item__body">
 				<div
 					class="comment-list-item__body__nickname"
-					@click="replyUser(comment.author_nick)"
+					@click="replyUser(comment.userNickname)"
 				>
-					{{comment.author_nick}}
+					{{comment.userNickname}}
 				</div>
 				<div class="comment-list-item__body__text truncate">
-					<div>{{comment.phrase}}</div>
+					<div>{{comment.body}}</div>
 				</div>
 			</div>
 			<div class="comment-list-item__delete">
@@ -28,11 +28,11 @@
 
 		<div v-for="(comment, index) in comment.sub_comments" :key="index" class="comment-list-item__sub-comment">
 					<div class="comment-list-item__sub-comment__nickname">
-							{{comment.author_nick}}
+							{{comment.userNickname}}
 					</div>
 
 					<div class="comment-list-item__sub-comment__text truncate">
-							{{comment.phrase}}
+							{{comment.body}}
 					</div>
 		</div>
 </div>
@@ -50,7 +50,7 @@
 		},
 		computed: {
 			imgPath() {
-				return require('../../../assets/' + this.comment.author_id + '.png')
+				return require('../../../assets/' + this.comment.userId + '.png')
 			}
 		},
 		methods: {
