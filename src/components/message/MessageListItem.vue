@@ -7,8 +7,9 @@
             <div class="message-item__info__avatar">
               <router-link
                 :to="{name: 'user-messages', params: {nick_name: message.userNickname, user_id: message.userId}}">
-                <div style="width: 50px;">
-                  <img :src="message.user.avatar"/>
+                <div>
+                  <img :src="message.user.avatar" height="50"
+                       width="50" />
                 </div>
               </router-link>
             </div>
@@ -37,6 +38,10 @@
             <div class="message-item__content-group">
               <div class="message-item__content-group__text">
                 {{message.body}}
+              </div>
+              <div v-if="message.image" class="message-item__content-group__image">
+                <img :src="message.image" height="70%"
+                     width="70%">
               </div>
               <div class="message-item__content-group__hashtag-group">
                 <img
@@ -236,18 +241,15 @@ export default {
     },
     async addToFeatured () {
       let message = {}
-      // message.id = this.featured_id
       message.userId = Number(localStorage.getItem('id'))
       message.messageId = this.message.id
       const messageRepository = new MessageRepository()
       if (!this.featured.added) {
         const id = await messageRepository.savePost(message)
-        // await this.getSaved()
         this.featured.id = id
         this.featured.added = true
       } else {
         await messageRepository.deleteSavedPost(this.featured.id)
-        // await this.getSaved()
         this.featured.added = false
       }
     },
@@ -309,13 +311,17 @@ export default {
       text-align: left;
       padding-top: 5px;
     }
-
+    &__image {
+      display: flex;
+      justify-content: center;
+    }
     &__hashtag-group {
       display: flex;
       padding: 5px 10px 0 5px !important;
 
       &__image {
         margin-right: 10px;
+        display: none;
       }
 
       &__hashtag {

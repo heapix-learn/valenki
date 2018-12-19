@@ -8,6 +8,7 @@
 <script>
 	import MessageList from "./MessageList";
 	import MessageRepository from "../../classes/message/MessageRepository"
+
 	export default {
 		name: "MessageByHashtag",
 		data() {

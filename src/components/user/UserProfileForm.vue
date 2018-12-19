@@ -104,7 +104,7 @@
 <script>
 	import User from '../../classes/user/User'
 	import MessageList from '../message/MessageList'
-	import SetLanguage from '../universal/SetLanguage'
+	import SetLanguage from '../universal/LanguageSwitcher'
 	import UserRepository from '../../classes/user/UserRepository.js'
 	import MessageRepository from '../../classes/message/MessageRepository.js'
 
@@ -151,10 +151,8 @@
 				const userRepository = new UserRepository();
 				if (this.$route.params.user_id) {
 					this.userId = await this.$route.params.user_id;
-					console.log('1', this.userId)
 				} else {
 					this.userId = (await userRepository.findUsers(this.$route.params.nick_name))[0].id;
-					console.log('2', this.userId)
 				}
 				if (this.$route.path.includes('profile') && (this.userId == Number(localStorage.getItem('id')))) {
 					this.personal = true
@@ -165,13 +163,11 @@
 			},
 
 			async getUser() {
-				console.log('getUser')
 				const userRepository = new UserRepository();
 				this.user = await (userRepository.getUserById(this.userId))
 				this.getMessages()
 			},
 			async getMessages() {
-				console.log('getMessages')
 				const messageRepository = new MessageRepository();
 				this.messagesById = await (messageRepository.getMessagesByUser(this.userId))
 				this.getSavedMessages()

@@ -69,7 +69,7 @@
 				}
 			},
 			async goToNext() {
-				if (this.pageNumber < 2) {
+				if (this.pageNumber < 1) {
 					this.loading = true
 					this.pageNumber += 1;
 					await this.getMessages(this.pageNumber)

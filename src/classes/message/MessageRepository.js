@@ -6,26 +6,25 @@ axios.defaults.headers.common['authorization'] = localStorage.getItem('token');
 export default class MessageRepository {
 
 	async createMessage(message) {
-		console.log('message post', message)
 		return (await axios.post('http://localhost:3000/messages', message)).data;
 	}
 
-				async getAllMessages(page) {
-					const messages = (await axios.get('http://localhost:3000/messages?_embed=likes&_embed=comments&_embed=featured&_expand=user&?_page=' + page)).data;
-					return messages.map(MessageMapper.map);
-				}
+	async getAllMessages(page) {
+		const messages = (await axios.get('http://localhost:3000/messages?_embed=likes&_embed=comments&_embed=featured&_expand=user&?_page=' + page)).data;
+		return messages.map(MessageMapper.map);
+	}
 
 	async getMessagesByUser(id) {
-		const messages = (await axios.get('http://localhost:3000/messages?userId=' + id)).data;
+		const messages = (await axios.get(`http://localhost:3000/messages?userId=${id}&_embed=likes&_embed=comments&_embed=featured&_expand=user`)).data;
 		return messages.map(MessageMapper.map);
 	}
 
 	async getMessagesByHashtag(hashtag) {
-		return (await axios.get('http://localhost:3000/messages?tags_like=' + hashtag)).data;
+		return (await axios.get(`http://localhost:3000/messages?tags_like=${hashtag}&_embed=likes&_embed=comments&_embed=featured&_expand=user`)).data;
 	}
 
 	async getMessageById(id) {
-		let message = (await axios.get('http://localhost:3000/messages/' + id)).data;
+		let message = (await axios.get(`http://localhost:3000/messages?id=${id}&_embed=likes&_embed=comments&_embed=featured&_expand=user`)).data[0];
 		return MessageMapper.map(message);
 	}
 
@@ -34,7 +33,7 @@ export default class MessageRepository {
 	}
 
 	async getSavedMessages(id) {
-		return (await axios.get('http://localhost:3000/favourites?user_id=' + id)).data;
+		return (await axios.get('http://localhost:3000/featured?userId=' + id)).data;
 	}
 
 	async savePost(message) {

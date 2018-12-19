@@ -46,7 +46,7 @@
 				this.id = this.$route.params.user_id
 				const messageRepository = new MessageRepository();
 				this.MessagesByAuthor = await (messageRepository.getMessagesByUser(this.id))
-			},
+			}
 		}
 	}
 </script>

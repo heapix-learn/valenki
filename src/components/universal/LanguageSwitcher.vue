@@ -17,7 +17,7 @@
 	import i18n from '../../plugins/vuei18n/i18n'
 
 	export default {
-		name: "SetLanguage",
+		name: "LanguageSwitcher",
 		methods: {
 			changeLang(lang) {
 				console.log('lang', lang)

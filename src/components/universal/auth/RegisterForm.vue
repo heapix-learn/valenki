@@ -49,7 +49,7 @@
 	import User from '../../../classes/user/User'
 	import UserMapper from '../../../classes/user/UserMapper'
 	import UserRepository from '../../../classes/user/UserRepository.js'
-	import SetLanguage from '../SetLanguage'
+	import SetLanguage from '../LanguageSwitcher'
 
 	export default {
 		name: 'RegisterForm',

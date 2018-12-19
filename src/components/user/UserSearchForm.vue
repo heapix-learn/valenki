@@ -30,8 +30,11 @@
 						:to="{name: 'user-messages', params: {nick_name: user.nick_name, user_id: user.id}}">
 						<div class="find-user__results__items__one-item__card">
 							{{index+1}}.
-							<div style="width: 50px;">
-								<img :src="user.avatar"/>
+							<div>
+								<img
+									:src="user.avatar"
+									height="50"
+									width="50"/>
 							</div>
 							{{user.nick_name}}
 						</div>
