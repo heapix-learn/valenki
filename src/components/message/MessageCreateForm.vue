@@ -12,7 +12,6 @@
 			label="Write your message there:"
 			v-model="message.body"
 		></v-textarea>
-kartinka - {{message.image}}
 		<div class="personal-page__edit-area__avatar-upload">
 			<input id="image_upload" type="file" @change="addPicture">
 		</div>
@@ -71,6 +70,10 @@ kartinka - {{message.image}}
 			checkFields() {
 				this.message.userId = Number(localStorage.getItem('id'));
 				this.message.userNickname = localStorage.getItem('nick');
+				this.message.tags = this.message.body.match(/(#[a-z0-9][a-z0-9\-_]*)/ig);
+				this.message.tags.forEach((tag, index) => {
+					this.message.tags[index] = tag.replace(/#/g, '')
+				});
 				this.message.created = this.getDate();
 				if (this.message.body.length && this.message.userId) {
 					this.createMessage()
@@ -82,17 +85,22 @@ kartinka - {{message.image}}
 				const messageRepository = new MessageRepository();
 				messageRepository.createMessage(MessageMapper.map(this.message));
 			},
-			getDate () {
+			getDate() {
 				let d = new Date();
 
 				let dd = d.getDate();
-				if (dd < 10) { dd = '0' + dd;
-					}
+				if (dd < 10) {
+					dd = '0' + dd;
+				}
 				let mm = d.getMonth() + 1;
-				if (mm < 10) { mm = '0' + mm; }
+				if (mm < 10) {
+					mm = '0' + mm;
+				}
 
 				let yy = d.getFullYear() % 100;
-				if (yy < 10) { yy = '0' + yy; }
+				if (yy < 10) {
+					yy = '0' + yy;
+				}
 
 				return dd + '.' + mm + '.' + yy;
 			},
