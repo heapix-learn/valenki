@@ -12,7 +12,6 @@
 			<div v-else class="base-main__page">
 				<MessageList
 					:Messages="MessagesByAuthor"
-					@deteles="deletePost"
 				/>
 			</div>
 		</div>
@@ -49,9 +48,6 @@
 				this.id = this.$route.params.user_id
 				const messageRepository = new MessageRepository();
 				this.MessagesByAuthor = await (messageRepository.getMessagesByUser(this.id))
-			},
-			deletePost() {
-				alert('hi!')
 			}
 		}
 	}

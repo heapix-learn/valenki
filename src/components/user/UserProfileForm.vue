@@ -81,7 +81,8 @@
 					:key="1"
 				>
 					<v-card flat color="#d3e3fc">
-						<MessageList :Messages="messagesById"/>
+						<MessageList :Messages="messagesById"
+						@deleteMessage="deleteMessage"/>
 					</v-card>
 				</v-tab-item>
 				<v-tab-item
@@ -234,6 +235,9 @@
 					this.edited = true
 					this.editUser.locale = localStorage.getItem('locale')
 				}
+			},
+			deleteMessage(id) {
+				this.messagesById = this.messagesById.filter(message => message.id != id)
 			}
 		}
 	}
