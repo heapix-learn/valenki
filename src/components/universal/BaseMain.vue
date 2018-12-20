@@ -66,6 +66,7 @@
 						messages.push(item)
 					});
 					this.Messages = messages;
+					console.log(this.Messages)
 				}
 			},
 			async goToNext() {

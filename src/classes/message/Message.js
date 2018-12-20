@@ -12,4 +12,5 @@ export default class Message {
 	created = {};
 	image = '';
 	url = '';
+	video = '';
 }

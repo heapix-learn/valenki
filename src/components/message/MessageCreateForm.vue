@@ -33,7 +33,12 @@
 				</i>
 			</v-btn>
 		</div>
-
+		<v-text-field
+			v-model="message.video"
+			label="Enter youtube - URL here:"
+			type="text"
+			required
+		/>
 		<div class="new-message__add-message-button">
 			<v-btn
 				fixed
@@ -78,6 +83,7 @@
 				} else {
 					this.message.tags = [];
 				}
+				this.message.video = this.message.video.replace(/watch\?v=/g, '/embed/')
 				this.message.created = this.getDate();
 				if (this.message.body.length && this.message.userId) {
 					this.createMessage()

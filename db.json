@@ -24,22 +24,27 @@
       "created": "28.11.18"
     },
     {
-      "id": 3,
+      "id": 5,
       "userNickname": "First_User",
-      "body": "gsdfgsdfgsdfgsdfgsdfgsdfg",
+      "body": "Video-post #youtube #video #funny",
       "likes": [],
       "comments": [],
       "featured": false,
-      "tags": [],
+      "tags": [
+        "youtube",
+        "video",
+        "funny"
+      ],
       "created": "20.12.18",
       "image": "",
       "url": "",
+      "video": "https://www.youtube.com/embed/sK2jWSl5jkY",
       "userId": 1
     },
     {
-      "id": 4,
+      "id": 6,
       "userNickname": "First_User",
-      "body": "gsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfg",
+      "body": "222",
       "likes": [],
       "comments": [],
       "featured": false,
@@ -47,6 +52,21 @@
       "created": "20.12.18",
       "image": "",
       "url": "",
+      "video": "https://www.youtube.com/embed/m3JNNkaa1mA",
+      "userId": 1
+    },
+    {
+      "id": 7,
+      "userNickname": "First_User",
+      "body": "555555",
+      "likes": [],
+      "comments": [],
+      "featured": false,
+      "tags": [],
+      "created": "20.12.18",
+      "image": "",
+      "url": "",
+      "video": "https://www.youtube.com//embed/fands2Z7mao",
       "userId": 1
     }
   ],
@@ -72,6 +92,14 @@
       "userId": 1,
       "userNickname": "First_User",
       "body": "Hi!",
+      "replies": []
+    },
+    {
+      "id": 4,
+      "messageId": 1,
+      "userId": 1,
+      "userNickname": "First_User",
+      "body": "123456789",
       "replies": []
     }
   ],

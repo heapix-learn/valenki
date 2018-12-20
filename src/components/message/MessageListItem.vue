@@ -51,6 +51,14 @@
 									width="70%"
 								/>
 							</div>
+							<div
+								v-if="message.video"
+								class="message-item__content-group__video">
+								<iframe width="375" height="240" :src="message.video"
+												allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+												allowfullscreen>
+								</iframe>
+							</div>
 							<div class="message-item__content-group__hashtag-group">
 								<img
 									src="../../assets/tag.png"
@@ -124,14 +132,13 @@
 </template>
 
 <script>
+	import Like from '../../classes/like/Like'
 	import User from '../../classes/user/User'
-	import Like from '../../classes/like/Like.js'
-	import CommentList from './comments/CommentList.vue'
-	import LikeRepository from '../../classes/like/LikeRepository'
-	// import UserRepository from '../../classes/user/UserRepository'
-	import MessageRepository from '../../classes/message/MessageRepository.js'
-	import CommentRepository from '../../classes/comment/CommentRepository.js'
+	import CommentList from './comments/CommentList'
 	import Message from '../../classes/message/Message'
+	import LikeRepository from '../../classes/like/LikeRepository'
+	import CommentRepository from '../../classes/comment/CommentRepository'
+	import MessageRepository from '../../classes/message/MessageRepository'
 
 	export default {
 		name: 'MessageListItem',
@@ -174,12 +181,6 @@
 			this.setFavouriteState()
 			this.setCommentsState()
 		},
-		computed: {
-			imgPath() {
-				return require('../../assets/' + this.message.userId + '.png')
-			},
-
-		},
 		methods: {
 			setLikeState() {
 				const userId = Number(localStorage.getItem('id'))
@@ -199,11 +200,6 @@
 					this.featured.id = isFeatured[0].id
 					this.featured.added = true
 				}
-			},
-			isSavedMessage() {
-				const userId = Number(localStorage.getItem('id'))
-				const featured = this.message.featured.filter(item => item.userId === userId)
-				return featured.length ? true : false
 			},
 			async openComments(id) {
 				if (!this.readComments) {
@@ -230,19 +226,6 @@
 					this.like.liked = false
 					this.like.quantity--
 				}
-			},
-			async getSaved() {
-				const messageRepository = new MessageRepository()
-				const userId = Number(localStorage.getItem('id'))
-				this.featured = await messageRepository.getSaved(this.message.id)
-				let Saved_id = this.featured_id
-				this.featured.forEach((item) => {
-					if (Number(item.userId) === Number(userId)) {
-						Saved_id = item.id
-						this.featured = true
-					}
-				})
-				this.featured_id = Saved_id
 			},
 			async addToFeatured() {
 				let message = {}
@@ -307,6 +290,8 @@
 		&__content-group {
 			padding: 0 20px;
 			flex-direction: column;
+			display: flex;
+			align-items: center;
 
 			&__delete {
 				transform: rotate(45deg);
@@ -318,7 +303,7 @@
 			}
 
 			&__text {
-				text-align: left;
+				align-self: normal;
 				padding-top: 5px;
 			}
 
@@ -326,15 +311,22 @@
 				display: flex;
 				justify-content: center;
 			}
-
+			&__video {
+				padding: 5px 0;
+				display: flex;
+				justify-content: center;
+			}
 			&__hashtag-group {
 				display: flex;
 				padding: 5px 10px 0 5px !important;
+				align-self: normal;
 
 				&__image {
 					margin-right: 10px;
 					/*display: none;*/
 				}
+
+
 
 				&__hashtag {
 					font-size: smaller;
