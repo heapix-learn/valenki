@@ -1,7 +1,21 @@
 <template>
 	<div class="hashtag-messages">
-		Messages by hashtag #{{this.$route.params.hashtag}}:
-		<MessageList :Messages="Messages"/>
+		<div v-if="!Messages.length" class="hashtag-messages__non-exist">
+			{{ $t('$message.message_hashtag') }}
+			"#{{this.$route.params.hashtag}}"
+			{{ $t('$general.non_exist') }} =(
+			<br>
+			<v-btn>
+				<router-link :to="{name: 'find-hashtag'}" class="link">
+					<span>{{ $t('$general.find_else') }}</span>
+				</router-link>
+			</v-btn>
+		</div>
+		<div v-else>
+			{{ $t('$message.message_hashtag') }}
+			#{{this.$route.params.hashtag}}:
+			<MessageList :Messages="Messages"/>
+		</div>
 	</div>
 </template>
 
@@ -35,6 +49,12 @@
 	.hashtag-messages {
 		min-height: calc(100vh - 56px - 36px);
 		background-color: cornflowerblue;
+
+		&__non-exist {
+			padding: 10px;
+			text-align: center;
+			font-size: 15pt;
+		}
 	}
 
 </style>

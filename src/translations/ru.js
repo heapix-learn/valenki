@@ -5,6 +5,7 @@ export default {
 		register: 'Зарегистрироваться',
 		find_user: 'Поиск Юзера',
 		find_hashtag: 'Поиск Хэштега',
+		find_else: 'Искать другой',
 		personal: 'Кабинет',
 		logout: 'Выйти',
 		email: 'Email',
@@ -17,11 +18,13 @@ export default {
 		wrong_credentials: 'Неправильный Email или пароль!',
 		no_login_alert: 'Авторизуйтесь на сайте, чтобы просматривать сообщения!',
 		sort_by_date: 'Отсортировать по дате',
-		pick_lang: 'Выберите язык'
+		pick_lang: 'Выберите язык',
+		non_exist: 'не существует'
 	},
 	$message: {
 		your_messages: 'Ваши сообщения',
-		favourites: 'Сохраненные сообщения'
+		favourites: 'Сохраненные сообщения',
+		message_hashtag: 'Сообщения с хэштегом'
 	},
 	$comment: {},
 	$footer: {

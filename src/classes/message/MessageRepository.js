@@ -20,7 +20,8 @@ export default class MessageRepository {
 	}
 
 	async getMessagesByHashtag(hashtag) {
-		return (await axios.get(`http://localhost:3000/messages?tags_like=${hashtag}&_embed=likes&_embed=comments&_embed=featured&_expand=user`)).data;
+		const messages = (await axios.get(`http://localhost:3000/messages?tags_like=${hashtag}&_embed=likes&_embed=comments&_embed=featured&_expand=user`)).data;
+		return messages.map(MessageMapper.map);
 	}
 
 	async getMessageById(id) {
