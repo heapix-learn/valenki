@@ -71,9 +71,13 @@
 				this.message.userId = Number(localStorage.getItem('id'));
 				this.message.userNickname = localStorage.getItem('nick');
 				this.message.tags = this.message.body.match(/(#[a-z0-9][a-z0-9\-_]*)/ig);
-				this.message.tags.forEach((tag, index) => {
-					this.message.tags[index] = tag.replace(/#/g, '')
-				});
+				if (this.message.tags) {
+					this.message.tags.forEach((tag, index) => {
+						this.message.tags[index] = tag.replace(/#/g, '')
+					});
+				} else {
+					this.message.tags = [];
+				}
 				this.message.created = this.getDate();
 				if (this.message.body.length && this.message.userId) {
 					this.createMessage()

@@ -6,7 +6,10 @@
 			style="max-height: 100vh; overflow-y: scroll;"
 		>
 			<div v-for="(message, index) in Messages" :key="index">
-				<MessageListItem :message="message"/>
+				<MessageListItem
+					:message="message"
+					:index="index"
+				/>
 			</div>
 
 		</v-infinite-scroll>
@@ -28,7 +31,7 @@
 			nextPage() {
 				this.loading = true
 				this.$emit('next');
-			}
+			},
 		}
 	}
 </script>

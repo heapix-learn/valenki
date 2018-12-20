@@ -22,96 +22,6 @@
         "Fire"
       ],
       "created": "28.11.18"
-    },
-    {
-      "id": 2,
-      "userNickname": "First_User",
-      "body": "Hi! i am 2 message",
-      "likes": [],
-      "comments": [],
-      "featured": false,
-      "tags": [
-        "Ice"
-      ],
-      "created": "19.12.18",
-      "image": "data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjUxMnB0IiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgd2lkdGg9IjUxMnB0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Im01MTIgMjU2YzAgMTQxLjM4NjcxOS0xMTQuNjEzMjgxIDI1Ni0yNTYgMjU2cy0yNTYtMTE0LjYxMzI4MS0yNTYtMjU2IDExNC42MTMyODEtMjU2IDI1Ni0yNTYgMjU2IDExNC42MTMyODEgMjU2IDI1NnptMCAwIiBmaWxsPSIjZmFjMTVjIi8+PHBhdGggZD0ibTQ5OC43MzQzNzUgMzM3LjUzNTE1Ni0yNDIuMDM1MTU2LTI0Mi4wMzUxNTYtMTYxLjE5OTIxOSAyNzIuMTUyMzQ0IDE0My43ODkwNjIgMTQzLjc4OTA2MmM1LjUyNzM0NC4zNTkzNzUgMTEuMDkzNzUuNTU4NTk0IDE2LjcxMDkzOC41NTg1OTQgMTEyLjg3ODkwNiAwIDIwOC42ODM1OTQtNzMuMDU4NTk0IDI0Mi43MzQzNzUtMTc0LjQ2NDg0NHptMCAwIiBmaWxsPSIjZmI4NDU0Ii8+PHBhdGggZD0ibTIzNS4wNjY0MDYgMzUzLjY5NTMxMnY2Mi44MDQ2ODhoMjAuOTMzNTk0bDYuOTc2NTYyLTYyLjgwNDY4OHptMCAwIiBmaWxsPSIjMTM0YTc5Ii8+PHBhdGggZD0ibTI1NiAzNTMuNjk1MzEyaDIwLjkzMzU5NHY2Mi44MDQ2ODhoLTIwLjkzMzU5NHptMCAwIiBmaWxsPSIjMDkyMzM5Ii8+PHBhdGggZD0ibTMxOC44MDQ2ODggMzUzLjY5NTMxMmg0MS44NzEwOTN2NjIuODA0Njg4aC00MS44NzEwOTN6bTAgMCIgZmlsbD0iIzA5MjMzOSIvPjxwYXRoIGQ9Im0xNTEuMzI0MjE5IDM1My42OTUzMTJoNDEuODcxMDkzdjYyLjgwNDY4OGgtNDEuODcxMDkzem0wIDAiIGZpbGw9IiMxMzRhNzkiLz48cGF0aCBkPSJtMjU3LjQyOTY4OCAzNTMuNjk1MzEyIDEyLjUyNzM0My0xMjIuMTIxMDkzLTEzLjk1NzAzMS0xMzYuMDc0MjE5aC0uNjk5MjE5bC0xNTkuODAwNzgxIDI3MC43NTc4MTJ2MS4zOTQ1MzJoNjYuMjkyOTY5bDEwLjQ2ODc1LTEzLjk1NzAzMiAxMC40NjQ4NDMgMTMuOTU3MDMyaDYyLjgwNDY4OHptMCAwIiBmaWxsPSIjNzdhYWQ0Ii8+PHBhdGggZD0ibTI1Ni42OTkyMTkgOTUuNWgtLjY5OTIxOXYyNTguMTk1MzEybDEwLjQ2ODc1IDEzLjk1NzAzMmg2Mi44MDQ2ODhsMTAuNDY0ODQzLTEzLjk1NzAzMiAxMC40Njg3NSAxMy45NTcwMzJoNjYuMjkyOTY5di0xLjM5NDUzMnptMCAwIiBmaWxsPSIjNGE4ZWM2Ii8+PHBhdGggZD0ibTMyOS4yNzM0MzggMzE4LjgwNDY4OGgyMC45MzM1OTN2NDguODQ3NjU2aC0yMC45MzM1OTN6bTAgMCIgZmlsbD0iI2E0YzZlMiIvPjxwYXRoIGQ9Im0yNDUuNTMxMjUgMzE4LjgwNDY4OGgyMC45Mzc1djQ4Ljg0NzY1NmgtMjAuOTM3NXptMCAwIiBmaWxsPSIjZDJlM2YxIi8+PHBhdGggZD0ibTI0NS41MzEyNSAyNzUuMDc4MTI1aDIwLjkzNzV2MjAuOTMzNTk0aC0yMC45Mzc1em0wIDAiIGZpbGw9IiMxMzRhNzkiLz48cGF0aCBkPSJtMjg3LjQwMjM0NCAyNzUuMDc4MTI1aDIwLjkzMzU5NHYyMC45MzM1OTRoLTIwLjkzMzU5NHptMCAwIiBmaWxsPSIjMTM0YTc5Ii8+PHBhdGggZD0ibTIwMy42NjQwNjIgMjc1LjA3ODEyNWgyMC45MzM1OTR2MjAuOTMzNTk0aC0yMC45MzM1OTR6bTAgMCIgZmlsbD0iIzFkNzFiOCIvPjxwYXRoIGQ9Im0xNjEuNzkyOTY5IDMxOC44MDQ2ODhoMjAuOTMzNTkzdjQ4Ljg0NzY1NmgtMjAuOTMzNTkzem0wIDAiIGZpbGw9IiNkMmUzZjEiLz48cGF0aCBkPSJtMjU1LjQ1MzEyNSAxNzcuNjE3MTg4LTM3Ljg5MDYyNSA2NC4xOTkyMThoMzguNDM3NWw2Ljk3NjU2Mi0zMi4wOTc2NTYtNi45NzY1NjItMzIuMTAxNTYyem0wIDAiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJtMjU2LjU0Njg3NSAxNzcuNjE3MTg4aC0uNTQ2ODc1djY0LjE5OTIxOGgzOC40Mzc1em0wIDAiIGZpbGw9IiNmYWMxNWMiLz48L3N2Zz4=",
-      "url": "",
-      "userId": 1
-    },
-    {
-      "id": 3,
-      "userNickname": "First_User",
-      "body": "asdasdasdasdasd",
-      "likes": [],
-      "comments": [],
-      "featured": false,
-      "tags": [],
-      "created": "19.12.18",
-      "image": "data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjUxMnB0IiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgd2lkdGg9IjUxMnB0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Im01MTIgMjU2YzAgMTQxLjM4NjcxOS0xMTQuNjEzMjgxIDI1Ni0yNTYgMjU2cy0yNTYtMTE0LjYxMzI4MS0yNTYtMjU2IDExNC42MTMyODEtMjU2IDI1Ni0yNTYgMjU2IDExNC42MTMyODEgMjU2IDI1NnptMCAwIiBmaWxsPSIjZmYyNzk2Ii8+PHBhdGggZD0ibTI5MC40NDUzMTIgNTA5LjY4NzVjMTI1LjA5Mzc1LTE2LjgyODEyNSAyMjEuNTU0Njg4LTEyMy45ODQzNzUgMjIxLjU1NDY4OC0yNTMuNjg3NSAwLTcuMzcxMDk0LS4zMjgxMjUtMTQuNjY0MDYyLS45NDE0MDYtMjEuODc4OTA2bC0xMTAuMzUxNTYzLTExMC4zNTE1NjMtMjE1Ljk4ODI4MSAxNzIuNTMxMjUtMTkuNjA5Mzc1IDg4LjA1MDc4MXptMCAwIiBmaWxsPSIjYjQ0MGExIi8+PHBhdGggZD0ibTE2MS40MzM1OTQgMzI3LjI4MTI1LTM0LjMyNDIxOSAxOS4wNzAzMTIgMTkuMjY5NTMxIDE5LjI2OTUzMiAyNi42OTkyMTktMjYuNjk5MjE5em0wIDAiIGZpbGw9IiMxMzRhNzkiLz48cGF0aCBkPSJtMTg0LjcxODc1IDM1MC41NjY0MDYtMTEuNjQwNjI1LTExLjY0NDUzMS0yNi42OTkyMTkgMjYuNjk5MjE5IDE5LjI2OTUzMiAxOS4yNjU2MjV6bTAgMCIgZmlsbD0iIzA5MjMzOSIvPjxwYXRoIGQ9Im0yMDguNDIxODc1IDI1My42NzU3ODEtMjEuODI4MTI1IDM4LjQ2NDg0NC0zOC40NjQ4NDQgMjEuODMyMDMxLTI0Ljk1MzEyNS0yNC45NDkyMTggMTIuNDc2NTYzLTEyLjQ3NjU2M3ptMCAwIiBmaWxsPSIjMWQ3MWI4Ii8+PHBhdGggZD0ibTM3NC43NTc4MTIgMTM3LjI0MjE4OC01My4yMjY1NjIgMTMuMzA0Njg3IDE5Ljk2MDkzOCAzNi41OTM3NXptMCAwIiBmaWxsPSIjZDJlM2YxIi8+PHBhdGggZD0ibTM2MS40NDkyMTkgMTkwLjQ2ODc1IDEzLjMwODU5My01My4yMjY1NjItMzMuMjY1NjI0IDMzLjI2NTYyNHptMCAwIiBmaWxsPSIjYTRjNmUyIi8+PHBhdGggZD0ibTMzMy4xNzU3ODEgMTk1LjQ2MDkzOC0zNi41OTM3NS0xOS45NjA5MzgtNjMuMjA3MDMxIDUzLjIyNjU2MiAyNC45NDkyMTkgNDEuNTgyMDMyem0wIDAiIGZpbGw9IiNhNGM2ZTIiLz48cGF0aCBkPSJtMjUwLjAwNzgxMiAyNjEuOTkyMTg4IDMzLjI2NTYyNiAxNi42MzI4MTIgNTMuMjI2NTYyLTYzLjIwNzAzMS0xMS42NDA2MjUtMjguMjc3MzQ0em0wIDAiIGZpbGw9IiM3N2FhZDQiLz48cGF0aCBkPSJtMjU4LjMyNDIxOSAzMDMuNTc0MjE5LTM4LjQ2NDg0NCAyMS44MzIwMzEtMjEuODMyMDMxIDM4LjQ2NDg0NCAyNC45NDkyMTggMjQuOTUzMTI1IDEyLjQ3NjU2My0xMi40NzY1NjN6bTAgMCIgZmlsbD0iIzA5MjMzOSIvPjxwYXRoIGQ9Im0zNDEuNDkyMTg4IDE3MC41MDc4MTItMTkuOTYwOTM4LTE5Ljk2MDkzNy0yNC45NDkyMTkgMjQuOTUzMTI1IDE5Ljk1NzAzMSAxOS45NjA5MzggMjAuNzkyOTY5LTQuMTYwMTU3em0wIDAiIGZpbGw9IiM3N2FhZDQiLz48cGF0aCBkPSJtMzM2LjUgMjE1LjQyMTg3NS0xOS45NTcwMzEtMTkuOTYwOTM3IDI0Ljk0OTIxOS0yNC45NDkyMTkgMTkuOTYwOTM3IDE5Ljk2MDkzN3ptMCAwIiBmaWxsPSIjMWQ3MWI4Ii8+PHBhdGggZD0ibTIwOC40MjE4NzUgMjUzLjY3NTc4MS02MC4yOTI5NjkgNjAuMjk2ODc1IDI0Ljk0OTIxOSAyNC45NDkyMTkgNzYuOTI5Njg3LTYwLjI5Njg3NXptMCAwIiBmaWxsPSIjYTRjNmUyIi8+PHBhdGggZD0ibTI0MS42OTE0MDYgMjcwLjMwODU5NC02OC42MTMyODEgNjguNjEzMjgxIDI0Ljk0OTIxOSAyNC45NDkyMTkgNjAuMjk2ODc1LTYwLjI5Njg3NXptMCAwIiBmaWxsPSIjNzdhYWQ0Ii8+PHBhdGggZD0ibTI1OC4zMjQyMTkgMjUzLjY3NTc4MS0yNC45NDkyMTktMjQuOTQ5MjE5LTI0Ljk1MzEyNSAyNC45NDkyMTkgMjQuOTUzMTI1IDI0Ljk0OTIxOSAyMC43ODkwNjItNC4xNTYyNXptMCAwIiBmaWxsPSIjNzdhYWQ0Ii8+PHBhdGggZD0ibTI4My4yNzczNDQgMjc4LjYyNS0yNC45NDkyMTkgMjQuOTQ5MjE5LTI0Ljk0OTIxOS0yNC45NDkyMTkgMjQuOTQ5MjE5LTI0Ljk0OTIxOXptMCAwIiBmaWxsPSIjMWQ3MWI4Ii8+PHBhdGggZD0ibTM1OC4xMjEwOTQgMTQxLjQwMjM0NCAzMC4xMDU0NjgtMzAuMTA1NDY5IDEyLjQ3NjU2MyAxMi40NzI2NTYtMzAuMTA1NDY5IDMwLjEwNTQ2OXptMCAwIiBmaWxsPSIjYTRjNmUyIi8+PC9zdmc+",
-      "url": "",
-      "userId": 1
-    },
-    {
-      "id": 4,
-      "userNickname": "First_User",
-      "body": "Hi, there, i test tags add feature #test #first #cool #Ice",
-      "likes": [],
-      "comments": [],
-      "featured": false,
-      "tags": [
-        "#test",
-        "#first",
-        "#cool",
-        "#Ice"
-      ],
-      "created": "20.12.18",
-      "image": "",
-      "url": "",
-      "userId": 1
-    },
-    {
-      "id": 5,
-      "userNickname": "First_User",
-      "body": "2 Hi, there, i test tags add feature #test #first #cool #Ice",
-      "likes": [],
-      "comments": [],
-      "featured": false,
-      "tags": [
-        "2",
-        "Hi",
-        "there",
-        "i",
-        "test",
-        "tags",
-        "add",
-        "feature",
-        "test",
-        "first",
-        "cool",
-        "Ice"
-      ],
-      "created": "20.12.18",
-      "image": "",
-      "url": "",
-      "userId": 1
-    },
-    {
-      "id": 6,
-      "userNickname": "First_User",
-      "body": "3. Hi, there, i test tags add feature #test #first #cool #Ice",
-      "likes": [],
-      "comments": [],
-      "featured": false,
-      "tags": [
-        "test",
-        "first",
-        "cool",
-        "Ice"
-      ],
-      "created": "20.12.18",
-      "image": "",
-      "url": "",
-      "userId": 1
     }
   ],
   "likes": [
@@ -137,22 +47,6 @@
       "userNickname": "First_User",
       "body": "Hi!",
       "replies": []
-    },
-    {
-      "id": 6,
-      "messageId": 2,
-      "userId": 1,
-      "userNickname": "First_User",
-      "body": "lalala",
-      "replies": []
-    },
-    {
-      "id": 7,
-      "messageId": 3,
-      "userId": 1,
-      "userNickname": "First_User",
-      "body": "qweasdzxc",
-      "replies": []
     }
   ],
   "replies": [
@@ -172,15 +66,6 @@
       "body": "First_User,Hello!",
       "replies": [],
       "commentId": 3
-    },
-    {
-      "id": 5,
-      "messageId": 2,
-      "userId": 1,
-      "userNickname": "First_User",
-      "body": "First_User,lalala",
-      "replies": [],
-      "commentId": 6
     }
   ],
   "featured": [

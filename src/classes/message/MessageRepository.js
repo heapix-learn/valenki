@@ -45,4 +45,8 @@ export default class MessageRepository {
 		await (axios.delete(`http://localhost:3000/featured/${id}`))
 	}
 
+	async deletePost(id) {
+		await (axios.delete(`http://localhost:3000/messages/${id}`))
+	}
+
 }

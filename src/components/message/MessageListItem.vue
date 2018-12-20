@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="message">
     <v-layout class="message-item">
       <v-flex xs12 sm6 offset-sm3>
         <v-card>
@@ -30,7 +30,7 @@
             <div
               class="message-item__content-group__delete"
               v-if="this.$route.path.includes('profile')">
-              <i class="material-icons small" @click="deletePost()">
+              <i class="material-icons small" @click="deletePost(message.id)">
                 add_circle
               </i>
             </div>
@@ -158,6 +158,7 @@ export default {
       type: Message,
       required: true,
     },
+    index: Number,
   },
   created () {
     this.setLikeState()
@@ -205,11 +206,6 @@ export default {
       const commentRepository = new CommentRepository()
       this.comments = await (commentRepository.getComments(this.message.id))
     },
-    // async getUser () {
-    //   const id = this.message.userId
-    //   const userRepository = new UserRepository()
-    //   this.user = await (userRepository.getUserById(id))
-    // },
     async likePost () {
       const like = new Like
       like.messageId = this.message.id
@@ -253,10 +249,12 @@ export default {
         this.featured.added = false
       }
     },
-    deletePost () {
-
-    },
-  },
+    async deletePost (id) {
+      const messageRepository = new MessageRepository()
+      await messageRepository.deletePost(id)
+      document.getElementsByClassName('message-item')[this.index].style.display = "none";
+    }
+  }
 }
 
 </script>
@@ -305,6 +303,7 @@ export default {
       position: absolute;
       top: -13px;
       right: 4px;
+      cursor: pointer;
     }
 
     &__text {

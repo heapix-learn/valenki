@@ -9,24 +9,26 @@
 			</span>
 				{{MessagesByAuthor}}
 			</div>
-
 			<div v-else class="base-main__page">
-				<MessageList :Messages="MessagesByAuthor"/>
+				<MessageList
+					:Messages="MessagesByAuthor"
+				/>
 			</div>
-
 		</div>
 	</div>
 </template>
 
 <script>
 	import MessageList from "./MessageList";
-	import MessageRepository from '../../classes/message/MessageRepository.js'
 	import PersonalPage from "../user/UserProfileForm";
-
+	import MessageRepository from '../../classes/message/MessageRepository.js'
 
 	export default {
 		name: "MessageByUser",
-		components: {PersonalPage, MessageList},
+		components: {
+			PersonalPage,
+			MessageList
+		},
 		data() {
 			return {
 				MessagesByAuthor: [],
@@ -56,4 +58,5 @@
 	.user-messages {
 		background-color: slategray;
 	}
+
 </style>
