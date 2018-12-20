@@ -25,7 +25,7 @@ export default class MessageRepository {
 	}
 
 	async getMessageById(id) {
-		let message = (await axios.get(`http://localhost:3000/messages?id=${id}&_embed=likes&_embed=comments&_embed=featured&_expand=user`)).data[0];
+		let message = (await axios.get(`http://localhost:3000/messages?id=${id}&_embed=likes&_embed=comments&_embed=featured&_expand=user`)).data[0]; //because JSON server returned array
 		return MessageMapper.map(message);
 	}
 

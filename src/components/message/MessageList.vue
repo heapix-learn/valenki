@@ -9,6 +9,7 @@
 				<MessageListItem
 					:message="message"
 					:index="index"
+					@deletes="deleteMessage"
 				/>
 			</div>
 
@@ -32,6 +33,11 @@
 				this.loading = true
 				this.$emit('next');
 			},
+			deleteMessage(her) {
+				const newMessages = this.Messages.filter(message => message.id != her)
+				console.log('this.messages.2 ', newMessages)
+				this.$emit('deletes')
+			}
 		}
 	}
 </script>

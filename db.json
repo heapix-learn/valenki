@@ -22,6 +22,63 @@
         "Fire"
       ],
       "created": "28.11.18"
+    },
+    {
+      "id": 3,
+      "userNickname": "First_User",
+      "body": "fsddfgsdfg #123#321321#654654654#987987987",
+      "likes": [],
+      "comments": [],
+      "featured": false,
+      "tags": [
+        "123",
+        "321321",
+        "654654654",
+        "987987987"
+      ],
+      "created": "20.12.18",
+      "image": "",
+      "url": "",
+      "userId": 1
+    },
+    {
+      "id": 4,
+      "userNickname": "First_User",
+      "body": "sdfgsdfgsdfg",
+      "likes": [],
+      "comments": [],
+      "featured": false,
+      "tags": [],
+      "created": "20.12.18",
+      "image": "",
+      "url": "",
+      "userId": 1
+    },
+    {
+      "id": 6,
+      "userNickname": "First_User",
+      "body": "sdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfg",
+      "likes": [],
+      "comments": [],
+      "featured": false,
+      "tags": [],
+      "created": "20.12.18",
+      "image": "",
+      "url": "",
+      "userId": 1
+    },
+    {
+      "id": 7,
+      "userNickname": "First_User",
+      "body": "sdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgs",
+      "likes": [],
+      "comments": [],
+      "featured": false,
+      "tags": [],
+      "created": "20.12.18",
+      "image": "",
+      "url": "",
+      "userId": 1
     }
   ],
   "likes": [

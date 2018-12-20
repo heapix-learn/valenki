@@ -249,10 +249,11 @@ export default {
         this.featured.added = false
       }
     },
-    async deletePost (id) {
-      const messageRepository = new MessageRepository()
-      await messageRepository.deletePost(id)
-      document.getElementsByClassName('message-item')[this.index].style.display = "none";
+    async deletePost () {
+      // const messageRepository = new MessageRepository()
+      // await messageRepository.deletePost(id)
+      this.$emit('deletes', this.message.id)
+      // document.getElementsByClassName('message-item')[this.index].style.display = "none";
     }
   }
 }
