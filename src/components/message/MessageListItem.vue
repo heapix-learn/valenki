@@ -8,8 +8,11 @@
 							<router-link
 								:to="{name: 'user-messages', params: {nick_name: message.userNickname, user_id: message.userId}}">
 								<div>
-									<img :src="message.user.avatar" height="50"
-											 width="50"/>
+									<img
+										:src="message.user.avatar"
+										height="50"
+										width="50"
+									/>
 								</div>
 							</router-link>
 						</div>
@@ -39,10 +42,14 @@
 							<div class="message-item__content-group__text">
 								{{message.body}}
 							</div>
-							<div v-if="message.image"
-									 class="message-item__content-group__image">
-								<img :src="message.image" height="70%"
-										 width="70%">
+							<div
+								v-if="message.image"
+								class="message-item__content-group__image">
+								<img
+									:src="message.image"
+									height="70%"
+									width="70%"
+								/>
 							</div>
 							<div class="message-item__content-group__hashtag-group">
 								<img
