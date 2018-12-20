@@ -3,7 +3,8 @@ export default {
 		menu: 'Меню',
 		login: 'Войти',
 		register: 'Зарегистрироваться',
-		fund_user: 'Поиск',
+		find_user: 'Поиск Юзера',
+		find_hashtag: 'Поиск Хэштега',
 		personal: 'Кабинет',
 		logout: 'Выйти',
 		email: 'Email',
@@ -23,4 +24,7 @@ export default {
 		favourites: 'Сохраненные сообщения'
 	},
 	$comment: {},
+	$footer: {
+		title: 'Сделано с любовью by HEAPIX dev'
+	},
 }

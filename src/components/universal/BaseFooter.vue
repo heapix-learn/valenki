@@ -1,6 +1,7 @@
 <template>
 	<v-footer class="base-footer">
-		<span>Made with love and tears by 🄯HEAPIX dev</span>
+		<span>{{ $t('$footer.title') }}</span>
+
 	</v-footer>
 </template>
 

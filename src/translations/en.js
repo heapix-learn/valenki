@@ -3,7 +3,8 @@ export default {
 		menu: 'Menu',
 		login: 'Login',
 		register: 'Register',
-		fund_user: 'Find user',
+		find_user: 'Find user',
+		find_hashtag: 'Find hashtag',
 		personal: 'Personal',
 		logout: 'Logout',
 		email: 'Email',
@@ -23,4 +24,7 @@ export default {
 		favourites: 'Saved Messages'
 	},
 	$comment: {},
+	$footer: {
+		title: 'Made with love and tears by HEAPIX dev'
+	},
 }

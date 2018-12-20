@@ -33,6 +33,7 @@
 <style lang="scss">
 
 	.hashtag-messages {
+		min-height: calc(100vh - 56px - 36px);
 		background-color: cornflowerblue;
 	}
 

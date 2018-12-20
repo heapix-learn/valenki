@@ -1,12 +1,12 @@
 <template>
 	<div class="register-page__pick-langs">
 		<div @click="changeLang('ru')">
-			<img
+			<img :class="{'active': lang == 'ru'}"
 				src="../../assets/countries/Russia.png" height="64"
 				width="64"/>
 		</div>
 		<div @click="changeLang('en')">
-			<img
+			<img :class="{'active': lang == 'en'}"
 				src="../../assets/countries/United-States.png" height="64"
 				width="64"/>
 		</div>
@@ -18,17 +18,30 @@
 
 	export default {
 		name: "LanguageSwitcher",
+		data() {
+			return {
+				lang: ''
+			}
+		},
 		methods: {
 			changeLang(lang) {
-				console.log('lang', lang)
+				// console.log('lang', lang)
 				i18n.locale = lang
 				localStorage.setItem('locale', lang)
+				this.lang = lang
 				this.$emit('changeLocale')
 			}
 		}
 	}
 </script>
 
-<style scoped>
+<style lang="scss">
+
+	.active {
+		padding-top: 1px;
+		/*border: 1px solid darkcyan;*/
+		background-color: #FF7C7F;
+		border-radius: 32px;
+	}
 
 </style>

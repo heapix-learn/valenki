@@ -135,17 +135,18 @@
 </script>
 
 <style lang="scss">
-	.login-page__alert {
-		position: absolute;
-		margin-left: 10%;
-		margin-right: 10%;
-		left: 0;
-		right: 0;
-		top: 12%;
-	}
 
 	.login-page {
 		padding: 5vh;
+
+		&__alert {
+			position: absolute;
+			margin-left: 10%;
+			margin-right: 10%;
+			left: 0;
+			right: 0;
+			top: 12%;
+		}
 
 		&__spacer {
 			height: 10vh;

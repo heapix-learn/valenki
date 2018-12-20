@@ -45,7 +45,7 @@
               </div>
               <div class="message-item__content-group__hashtag-group">
                 <img
-                  src="../../assets/hashtag.png"
+                  src="../../assets/tag.png"
                   height="18"
                   width="18"
                   v-if="message.tags.length"
@@ -321,7 +321,7 @@ export default {
 
       &__image {
         margin-right: 10px;
-        display: none;
+        /*display: none;*/
       }
 
       &__hashtag {

@@ -24,7 +24,13 @@
 
 					<v-list-tile v-if="provideNick.name">
 						<router-link :to="{name: 'find-user'}" class="link">
-							<span>{{ $t('$general.fund_user') }}</span>
+							<span>{{ $t('$general.find_user') }}</span>
+						</router-link>
+					</v-list-tile>
+
+					<v-list-tile v-if="provideNick.name">
+						<router-link :to="{name: 'find-hashtag'}" class="link">
+							<span>{{ $t('$general.find_hashtag') }}</span>
 						</router-link>
 					</v-list-tile>
 

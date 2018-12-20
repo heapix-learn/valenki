@@ -36,6 +36,6 @@
 <style lang="scss">
 
 	.message-list {
-
+		min-height: calc(100vh - 56px - 36px);
 	}
 </style>
