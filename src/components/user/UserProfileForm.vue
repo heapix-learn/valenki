@@ -60,11 +60,6 @@
 			<v-btn @click="saveEditUser()">Save</v-btn>
 		</div>
 
-		<div>
-			<br>
-			<br>
-		</div>
-
 		<div v-show="personal">
 			<v-tabs
 				color="cyan"
@@ -268,6 +263,7 @@
 			border-bottom: 2px solid darkslategrey;
 			background-color: lavender;
 			height: 40px;
+			margin-bottom: 50px;
 
 			&__avatar {
 				margin-left: 10px;

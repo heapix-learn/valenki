@@ -1,21 +1,23 @@
 <template>
-<div v-if="$route.name !== 'NewMessage' && provideNick.name" class="add-button">
-	<v-btn
-		class="add-button__button"
-		fixed
-		dark
-		fab
-		bottom
-		right
-		:no-resize="true"
-		color="green"
-		@click="createNewMessage()"
-	>
-		<i class="material-icons">
-			create
-		</i>
-	</v-btn>
-</div>
+	<div
+		v-if="$route.name !== 'MessageCreateForm' && provideNick.name"
+		class="add-button">
+		<v-btn
+			class="add-button__button"
+			fixed
+			dark
+			fab
+			bottom
+			right
+			:no-resize="true"
+			color="green"
+			@click="createNewMessage()"
+		>
+			<i class="material-icons">
+				create
+			</i>
+		</v-btn>
+	</div>
 </template>
 
 <script>
