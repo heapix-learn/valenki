@@ -8,10 +8,15 @@
 				:value="true"
 				v-if="status === 'success'"
 				color="success"
-				icon="check_circle"
 				outline
+				style="border: none !important;"
 			>
-				{{$t('$general.success_enter')}}
+				<div class="login-page__alert__message">
+					<i class="material-icons">
+						check_circle_outline
+					</i>
+					<span>{{$t('$general.success_enter')}}</span>
+				</div>
 			</v-alert>
 		</div>
 
@@ -20,10 +25,16 @@
 				:value="true"
 				v-if="status === 'error'"
 				color="error"
-				icon="warning"
 				outline
+				style="border: none !important;"
 			>
-				{{$t('$general.wrong_credentials')}}
+				<div class="login-page__alert__message">
+					<i class="material-icons">
+						warning
+					</i>
+					<span>
+				{{$t('$general.wrong_credentials')}}</span>
+				</div>
 			</v-alert>
 		</div>
 
@@ -48,15 +59,17 @@
 				required
 			/>
 			<div class="login-page__form__buttons">
-				<v-btn :disabled="!valid" @click="checkFields()" class="login-page__form__buttons__btn">
+				<v-btn
+					@click="checkFields()"
+					:disabled="!valid"
+					class="login-page__form__buttons__button">
 					{{$t('$general.sign_in')}}
 				</v-btn>
-
-				<router-link :to="{name: 'register-page'}">
-					<v-btn>
+				<v-btn class="login-page__form__buttons__button">
+					<router-link :to="{name: 'register-page'}">
 						{{$t('$general.register')}}
-					</v-btn>
-				</router-link>
+					</router-link>
+				</v-btn>
 			</div>
 		</v-form>
 	</div>
@@ -90,17 +103,8 @@
 			}
 		},
 		methods: {
-			checkStatus(status) {
-				if (status === 200) {
-					this.status = 'success';
-					this.goToMain()
-				} else {
-					this.status = 'error'
-				}
-			},
 			async goToMain() {
 				// await (window.location.href = "/")
-
 				setTimeout(() => {
 					window.location.href = "/"
 				}, 2000);
@@ -121,14 +125,18 @@
 			},
 			async signIn() {
 				const userRepository = new UserRepository();
-				const postResponse = await userRepository.signIn(this.credential);
-				// console.log('resp', postResponse)
-				localStorage.setItem('token', postResponse.data.access_token);
-				localStorage.setItem('id', postResponse.data.user.id);
-				localStorage.setItem('nick', postResponse.data.user.nick_name);
-				i18n.locale = postResponse.data.user.locale
-				localStorage.setItem('locale', postResponse.data.user.locale)
-				this.checkStatus(postResponse.status)
+				let postResponse = await userRepository.signIn(this.credential);
+				if (postResponse.status === 200) {
+					this.status = 'success';
+					localStorage.setItem('token', postResponse.data.access_token);
+					localStorage.setItem('id', postResponse.data.user.id);
+					localStorage.setItem('nick', postResponse.data.user.nick_name);
+					i18n.locale = postResponse.data.user.locale
+					localStorage.setItem('locale', postResponse.data.user.locale)
+					this.goToMain()
+				} else {
+					this.status = 'error'
+				}
 			}
 		}
 	}
@@ -137,44 +145,63 @@
 <style lang="scss">
 
 	.login-page {
-		padding: 5vh;
+		padding: 1vh;
+
+		&__spacer {
+			height: 16vh;
+		}
 
 		&__alert {
+			border: none;
+			margin: 0 1vh;
+			border-radius: 3px;
+			box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+			padding: 0 5px;
+			background: #f5f5f5;
 			position: absolute;
-			margin-left: 10%;
-			margin-right: 10%;
 			left: 0;
 			right: 0;
 			top: 12%;
-		}
 
-		&__spacer {
-			height: 10vh;
+			&__message {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				i {
+					padding: 0 10px;
+				}
+			}
 		}
 
 		&__form {
+			padding: 10px 15px;
 			width: 100%;
+			background: #f5f5f5;
+			border-radius: 3px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
 			&__buttons {
 				display: flex;
 				justify-content: space-evenly;
 				align-items: center;
 
-				&__btn {
-					width: 20%;
+				&__button {
+					width: 50% !important;
+					margin: 0 !important;
 				}
 			}
 		}
 	}
 
-	@media screen and (min-width: 768px) {
-		.login-page {
-			justify-content: center;
+	/*@media screen and (min-width: 768px) {*/
+	/*.login-page {*/
+	/*justify-content: center;*/
 
-			&__form {
-				width: 50%;;
-			}
-		}
-	}
+	/*&__form {*/
+	/*width: 50%;;*/
+	/*}*/
+	/*}*/
+	/*}*/
 
 </style>
