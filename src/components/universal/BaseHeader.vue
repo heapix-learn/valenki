@@ -5,13 +5,13 @@
 				<img
 					class="base-header__logo__image"
 					src="../../assets/lemma_new.png"
-					height="51"
-					width="225"
+					height="35"
+					width="155"
 				/>
 			</router-link>
 			<v-spacer/>
 			<span class="base-header__users-nickname">{{provideNick.name}}</span>
-			<v-menu class="base-header__menu" offset-y>
+			<v-menu class="base-header__menu" transition="slide-x-transition" offset-y>
 				<v-toolbar-side-icon slot="activator">
 					<i class="material-icons">
 						menu

@@ -1,59 +1,93 @@
 <template>
 	<div class="new-message">
-		<!--{{typeof date}}-->
-		<!--message {{message}}-->
-		<v-textarea
-			:counter="140"
-			outline
-			height="150"
-			autofocus
-			background-color="blue"
-			validate-on-blur
-			label="Write your message there:"
-			v-model="message.body"
-		></v-textarea>
-		<div class="personal-page__edit-area__avatar-upload">
+		<div class="new-message__spacer"/>
+		<v-textarea class="new-message__text-input"
+								:counter="140"
+								height="150"
+								box
+								autofocus
+								no-resize
+								background-color="#f5f5f5"
+								validate-on-blur
+								label="Write your message there:"
+								v-model="message.body"
+		/>
+
+		<div class="new-message__image-upload">
 			<input id="image_upload" type="file" @change="addPicture">
 		</div>
-		<img src="message.avatar" alt="">
+
+		<div v-if="message.image" class="new-message__uploaded-image">
+			<img
+				:src="message.image"
+				height="20%"
+				width="20%"
+				alt="message.image"
+			/>
+			<div>
+				<i class="material-icons small" @click="message.image = ''">
+					add_circle
+				</i>
+			</div>
+		</div>
 		<div class="new-message__buttons">
-			<v-btn flat icon outline color="blue">
+			<v-btn flat color="blue" @click="uploadImage()">
 				<i class="material-icons">
 					add_photo_alternate
 				</i>
 			</v-btn>
-			<v-btn flat icon outline color="green">
+			<v-btn flat color="red" @click="addVideo()">
 				<i class="material-icons">
-					gif
+					ondemand_video
 				</i>
 			</v-btn>
-			<v-btn flat icon outline color="orange">
+			<v-btn flat color="pink" @click="addUrl()">
 				<i class="material-icons">
-					sentiment_satisfied_alt
+					link
 				</i>
 			</v-btn>
+
+			<!--<v-btn flat color="orange">-->
+			<!--<i class="material-icons">-->
+			<!--sentiment_very_satisfied-->
+			<!--</i>-->
+			<!--</v-btn>-->
 		</div>
-		<v-text-field
-			v-model="message.video"
-			label="Enter youtube - URL here:"
-			type="text"
-			required
+
+		<v-text-field class="new-message__url-input"
+									v-if="videoInput"
+									v-model="message.video"
+									label="Enter YouTube-URL here:"
+									type="text"
+									required
+									solo
+									hide-details
 		/>
+
+		<v-text-field class="new-message__url-input"
+									v-if="urlInput"
+									v-model="message.url"
+									label="Enter URL here:"
+									type="text"
+									required
+									solo
+									hide-details
+		/>
+
 		<div class="new-message__add-message-button">
 			<v-btn
-				fixed
 				dark
 				fab
+				small
 				:no-resize="true"
-				color="red"
+				color="green"
 				@click="checkFields()"
 			>
 				<i class="material-icons">
-					create
+					send
 				</i>
 			</v-btn>
 		</div>
-
 	</div>
 </template>
 
@@ -67,12 +101,25 @@
 		data() {
 			return {
 				message: new Message,
-				date: {}
+				date: {},
+				urlInput: false,
+				videoInput: false
 			}
 		},
 
 		methods: {
-			checkFields() {
+			uploadImage() {
+				document.getElementById('image_upload').click()
+			},
+			addVideo() {
+				this.urlInput = false;
+				this.videoInput = !this.videoInput;
+			},
+			addUrl() {
+				this.videoInput = false;
+				this.urlInput = !this.urlInput
+			},
+			async checkFields() {
 				this.message.userId = Number(localStorage.getItem('id'));
 				this.message.userNickname = localStorage.getItem('nick');
 				this.message.tags = this.message.body.match(/(#[a-z0-9][a-z0-9\-_]*)/ig);
@@ -86,10 +133,16 @@
 				this.message.video = this.message.video.replace(/watch\?v=/g, '/embed/')
 				this.message.created = this.getDate();
 				if (this.message.body.length && this.message.userId) {
-					this.createMessage()
+					await this.createMessage()
+					this.goToMain()
 				} else {
 					console.log('Вы ничего не написали =(')
 				}
+			},
+			goToMain() {
+				setTimeout(() => {
+					window.location.href = "/"
+				}, 2000);
 			},
 			createMessage() {
 				const messageRepository = new MessageRepository();
@@ -136,20 +189,42 @@
 
 <style lang="scss">
 
+
 	.new-message {
+		margin: 0 1vh !important;
+
+		&__text-input {
+			margin-bottom: -10px !important;
+		}
+
+		&__uploaded-image {
+			display: flex;
+			justify-content: center;
+			i{
+				color: crimson;
+				transform: rotate(45deg);
+				color: indianred;
+				cursor: pointer;
+			}
+		}
 
 		&__buttons {
 			display: flex;
 			justify-content: space-evenly;
 		}
 
-		&__addButton {
-			top: 50px;
-		}
-
 		&__add-message-button {
 			display: flex;
 			justify-content: center;
+		}
+
+		&__image-upload {
+			display: none;
+			justify-content: center;
+			padding: 10px;
+		}
+		&__spacer {
+			height: 10px;
 		}
 	}
 

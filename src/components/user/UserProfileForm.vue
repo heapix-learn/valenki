@@ -296,7 +296,7 @@
 			text-align: center;
 
 			&__avatar-upload {
-				display: flex;
+				display:none;
 				justify-content: center;
 				padding: 10px;
 			}

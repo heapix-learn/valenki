@@ -45,12 +45,15 @@
 					<!--video-player, commented for clean console-->
 					<div
 						v-if="message.video">
-						---your video is here---
+						video is here!
 						<!--class="message-item__content-group__video">-->
 						<!--<iframe width="375" height="240" :src="message.video"-->
 						<!--allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"-->
 						<!--allowfullscreen>-->
 						<!--</iframe>-->
+					</div>
+					<div v-if="message.url">
+						<a :href="message.url">attached URL</a>
 					</div>
 
 					<div class="message-item__content-group__tag-group">
@@ -130,7 +133,6 @@
 					v-if="readComments"
 					@refresh="getComments(message.id)"
 				/>
-
 			</v-card>
 		</v-flex>
 	</v-layout>
