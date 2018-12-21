@@ -24,7 +24,8 @@ export default {
 	$message: {
 		your_messages: 'Your Messages',
 		favourites: 'Saved Messages',
-		message_hashtag: 'Messages with hashtag'
+		message_hashtag: 'Messages with hashtag',
+		posted: "posted"
 	},
 	$comment: {},
 	$footer: {

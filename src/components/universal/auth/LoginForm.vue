@@ -11,7 +11,7 @@
 				icon="check_circle"
 				outline
 			>
-				{{ $t('$general.success_enter') }}
+				{{$t('$general.success_enter')}}
 			</v-alert>
 		</div>
 
@@ -23,7 +23,7 @@
 				icon="warning"
 				outline
 			>
-				{{ $t('$general.wrong_credentials') }}
+				{{$t('$general.wrong_credentials')}}
 			</v-alert>
 		</div>
 
@@ -49,12 +49,12 @@
 			/>
 			<div class="login-page__form__buttons">
 				<v-btn :disabled="!valid" @click="checkFields()" class="login-page__form__buttons__btn">
-					{{ $t('$general.sign_in') }}
+					{{$t('$general.sign_in')}}
 				</v-btn>
 
 				<router-link :to="{name: 'register-page'}">
 					<v-btn>
-						{{ $t('$general.register') }}
+						{{$t('$general.register')}}
 					</v-btn>
 				</router-link>
 			</div>

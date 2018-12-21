@@ -11,7 +11,7 @@
 			</div>
 			<div v-else class="base-main__page">
 				<MessageList
-					:Messages="MessagesByAuthor"
+					:messages="MessagesByAuthor"
 				/>
 			</div>
 		</div>

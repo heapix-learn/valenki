@@ -1,134 +1,139 @@
 <template>
-	<div id="message">
-		<v-layout class="message-item">
-			<v-flex xs12 sm6 offset-sm3>
-				<v-card>
-					<div class="message-item__info">
-						<div class="message-item__info__avatar">
-							<router-link
-								:to="{name: 'user-messages', params: {nick_name: message.userNickname, user_id: message.userId}}">
-								<div>
-									<img
-										:src="message.user.avatar"
-										height="50"
-										width="50"
-									/>
-								</div>
-							</router-link>
-						</div>
-						<div class="message-item__info__title">
-							<div class="message-item__info__title__nickname">
-								<router-link
-									:to="{name: 'user-messages', params: {nick_name: message.userNickname, user_id: message.userId}}">
-									{{message.user.nick_name}}
-								</router-link>
-							</div>
-							<div class="message-item__content-group__date">
-								posted: {{message.created}}
-							</div>
-						</div>
-					</div>
-					<div>
-
-						<div
-							class="message-item__content-group__delete"
-							v-if="this.$route.path.includes('profile')">
-							<i class="material-icons small" @click="deletePost(message.id)">
-								add_circle
-							</i>
-						</div>
-
-						<div class="message-item__content-group">
-							<div class="message-item__content-group__text">
-								{{message.body}}
-							</div>
-							<div
-								v-if="message.image"
-								class="message-item__content-group__image">
+	<v-layout class="message-item">
+		<v-flex xs12 sm6 offset-sm3>
+			<v-card>
+				<div class="message-item__info">
+					<div class="message-item__info__avatar">
+						<router-link
+							:to="{name: 'user-messages', params: {nick_name: message.userNickname, user_id: message.userId}}">
+							<div>
 								<img
-									:src="message.image"
-									height="70%"
-									width="70%"
+									:src="message.user.avatar"
+									height="50"
+									width="50"
 								/>
 							</div>
-							<div
-								v-if="message.video"
-								class="message-item__content-group__video">
-								<iframe width="375" height="240" :src="message.video"
-												allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-												allowfullscreen>
-								</iframe>
-							</div>
-							<div class="message-item__content-group__hashtag-group">
-								<img
-									src="../../assets/tag.png"
-									height="18"
-									width="18"
-									v-if="message.tags.length"
-									class="message-item__content-group__hashtag-group__image"/>
-								<div
-									v-for="(hashtag, index) in message.tags" :key="index"
-									class="message-item__content-group__hashtag-group__hashtag"
-								>
-									<router-link
-										:to="{name: 'hashtag-messages', params: {hashtag: hashtag}}">
-										#{{hashtag}}
-									</router-link>
-								</div>
-							</div>
+						</router-link>
+					</div>
+					<div class="message-item__info__title">
+						<div class="message-item__info__title__nickname">
+							<router-link
+								:to="{name: 'user-messages', params: {nick_name: message.userNickname, user_id: message.userId}}">
+								{{message.user.nick_name}}
+							</router-link>
+						</div>
+						<div class="message-item__info__title__date">
+							<span>{{$t('$message.posted')}}: {{message.created}}</span>
 						</div>
 					</div>
+				</div>
 
-					<div class="message-item__button-group">
-						<v-btn
-							class="message-item__button-group__button"
-							@click="addToFeatured()"
-							:flat="true"
-							fab
-							small
-							:style="{ color: featured.added ? 'orange' : 'lightgrey' }"
-						>
-							<i class="material-icons">
-								stars
-							</i>
-						</v-btn>
-						<v-btn
-							class="message-item__button-group__button"
-							@click="openComments(message.id)"
-							:flat="true"
-							fab
-							small
-							color="#00887A"
-						>
-							{{comments.length}}
-							<i class="material-icons">
-								chat
-							</i>
-						</v-btn>
-						<v-btn
-							class="message-item__button-group__button"
-							@click="likePost()"
-							:flat="true"
-							fab
-							small
-							:style="{ color: like.liked ? '#FFCCBC' : 'lightgrey' }"
-						>
-							{{like.quantity}}&nbsp;
-							<i class="material-icons">
-								thumb_up_alt
-							</i>
-						</v-btn>
+				<div class="message-item__content-group">
+					<div class="message-item__content-group__text">
+						<span>{{message.body}}</span>
 					</div>
-					<CommentList
-						:comments="comments"
-						:messageId="message.id"
-						v-if="readComments"
-						@refresh="getComments(message.id)"
-					/>
-				</v-card>
-			</v-flex>
-		</v-layout>
-	</div>
+					<div
+						class="message-item__content-group__image"
+						v-if="message.image">
+						<img
+							:src="message.image"
+							height="70%"
+							width="70%"
+							alt="message.image"
+						/>
+					</div>
+					<!--video-player, commented for clean console-->
+					<div
+						v-if="message.video">
+						---your video is here---
+						<!--class="message-item__content-group__video">-->
+						<!--<iframe width="375" height="240" :src="message.video"-->
+						<!--allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"-->
+						<!--allowfullscreen>-->
+						<!--</iframe>-->
+					</div>
+
+					<div class="message-item__content-group__tag-group">
+						<img
+							class="message-item__content-group__tag-group__image"
+							v-if="message.tags.length"
+							src="../../assets/tag.png"
+							alt="tag-pic"
+							height="18"
+							width="18"
+						/>
+						<div
+							class="message-item__content-group__tag-group__tag"
+							v-for="(tag, index) in message.tags" :key="index"
+						>
+							<router-link
+								:to="{name: 'hashtag-messages', params: {hashtag: tag}}">
+								<span>#{{tag}}</span>
+							</router-link>
+						</div>
+					</div>
+				</div>
+
+				<div class="message-item__button-group">
+					<v-btn
+						class="message-item__button-group__button"
+						@click="addToFeatured()"
+						:flat="true"
+						fab
+						small
+						:style="{ color: featured.added ? 'orange' : 'lightgrey' }"
+					>
+						<i class="material-icons">
+							stars
+						</i>
+					</v-btn>
+					<v-btn
+						class="message-item__button-group__button"
+						@click="openComments(message.id)"
+						:flat="true"
+						fab
+						small
+						color="#00887A"
+					>
+						<!--add computed method to count replied comments(change get request)-->
+						{{comments.length}}
+						<i class="material-icons">
+							chat
+						</i>
+					</v-btn>
+					<v-btn
+						class="message-item__button-group__button"
+						@click="likePost()"
+						:flat="true"
+						fab
+						small
+						:style="{ color: like.liked ? '#FFCCBC' : 'lightgrey' }"
+					>
+						{{like.quantity}}&nbsp;
+						<i class="material-icons">
+							thumb_up_alt
+						</i>
+					</v-btn>
+				</div>
+
+				<div
+					class="message-item__content-group__delete"
+					v-if="this.$route.path.includes('profile')">
+					<i class="material-icons small" @click="deletePost(message.id)">
+						add_circle
+					</i>
+				</div>
+
+				<CommentList
+					:comments="comments"
+					:messageId="message.id"
+					v-if="readComments"
+					@refresh="getComments(message.id)"
+				/>
+
+			</v-card>
+		</v-flex>
+	</v-layout>
 </template>
 
 <script>
@@ -177,16 +182,16 @@
 			index: Number,
 		},
 		created() {
-			this.setLikeState()
-			this.setFavouriteState()
+			this.setLikeState();
+			this.setFavouriteState();
 			this.setCommentsState()
 		},
 		methods: {
 			setLikeState() {
-				const userId = Number(localStorage.getItem('id'))
-				const isLiked = this.message.likes.filter(item => item.userId === userId)
+				const userId = Number(localStorage.getItem('id'));
+				const isLiked = this.message.likes.filter(item => item.userId === userId);
 				if (isLiked.length !== 0) {
-					this.like.id = isLiked[0].id
+					this.like.id = isLiked[0].id;
 					this.like.liked = true
 				}
 			},
@@ -281,26 +286,19 @@
 					color: cornflowerblue;
 				}
 
-				&__liked {
-					font-weight: 600;
+				&__date {
+					color: #616161;
+					font-size: smaller;
+					text-align: right;
 				}
 			}
 		}
 
 		&__content-group {
-			padding: 0 20px;
+			padding: 0 10px;
 			flex-direction: column;
 			display: flex;
 			align-items: center;
-
-			&__delete {
-				transform: rotate(45deg);
-				color: indianred;
-				position: absolute;
-				top: -13px;
-				right: 4px;
-				cursor: pointer;
-			}
 
 			&__text {
 				align-self: normal;
@@ -311,12 +309,14 @@
 				display: flex;
 				justify-content: center;
 			}
+
 			&__video {
 				padding: 5px 0;
 				display: flex;
 				justify-content: center;
 			}
-			&__hashtag-group {
+
+			&__tag-group {
 				display: flex;
 				padding: 5px 10px 0 5px !important;
 				align-self: normal;
@@ -327,8 +327,7 @@
 				}
 
 
-
-				&__hashtag {
+				&__tag {
 					font-size: smaller;
 					padding-right: 10px;
 
@@ -337,7 +336,7 @@
 					}
 				}
 
-				&__hashtag:hover {
+				&__tag:hover {
 					cursor: pointer;
 
 					a {
@@ -346,10 +345,13 @@
 				}
 			}
 
-			&__date {
-				color: #616161;
-				font-size: smaller;
-				text-align: right;
+			&__delete {
+				transform: rotate(45deg);
+				color: indianred;
+				position: absolute;
+				top: -13px;
+				right: 4px;
+				cursor: pointer;
 			}
 		}
 

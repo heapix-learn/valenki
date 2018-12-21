@@ -17,14 +17,15 @@ export default {
 		success_enter: 'Вы успешно вошли!',
 		wrong_credentials: 'Неправильный Email или пароль!',
 		no_login_alert: 'Авторизуйтесь на сайте, чтобы просматривать сообщения!',
-		sort_by_date: 'Отсортировать по дате',
+		sort_by_date: 'Cортировать по дате',
 		pick_lang: 'Выберите язык',
 		non_exist: 'не существует'
 	},
 	$message: {
 		your_messages: 'Ваши сообщения',
 		favourites: 'Сохраненные сообщения',
-		message_hashtag: 'Сообщения с хэштегом'
+		message_hashtag: 'Сообщения с хэштегом',
+		posted: "опубликовано"
 	},
 	$comment: {},
 	$footer: {

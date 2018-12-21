@@ -1,20 +1,17 @@
 <template>
 	<div class="base-header">
 		<v-toolbar class="v-toolbar" :dark="false" :fixed="true">
-			<router-link :to="{name: 'base-main'}">
+			<router-link :to="{name: 'base-main'}" class="base-header__logo">
 				<img
-					class="base-header__logo"
+					class="base-header__logo__image"
 					src="../../assets/lemma_new.png"
 					height="51"
 					width="225"
 				/>
 			</router-link>
-
 			<v-spacer/>
-
-			{{provideNick.name}}
-
-			<v-menu offset-y>
+			<span class="base-header__users-nickname">{{provideNick.name}}</span>
+			<v-menu class="base-header__menu" offset-y>
 				<v-toolbar-side-icon slot="activator">
 					<i class="material-icons">
 						menu
@@ -24,25 +21,25 @@
 
 					<v-list-tile v-if="provideNick.name">
 						<router-link :to="{name: 'find-user'}" class="link">
-							<span>{{ $t('$general.find_user') }}</span>
+							<span>{{$t('$general.find_user')}}</span>
 						</router-link>
 					</v-list-tile>
 
 					<v-list-tile v-if="provideNick.name">
 						<router-link :to="{name: 'find-hashtag'}" class="link">
-							<span>{{ $t('$general.find_hashtag') }}</span>
+							<span>{{$t('$general.find_hashtag')}}</span>
 						</router-link>
 					</v-list-tile>
 
 					<v-list-tile v-if="!provideNick.name">
 						<router-link :to="{name: 'login-page'}" class="link">
-							<span>{{ $t('$general.login') }}</span>
+							<span>{{$t('$general.login')}}</span>
 						</router-link>
 					</v-list-tile>
 
 					<v-list-tile v-if="!provideNick.name">
 						<router-link :to="{name: 'register-page'}" class="link">
-							<span>{{ $t('$general.register') }}</span>
+							<span>{{$t('$general.register')}}</span>
 						</router-link>
 					</v-list-tile>
 
@@ -50,16 +47,16 @@
 						<router-link
 							:to="{name: 'user-profile', params: {nick_name: provideNick.name, user_id: id}}"
 							class="link">
-							<span>{{ $t('$general.personal') }}</span>
+							<span>{{$t('$general.personal')}}</span>
 						</router-link>
 					</v-list-tile>
 
 					<v-list-tile @click="logOut()" v-if="provideNick.name">
-						{{ $t('$general.logout') }}
+						{{$t('$general.logout')}}
 					</v-list-tile>
+
 				</v-list>
 			</v-menu>
-
 		</v-toolbar>
 	</div>
 </template>
@@ -92,11 +89,9 @@
 	.base-header {
 
 		&__logo {
-			margin-top: 5px;
-		}
-
-		.v-toolbar {
-
+			&__image {
+				margin-top: 5px;
+			}
 		}
 	}
 </style>

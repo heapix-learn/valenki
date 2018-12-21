@@ -31,13 +31,13 @@
 					class="login-page__form__buttons__button"
 					:disabled="!valid"
 				>
-					{{ $t('$general.sign_up') }}
+					{{$t('$general.sign_up')}}
 				</v-btn>
 				<router-link
 					:to="{name: 'login-page'}"
 					class="login-page__form__buttons__button"
 				>
-					<v-btn>{{ $t('$general.have_account') }}</v-btn>
+					<v-btn>{{$t('$general.have_account')}}</v-btn>
 				</router-link>
 			</div>
 		</v-form>
