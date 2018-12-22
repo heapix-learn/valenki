@@ -129,6 +129,7 @@
 
 				<CommentList
 					:comments="comments"
+					:users="usersInComments"
 					:messageId="message.id"
 					v-if="readComments"
 					@refresh="getComments(message.id)"
@@ -174,6 +175,7 @@
 					liked: false,
 					quantity: this.message.likes.length,
 				},
+				usersInComments: [],
 			}
 		},
 		props: {
@@ -201,10 +203,10 @@
 				this.comments = this.message.comments
 			},
 			setFavouriteState() {
-				const userId = Number(localStorage.getItem('id'))
-				const isFeatured = this.message.featured.filter(item => item.userId === userId)
+				const userId = Number(localStorage.getItem('id'));
+				const isFeatured = this.message.featured.filter(item => item.userId === userId);
 				if (isFeatured.length !== 0) {
-					this.featured.id = isFeatured[0].id
+					this.featured.id = isFeatured[0].id;
 					this.featured.added = true
 				}
 			},
@@ -215,42 +217,43 @@
 				this.readComments = !this.readComments
 			},
 			async getComments() {
-				const commentRepository = new CommentRepository()
-				this.comments = await (commentRepository.getComments(this.message.id))
+				const commentRepository = new CommentRepository();
+				this.comments = await (commentRepository.getComments(this.message.id));
+				this.usersInComments = await (commentRepository.getReplyedUsersInfo())
 			},
 			async likePost() {
-				const like = new Like
-				like.messageId = this.message.id
-				like.userId = Number(localStorage.getItem('id'))
-				const likeRepository = new LikeRepository()
+				const like = new Like;
+				like.messageId = this.message.id;
+				like.userId = Number(localStorage.getItem('id'));
+				const likeRepository = new LikeRepository();
 				if (!this.like.liked) {
-					const id = await likeRepository.likePost(like)
-					this.like.id = id
-					this.like.liked = true
+					const id = await likeRepository.likePost(like);
+					this.like.id = id;
+					this.like.liked = true;
 					this.like.quantity++
 				} else {
-					await likeRepository.unlikePost(this.like.id)
-					this.like.liked = false
+					await likeRepository.unlikePost(this.like.id);
+					this.like.liked = false;
 					this.like.quantity--
 				}
 			},
 			async addToFeatured() {
-				let message = {}
-				message.userId = Number(localStorage.getItem('id'))
-				message.messageId = this.message.id
-				const messageRepository = new MessageRepository()
+				let message = {};
+				message.userId = Number(localStorage.getItem('id'));
+				message.messageId = this.message.id;
+				const messageRepository = new MessageRepository();
 				if (!this.featured.added) {
-					const id = await messageRepository.savePost(message)
-					this.featured.id = id
+					const id = await messageRepository.savePost(message);
+					this.featured.id = id;
 					this.featured.added = true
 				} else {
-					await messageRepository.deleteSavedPost(this.featured.id)
+					await messageRepository.deleteSavedPost(this.featured.id);
 					this.featured.added = false
 				}
 			},
 			async deletePost() {
-				const messageRepository = new MessageRepository()
-				const resp = await messageRepository.deletePost(this.message.id)
+				const messageRepository = new MessageRepository();
+				const resp = await messageRepository.deletePost(this.message.id);
 				if (resp) {
 					this.$emit('deleteMessage', this.message.id)
 				}

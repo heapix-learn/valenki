@@ -4,16 +4,16 @@
 			<div class="comment-list-item__avatar">
 				<div>
 					<div>
-						<img style="max-width: 30px;" :src="imgPath"/>
+						<img style="max-width: 25px;" :src="author.avatar"/>
 					</div>
 				</div>
 			</div>
 			<div class="comment-list-item__body">
 				<div
 					class="comment-list-item__body__nickname"
-					@click="replyComment()"
+					@click="replyComment(author.nick_name)"
 				>
-					{{comment.userNickname}}
+					{{author.nick_name}}
 				</div>
 				<div class="comment-list-item__body__text truncate">
 					<div>{{comment.body}}</div>
@@ -30,9 +30,15 @@
 			v-for="(reply, index) in comment.replies"
 			:key="index"
 			class="comment-list-item__replies">
+			<div class="comment-list-item__replies__avatar">
+				<img
+					style="max-width: 25px;"
+					:src="getReplyAuthor(reply.userId).avatar"
+					alt="avatar"/>
+			</div>
 			<div class="comment-list-item__replies__reply">
 				<div class="comment-list-item__replies__reply__nickname">
-					{{reply.userNickname}}
+					{{getReplyAuthor(reply.userId).nick_name}}
 				</div>
 				<div class="comment-list-item__replies__reply__text">
 					{{reply.body}}
@@ -56,7 +62,9 @@
 		name: "CommentListItem",
 		props: {
 			comment: {type: Comment},
-			index: Number
+			users: Array,
+			index: Number,
+			author: {}
 		},
 		computed: {
 			imgPath() {
@@ -64,8 +72,12 @@
 			}
 		},
 		methods: {
-			replyComment() {
+			replyComment(nick) {
+				this.comment.userNickname = nick
 				this.$emit('reply', this.comment)
+			},
+			getReplyAuthor(id) {
+				return this.users.filter(user => user.id === id)[0];
 			},
 			async deleteComment() {
 				const commentRepository = new CommentRepository();
@@ -113,7 +125,14 @@
 
 		&__replies {
 			display: flex;
-			padding-left: 60px;
+			padding-left: 20px;
+
+			&__avatar {
+				padding: 0 5px 0 10px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
 
 			&__reply {
 

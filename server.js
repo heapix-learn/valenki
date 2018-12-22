@@ -52,8 +52,8 @@ function findUsersByIds(userIds) {
   return usersForReplies
 }
 
-server.get('/comments/replies', (req, res) => {
-  const userIds = req.body.userIds
+server.post('/comments/replies', (req, res) => {
+  const userIds = req.body
   const usersForReplies = findUsersByIds(userIds)
   res.status(200).send(usersForReplies)
 })

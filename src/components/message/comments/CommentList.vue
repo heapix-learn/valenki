@@ -3,6 +3,8 @@
 		<div v-for="(comment, index) in comments" :key="index">
 			<CommentListItem
 				:comment="comment"
+				:author="getCommentAuthor(comment.userId)"
+				:users="users"
 				:index="index"
 				@reply="reply"
 				@refresh="refresh()"
@@ -21,13 +23,12 @@
 	import CommentListItem from './CommentListItem'
 	import CommentCreateForm from './CommentCreateForm'
 	import Comment from '../../../classes/comment/Comment'
-	// import CommentMapper from '../../../classes/comment/CommentMapper'
 
 	export default {
 		name: "CommentList",
 		data() {
 			return {
-				replyedComment: new Comment
+				replyedComment: new Comment,
 			}
 		},
 		props: {
@@ -35,6 +36,7 @@
 				type: Array,
 			},
 			messageId: Number,
+			users: Array
 		},
 		components: {
 			CommentListItem,
@@ -45,6 +47,9 @@
 				for (let key in replyedComment) {
 					this.replyedComment[key] = replyedComment[key]
 				}
+			},
+			getCommentAuthor(id) {
+				return this.users.filter(user => user.id === id)[0];
 			},
 			refresh() {
 				this.replyedComment = new Comment

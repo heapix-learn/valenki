@@ -1,8 +1,6 @@
 import axios from "axios"
 import UserMapper from "./UserMapper";
 
-axios.defaults.headers.common['authorization'] = localStorage.getItem('token');
-
 export default class UserRepository {
 
 	async getUsers() {

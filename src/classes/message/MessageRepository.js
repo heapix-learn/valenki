@@ -1,8 +1,6 @@
 import axios from 'axios';
 import MessageMapper from "./MessageMapper";
 
-axios.defaults.headers.common['authorization'] = localStorage.getItem('token');
-
 export default class MessageRepository {
 
 	async createMessage(message) {
