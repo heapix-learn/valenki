@@ -42,6 +42,23 @@ function findUser({email, password}) {
 	return userdb.users.find(user => user.email === email && user.password === password)
 }
 
+function findUsersByIds(userIds) {
+  const userdb = JSON.parse(fs.readFileSync('db.json', 'UTF-8'))
+	let usersForReplies = []
+	userIds.forEach(id => {
+		const user = userdb.users.find(user => user.id === id)
+		usersForReplies.push(user)
+	})
+  return usersForReplies
+}
+
+server.get('/comments/replies', (req, res) => {
+  const userIds = req.body.userIds
+  const usersForReplies = findUsersByIds(userIds)
+  res.status(200).send(usersForReplies)
+})
+
+
 server.post('/auth/login', (req, res) => {
 	const email = req.body.email
 	console.log(email)
