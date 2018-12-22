@@ -1,20 +1,20 @@
 <template>
 	<div class="hashtag-messages">
-		<div v-if="!Messages.length" class="hashtag-messages__non-exist">
-			{{ $t('$message.message_hashtag') }}
+		<div v-if="!messages.length" class="hashtag-messages__non-exist">
+			{{$t('$message.message_hashtag')}}
 			"#{{this.$route.params.hashtag}}"
-			{{ $t('$general.non_exist') }} =(
+			{{$t('$general.non_exist')}} =(
 			<br>
 			<v-btn>
 				<router-link :to="{name: 'find-hashtag'}" class="link">
-					<span>{{ $t('$general.find_else') }}</span>
+					<span>{{$t('$general.find_else')}}</span>
 				</router-link>
 			</v-btn>
 		</div>
 		<div v-else>
-			{{ $t('$message.message_hashtag') }}
+			{{$t('$message.message_hashtag')}}
 			#{{this.$route.params.hashtag}}:
-			<MessageList :Messages="Messages"/>
+			<MessageList :messages="messages"/>
 		</div>
 	</div>
 </template>
@@ -27,7 +27,7 @@
 		name: "MessageByHashtag",
 		data() {
 			return {
-				Messages: []
+				messages: []
 			}
 		},
 		components: {MessageList},
@@ -37,7 +37,7 @@
 		methods: {
 			async getMessagesByHashtag(hashtag) {
 				const messageRepository = new MessageRepository();
-				this.Messages = await (messageRepository.getMessagesByHashtag(hashtag))
+				this.messages = await (messageRepository.getMessagesByHashtag(hashtag))
 			},
 		}
 	}

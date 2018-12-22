@@ -1,4 +1,9 @@
 <template>
+	<!--for mobile testing	-->
+	<!--<div-->
+	<!--v-if="$route.name !== 'MessageCreateForm'"-->
+	<!--class="add-button">-->
+	<!--for PC version-->
 	<div
 		v-if="$route.name !== 'MessageCreateForm' && provideNick.name"
 		class="add-button">

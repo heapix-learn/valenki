@@ -1,15 +1,15 @@
 <template>
 	<div class="message-list">
 		<v-infinite-scroll
+			class="message-list__infinite-scroll"
 			@bottom="nextPage"
 			:offset='20'
-			style="max-height: 100vh; overflow-y: scroll;"
 		>
-			<div v-for="(message, index) in Messages" :key="index">
+			<div v-for="(message, index) in messages" :key="index" class="message-list__item">
 				<MessageListItem
 					:message="message"
 					:index="index"
-					@deletes="deleteMessage"
+					@deleteMessage="deleteMessage"
 				/>
 			</div>
 
@@ -25,7 +25,7 @@
 			MessageListItem
 		},
 		props: {
-			Messages: Array,
+			messages: Array,
 			page: Number
 		},
 		methods: {
@@ -33,10 +33,8 @@
 				this.loading = true
 				this.$emit('next');
 			},
-			deleteMessage(her) {
-				const newMessages = this.Messages.filter(message => message.id != her)
-				console.log('this.messages.2 ', newMessages)
-				this.$emit('deletes')
+			deleteMessage(id) {
+				this.$emit('deleteMessage', id)
 			}
 		}
 	}
@@ -46,5 +44,10 @@
 
 	.message-list {
 		min-height: 80vh;
+
+		&__infinite-scroll {
+			max-height: 100%;
+			overflow-y: scroll;
+		}
 	}
 </style>

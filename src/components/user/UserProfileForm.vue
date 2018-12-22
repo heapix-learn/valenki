@@ -23,7 +23,7 @@
 		</div>
 
 		<div v-if="edit" class="personal-page__edit-area">
-			<p>{{ $t('$general.pick_lang') }}</p>
+			<p>{{$t('$general.pick_lang')}}</p>
 			<SetLanguage @changeLocale="changeLocale()"/>
 			<div class="personal-page__edit-area__avatar-upload">
 				<label for="image_upload">Choose avatar:</label>
@@ -69,26 +69,27 @@
 					:key="1"
 					ripple
 				>
-					{{ $t('$message.your_messages') }} {{messagesById.length}}
+					{{$t('$message.your_messages')}} {{messagesById.length}}
 				</v-tab>
 				<v-tab
 					:key="2"
 					ripple
 				>
-					{{ $t('$message.favourites') }} {{messagesSaved.length}}
+					{{$t('$message.favourites')}} {{messagesSaved.length}}
 				</v-tab>
 				<v-tab-item
 					:key="1"
 				>
 					<v-card flat color="#d3e3fc">
-						<MessageList :Messages="messagesById"/>
+						<MessageList :messages="messagesById"
+						@deleteMessage="deleteMessage"/>
 					</v-card>
 				</v-tab-item>
 				<v-tab-item
 					:key="2"
 				>
 					<v-card flat color="#d3e3fc">
-						<MessageList :Messages="messagesSaved"/>
+						<MessageList :messages="messagesSaved"/>
 					</v-card>
 				</v-tab-item>
 			</v-tabs>
@@ -234,6 +235,9 @@
 					this.edited = true
 					this.editUser.locale = localStorage.getItem('locale')
 				}
+			},
+			deleteMessage(id) {
+				this.messagesById = this.messagesById.filter(message => message.id != id)
 			}
 		}
 	}
@@ -292,7 +296,7 @@
 			text-align: center;
 
 			&__avatar-upload {
-				display: flex;
+				display:none;
 				justify-content: center;
 				padding: 10px;
 			}

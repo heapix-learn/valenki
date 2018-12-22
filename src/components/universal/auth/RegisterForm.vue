@@ -3,7 +3,12 @@
 
 		<div class="register-page__spacer"/>
 
-		<v-form @submit="checkFields()" ref="form" v-model="valid" lazy-validation>
+		<v-form
+			ref="form"
+			v-model="valid"
+			class="register-page__form"
+			lazy-validation
+		>
 			<v-text-field
 				v-model="user.email"
 				:rules="emailRules"
@@ -25,20 +30,18 @@
 				type="password"
 				required
 			/>
-			<div class="login-page__form__buttons">
+			<div class="register-page__form__buttons">
 				<v-btn
-					type="submit"
-					class="login-page__form__buttons__button"
+					@click="checkFields()"
 					:disabled="!valid"
-				>
-					{{ $t('$general.sign_up') }}
+					class="register-page__form__buttons__button">
+					{{$t('$general.sign_up')}}
 				</v-btn>
-				<router-link
-					:to="{name: 'login-page'}"
-					class="login-page__form__buttons__button"
-				>
-					<v-btn>{{ $t('$general.have_account') }}</v-btn>
-				</router-link>
+				<v-btn class="register-page__form__buttons__button">
+					<router-link :to="{name: 'login-page'}">
+						{{$t('$general.have_account')}}
+					</router-link>
+				</v-btn>
 			</div>
 		</v-form>
 		<SetLanguage/>
@@ -53,20 +56,22 @@
 
 	export default {
 		name: 'RegisterForm',
-		components: { SetLanguage },
+		components: {SetLanguage},
 		data() {
 			return {
 				user: new User,
 				valid: true,
 				confirm_password: '',
-				emailRules: [
-					v => !!v || 'Email is incorrect', //must be learn how its works
-					v => (v && v.length >= 6) || '\n' + 'Email must contain 6 characters'
-				],
-				passwordRules: [
-					v => !!v || 'Password is required',
-					v => (v && v.length >= 6) || 'Password must contain 6 characters'
-				],
+				emailRules:
+					[
+						v => !!v || 'Email is incorrect', //must be learn how its works
+						v => (v && v.length >= 6) || '\n' + 'Email must contain 6 characters'
+					],
+				passwordRules:
+					[
+						v => !!v || 'Password is required',
+						v => (v && v.length >= 6) || 'Password must contain 6 characters'
+					],
 			}
 		},
 		methods: {
@@ -109,10 +114,29 @@
 <style lang="scss">
 
 	.register-page {
-		padding: 5vh;
+		padding: 1vh;
 
 		&__spacer {
-			height: 10vh;
+			height: 16vh;
+		}
+
+		&__form {
+			padding: 10px 15px;
+			width: 100%;
+			background: #f5f5f5;
+			border-radius: 3px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+			&__buttons {
+				display: flex;
+				justify-content: space-evenly;
+				align-items: center;
+
+				&__button {
+					width: 50%;
+					margin: 0 !important;
+				}
+			}
 		}
 
 		&__pick-langs {
@@ -121,4 +145,15 @@
 			justify-content: space-around;
 		}
 	}
+
+	/*@media screen and (min-width: 768px) {*/
+		/*.register-page {*/
+			/*justify-content: center;*/
+
+			/*&__form {*/
+				/*width: 50%;;*/
+			/*}*/
+		/*}*/
+	/*}*/
+
 </style>

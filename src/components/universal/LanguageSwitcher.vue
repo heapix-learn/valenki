@@ -39,9 +39,9 @@
 
 	.active {
 		padding-top: 1px;
-		/*border: 1px solid darkcyan;*/
-		background-color: #FF7C7F;
+		background-color: #f5f5f5;
 		border-radius: 32px;
+		box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 	}
 
 </style>
