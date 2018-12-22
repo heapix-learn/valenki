@@ -5,20 +5,20 @@
 				<div class="message-item__info">
 					<div class="message-item__info__avatar">
 						<router-link
-							:to="{name: 'user-messages', params: {nick_name: message.userNickname, user_id: message.userId}}">
-							<div>
-								<img
+							:to="{name: 'user-messages', params: {nick_name: message.user.nick_name, user_id: message.userId}}">
+							<v-avatar :tile="false" :size="50">
+							<img
 									:src="message.user.avatar"
 									height="50"
 									width="50"
 								/>
-							</div>
+							</v-avatar>
 						</router-link>
 					</div>
 					<div class="message-item__info__title">
 						<div class="message-item__info__title__nickname">
 							<router-link
-								:to="{name: 'user-messages', params: {nick_name: message.userNickname, user_id: message.userId}}">
+								:to="{name: 'user-messages', params: {nick_name: message.user.nick_name, user_id: message.userId}}">
 								{{message.user.nick_name}}
 							</router-link>
 						</div>
@@ -77,7 +77,7 @@
 					</div>
 				</div>
 
-				<div class="message-item__button-group">
+				<div class="message-item__button-group" :class="{'opened-comments': readComments }">
 					<v-btn
 						class="message-item__button-group__button"
 						@click="addToFeatured()"
@@ -387,5 +387,8 @@
 
 	.message-item__buttons__button {
 		min-width: unset;
+	}
+	.opened-comments{
+		box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
 	}
 </style>

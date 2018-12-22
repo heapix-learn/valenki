@@ -10,9 +10,6 @@ export default {
 		logout: 'Выйти',
 		email: 'Email',
 		password: 'Пароль',
-		sign_in: 'Войти',
-		sign_up: 'Зарегестрировать',
-		have_account: 'Уже есть аккаунт',
 		confirm_pass: 'Подтвердите пароль',
 		success_enter: 'Вы успешно вошли!',
 		wrong_credentials: 'Неправильный Email или Пароль!',
@@ -20,6 +17,13 @@ export default {
 		sort_by_date: 'Cортировать по дате',
 		pick_lang: 'Выберите язык',
 		non_exist: 'не существует'
+	},
+	$buttons: {
+		save: 'Сохранить',
+		sign_in: 'Войти',
+		sign_up: 'Зарегестрировать',
+		register: 'Регистрация',
+		have_account: 'Уже есть аккаунт',
 	},
 	$message: {
 		your_messages: 'Ваши сообщения',
@@ -30,5 +34,12 @@ export default {
 	$comment: {},
 	$footer: {
 		title: 'Сделано с любовью by HEAPIX dev'
+	},
+	$personal: {
+		enter_nick: 'Введите новый никнейм',
+		want_change: 'Если Вы хотите изменить пароль, заполните',
+		enter_old_pas: 'Введите старый пароль',
+		enter_new_pas: 'Введите новый пароль',
+		confirm_new_pas: 'Подтвердите новый пароль',
 	},
 }

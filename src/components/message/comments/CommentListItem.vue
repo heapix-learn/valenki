@@ -3,9 +3,12 @@
 		<div class="comment-list-item">
 			<div class="comment-list-item__avatar">
 				<div>
-					<div>
-						<img style="max-width: 25px;" :src="author.avatar"/>
-					</div>
+					<router-link
+						:to="{name: 'user-messages', params: {nick_name: author.nick_name, user_id: comment.userId}}">
+						<v-avatar :tile="false" :size="25">
+							<img style="max-width: 25px;" class="round" :src="author.avatar"/>
+						</v-avatar>
+					</router-link>
 				</div>
 			</div>
 			<div class="comment-list-item__body">
@@ -19,7 +22,7 @@
 					<div>{{comment.body}}</div>
 				</div>
 			</div>
-			<div class="comment-list-item__delete">
+			<div class="comment-list-item__delete" v-if="comment.userId === Number(myId)">
 				<i class="material-icons small" @click="deleteComment()">
 					close
 				</i>
@@ -31,20 +34,25 @@
 			:key="index"
 			class="comment-list-item__replies">
 			<div class="comment-list-item__replies__avatar">
-				<img
-					style="max-width: 25px;"
-					:src="getReplyAuthor(reply.userId).avatar"
-					alt="avatar"/>
+				<router-link
+					:to="{name: 'user-messages', params: {nick_name: getReplyAuthor(reply.userId).nick_name, user_id: reply.userId}}">
+					<v-avatar :tile="false" :size="25">
+						<img
+							style="max-width: 25px;"
+							:src="getReplyAuthor(reply.userId).avatar"
+							alt="avatar"/>
+					</v-avatar>
+				</router-link>
 			</div>
 			<div class="comment-list-item__replies__reply">
-				<div class="comment-list-item__replies__reply__nickname">
+				<div class="comment-list-item__replies__reply__nickname" @click="replyComment(getReplyAuthor(reply.userId).nick_name)">
 					{{getReplyAuthor(reply.userId).nick_name}}
 				</div>
 				<div class="comment-list-item__replies__reply__text">
 					{{reply.body}}
 				</div>
 			</div>
-			<div class="comment-list-item__replies__reply__delete">
+			<div class="comment-list-item__replies__reply__delete" v-if="reply.userId === Number(myId)">
 				<i class="material-icons small" @click="deleteReply(reply.id)">
 					close
 				</i>
@@ -61,14 +69,16 @@
 	export default {
 		name: "CommentListItem",
 		props: {
-			comment: {type: Comment},
+			comment: {
+				type: Comment
+			},
 			users: Array,
 			index: Number,
-			author: {}
+			author: {},
 		},
 		computed: {
-			imgPath() {
-				return require('../../../assets/' + this.comment.userId + '.png')
+			myId() {
+				return localStorage.getItem('id')
 			}
 		},
 		methods: {
@@ -108,7 +118,7 @@
 			color: lightgrey;
 			position: absolute;
 			right: 0px;
-			padding-top: 9px;
+			padding-top: 10px;
 			cursor: pointer;
 
 			.material-icons {
@@ -140,15 +150,13 @@
 					color: lightgrey;
 					position: absolute;
 					right: 0px;
-					padding-top: 9px;
-
+					padding-top: 10px;
 				}
 
 				&__delete:hover {
 					color: crimson;
 				}
 			}
-
 		}
 
 		&__body,
@@ -157,24 +165,23 @@
 			border-bottom: 1px solid lightgrey;
 
 			&__nickname {
+				margin-bottom: -5px;
+				padding-top: 5px;
 				font-weight: 600;
 				color: $green;
-				border-left: 1px solid lightgrey;
 				padding-left: 10px;
 				cursor: pointer;
 			}
 
 			&__text {
+				padding-bottom: 5px;
 				padding-left: 10px;
-				border-left: 1px solid lightgrey;
 			}
 
 			&__nickname:hover {
 				color: $blue;
 			}
 		}
-
-
 	}
 
 	.truncate {

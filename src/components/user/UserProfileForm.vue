@@ -15,7 +15,11 @@
 		<div v-else class="spacer"></div>
 		<div class="personal-page__info">
 			<v-avatar :tile="false" :size="130" class="personal-page__info__avatar">
-				<img :src="user.avatar" class="round"/>
+				<img
+					:src="user.avatar"
+					class="round"
+					@click="uploadImage"
+					:class="{'edit': edit}"/>
 			</v-avatar>
 			<div class="personal-page__info__nickname">
 				<h1>{{user.nick_name}}</h1>
@@ -23,47 +27,46 @@
 		</div>
 
 		<div v-if="edit" class="personal-page__edit-area">
-			<p>{{$t('$general.pick_lang')}}</p>
-			<SetLanguage @changeLocale="changeLocale()"/>
 			<div class="personal-page__edit-area__avatar-upload">
-				<label for="image_upload">Choose avatar:</label>
 				<input id="image_upload" type="file" @change="setAvatar">
 			</div>
-			Enter Your Nickname here:
+			<SetLanguage @changeLocale="changeLocale()"/>
 			<v-text-field
 				v-model="editUser.nick_name"
-				label="Enter Your NickName"
+				:label="$t('$personal.enter_nick')"
 				type="text"
 			/>
-			if you want to change your password, fill next:
+			{{$t('$personal.want_change')}}:
 			<v-text-field
 				v-model="old_password"
 				:rules="passwordRules"
-				label="Enter Old Password"
+				:label="$t('$personal.enter_old_pas')"
 				type="text"
 
 			/>
 			<v-text-field
 				v-model="new_password"
 				:rules="passwordRules"
-				label="Enter New Password"
+				:label="$t('$personal.enter_new_pas')"
 				type="text"
 			/>
 			<v-text-field
 				v-model="confirm_new_password"
 				:rules="passwordRules"
-				label="Confirm New Password"
+				:label="$t('$personal.confirm_new_pas')"
 				type="text"
 				required
 			/>
 
-			<v-btn @click="saveEditUser()">Save</v-btn>
+			<v-btn @click="saveEditUser()">
+			{{$t('$buttons.save')}}
+			</v-btn>
 		</div>
 
 		<div v-show="personal">
 			<v-tabs
-				color="cyan"
-				slider-color="yellow"
+				color="#77a6f7"
+				slider-color="#00887a"
 			>
 				<v-tab
 					:key="1"
@@ -81,8 +84,9 @@
 					:key="1"
 				>
 					<v-card flat color="#d3e3fc">
-						<MessageList :messages="messagesById"
-						@deleteMessage="deleteMessage"/>
+						<MessageList
+							:messages="messagesById"
+							@deleteMessage="deleteMessage"/>
 					</v-card>
 				</v-tab-item>
 				<v-tab-item
@@ -137,7 +141,9 @@
 		},
 		inject: ['provideNick'],
 		props: {
-			id: Number
+			id: {
+				type: Number
+			}
 		},
 		created() {
 			this.getId()
@@ -157,7 +163,6 @@
 				}
 				this.getUser()
 			},
-
 			async getUser() {
 				const userRepository = new UserRepository();
 				this.user = await (userRepository.getUserById(this.userId))
@@ -184,6 +189,28 @@
 				for (let key in this.user) {
 					this.editUser[key] = this.user[key]
 				}
+			},
+			uploadImage() {
+				if (this.edit) {
+					document.getElementById('image_upload').click()
+				}
+			},
+			setAvatar(e) {
+				var files = e.target.files || e.dataTransfer.files
+				if (!files.length) {
+					return
+				}
+				this.createImage(files[0])
+			},
+			createImage(file) {
+				this.edited = true
+				var reader = new FileReader();
+				reader.onload = (e) => {
+					this.image = e.target.result
+					this.user.avatar = this.image
+					this.editUser.avatar = this.image
+				}
+				reader.readAsDataURL(file)
 			},
 			async saveEditUser() {
 				if (this.old_password || this.new_password || this.confirm_new_password) {
@@ -213,23 +240,6 @@
 					console.log('you have changed nothing')
 				}
 			},
-			setAvatar(e) {
-				var files = e.target.files || e.dataTransfer.files
-				if (!files.length) {
-					return
-				}
-				this.createImage(files[0])
-			},
-			createImage(file) {
-				this.edited = true
-				var reader = new FileReader();
-				reader.onload = (e) => {
-					this.image = e.target.result
-					this.user.avatar = this.image
-					this.editUser.avatar = this.image
-				}
-				reader.readAsDataURL(file)
-			},
 			changeLocale() {
 				if (this.editUser.locale !== localStorage.getItem('locale')) {
 					this.edited = true
@@ -251,11 +261,11 @@
 	}
 
 	.personal-page {
-		background: $blue;
+		background: $lightblue;
 
 		&__button {
 			float: right;
-			border: 2px solid #77a6f7;
+			border: 2px solid $green;
 		}
 
 		&__info {
@@ -263,9 +273,9 @@
 			width: 100%;
 			align-items: center;
 			justify-content: space-between;
-			border-top: 2px solid darkslategrey;
-			border-bottom: 2px solid darkslategrey;
-			background-color: lavender;
+			border-top: 2px solid $green;
+			border-bottom: 2px solid $green;
+			background-color: $blue;
 			height: 40px;
 			margin-bottom: 50px;
 
@@ -277,12 +287,6 @@
 				margin-right: 10px;
 				font-weight: 600;
 			}
-
-			/*padding: 20px;*/
-			/*text-align: center;*/
-			/*background-color: turquoise;*/
-			/*border-top: 2px solid darkslategrey;*/
-			/*border-bottom: 2px solid darkslategrey;*/
 		}
 
 		&__buttons-block {
@@ -296,11 +300,18 @@
 			text-align: center;
 
 			&__avatar-upload {
-				display:none;
+				display: none;
 				justify-content: center;
 				padding: 10px;
 			}
 		}
 	}
 
+	.edit {
+	}
+
+	.edit:hover {
+		padding: 3px;
+		transition: padding .1s;
+	}
 </style>

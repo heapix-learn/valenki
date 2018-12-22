@@ -1,5 +1,5 @@
 <template>
-	<div class="create-comments">
+	<div class="create-comments" >
 		<div class="create-comments__avatar">
 			<i class="material-icons">
 				sentiment_satisfied_alt
@@ -10,7 +10,8 @@
 			<i
 				v-show="replyedComment.userNickname"
 				class="material-icons small white"
-				@click="$emit('refresh')">
+				@click="$emit('refresh')"
+			>
 				format_clear
 			</i>
 		</div>
@@ -21,6 +22,7 @@
 				required
 				v-model="comment.body"
 				:prefix="replyedComment.userNickname"
+				hide-details
 			/>
 		</div>
 
@@ -75,13 +77,20 @@
 <style lang="scss">
 
 	.create-comments {
+		box-shadow: 0px -2px 5px 0px rgba(0, 0, 0, 0.2);
+
 		display: flex;
 		align-items: center;
 		justify-content: space-around;
 		color: darkcyan;
-
+.material-icons {
+	padding-top: 10px;
+}
 		&__text-input {
 			width: 55%;
+			.v-text-field {
+				padding: 0px !important;
+			}
 		}
 	}
 

@@ -35,11 +35,11 @@
 					@click="checkFields()"
 					:disabled="!valid"
 					class="register-page__form__buttons__button">
-					{{$t('$general.sign_up')}}
+					{{$t('$buttons.sign_up')}}
 				</v-btn>
 				<v-btn class="register-page__form__buttons__button">
 					<router-link :to="{name: 'login-page'}">
-						{{$t('$general.have_account')}}
+						{{$t('$buttons.have_account')}}
 					</router-link>
 				</v-btn>
 			</div>

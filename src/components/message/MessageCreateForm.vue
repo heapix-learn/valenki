@@ -223,6 +223,7 @@
 			justify-content: center;
 			padding: 10px;
 		}
+
 		&__spacer {
 			height: 10px;
 		}

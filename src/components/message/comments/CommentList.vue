@@ -1,5 +1,5 @@
 <template>
-	<div class="comments-list">
+	<div class="comment-list">
 		<div v-for="(comment, index) in comments" :key="index">
 			<CommentListItem
 				:comment="comment"
@@ -60,5 +60,10 @@
 </script>
 
 <style lang="scss">
+
+	.comment-list{
+	padding: 5px 0px;
+		box-shadow: 0 2px 4px -1px rgba(0,0,0,.2),
+	}
 
 </style>

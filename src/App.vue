@@ -20,7 +20,8 @@
 </script>
 
 <style lang="scss">
-	@import "scss/reset.scss";
 
+	@import 'scss/reset.scss';
+	@import 'scss/colors'
 
 </style>
