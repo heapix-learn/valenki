@@ -138,7 +138,7 @@
 			</v-card>
 		</v-flex>
 	</v-layout>
-	<SubscribeOffers v-if="index%5-2 == 0"/>
+	<SubscribeOffers v-if="index%5-2 == 0 && $route.name == 'base-main'"/>
 	</div>
 </template>
 
