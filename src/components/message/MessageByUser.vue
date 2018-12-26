@@ -1,17 +1,17 @@
 <template>
 	<div>
 		<PersonalPage :id="id"/>
-		Messages by @{{userNickName}}:
+		<!--Messages by @{{userNickName}}:-->
 		<div class="user-messages">
-			<div v-if="!MessagesByAuthor.length" class="base-main__note">
+			<div v-if="!messagesByAuthor.length" class="base-main__note">
 			<span>
 				Пользователь ещё не опубликовал сообщений!
 			</span>
-				{{MessagesByAuthor}}
+				{{messagesByAuthor}}
 			</div>
-			<div v-else class="base-main__page">
+			<div v-else>
 				<MessageList
-					:messages="MessagesByAuthor"
+					:messages="messagesByAuthor"
 				/>
 			</div>
 		</div>
@@ -31,7 +31,7 @@
 		},
 		data() {
 			return {
-				MessagesByAuthor: [],
+				messagesByAuthor: [],
 				id: null
 			}
 		},
@@ -47,7 +47,7 @@
 			async getMessagesByUser() {
 				this.id = this.$route.params.user_id
 				const messageRepository = new MessageRepository();
-				this.MessagesByAuthor = await (messageRepository.getMessagesByUser(this.id))
+				this.messagesByAuthor = await (messageRepository.getMessagesByUser(this.id))
 			}
 		}
 	}
@@ -56,7 +56,7 @@
 <style lang="scss">
 
 	.user-messages {
-		background-color: slategray;
+		background-color: d3e3fc;
 	}
 
 </style>

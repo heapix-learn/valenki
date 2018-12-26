@@ -2,21 +2,21 @@
 	<div class="base-main">
 		<div v-if="!messages.length" class="base-main__note">
 			<v-progress-linear :indeterminate="true" color="blue"/>
-			<span>{{$t('$general.no_login_alert')}}</span>
+			<span class="base-main__note__title">{{$t('$general.no_login_alert')}}</span>
 		</div>
 
 		<div v-else class="base-main__content">
 
 			<!--<div class="base-main__content__sort">-->
-				<!--<div class="base-main__content__sort__title">-->
-					<!--{{$t('$general.sort_by_date')}}:-->
-				<!--</div>-->
-				<!--<i-->
-					<!--class="material-icons base-main__content__sort__sortIcon"-->
-					<!--:class="{'reversed': direction === 'down'}"-->
-					<!--@click="sortByDate()">-->
-					<!--sort-->
-				<!--</i>-->
+			<!--<div class="base-main__content__sort__title">-->
+			<!--{{$t('$general.sort_by_date')}}:-->
+			<!--</div>-->
+			<!--<i-->
+			<!--class="material-icons base-main__content__sort__sortIcon"-->
+			<!--:class="{'reversed': direction === 'down'}"-->
+			<!--@click="sortByDate()">-->
+			<!--sort-->
+			<!--</i>-->
 			<!--</div>-->
 
 			<MessageList
@@ -38,6 +38,7 @@
 
 <script>
 	import MessageList from '../message/MessageList'
+	import UserRepository from '../../classes/user/UserRepository.js'
 	import MessageRepository from '../../classes/message/MessageRepository.js'
 
 	export default {
@@ -62,10 +63,14 @@
 			async getMessages(page) {
 				if (localStorage.getItem('nick')) {
 					const messageRepository = new MessageRepository();
+					const userRepository = new UserRepository();
 					this.newMessages = await (messageRepository.getAllMessages(page));
+					let subscribedUsers = await (userRepository.getSubscribedUsers());
 					let messages = this.messages;
 					this.newMessages.forEach((item) => {
-						messages.push(item)
+						if (subscribedUsers.indexOf(item.userId) >= 0) {
+							messages.push(item)
+						}
 					});
 					this.messages = messages;
 				}
@@ -139,7 +144,9 @@
 
 		&__note {
 			text-align: center;
-			line-height: 10vh;
+			&__title {
+				margin-top: 10vh;
+		}
 		}
 	}
 

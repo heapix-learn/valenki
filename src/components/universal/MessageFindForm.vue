@@ -9,6 +9,8 @@
 				label="Enter hashtag here:"
 				type="text"
 				required
+				solo
+				hide-details
 			/>
 		</v-form>
 		<div v-if="hashtag" class="find-message__hashtag">

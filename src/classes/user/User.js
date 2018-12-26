@@ -5,4 +5,5 @@ export default class User {
 	nick_name = "";
 	avatar = "";
 	locale = "";
+	subscriptions = [];
 }

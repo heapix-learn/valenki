@@ -69,4 +69,13 @@
 		}
 	}
 
+	@media screen and (min-width: 960px) {
+		.base-layout {
+			&__main {
+				margin-top: 64px;
+				min-height: calc(100vh - 64px - 36px);
+			}
+		}
+	}
+
 </style>

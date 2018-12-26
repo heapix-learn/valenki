@@ -38,7 +38,8 @@
 					{{$t('$buttons.sign_up')}}
 				</v-btn>
 				<v-btn class="register-page__form__buttons__button">
-					<router-link :to="{name: 'login-page'}">
+					<router-link
+						:to="{name: 'login-page'}">
 						{{$t('$buttons.have_account')}}
 					</router-link>
 				</v-btn>
@@ -147,13 +148,13 @@
 	}
 
 	/*@media screen and (min-width: 768px) {*/
-		/*.register-page {*/
-			/*justify-content: center;*/
+	/*.register-page {*/
+	/*justify-content: center;*/
 
-			/*&__form {*/
-				/*width: 50%;;*/
-			/*}*/
-		/*}*/
+	/*&__form {*/
+	/*width: 50%;;*/
+	/*}*/
+	/*}*/
 	/*}*/
 
 </style>

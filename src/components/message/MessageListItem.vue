@@ -1,4 +1,5 @@
 <template>
+	<div>
 	<v-layout class="message-item">
 		<v-flex xs12 sm6 offset-sm3>
 			<v-card>
@@ -137,6 +138,8 @@
 			</v-card>
 		</v-flex>
 	</v-layout>
+	<SubscribeOffers v-if="index%5-2 == 0"/>
+	</div>
 </template>
 
 <script>
@@ -147,11 +150,13 @@
 	import LikeRepository from '../../classes/like/LikeRepository'
 	import CommentRepository from '../../classes/comment/CommentRepository'
 	import MessageRepository from '../../classes/message/MessageRepository'
+	import SubscribeOffers from '../universal/SubscribeOffers'
 
 	export default {
 		name: 'MessageListItem',
 		components: {
 			CommentList,
+			SubscribeOffers
 		},
 		data() {
 			return {
@@ -307,7 +312,7 @@
 
 			&__text {
 				align-self: normal;
-				padding-top: 5px;
+				padding-top: 15px;
 			}
 
 			&__image {
@@ -391,4 +396,11 @@
 	.opened-comments{
 		box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
 	}
+
+	@media screen and (min-width: 768px) {
+		.message-item {
+			justify-content: center;
+			max-width: 80% !important;
+		}
+}
 </style>

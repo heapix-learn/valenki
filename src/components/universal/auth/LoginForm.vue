@@ -1,9 +1,9 @@
 <template>
-	<div class="login-page">
+	<div class="login-form">
 
-		<div class="login-page__spacer"/>
+		<div class="login-form__spacer"/>
 
-		<div class="login-page__alert">
+		<div class="login-form__alert">
 			<v-alert
 				:value="true"
 				v-if="status === 'success'"
@@ -11,7 +11,7 @@
 				outline
 				style="border: none !important;"
 			>
-				<div class="login-page__alert__message">
+				<div class="login-form__alert__message">
 					<i class="material-icons">
 						check_circle_outline
 					</i>
@@ -20,7 +20,7 @@
 			</v-alert>
 		</div>
 
-		<div class="login-page__alert">
+		<div class="login-form__alert">
 			<v-alert
 				:value="true"
 				v-if="status === 'error'"
@@ -28,7 +28,7 @@
 				outline
 				style="border: none !important;"
 			>
-				<div class="login-page__alert__message">
+				<div class="login-form__alert__message">
 					<i class="material-icons">
 						warning
 					</i>
@@ -41,7 +41,7 @@
 		<v-form
 			ref="form"
 			v-model="valid"
-			class="login-page__form"
+			class="login-form__form"
 			lazy-validation
 		>
 			<v-text-field
@@ -58,14 +58,14 @@
 				type="password"
 				required
 			/>
-			<div class="login-page__form__buttons">
+			<div class="login-form__form__buttons">
 				<v-btn
 					@click="checkFields()"
 					:disabled="!valid"
-					class="login-page__form__buttons__button">
+					class="login-form__form__buttons__button">
 					{{$t('$buttons.sign_in')}}
 				</v-btn>
-				<v-btn class="login-page__form__buttons__button">
+				<v-btn class="login-form__form__buttons__button">
 					<router-link :to="{name: 'register-page'}">
 						{{$t('$buttons.register')}}
 					</router-link>
@@ -144,7 +144,7 @@
 
 <style lang="scss">
 
-	.login-page {
+	.login-form {
 		padding: 1vh;
 
 		&__spacer {
@@ -195,7 +195,7 @@
 	}
 
 	/*@media screen and (min-width: 768px) {*/
-	/*.login-page {*/
+	/*.login-form {*/
 	/*justify-content: center;*/
 
 	/*&__form {*/

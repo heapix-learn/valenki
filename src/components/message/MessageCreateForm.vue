@@ -1,16 +1,18 @@
 <template>
 	<div class="new-message">
 		<div class="new-message__spacer"/>
-		<v-textarea class="new-message__text-input"
-								:counter="140"
-								height="150"
-								box
-								autofocus
-								no-resize
-								background-color="#f5f5f5"
-								validate-on-blur
-								label="Write your message there:"
-								v-model="message.body"
+		<v-textarea
+			class="new-message__text-input"
+			:counter="140"
+			height="150"
+			box
+			autofocus
+			no-resize
+			background-color="#f5f5f5"
+			validate-on-blur
+			label="Write your message there:"
+			v-model="message.body"
+			solo
 		/>
 
 		<div class="new-message__image-upload">
@@ -200,11 +202,13 @@
 		&__uploaded-image {
 			display: flex;
 			justify-content: center;
-			i{
-				color: crimson;
+
+			i {
+				color: red;
 				transform: rotate(45deg);
 				color: indianred;
 				cursor: pointer;
+				position: absolute;
 			}
 		}
 

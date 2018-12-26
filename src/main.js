@@ -5,7 +5,8 @@ import Vuetify from 'vuetify';
 import VueI18n from 'vue-i18n';
 import VueRouter from 'vue-router';
 import 'vuetify/dist/vuetify.min.css';
-import i18n from './plugins/vuei18n/i18n'
+// import { Slide } from 'vue-burger-menu';
+import i18n from './plugins/vuei18n/i18n';
 import InfiniteScroll from 'v-infinite-scroll';
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
 

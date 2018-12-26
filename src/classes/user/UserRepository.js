@@ -21,6 +21,11 @@ export default class UserRepository {
 		return UserMapper.map(user);
 	}
 
+	async getSubscribedUsers() {
+		const id = localStorage.getItem('id')
+		return (await axios.get('http://localhost:3000/users/' + id)).data.subscriptions;
+	}
+
 	async findUsers(nick_name) {
 		const user = (await axios.get('http://localhost:3000/users?nick_name_like=' + nick_name)).data;
 		return user.map(UserMapper.map);
@@ -32,6 +37,17 @@ export default class UserRepository {
 
 	async editUser(user) {
 		return (await axios.put('http://localhost:3000/users/' + user.id, user)).status;
+	}
+
+	async subscribeUser(subscribed_id) {
+		const id = localStorage.getItem('id')
+		let user = await this.getUserById(id)
+		if (user.subscriptions.indexOf(subscribed_id) === -1) {
+			user.subscriptions.push(subscribed_id)
+			return (await axios.put('http://localhost:3000/users/' + id, user)).statusText;
+		} else {
+			return false
+		}
 	}
 
 	async checkLogin() {

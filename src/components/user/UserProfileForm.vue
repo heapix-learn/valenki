@@ -25,7 +25,9 @@
 				<h1>{{user.nick_name}}</h1>
 			</div>
 		</div>
-
+		<div class="personal-page__subscribe">
+			<v-btn v-if="!personal" @click="subscribe()">Subscribe</v-btn>
+		</div>
 		<div v-if="edit" class="personal-page__edit-area">
 			<div class="personal-page__edit-area__avatar-upload">
 				<input id="image_upload" type="file" @change="setAvatar">
@@ -59,7 +61,7 @@
 			/>
 
 			<v-btn @click="saveEditUser()">
-			{{$t('$buttons.save')}}
+				{{$t('$buttons.save')}}
 			</v-btn>
 		</div>
 
@@ -71,19 +73,21 @@
 				<v-tab
 					:key="1"
 					ripple
+					class="tab"
 				>
 					{{$t('$message.your_messages')}} {{messagesById.length}}
 				</v-tab>
 				<v-tab
 					:key="2"
 					ripple
+					class="tab"
 				>
 					{{$t('$message.favourites')}} {{messagesSaved.length}}
 				</v-tab>
 				<v-tab-item
 					:key="1"
 				>
-					<v-card flat color="#d3e3fc">
+					<v-card flat>
 						<MessageList
 							:messages="messagesById"
 							@deleteMessage="deleteMessage"/>
@@ -92,7 +96,7 @@
 				<v-tab-item
 					:key="2"
 				>
-					<v-card flat color="#d3e3fc">
+					<v-card flat>
 						<MessageList :messages="messagesSaved"/>
 					</v-card>
 				</v-tab-item>
@@ -240,6 +244,11 @@
 					console.log('you have changed nothing')
 				}
 			},
+			async subscribe() {
+				const userRepository = new UserRepository();
+				let response = await (userRepository.subscribeUser(this.user.id));
+				console.log('subscribed', response)
+			},
 			changeLocale() {
 				if (this.editUser.locale !== localStorage.getItem('locale')) {
 					this.edited = true
@@ -265,7 +274,6 @@
 
 		&__button {
 			float: right;
-			border: 2px solid $green;
 		}
 
 		&__info {
@@ -273,11 +281,8 @@
 			width: 100%;
 			align-items: center;
 			justify-content: space-between;
-			border-top: 2px solid $green;
-			border-bottom: 2px solid $green;
 			background-color: $blue;
 			height: 40px;
-			margin-bottom: 50px;
 
 			&__avatar {
 				margin-left: 10px;
@@ -287,6 +292,12 @@
 				margin-right: 10px;
 				font-weight: 600;
 			}
+		}
+
+		&__subscribe {
+			min-height: 50px;
+			display: flex;
+			justify-content: flex-end;
 		}
 
 		&__buttons-block {
@@ -313,5 +324,10 @@
 	.edit:hover {
 		padding: 3px;
 		transition: padding .1s;
+	}
+
+	.tab {
+		width: 50%;
+		text-align: center;
 	}
 </style>

@@ -6,23 +6,25 @@
 		>
 			<v-text-field
 				v-model="user_name"
+				@keypress="search()"
 				label="Enter user name here"
 				type="text"
 				required
+				solo
+				hide-details
 			/>
-			<v-btn class="find-user__form__btn" @click="findUsers()">
-				Find
-			</v-btn>
+
 		</v-form>
 
-		<div v-if="Users.length" class="find-user__results">
+		<div v-if="users.length" class="find-user__results">
+
 			<div class="find-user__results__title">
 				Perhaps, these are the people you were looking for:
 			</div>
 
 			<div class="find-user__results__items">
 				<div
-					v-for="(user, index) in Users"
+					v-for="(user, index) in users"
 					:key="index"
 					class="find-user__results__items__one-item"
 				>
@@ -54,7 +56,7 @@
 		data() {
 			return {
 				user_name: '',
-				Users: {
+				users: {
 					type: Array
 				},
 			}
@@ -62,7 +64,12 @@
 		methods: {
 			async findUsers() {
 				const userRepository = new UserRepository();
-				this.Users = await userRepository.findUsers(this.user_name);
+				this.users = await userRepository.findUsers(this.user_name);
+			},
+			search() {
+				setTimeout(() => {
+					this.findUsers()
+				}, 1500);
 			}
 		}
 	}

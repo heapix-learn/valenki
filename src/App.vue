@@ -20,8 +20,10 @@
 </script>
 
 <style lang="scss">
-
 	@import 'scss/reset.scss';
-	@import 'scss/colors'
-
+	@import 'scss/colors';
+	@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400');
+	.main-app {
+		font-family: 'Montserrat', sans-serif;
+	}
 </style>

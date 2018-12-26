@@ -48,7 +48,7 @@
 
 	.hashtag-messages {
 		min-height: calc(100vh - 56px - 36px);
-		background-color: cornflowerblue;
+		background-color: #d3e3fc;
 
 		&__non-exist {
 			padding: 10px;

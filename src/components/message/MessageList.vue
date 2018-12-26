@@ -46,8 +46,8 @@
 		min-height: 80vh;
 
 		&__infinite-scroll {
-			max-height: 100%;
-			overflow-y: scroll;
+			max-height: 80%;
+			overflow-y: hidden;
 		}
 	}
 </style>
