@@ -1,7 +1,9 @@
 <template>
-	<v-footer class="base-footer">
-		<span>Made with love and tears by 🄯HEAPIX dev</span>
-	</v-footer>
+	<div class="base-footer">
+		<v-footer>
+			<span>{{$t('$footer.title')}}</span>
+		</v-footer>
+	</div>
 </template>
 
 <script>
@@ -13,6 +15,9 @@
 <style lang="scss">
 
 	.base-footer {
+		width: 100%;
+		background-color: #f5f5f5;
+		display: flex;
 		justify-content: space-around;
 	}
 

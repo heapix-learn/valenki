@@ -15,100 +15,109 @@
 		<div v-else class="spacer"></div>
 		<div class="personal-page__info">
 			<v-avatar :tile="false" :size="130" class="personal-page__info__avatar">
-				<img :src="user.avatar" class="round"/>
+				<img
+					:src="user.avatar"
+					class="round"
+					@click="uploadImage"
+					:class="{'edit': edit}"/>
 			</v-avatar>
 			<div class="personal-page__info__nickname">
 				<h1>{{user.nick_name}}</h1>
 			</div>
 		</div>
-
+		<div class="personal-page__subscribe">
+			<v-btn v-if="!personal" @click="subscribe()">Subscribe</v-btn>
+		</div>
 		<div v-if="edit" class="personal-page__edit-area">
 			<div class="personal-page__edit-area__avatar-upload">
-				<label for="image_upload">Choose avatar:</label>
 				<input id="image_upload" type="file" @change="setAvatar">
 			</div>
-			Enter Your Nickname here:
+			<SetLanguage @changeLocale="changeLocale()"/>
 			<v-text-field
 				v-model="editUser.nick_name"
-				label="Enter Your NickName"
+				:label="$t('$personal.enter_nick')"
 				type="text"
 			/>
-			if you want to change your password, fill next:
+			{{$t('$personal.want_change')}}:
 			<v-text-field
 				v-model="old_password"
 				:rules="passwordRules"
-				label="Enter Old Password"
+				:label="$t('$personal.enter_old_pas')"
 				type="text"
 
 			/>
 			<v-text-field
 				v-model="new_password"
 				:rules="passwordRules"
-				label="Enter New Password"
+				:label="$t('$personal.enter_new_pas')"
 				type="text"
 			/>
 			<v-text-field
 				v-model="confirm_new_password"
 				:rules="passwordRules"
-				label="Confirm New Password"
+				:label="$t('$personal.confirm_new_pas')"
 				type="text"
 				required
 			/>
 
-			<v-btn @click="saveEditUser()">Save</v-btn>
-		</div>
-
-		<div>
-			<br>
-			<br>
+			<v-btn @click="saveEditUser()">
+				{{$t('$buttons.save')}}
+			</v-btn>
 		</div>
 
 		<div v-show="personal">
 			<v-tabs
-				color="cyan"
-				slider-color="yellow"
+				color="#77a6f7"
+				slider-color="#00887a"
 			>
 				<v-tab
 					:key="1"
 					ripple
+					class="tab"
 				>
-					Your messages
+					{{$t('$message.your_messages')}} {{messagesById.length}}
 				</v-tab>
 				<v-tab
 					:key="2"
 					ripple
+					class="tab"
 				>
-					Saved messages
+					{{$t('$message.favourites')}} {{messagesSaved.length}}
 				</v-tab>
 				<v-tab-item
 					:key="1"
 				>
-					<v-card flat color="#d3e3fc">
-						<MessageList :Messages="messagesById"/>
+					<v-card flat>
+						<MessageList
+							:messages="messagesById"
+							@deleteMessage="deleteMessage"/>
 					</v-card>
 				</v-tab-item>
 				<v-tab-item
 					:key="2"
 				>
 					<v-card flat>
-						<MessageList :Messages="messagesSaved"/>
+						<MessageList :messages="messagesSaved"/>
 					</v-card>
 				</v-tab-item>
 			</v-tabs>
 		</div>
-		<!--<MessageList :Messages="messagesById"/>-->
 	</div>
 </template>
 
 <script>
 	import User from '../../classes/user/User'
-	import MessageList from '../main/MessageList'
+	import MessageList from '../message/MessageList'
+	import SetLanguage from '../universal/LanguageSwitcher'
 	import UserRepository from '../../classes/user/UserRepository.js'
 	import MessageRepository from '../../classes/message/MessageRepository.js'
 
 	export default {
-		name: "PersonalPage",
-		components: {MessageList},
+		name: "UserProfileForm",
+		components: {
+			MessageList,
+			SetLanguage
+		},
 		data() {
 			return {
 				user: {
@@ -136,7 +145,9 @@
 		},
 		inject: ['provideNick'],
 		props: {
-			id: Number
+			id: {
+				type: Number
+			}
 		},
 		created() {
 			this.getId()
@@ -145,11 +156,11 @@
 			async getId() {
 				const userRepository = new UserRepository();
 				if (this.$route.params.user_id) {
-					this.userId = this.$route.params.user_id;
+					this.userId = await this.$route.params.user_id;
 				} else {
 					this.userId = (await userRepository.findUsers(this.$route.params.nick_name))[0].id;
 				}
-				if (this.$route.path.includes('profile') && (this.userId === localStorage.getItem('id'))) {
+				if (this.$route.path.includes('profile') && (this.userId == Number(localStorage.getItem('id')))) {
 					this.personal = true
 				} else {
 					this.personal = false
@@ -172,7 +183,7 @@
 					const messageRepository = new MessageRepository();
 					messagesSavedIndex = await (messageRepository.getSavedMessages(this.userId))
 					messagesSavedIndex.forEach(async (item) => {
-						let message = await (messageRepository.getMessageById(item.message_id))
+						let message = await (messageRepository.getMessageById(item.messageId))
 						this.messagesSaved.push(message)
 					});
 				}
@@ -182,6 +193,28 @@
 				for (let key in this.user) {
 					this.editUser[key] = this.user[key]
 				}
+			},
+			uploadImage() {
+				if (this.edit) {
+					document.getElementById('image_upload').click()
+				}
+			},
+			setAvatar(e) {
+				var files = e.target.files || e.dataTransfer.files
+				if (!files.length) {
+					return
+				}
+				this.createImage(files[0])
+			},
+			createImage(file) {
+				this.edited = true
+				var reader = new FileReader();
+				reader.onload = (e) => {
+					this.image = e.target.result
+					this.user.avatar = this.image
+					this.editUser.avatar = this.image
+				}
+				reader.readAsDataURL(file)
 			},
 			async saveEditUser() {
 				if (this.old_password || this.new_password || this.confirm_new_password) {
@@ -211,39 +244,36 @@
 					console.log('you have changed nothing')
 				}
 			},
-			setAvatar(e) {
-				var files = e.target.files || e.dataTransfer.files
-				if (!files.length) {
-					return
-				}
-				this.createImage(files[0])
+			async subscribe() {
+				const userRepository = new UserRepository();
+				let response = await (userRepository.subscribeUser(this.user.id));
+				console.log('subscribed', response)
 			},
-			createImage(file) {
-				this.edited = true
-				var reader = new FileReader();
-				reader.onload = (e) => {
-					this.image = e.target.result
-					this.user.avatar = this.image
-					this.editUser.avatar = this.image
+			changeLocale() {
+				if (this.editUser.locale !== localStorage.getItem('locale')) {
+					this.edited = true
+					this.editUser.locale = localStorage.getItem('locale')
 				}
-				reader.readAsDataURL(file)
 			},
+			deleteMessage(id) {
+				this.messagesById = this.messagesById.filter(message => message.id != id)
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
 	@import '../../scss/colors';
+
 	.spacer {
 		height: 52px;
 	}
 
 	.personal-page {
-		background: $blue;
+		background: $lightblue;
 
 		&__button {
 			float: right;
-			border: 2px solid #77a6f7;;
 		}
 
 		&__info {
@@ -251,9 +281,7 @@
 			width: 100%;
 			align-items: center;
 			justify-content: space-between;
-			border-top: 2px solid darkslategrey;
-			border-bottom: 2px solid darkslategrey;
-			background-color: lavender;
+			background-color: $blue;
 			height: 40px;
 
 			&__avatar {
@@ -264,12 +292,12 @@
 				margin-right: 10px;
 				font-weight: 600;
 			}
+		}
 
-			/*padding: 20px;*/
-			/*text-align: center;*/
-			/*background-color: turquoise;*/
-			/*border-top: 2px solid darkslategrey;*/
-			/*border-bottom: 2px solid darkslategrey;*/
+		&__subscribe {
+			min-height: 50px;
+			display: flex;
+			justify-content: flex-end;
 		}
 
 		&__buttons-block {
@@ -280,13 +308,26 @@
 
 		&__edit-area {
 			padding: 0 10px;
+			text-align: center;
 
 			&__avatar-upload {
-				display: flex;
+				display: none;
 				justify-content: center;
 				padding: 10px;
 			}
 		}
 	}
 
+	.edit {
+	}
+
+	.edit:hover {
+		padding: 3px;
+		transition: padding .1s;
+	}
+
+	.tab {
+		width: 50%;
+		text-align: center;
+	}
 </style>

@@ -12,9 +12,9 @@
 </template>
 
 <script>
-	import BaseHeader from '../header/BaseHeader'
-	import BaseFooter from '../footer/BaseFooter'
-	import AddButton from './AddButton'
+	import BaseHeader from '../universal/BaseHeader'
+	import BaseFooter from '../universal/BaseFooter'
+	import AddButton from '../universal/AddButton'
 
 	export default {
 		name: 'layout',
@@ -66,6 +66,15 @@
 		}
 
 		&__footer {
+		}
+	}
+
+	@media screen and (min-width: 960px) {
+		.base-layout {
+			&__main {
+				margin-top: 64px;
+				min-height: calc(100vh - 64px - 36px);
+			}
 		}
 	}
 

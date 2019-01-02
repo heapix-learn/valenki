@@ -1,15 +1,15 @@
 <template>
-	<div>
-		<router-view/>
+	<div class="page-404">
+
 	</div>
 </template>
 
 <script>
 	export default {
-		name: "User",
+		name: "page404"
 	}
 </script>
 
-<style scoped>
+<style lang="scss">
 
 </style>

@@ -1,7 +1,8 @@
 export default class Comment {
 	id = null;
-	message_id = null;
-	author_id = null;
-	author_nick = "";
-	phrase = "";
+	messageId = null;
+	userId = Number;
+	userNickname = "";
+	body = "";
+	replies = [];
 }

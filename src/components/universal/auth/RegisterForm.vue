@@ -3,7 +3,12 @@
 
 		<div class="register-page__spacer"/>
 
-		<v-form @submit="checkFields()" ref="form" v-model="valid" lazy-validation>
+		<v-form
+			ref="form"
+			v-model="valid"
+			class="register-page__form"
+			lazy-validation
+		>
 			<v-text-field
 				v-model="user.email"
 				:rules="emailRules"
@@ -14,57 +19,60 @@
 			<v-text-field
 				v-model="user.password"
 				:rules="passwordRules"
-				label="Password"
+				:label="$t('$general.password')"
 				type="password"
 				required
 			/>
 			<v-text-field
 				v-model="confirm_password"
 				:rules="passwordRules"
-				label="Confirm Password"
+				:label="$t('$general.confirm_pass')"
 				type="password"
 				required
 			/>
-			<div class="login-page__form__buttons">
+			<div class="register-page__form__buttons">
 				<v-btn
-					type="submit"
-					class="login-page__form__buttons__button"
+					@click="checkFields()"
 					:disabled="!valid"
-				>
-					Signup
+					class="register-page__form__buttons__button">
+					{{$t('$buttons.sign_up')}}
 				</v-btn>
-				<router-link
-					:to="{name: 'login-page'}"
-					class="login-page__form__buttons__button"
-				>
-					<v-btn>have an account</v-btn>
-				</router-link>
+				<v-btn class="register-page__form__buttons__button">
+					<router-link
+						:to="{name: 'login-page'}">
+						{{$t('$buttons.have_account')}}
+					</router-link>
+				</v-btn>
 			</div>
 		</v-form>
+		<SetLanguage/>
 	</div>
 </template>
 
 <script>
-	import UserRepository from '../../classes/user/UserRepository.js'
-	import UserMapper from '../../classes/user/UserMapper'
-	import User from '../../classes/user/User'
+	import User from '../../../classes/user/User'
+	import UserMapper from '../../../classes/user/UserMapper'
+	import UserRepository from '../../../classes/user/UserRepository.js'
+	import SetLanguage from '../LanguageSwitcher'
 
 	export default {
-		name: 'RegisterPagePage',
-		components: {},
+		name: 'RegisterForm',
+		components: {SetLanguage},
 		data() {
 			return {
-				user:  new User,
+				user: new User,
 				valid: true,
 				confirm_password: '',
-				emailRules: [
-					v => !!v || 'Email is incorrect', //must be learn how its works
-					v => (v && v.length >= 6) || '\n' + 'Email must contain 6 characters'
-				],
-				passwordRules: [
-					v => !!v || 'Password is required',
-					v => (v && v.length >= 6) || 'Password must contain 6 characters'
-				],
+				emailRules:
+					[
+						v => !!v || 'Email is incorrect', //must be learn how its works
+						v => (v && v.length >= 6) || '\n' + 'Email must contain 6 characters'
+					],
+				passwordRules:
+					[
+						v => !!v || 'Password is required',
+						v => (v && v.length >= 6) || 'Password must contain 6 characters'
+					],
 			}
 		},
 		methods: {
@@ -76,6 +84,7 @@
 						if (this.confirm_password.length >= 6) {
 							if (this.confirm_password === this.user.password) {
 								console.log('credentials are correct, you have been registered');
+								this.user.locale = localStorage.getItem('locale');
 								this.registerUser();
 							} else {
 								console.log('passwords are not the same');
@@ -106,20 +115,46 @@
 <style lang="scss">
 
 	.register-page {
-		padding: 5vh;
+		padding: 1vh;
 
 		&__spacer {
-			height: 10vh;
+			height: 16vh;
 		}
 
 		&__form {
+			padding: 10px 15px;
+			width: 100%;
+			background: #f5f5f5;
+			border-radius: 3px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
 			&__buttons {
-
+				display: flex;
+				justify-content: space-evenly;
+				align-items: center;
 
 				&__button {
+					width: 50%;
+					margin: 0 !important;
 				}
 			}
 		}
+
+		&__pick-langs {
+			padding-top: 10px;
+			display: flex;
+			justify-content: space-around;
+		}
 	}
+
+	/*@media screen and (min-width: 768px) {*/
+	/*.register-page {*/
+	/*justify-content: center;*/
+
+	/*&__form {*/
+	/*width: 50%;;*/
+	/*}*/
+	/*}*/
+	/*}*/
+
 </style>

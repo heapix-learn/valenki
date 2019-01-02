@@ -1,35 +1,37 @@
 <template>
 	<div>
 		<PersonalPage :id="id"/>
-		Messages by @{{userNickName}}:
+		<!--Messages by @{{userNickName}}:-->
 		<div class="user-messages">
-			<div v-if="!MessagesByAuthor.length" class="base-main__note">
+			<div v-if="!messagesByAuthor.length" class="base-main__note">
 			<span>
 				Пользователь ещё не опубликовал сообщений!
 			</span>
-				{{MessagesByAuthor}}
+				{{messagesByAuthor}}
 			</div>
-
-			<div v-else class="base-main__page">
-				<MessageList :Messages="MessagesByAuthor"/>
+			<div v-else>
+				<MessageList
+					:messages="messagesByAuthor"
+				/>
 			</div>
-
 		</div>
 	</div>
 </template>
 
 <script>
-	import MessageList from "../../components/main/MessageList";
+	import MessageList from "./MessageList";
+	import PersonalPage from "../user/UserProfileForm";
 	import MessageRepository from '../../classes/message/MessageRepository.js'
-	import PersonalPage from "../personal/PersonalPage";
-
 
 	export default {
-		name: "UserMessages",
-		components: {PersonalPage, MessageList},
+		name: "MessageByUser",
+		components: {
+			PersonalPage,
+			MessageList
+		},
 		data() {
 			return {
-				MessagesByAuthor: [],
+				messagesByAuthor: [],
 				id: null
 			}
 		},
@@ -45,8 +47,8 @@
 			async getMessagesByUser() {
 				this.id = this.$route.params.user_id
 				const messageRepository = new MessageRepository();
-				this.MessagesByAuthor = await (messageRepository.getMessagesByUser(this.id))
-			},
+				this.messagesByAuthor = await (messageRepository.getMessagesByUser(this.id))
+			}
 		}
 	}
 </script>
@@ -54,6 +56,7 @@
 <style lang="scss">
 
 	.user-messages {
-		background-color: slategray;
+		background-color: d3e3fc;
 	}
+
 </style>
